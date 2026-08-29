@@ -10,32 +10,32 @@ export default function BnsLogo({ size = 44, className = '' }) {
       aria-label="BNS Services"
     >
       {/* Cadre bleu (ecran/monitor) */}
-      <rect x="20" y="20" width="160" height="140" rx="16" ry="16" fill="white" stroke="#1a3a8a" strokeWidth="6" />
+      <rect x="15" y="15" width="170" height="150" rx="14" ry="14" fill="white" stroke="#1a3a8a" strokeWidth="5" />
 
       {/* Engrenage bleu en haut a droite */}
-      <g transform="translate(155, 45)">
+      <g transform="translate(160, 42)">
         <path
-          d="M0,-18 L3,-18 L4,-14 L7,-13 L10,-16 L13,-13 L11,-10 L12,-7 L16,-6 L16,-3 L12,-2 L11,1 L14,4 L11,7 L8,5 L5,6 L4,10 L1,10 L0,6 L-3,5 L-6,8 L-9,5 L-7,2 L-8,-1 L-12,-2 L-12,-5 L-8,-4 L-7,-7 L-10,-10 L-7,-13 L-4,-11 L-1,-12 L0,-16 Z"
+          d="M0,-16 L2.5,-16 L3.5,-12 L6,-11 L8.5,-14 L11,-11 L9,-8 L10,-5 L14,-4 L14,-1.5 L10,-0.5 L9,2 L12,4.5 L9,7 L6.5,5 L4,6 L3,10 L0.5,10 L0,6 L-2.5,5 L-5,7.5 L-7.5,5 L-5.5,2 L-6.5,-1 L-10,-2 L-10,-4.5 L-6.5,-3.5 L-5.5,-6.5 L-8,-9 L-5.5,-11.5 L-3,-9.5 L-0.5,-10.5 L0,-14 Z"
           fill="#1a3a8a"
         />
-        <circle cx="0" cy="-4" r="8" fill="white" stroke="#1a3a8a" strokeWidth="2" />
+        <circle cx="0" cy="-3" r="7" fill="white" stroke="#1a3a8a" strokeWidth="2" />
       </g>
 
-      {/* Vague orange (swoosh) */}
+      {/* Vague orange (swoosh) - plus large et fluide */}
       <path
-        d="M20,120 C50,100 80,110 110,95 C90,115 60,130 20,140 Z"
+        d="M15,115 C45,95 75,108 105,92 C85,112 55,128 15,138 Z"
         fill="#e87722"
       />
       <path
-        d="M20,145 C55,130 90,140 130,125 C100,148 60,158 20,162 Z"
+        d="M15,142 C50,125 85,138 125,120 C95,145 55,158 15,162 Z"
         fill="#e87722"
       />
 
       {/* Cercle bleu (personne) */}
-      <circle cx="72" cy="65" r="16" fill="#1a3a8a" />
+      <circle cx="68" cy="62" r="15" fill="#1a3a8a" />
 
-      {/* Texte BNS */}
-      <text x="105" y="120" fontFamily="Arial, sans-serif" fontWeight="900" fontSize="36" letterSpacing="2">
+      {/* Texte BNS - bien centre dans le cadre */}
+      <text x="70" y="115" fontFamily="Arial Black, Arial, sans-serif" fontWeight="900" fontSize="40" letterSpacing="4">
         <tspan fill="#1a3a8a">B</tspan>
         <tspan fill="#e87722">N</tspan>
         <tspan fill="#1a3a8a">S</tspan>

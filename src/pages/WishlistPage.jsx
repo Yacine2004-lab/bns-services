@@ -19,7 +19,7 @@ function WishlistPage() {
     return (
       <div className="space-y-6 pb-10">
         <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-          <h1 className="text-3xl font-black tracking-[-0.06em] text-[#0b1f3a] sm:text-4xl">
+          <h1 className="text-3xl font-black tracking-[-0.06em] text-[#0f2557] sm:text-4xl">
             Mes favoris
           </h1>
           <p className="mt-2 text-slate-600">Vos produits favoris seront sauvegardés ici.</p>
@@ -31,12 +31,12 @@ function WishlistPage() {
               ❤️
             </div>
           </div>
-          <p className="mt-4 text-2xl font-black text-[#0b1f3a]">Pas de favoris pour l'instant</p>
+          <p className="mt-4 text-2xl font-black text-[#0f2557]">Pas de favoris pour l'instant</p>
           <p className="mt-2 text-slate-600">Ajoutez des produits à votre wishlist en cliquant sur le cœur.</p>
 
           <Link
             to="/catalogue"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#0b1f3a] px-6 py-3 text-lg font-bold text-white transition hover:bg-[#143765]"
+            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#0f2557] px-6 py-3 text-lg font-bold text-white transition hover:bg-[#1a3a8a]"
           >
             <ArrowLeft size={18} />
             Découvrir des produits
@@ -49,7 +49,7 @@ function WishlistPage() {
   return (
     <div className="space-y-6 pb-10">
       <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-        <h1 className="text-3xl font-black tracking-[-0.06em] text-[#0b1f3a] sm:text-4xl">
+        <h1 className="text-3xl font-black tracking-[-0.06em] text-[#0f2557] sm:text-4xl">
           Mes favoris
         </h1>
         <p className="mt-2 text-slate-600">
@@ -84,7 +84,7 @@ function WishlistPage() {
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
                   {product.subCategory}
                 </p>
-                <h3 className="mt-2 line-clamp-2 text-lg font-black tracking-[-0.04em] text-[#0b1f3a] hover:text-[#f5a623]">
+                <h3 className="mt-2 line-clamp-2 text-lg font-black tracking-[-0.04em] text-[#0f2557] hover:text-[#e87722]">
                   {product.name}
                 </h3>
               </Link>
@@ -92,7 +92,7 @@ function WishlistPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Prix</p>
-                  <p className="text-xl font-black text-[#0b1f3a]">{formatPrice(product.price)}</p>
+                  <p className="text-xl font-black text-[#0f2557]">{formatPrice(product.price)}</p>
                 </div>
               </div>
 
@@ -100,7 +100,7 @@ function WishlistPage() {
                 <button
                   type="button"
                   onClick={() => addToCart(product)}
-                  className="flex-1 rounded-full bg-[#0b1f3a] px-3 py-2 text-sm font-bold text-white transition hover:bg-[#143765]"
+                  className="flex-1 rounded-full bg-[#0f2557] px-3 py-2 text-sm font-bold text-white transition hover:bg-[#1a3a8a]"
                 >
                   <ShoppingCart size={16} className="mx-auto" />
                 </button>

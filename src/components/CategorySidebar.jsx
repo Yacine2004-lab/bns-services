@@ -22,11 +22,11 @@ function CategorySidebar({ activeCategory, activeSubCategory, onSelectCategory, 
   return (
     <aside className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-[0_18px_40px_rgba(11,31,58,0.08)] lg:p-5">
       <div className="mb-5 flex items-center justify-between">
-        <h2 className="text-lg font-black text-[#0b1f3a]">Catégories</h2>
+        <h2 className="text-lg font-black text-[#0f2557]">Catégories</h2>
         <button
           type="button"
           onClick={() => onSelectCategory(null)}
-          className="text-xs font-semibold text-[#0b1f3a] hover:text-[#f5a623]"
+          className="text-xs font-semibold text-[#0f2557] hover:text-[#e87722]"
         >
           Tout
         </button>
@@ -47,18 +47,18 @@ function CategorySidebar({ activeCategory, activeSubCategory, onSelectCategory, 
                   toggleGroup(category.id)
                 }}
                 className={`flex w-full items-center justify-between gap-3 px-3 py-3 text-left transition ${
-                  isActiveCategory ? 'bg-[#0b1f3a] text-white' : 'text-[#0b1f3a] hover:bg-slate-100'
+                  isActiveCategory ? 'bg-[#0f2557] text-white' : 'text-[#0f2557] hover:bg-slate-100'
                 }`}
               >
                 <span className="flex items-center gap-3">
-                  <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${isActiveCategory ? 'bg-white/10 text-[#f9b448]' : 'bg-white text-[#0b1f3a]'}`}>
+                  <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${isActiveCategory ? 'bg-white/10 text-[#e87722]' : 'bg-white text-[#0f2557]'}`}>
                     <Icon size={18} />
                   </span>
                   <span className="text-sm font-bold">{category.name}</span>
                 </span>
 
                 <span className="flex items-center gap-2">
-                  <span className={`rounded-full px-2 py-1 text-[10px] font-bold ${isActiveCategory ? 'bg-white/10 text-white' : 'bg-white text-[#0b1f3a]'}`}>
+                  <span className={`rounded-full px-2 py-1 text-[10px] font-bold ${isActiveCategory ? 'bg-white/10 text-white' : 'bg-white text-[#0f2557]'}`}>
                     {categoryCounts[category.id] ?? 0}
                   </span>
                   {isOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
@@ -78,15 +78,15 @@ function CategorySidebar({ activeCategory, activeSubCategory, onSelectCategory, 
                         onClick={() => onSelectSubCategory(subCategory.id)}
                         className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm transition ${
                           isActiveSub
-                            ? 'bg-[#f8f1e7] text-[#0b1f3a] ring-1 ring-[#f5a623]/20'
-                            : 'text-slate-600 hover:bg-white hover:text-[#0b1f3a]'
+                            ? 'bg-[#f8f1e7] text-[#0f2557] ring-1 ring-[#e87722]/20'
+                            : 'text-slate-600 hover:bg-white hover:text-[#0f2557]'
                         }`}
                       >
                         <span className="flex items-center gap-2">
                           <subCategory.icon size={15} />
                           <span>{subCategory.name}</span>
                         </span>
-                        <span className="rounded-full bg-white px-2 py-1 text-[10px] font-bold text-[#0b1f3a]">
+                        <span className="rounded-full bg-white px-2 py-1 text-[10px] font-bold text-[#0f2557]">
                           {count}
                         </span>
                       </button>

@@ -35,7 +35,7 @@ function CategoryDrawer({ isOpen, onClose, onSelectCategory, onSelectSubCategory
       >
         <div className="sticky top-0 border-b border-slate-200 bg-white p-4 sm:p-5">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-black text-[#0b1f3a]">Catégories</h2>
+            <h2 className="text-lg font-black text-[#0f2557]">Catégories</h2>
             <button
               type="button"
               onClick={onClose}
@@ -59,7 +59,7 @@ function CategoryDrawer({ isOpen, onClose, onSelectCategory, onSelectSubCategory
                     onSelectCategory(category.id)
                     toggleGroup(category.id)
                   }}
-                  className="flex w-full items-center justify-between gap-3 bg-slate-50 px-3 py-3 text-left font-bold text-[#0b1f3a] transition hover:bg-slate-100"
+                  className="flex w-full items-center justify-between gap-3 bg-slate-50 px-3 py-3 text-left font-bold text-[#0f2557] transition hover:bg-slate-100"
                 >
                   <span className="flex items-center gap-3">
                     <Icon size={18} />
@@ -81,7 +81,7 @@ function CategoryDrawer({ isOpen, onClose, onSelectCategory, onSelectSubCategory
                           onSelectSubCategory(subCategory.id)
                           onClose()
                         }}
-                        className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm text-slate-600 transition hover:bg-slate-50 hover:text-[#0b1f3a]"
+                        className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm text-slate-600 transition hover:bg-slate-50 hover:text-[#0f2557]"
                       >
                         <div className="h-7 w-7 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100 p-0.5 border border-slate-200/60">
                           {subCategory.image ? (

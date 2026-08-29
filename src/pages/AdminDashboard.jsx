@@ -72,7 +72,7 @@ function AdminRoute({ children }) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-950">
         <div className="flex flex-col items-center gap-4">
-          <div className="h-12 w-12 animate-spin rounded-full border-2 border-[#f5a623] border-t-transparent" />
+          <div className="h-12 w-12 animate-spin rounded-full border-2 border-[#e87722] border-t-transparent" />
           <p className="text-sm text-slate-400">Chargement...</p>
         </div>
       </div>
@@ -115,7 +115,7 @@ function AdminSidebar({ isOpen, onClose, onLogout, activeItem, onNavigate, admin
             <BnsLogo size={40} />
             <div>
               <div className="text-sm font-black tracking-tight text-white">BNS Services</div>
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-[#f5a623]/70">Panel Admin</div>
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-[#e87722]/70">Panel Admin</div>
             </div>
           </div>
           <button onClick={onClose} className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white lg:hidden">
@@ -139,14 +139,14 @@ function AdminSidebar({ isOpen, onClose, onLogout, activeItem, onNavigate, admin
                 }}
                 className={`group relative flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-[#f5a623]/10 text-[#f5a623]'
+                    ? 'bg-[#e87722]/10 text-[#e87722]'
                     : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
                 }`}
               >
                 {isActive && (
-                  <div className="absolute -left-0.5 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r-full bg-[#f5a623]" />
+                  <div className="absolute -left-0.5 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r-full bg-[#e87722]" />
                 )}
-                <Icon size={18} className={isActive ? 'text-[#f5a623]' : 'text-slate-500 group-hover:text-slate-300'} />
+                <Icon size={18} className={isActive ? 'text-[#e87722]' : 'text-slate-500 group-hover:text-slate-300'} />
                 <span>{item.label}</span>
               </button>
             )
@@ -156,7 +156,7 @@ function AdminSidebar({ isOpen, onClose, onLogout, activeItem, onNavigate, admin
         {/* Admin info + Déconnexion */}
         <div className="border-t border-slate-800/60 p-4">
           <div className="mb-3 flex items-center gap-3 rounded-xl bg-slate-900/60 px-4 py-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#f5a623] to-[#e78b0a] text-xs font-black text-[#0b1f3a]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#e87722] to-[#d06a1a] text-xs font-black text-[#0f2557]">
               {adminUser?.name?.[0]?.toUpperCase() || 'A'}
             </div>
             <div className="min-w-0 flex-1">
@@ -285,7 +285,7 @@ function DashboardOverview({ onNavigate }) {
           </div>
           <p className="mt-1 text-sm text-slate-400">
             Vue d'ensemble de votre boutique BNS Services
-            {refreshing && <span className="ml-2 text-[#f5a623]">Mise à jour...</span>}
+            {refreshing && <span className="ml-2 text-[#e87722]">Mise à jour...</span>}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -302,7 +302,7 @@ function DashboardOverview({ onNavigate }) {
           <button
             type="button"
             onClick={() => onNavigate('products')}
-            className="inline-flex items-center gap-2 rounded-xl bg-[#f5a623] px-5 py-2.5 text-sm font-bold text-[#0b1f3a] shadow-lg shadow-[#f5a623]/20 transition hover:bg-[#f9b448] hover:shadow-xl"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#e87722] px-5 py-2.5 text-sm font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/20 transition hover:bg-[#e87722] hover:shadow-xl"
           >
             <Package size={16} />
             Gérer les produits
@@ -376,13 +376,13 @@ function DashboardOverview({ onNavigate }) {
       <div className="rounded-2xl border border-slate-800/60 bg-slate-900/80">
         <div className="flex items-center justify-between border-b border-slate-800/60 px-6 py-4">
           <div className="flex items-center gap-2">
-            <ShoppingCart size={16} className="text-[#f5a623]" />
+            <ShoppingCart size={16} className="text-[#e87722]" />
             <h3 className="text-sm font-bold text-white">Commandes récentes</h3>
           </div>
           <button
             type="button"
             onClick={() => onNavigate('orders')}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-[#f5a623] transition hover:text-[#f9b448]"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#e87722] transition hover:text-[#e87722]"
           >
             Tout voir <ArrowRight size={12} />
           </button>
@@ -410,7 +410,7 @@ function DashboardOverview({ onNavigate }) {
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <StatusBadge status={order.status} />
-                  <span className="text-sm font-bold text-[#f5a623]">{formatPrice(order.total)}</span>
+                  <span className="text-sm font-bold text-[#e87722]">{formatPrice(order.total)}</span>
                 </div>
               </div>
             ))}
@@ -511,7 +511,7 @@ function AdminOrders() {
           </div>
           <p className="mt-1 text-sm text-slate-400">
             Suivez et mettez à jour les commandes de vos clients
-            {refreshing && <span className="ml-2 text-[#f5a623]">Mise à jour...</span>}
+            {refreshing && <span className="ml-2 text-[#e87722]">Mise à jour...</span>}
           </p>
         </div>
         <button
@@ -538,12 +538,12 @@ function AdminOrders() {
               onClick={() => setFilterStatus(key)}
               className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
                 isActive
-                  ? 'bg-[#f5a623] text-[#0b1f3a] shadow-md shadow-[#f5a623]/20'
+                  ? 'bg-[#e87722] text-[#0f2557] shadow-md shadow-[#e87722]/20'
                   : 'border border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
               }`}
             >
               {label}
-              <span className={`rounded-full px-1.5 py-0.5 text-[10px] ${isActive ? 'bg-[#0b1f3a]/15 text-[#0b1f3a]' : 'bg-slate-800 text-slate-500'}`}>
+              <span className={`rounded-full px-1.5 py-0.5 text-[10px] ${isActive ? 'bg-[#0f2557]/15 text-[#0f2557]' : 'bg-slate-800 text-slate-500'}`}>
                 {count}
               </span>
             </button>
@@ -554,7 +554,7 @@ function AdminOrders() {
       {/* Contenu */}
       {loadingOrders ? (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/50 py-16">
-          <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#f5a623] border-t-transparent mb-4" />
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#e87722] border-t-transparent mb-4" />
           <p className="text-sm text-slate-400">Chargement des commandes...</p>
         </div>
       ) : filteredOrders.length === 0 ? (
@@ -587,7 +587,7 @@ function AdminOrders() {
                   <select
                     value={order.status}
                     onChange={(e) => updateOrderStatus(order.id, order.status, e.target.value)}
-                    className="rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-semibold text-white outline-none transition focus:border-[#f5a623]"
+                    className="rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-semibold text-white outline-none transition focus:border-[#e87722]"
                   >
                     {Object.entries(STATUS_CONFIG).map(([value, { label }]) => (
                       <option key={value} value={value}>{label}</option>
@@ -595,7 +595,7 @@ function AdminOrders() {
                   </select>
                   <div className="text-right">
                     <p className="text-[10px] font-semibold uppercase text-slate-500">Total</p>
-                    <p className="text-lg font-black text-[#f5a623]">{formatPrice(order.total)}</p>
+                    <p className="text-lg font-black text-[#e87722]">{formatPrice(order.total)}</p>
                   </div>
                 </div>
               </div>
@@ -612,7 +612,7 @@ function AdminOrders() {
                     </p>
                     <p className="flex items-center gap-2">
                       <Phone size={12} className="text-slate-500" />
-                      <a href={`tel:${order.customerPhone}`} className="transition hover:text-[#f5a623]">{order.customerPhone}</a>
+                      <a href={`tel:${order.customerPhone}`} className="transition hover:text-[#e87722]">{order.customerPhone}</a>
                     </p>
                     {order.customerEmail && (
                       <p className="flex items-center gap-2">
@@ -751,7 +751,7 @@ function AdminCustomers() {
             </div>
             <div>
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Chiffre d'affaires</p>
-              <p className="text-2xl font-black text-[#f5a623]">{formatPrice(totalRevenue)}</p>
+              <p className="text-2xl font-black text-[#e87722]">{formatPrice(totalRevenue)}</p>
             </div>
           </div>
         </div>
@@ -783,7 +783,7 @@ function AdminCustomers() {
       {/* Liste */}
       {loading ? (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/50 py-16">
-          <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#f5a623] border-t-transparent mb-4" />
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#e87722] border-t-transparent mb-4" />
           <p className="text-sm text-slate-400">Chargement des clients...</p>
         </div>
       ) : customers.length === 0 ? (
@@ -814,7 +814,7 @@ function AdminCustomers() {
                 >
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#f5a623]/20 to-[#f5a623]/5 text-xs font-black text-[#f5a623] border border-[#f5a623]/20">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#e87722]/20 to-[#e87722]/5 text-xs font-black text-[#e87722] border border-[#e87722]/20">
                         {(customer.firstName?.[0] || '?')}{(customer.lastName?.[0] || '')}
                       </div>
                       <div>
@@ -824,7 +824,7 @@ function AdminCustomers() {
                     </div>
                   </td>
                   <td className="px-5 py-4 text-slate-400 hidden sm:table-cell">
-                    <a href={`tel:${customer.phone}`} className="transition hover:text-[#f5a623]">
+                    <a href={`tel:${customer.phone}`} className="transition hover:text-[#e87722]">
                       {customer.phone || '—'}
                     </a>
                   </td>
@@ -833,7 +833,7 @@ function AdminCustomers() {
                       {customer.orderCount}
                     </span>
                   </td>
-                  <td className="px-5 py-4 text-right font-bold text-[#f5a623]">
+                  <td className="px-5 py-4 text-right font-bold text-[#e87722]">
                     {formatPrice(customer.totalSpent)}
                   </td>
                   <td className="px-5 py-4 text-slate-500 hidden md:table-cell">
@@ -886,7 +886,7 @@ function AdminCustomers() {
 
             {loadingDetails ? (
               <div className="flex flex-col items-center justify-center py-16">
-                <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#f5a623] border-t-transparent mb-4" />
+                <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#e87722] border-t-transparent mb-4" />
                 <p className="text-sm text-slate-400">Chargement...</p>
               </div>
             ) : customerDetails ? (
@@ -904,8 +904,8 @@ function AdminCustomers() {
                   <div className="rounded-xl bg-slate-950/60 p-4">
                     <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Statistiques</p>
                     <div className="space-y-2 text-xs text-slate-300">
-                      <p><span className="text-slate-500">Commandes :</span> <span className="font-bold text-[#f5a623]">{customerDetails.orderCount}</span></p>
-                      <p><span className="text-slate-500">Total dépensé :</span> <span className="font-bold text-[#f5a623]">{formatPrice(customerDetails.totalSpent)}</span></p>
+                      <p><span className="text-slate-500">Commandes :</span> <span className="font-bold text-[#e87722]">{customerDetails.orderCount}</span></p>
+                      <p><span className="text-slate-500">Total dépensé :</span> <span className="font-bold text-[#e87722]">{formatPrice(customerDetails.totalSpent)}</span></p>
                     </div>
                   </div>
                 </div>
@@ -924,7 +924,7 @@ function AdminCustomers() {
                               <span className="font-bold text-white text-sm">{order.orderNumber}</span>
                               <StatusBadge status={order.status} />
                             </div>
-                            <span className="text-sm font-black text-[#f5a623]">{formatPrice(order.total)}</span>
+                            <span className="text-sm font-black text-[#e87722]">{formatPrice(order.total)}</span>
                           </div>
                           <div className="space-y-1.5">
                             {order.items?.map((item) => (
@@ -1049,12 +1049,12 @@ function AdminSettings() {
   ]
 
   const inputClass =
-    'w-full rounded-xl bg-slate-950/60 border border-slate-700 text-white placeholder-slate-500 px-4 py-2.5 text-sm outline-none focus:border-[#f5a623] focus:ring-2 focus:ring-[#f5a623]/20 transition'
+    'w-full rounded-xl bg-slate-950/60 border border-slate-700 text-white placeholder-slate-500 px-4 py-2.5 text-sm outline-none focus:border-[#e87722] focus:ring-2 focus:ring-[#e87722]/20 transition'
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/50 py-16">
-        <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#f5a623] border-t-transparent mb-4" />
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#e87722] border-t-transparent mb-4" />
         <p className="text-sm text-slate-400">Chargement des paramètres...</p>
       </div>
     )
@@ -1080,7 +1080,7 @@ function AdminSettings() {
               onClick={() => setActiveTab(tab.id)}
               className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition ${
                 isActive
-                  ? 'bg-[#f5a623] text-[#0b1f3a] shadow-md shadow-[#f5a623]/20'
+                  ? 'bg-[#e87722] text-[#0f2557] shadow-md shadow-[#e87722]/20'
                   : 'border border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
               }`}
             >
@@ -1096,7 +1096,7 @@ function AdminSettings() {
         <div className="space-y-6">
           <div className="rounded-2xl border border-slate-800/60 bg-slate-900/60 p-6">
             <div className="flex items-center gap-4 mb-6">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f9b448] to-[#f5a623] text-xl font-black text-[#0b1f3a] shadow-lg shadow-[#f5a623]/20">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#e87722] to-[#e87722] text-xl font-black text-[#0f2557] shadow-lg shadow-[#e87722]/20">
                 {profileName ? profileName[0].toUpperCase() : 'A'}
               </div>
               <div>
@@ -1140,7 +1140,7 @@ function AdminSettings() {
               <button
                 type="submit"
                 disabled={profileSaving}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#f5a623] px-6 py-2.5 text-sm font-bold text-[#0b1f3a] transition hover:bg-[#f9b448] disabled:opacity-50"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#e87722] px-6 py-2.5 text-sm font-bold text-[#0f2557] transition hover:bg-[#e87722] disabled:opacity-50"
               >
                 <Save size={16} />
                 {profileSaving ? 'Enregistrement...' : 'Enregistrer'}
@@ -1236,7 +1236,7 @@ function AdminSettings() {
                   type="checkbox"
                   checked={showPwd}
                   onChange={(e) => setShowPwd(e.target.checked)}
-                  className="h-4 w-4 rounded accent-[#f5a623]"
+                  className="h-4 w-4 rounded accent-[#e87722]"
                 />
                 <span className="text-xs text-slate-400">Afficher les mots de passe</span>
               </label>
@@ -1292,7 +1292,7 @@ function AdminSettings() {
                 { label: 'Commandes', value: settings?.stats?.totalOrders, icon: ShoppingCart, color: 'text-emerald-400' },
                 { label: 'Catégories', value: settings?.stats?.totalCategories, icon: LayoutDashboard, color: 'text-purple-400' },
                 { label: 'En attente', value: settings?.stats?.pendingOrders, icon: Clock, color: 'text-amber-400' },
-                { label: 'Revenus', value: formatPrice(settings?.stats?.totalRevenue || 0), icon: TrendingUp, color: 'text-[#f5a623]' },
+                { label: 'Revenus', value: formatPrice(settings?.stats?.totalRevenue || 0), icon: TrendingUp, color: 'text-[#e87722]' },
               ].map((stat) => {
                 const Icon = stat.icon
                 return (
@@ -1335,7 +1335,7 @@ function AdminSettings() {
               </div>
               <div className="flex items-center justify-between rounded-xl bg-slate-950/60 p-4 sm:col-span-2">
                 <span className="text-xs text-slate-500">URL frontend autorisé</span>
-                <span className="text-sm font-bold text-[#f5a623]">{settings?.system?.clientUrl}</span>
+                <span className="text-sm font-bold text-[#e87722]">{settings?.system?.clientUrl}</span>
               </div>
             </div>
           </div>
@@ -1424,7 +1424,7 @@ export default function AdminDashboard() {
               <Menu size={20} />
             </button>
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#f9b448] to-[#f5a623] text-xs font-black text-[#0b1f3a]">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#e87722] to-[#e87722] text-xs font-black text-[#0f2557]">
                 B
               </div>
               <span className="text-sm font-bold text-white">{pageTitles[activeItem]}</span>

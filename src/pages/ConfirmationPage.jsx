@@ -69,7 +69,7 @@ export default function ConfirmationPage() {
           <span className="inline-block rounded-full bg-emerald-50 px-3.5 py-1 text-xs font-bold text-emerald-700 border border-emerald-200">
             Commande enregistrée avec succès
           </span>
-          <h1 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#0B1F3A]">
+          <h1 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#0f2557]">
             Merci pour votre commande !
           </h1>
           <p className="mt-2 text-sm text-slate-600 max-w-md mx-auto">
@@ -86,7 +86,7 @@ export default function ConfirmationPage() {
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Numéro de commande
               </p>
-              <p className="text-xl font-black text-[#0B1F3A]">
+              <p className="text-xl font-black text-[#0f2557]">
                 {order.orderNumber || order.id}
               </p>
             </div>
@@ -95,7 +95,7 @@ export default function ConfirmationPage() {
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Total à la livraison
               </p>
-              <p className="text-2xl font-black text-[#f5a623]">
+              <p className="text-2xl font-black text-[#e87722]">
                 {formatPrice(order.total)}
               </p>
             </div>
@@ -104,16 +104,16 @@ export default function ConfirmationPage() {
           {/* Destinataire & Articles */}
           <div className="grid gap-6 sm:grid-cols-2 text-sm">
             <div className="space-y-1.5 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-              <p className="text-xs font-bold uppercase tracking-wider text-[#0B1F3A]">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#0f2557]">
                 👤 Destinataire
               </p>
-              <p className="font-bold text-[#0B1F3A]">{order.customerName}</p>
+              <p className="font-bold text-[#0f2557]">{order.customerName}</p>
               <p className="text-xs text-slate-600">📱 {order.customerPhone}</p>
               <p className="text-xs text-slate-600">📍 {order.shippingAddress}, {order.shippingCity}</p>
             </div>
 
             <div className="space-y-1.5 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-              <p className="text-xs font-bold uppercase tracking-wider text-[#0B1F3A]">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#0f2557]">
                 📦 Contenu du colis ({order.items?.length} article{order.items?.length > 1 ? 's' : ''})
               </p>
               <div className="max-h-24 overflow-y-auto space-y-1 pr-1">
@@ -150,10 +150,10 @@ export default function ConfirmationPage() {
       {/* 3. Les 3 étapes de livraison */}
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm space-y-2">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-[#f5a623] mx-auto font-black text-sm">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-[#e87722] mx-auto font-black text-sm">
             1
           </div>
-          <h4 className="font-bold text-xs text-[#0B1F3A]">Prise en charge</h4>
+          <h4 className="font-bold text-xs text-[#0f2557]">Prise en charge</h4>
           <p className="text-[11px] text-slate-500">
             Notre équipe valide vos articles et prépare le colis en stock.
           </p>
@@ -163,7 +163,7 @@ export default function ConfirmationPage() {
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 mx-auto font-black text-sm">
             2
           </div>
-          <h4 className="font-bold text-xs text-[#0B1F3A]">Livraison Express</h4>
+          <h4 className="font-bold text-xs text-[#0f2557]">Livraison Express</h4>
           <p className="text-[11px] text-slate-500">
             Le coursier vous contacte pour vous livrer à l'adresse indiquée.
           </p>
@@ -173,7 +173,7 @@ export default function ConfirmationPage() {
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 mx-auto font-black text-sm">
             3
           </div>
-          <h4 className="font-bold text-xs text-[#0B1F3A]">Paiement à la réception</h4>
+          <h4 className="font-bold text-xs text-[#0f2557]">Paiement à la réception</h4>
           <p className="text-[11px] text-slate-500">
             Vérifiez vos produits et réglez en espèces ou Mobile Money.
           </p>
@@ -184,7 +184,7 @@ export default function ConfirmationPage() {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
         <Link
           to="/catalogue"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-sm font-bold text-[#0B1F3A] hover:bg-slate-50 transition shadow-xs"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-sm font-bold text-[#0f2557] hover:bg-slate-50 transition shadow-xs"
         >
           <ShoppingBag size={16} />
           <span>Continuer mes achats</span>
@@ -192,7 +192,7 @@ export default function ConfirmationPage() {
 
         <Link
           to="/"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-[#0B1F3A] px-7 py-3.5 text-sm font-bold text-white hover:bg-[#143765] transition shadow-md"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-[#0f2557] px-7 py-3.5 text-sm font-bold text-white hover:bg-[#1a3a8a] transition shadow-md"
         >
           <span>Retour à l'accueil</span>
           <ArrowRight size={16} />

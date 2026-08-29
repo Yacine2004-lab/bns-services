@@ -218,7 +218,7 @@ export default function AdminProducts() {
         <button
           type="button"
           onClick={openAdd}
-          className="inline-flex items-center gap-2 rounded-xl bg-[#f5a623] px-5 py-2.5 text-sm font-bold text-[#0b1f3a] transition hover:bg-[#f9b448]"
+          className="inline-flex items-center gap-2 rounded-xl bg-[#e87722] px-5 py-2.5 text-sm font-bold text-[#0f2557] transition hover:bg-[#e87722]"
         >
           <Plus size={18} />
           Ajouter un produit
@@ -331,11 +331,11 @@ export default function AdminProducts() {
                     handleImageFiles(e.dataTransfer.files)
                   }}
                   className={`rounded-2xl border border-dashed p-4 transition ${
-                    dragActive ? 'border-[#f5a623] bg-[#f5a623]/10' : 'border-slate-600 bg-slate-950/40'
+                    dragActive ? 'border-[#e87722] bg-[#e87722]/10' : 'border-slate-600 bg-slate-950/40'
                   }`}
                 >
                   <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-slate-800 bg-slate-900/60 px-4 py-6 text-center">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f5a623]/15 text-[#f5a623]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e87722]/15 text-[#e87722]">
                       {uploading ? <Loader2 size={22} className="animate-spin" /> : <Camera size={22} />}
                     </div>
                     <div>
@@ -389,10 +389,10 @@ export default function AdminProducts() {
                   type="checkbox"
                   checked={form.featured}
                   onChange={(e) => setForm((f) => ({ ...f, featured: e.target.checked }))}
-                  className="h-4 w-4 rounded accent-[#f5a623]"
+                  className="h-4 w-4 rounded accent-[#e87722]"
                 />
                 <span className="inline-flex items-center gap-2 text-sm text-slate-300">
-                  <Sparkles size={14} className="text-[#f5a623]" />
+                  <Sparkles size={14} className="text-[#e87722]" />
                   Mettre en vedette (page d'accueil)
                 </span>
               </label>
@@ -406,7 +406,7 @@ export default function AdminProducts() {
               <div className="flex gap-3 pt-2">
                 <button
                   type="submit"
-                  className="flex-1 rounded-xl bg-[#f5a623] py-3 text-sm font-bold text-[#0b1f3a] transition hover:bg-[#f9b448]"
+                  className="flex-1 rounded-xl bg-[#e87722] py-3 text-sm font-bold text-[#0f2557] transition hover:bg-[#e87722]"
                 >
                   {editingId ? 'Enregistrer' : 'Publier le produit'}
                 </button>
@@ -480,7 +480,7 @@ export default function AdminProducts() {
                       <button
                         type="button"
                         onClick={() => openEdit(product)}
-                        className="p-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-[#f5a623]"
+                        className="p-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-[#e87722]"
                         title="Modifier"
                       >
                         <Pencil size={16} />

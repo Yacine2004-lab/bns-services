@@ -70,32 +70,32 @@ export default function Login() {
   return (
     <div className="min-h-screen grid lg:grid-cols-2 bg-white">
       {/* Colonne visuelle — visible uniquement à partir de desktop */}
-      <div className="hidden lg:flex relative flex-col justify-between overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4a] to-[#0d2240] p-12 text-white">
-        <div className="absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-[#F5A623]/22 blur-[100px]" />
+      <div className="hidden lg:flex relative flex-col justify-between overflow-hidden bg-gradient-to-br from-[#0f2557] via-[#142d60] to-[#0f2557] p-12 text-white">
+        <div className="absolute -bottom-32 -left-20 h-96 w-96 rounded-full bg-[#e87722]/22 blur-[100px]" />
         <div className="absolute -right-16 -top-16 h-80 w-80 rounded-full bg-[#5b9fd4]/15 blur-[90px]" />
         <div className="absolute top-1/3 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-white/[0.04] blur-[70px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A]/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f2557]/50 via-transparent to-transparent" />
 
         <Link to="/" className="relative flex items-center gap-3 z-10">
-          <div className="w-10 h-10 rounded-xl bg-[#F5A623] flex items-center justify-center font-black text-[#0B1F3A]">
+          <div className="w-10 h-10 rounded-xl bg-[#e87722] flex items-center justify-center font-black text-[#0f2557]">
             B
           </div>
           <div className="leading-tight">
             <div className="font-extrabold tracking-tight">BNS</div>
-            <div className="text-[10px] font-semibold tracking-widest text-[#F5A623]">
+            <div className="text-[10px] font-semibold tracking-widest text-[#e87722]">
               SERVICES
             </div>
           </div>
         </Link>
 
         <div className="relative z-10 space-y-6">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#F5A623]/40 text-[#F5A623] text-xs font-semibold tracking-wide">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#e87722]/40 text-[#e87722] text-xs font-semibold tracking-wide">
             <Zap size={14} /> ESPACE CLIENT
           </span>
           <h2 className="text-4xl font-black leading-tight">
             Retrouve tes commandes,
             <br />
-            <span className="text-[#F5A623]">en un instant.</span>
+            <span className="text-[#e87722]">en un instant.</span>
           </h2>
           <p className="text-white/70 max-w-sm leading-relaxed">
             Connecte-toi pour suivre tes commandes, gérer tes informations et
@@ -112,18 +112,18 @@ export default function Login() {
       <div className="flex items-center justify-center px-6 py-12 sm:px-12">
         <div className="w-full max-w-sm">
           <div className="lg:hidden mb-10 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#F5A623] flex items-center justify-center font-black text-[#0B1F3A]">
+            <div className="w-10 h-10 rounded-xl bg-[#e87722] flex items-center justify-center font-black text-[#0f2557]">
               B
             </div>
             <div className="leading-tight">
-              <div className="font-extrabold text-[#0B1F3A]">BNS</div>
-              <div className="text-[10px] font-semibold tracking-widest text-[#F5A623]">
+              <div className="font-extrabold text-[#0f2557]">BNS</div>
+              <div className="text-[10px] font-semibold tracking-widest text-[#e87722]">
                 SERVICES
               </div>
             </div>
           </div>
 
-          <h1 className="text-2xl font-black text-[#0B1F3A] mb-1">
+          <h1 className="text-2xl font-black text-[#0f2557] mb-1">
             Content de te revoir
           </h1>
           <p className="text-gray-500 mb-8 text-sm">
@@ -166,7 +166,7 @@ export default function Login() {
               <div className="flex-1 h-px bg-gray-200" />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-[#0B1F3A] mb-1.5">
+              <label className="block text-sm font-semibold text-[#0f2557] mb-1.5">
                 Adresse email
               </label>
               <div className="relative">
@@ -180,19 +180,19 @@ export default function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="toi@exemple.com"
                   autoComplete="email"
-                  className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#F5A623] focus:ring-2 focus:ring-[#F5A623]/20 outline-none transition-all duration-200 text-sm"
+                  className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#e87722] focus:ring-2 focus:ring-[#e87722]/20 outline-none transition-all duration-200 text-sm"
                 />
               </div>
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-sm font-semibold text-[#0B1F3A]">
+                <label className="block text-sm font-semibold text-[#0f2557]">
                   Mot de passe
                 </label>
                 <Link
                   to="/mot-de-passe-oublie"
-                  className="text-xs font-semibold text-[#F5A623] hover:text-[#0B1F3A] transition-colors duration-200"
+                  className="text-xs font-semibold text-[#e87722] hover:text-[#0f2557] transition-colors duration-200"
                 >
                   Oublié ?
                 </Link>
@@ -208,12 +208,12 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   autoComplete="current-password"
-                  className="w-full pl-11 pr-11 py-3 rounded-xl border border-gray-200 focus:border-[#F5A623] focus:ring-2 focus:ring-[#F5A623]/20 outline-none transition-all duration-200 text-sm"
+                  className="w-full pl-11 pr-11 py-3 rounded-xl border border-gray-200 focus:border-[#e87722] focus:ring-2 focus:ring-[#e87722]/20 outline-none transition-all duration-200 text-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#0B1F3A] transition-colors duration-200"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#0f2557] transition-colors duration-200"
                   aria-label={
                     showPassword
                       ? "Masquer le mot de passe"
@@ -234,7 +234,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 bg-[#F5A623] hover:bg-[#0B1F3A] text-[#0B1F3A] hover:text-white font-bold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#0B1F3A]/20 disabled:opacity-60 mt-2"
+              className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#0f2557]/20 disabled:opacity-60 mt-2"
             >
               {isSubmitting ? "Connexion..." : "Se connecter"}
               <ArrowRight size={18} />
@@ -245,7 +245,7 @@ export default function Login() {
             Pas encore de compte ?{" "}
             <Link
               to="/inscription"
-              className="font-semibold text-[#0B1F3A] hover:text-[#F5A623] transition-colors duration-200"
+              className="font-semibold text-[#0f2557] hover:text-[#e87722] transition-colors duration-200"
             >
               Créer un compte
             </Link>
@@ -254,7 +254,7 @@ export default function Login() {
           <p className="text-center mt-4">
             <Link
               to="/catalogue"
-              className="text-sm text-gray-400 hover:text-[#F5A623] transition-colors duration-200"
+              className="text-sm text-gray-400 hover:text-[#e87722] transition-colors duration-200"
             >
               Continuer sans compte →
             </Link>

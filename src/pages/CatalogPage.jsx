@@ -170,7 +170,7 @@ function CatalogPage() {
               <Sparkles size={12} />
               Catalogue premium
             </span>
-            <h1 className="mt-3 text-3xl font-black tracking-[-0.06em] text-[#0b1f3a] sm:text-4xl">{title}</h1>
+            <h1 className="mt-3 text-3xl font-black tracking-[-0.06em] text-[#0f2557] sm:text-4xl">{title}</h1>
             <p className="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base">{subtitle}</p>
           </div>
 
@@ -178,7 +178,7 @@ function CatalogPage() {
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
-              className="lg:hidden inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0b1f3a] transition hover:border-[#f5a623]/40 hover:bg-[#fff7eb]"
+              className="lg:hidden inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0f2557] transition hover:border-[#e87722]/40 hover:bg-[#fff7eb]"
             >
               <Menu size={16} />
               Catégories
@@ -187,7 +187,7 @@ function CatalogPage() {
             <button
               type="button"
               onClick={resetFilters}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0b1f3a] transition hover:border-[#f5a623]/40 hover:bg-[#fff7eb]"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0f2557] transition hover:border-[#e87722]/40 hover:bg-[#fff7eb]"
             >
               <SlidersHorizontal size={16} />
               Réinitialiser
@@ -219,7 +219,7 @@ function CatalogPage() {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Rechercher un produit..."
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#f5a623] focus:bg-white"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#e87722] focus:bg-white"
                 />
               </div>
 
@@ -231,7 +231,7 @@ function CatalogPage() {
                   id="catalog-sort"
                   value={sortBy}
                   onChange={(event) => setSortBy(event.target.value)}
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#f5a623] focus:bg-white"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#e87722] focus:bg-white"
                 >
                   {sortOptions.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -251,12 +251,12 @@ function CatalogPage() {
 
           {/* Toast de confirmation d'ajout */}
           {addedToast && (
-            <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0b1f3a] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
-              <CheckCircle2 size={20} className="text-[#f5a623]" />
+            <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0f2557] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
+              <CheckCircle2 size={20} className="text-[#e87722]" />
               <span className="text-sm font-semibold">Produit ajouté au panier !</span>
               <Link
                 to="/panier"
-                className="rounded-lg bg-[#f5a623] px-2.5 py-1 text-xs font-bold text-[#0b1f3a] hover:bg-white transition"
+                className="rounded-lg bg-[#e87722] px-2.5 py-1 text-xs font-bold text-[#0f2557] hover:bg-white transition"
               >
                 Voir
               </Link>
@@ -265,7 +265,7 @@ function CatalogPage() {
 
           {visibleProducts.length === 0 ? (
             <div className="rounded-[28px] border border-dashed border-slate-300 bg-white p-10 text-center shadow-[0_18px_40px_rgba(11,31,58,0.04)]">
-              <p className="text-xl font-black text-[#0b1f3a]">Aucun produit ne correspond à ce filtre.</p>
+              <p className="text-xl font-black text-[#0f2557]">Aucun produit ne correspond à ce filtre.</p>
               <p className="mt-2 text-sm text-slate-600">Essayez une autre catégorie ou réinitialisez les filtres.</p>
             </div>
           ) : (
@@ -275,7 +275,7 @@ function CatalogPage() {
                 return (
                   <div
                     key={product.id}
-                    className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(11,31,58,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#f5a623]/40 hover:shadow-[0_22px_44px_rgba(11,31,58,0.12)]"
+                    className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(11,31,58,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#e87722]/40 hover:shadow-[0_22px_44px_rgba(11,31,58,0.12)]"
                   >
                     <div className="relative">
                       <Link to={`/produit/${product.slug}`} className="block">
@@ -288,7 +288,7 @@ function CatalogPage() {
                         />
                       </Link>
                       {product.featured && (
-                        <span className="absolute left-3 top-3 rounded-full bg-[#f5a623] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#0b1f3a]">
+                        <span className="absolute left-3 top-3 rounded-full bg-[#e87722] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#0f2557]">
                           Top Vente
                         </span>
                       )}
@@ -315,7 +315,7 @@ function CatalogPage() {
                         </p>
                         <Link
                           to={`/produit/${product.slug}`}
-                          className="mt-1 block text-lg font-black tracking-tight text-[#0b1f3a] transition hover:text-[#f5a623]"
+                          className="mt-1 block text-lg font-black tracking-tight text-[#0f2557] transition hover:text-[#e87722]"
                         >
                           {product.name}
                         </Link>
@@ -327,7 +327,7 @@ function CatalogPage() {
                       <div className="pt-2 border-t border-slate-100">
                         <div className="mb-3 flex items-baseline justify-between">
                           <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Prix</p>
-                          <p className="text-2xl font-black tracking-tight text-[#0b1f3a]">
+                          <p className="text-2xl font-black tracking-tight text-[#0f2557]">
                             {formatPrice(product.price)}
                           </p>
                         </div>
@@ -337,9 +337,9 @@ function CatalogPage() {
                           <button
                             type="button"
                             onClick={(e) => handleQuickBuy(product, e)}
-                            className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#f5a623] via-[#f7b733] to-[#FFB84D] py-2.5 text-sm font-bold text-[#0b1f3a] shadow-lg shadow-[#f5a623]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#f5a623]/35 active:scale-[0.98]"
+                            className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-2.5 text-sm font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.98]"
                           >
-                            <Zap size={16} className="fill-[#0b1f3a] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
+                            <Zap size={16} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                             <span>Acheter maintenant</span>
                           </button>
 
@@ -347,7 +347,7 @@ function CatalogPage() {
                             <button
                               type="button"
                               onClick={(e) => handleQuickAdd(product, e)}
-                              className="group/add flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-2 text-xs font-bold text-[#0b1f3a] transition-all duration-300 hover:border-[#f5a623] hover:bg-[#f5a623]/5 active:scale-[0.97]"
+                              className="group/add flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-2 text-xs font-bold text-[#0f2557] transition-all duration-300 hover:border-[#e87722] hover:bg-[#e87722]/5 active:scale-[0.97]"
                             >
                               <Plus size={14} className="transition-transform duration-300 group-hover/add:scale-125" />
                               <span>Panier</span>
@@ -355,7 +355,7 @@ function CatalogPage() {
 
                             <Link
                               to={`/produit/${product.slug}`}
-                              className="flex items-center justify-center gap-1 rounded-xl border-2 border-slate-200/80 bg-white py-2 text-xs font-bold text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-[#0b1f3a] hover:bg-slate-50"
+                              className="flex items-center justify-center gap-1 rounded-xl border-2 border-slate-200/80 bg-white py-2 text-xs font-bold text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-[#0f2557] hover:bg-slate-50"
                             >
                               <span>Détails</span>
                               <ChevronRight size={14} />

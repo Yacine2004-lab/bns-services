@@ -87,11 +87,11 @@ export default function AccountDropdown() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white backdrop-blur-md transition hover:border-[#f9b448]/50 hover:bg-white/15 cursor-pointer"
+          className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white backdrop-blur-md transition hover:border-[#e87722]/50 hover:bg-white/15 cursor-pointer"
           aria-label="Mon compte"
           aria-expanded={isOpen}
         >
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f5a623] text-[#0b1f3a] text-xs font-black shadow-xs">
+          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#e87722] text-[#0f2557] text-xs font-black shadow-xs">
             {user?.firstName ? user.firstName[0].toUpperCase() : 'C'}
           </div>
           <span className="hidden md:inline font-bold text-xs">
@@ -103,7 +103,7 @@ export default function AccountDropdown() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="relative inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 text-slate-200 backdrop-blur-md transition hover:border-[#f9b448]/50 hover:bg-white/15 hover:text-white cursor-pointer"
+          className="relative inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 text-slate-200 backdrop-blur-md transition hover:border-[#e87722]/50 hover:bg-white/15 hover:text-white cursor-pointer"
           aria-label="Connexion et compte client"
           aria-expanded={isOpen}
         >
@@ -121,7 +121,7 @@ export default function AccountDropdown() {
                 <span className="inline-block rounded-full bg-[#fef3d6] px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-[#a66600]">
                   Espace Client
                 </span>
-                <p className="mt-1.5 text-base font-black text-[#0b1f3a] truncate">
+                <p className="mt-1.5 text-base font-black text-[#0f2557] truncate">
                   {user?.firstName || ''} {user?.lastName || ''}
                 </p>
                 <p className="text-xs text-slate-500 truncate">{user?.email || ''}</p>
@@ -131,10 +131,10 @@ export default function AccountDropdown() {
                 <Link
                   to="/mon-compte"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-bold text-[#0b1f3a] hover:bg-slate-50 transition"
+                  className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-bold text-[#0f2557] hover:bg-slate-50 transition"
                 >
                   <div className="flex items-center gap-2.5">
-                    <User size={16} className="text-[#f5a623]" />
+                    <User size={16} className="text-[#e87722]" />
                     <span>Mon tableau de bord</span>
                   </div>
                   <ArrowRight size={14} className="text-slate-400" />
@@ -176,10 +176,10 @@ export default function AccountDropdown() {
             <div className="space-y-4">
               <div>
                 <div className="flex items-center justify-between">
-                  <h3 className="text-base font-black text-[#0b1f3a]">
+                  <h3 className="text-base font-black text-[#0f2557]">
                     Connexion
                   </h3>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#f5a623]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#e87722]">
                     Espace Client
                   </span>
                 </div>
@@ -211,7 +211,7 @@ export default function AccountDropdown() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="votre-email@exemple.com"
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-9 pr-3 py-2 text-xs text-[#0b1f3a] outline-none transition focus:border-[#f5a623] focus:bg-white"
+                      className="w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-9 pr-3 py-2 text-xs text-[#0f2557] outline-none transition focus:border-[#e87722] focus:bg-white"
                     />
                   </div>
                 </div>
@@ -225,7 +225,7 @@ export default function AccountDropdown() {
                     <Link
                       to="/connexion"
                       onClick={() => setIsOpen(false)}
-                      className="text-[11px] font-semibold text-[#f5a623] hover:underline"
+                      className="text-[11px] font-semibold text-[#e87722] hover:underline"
                     >
                       Oublié ?
                     </Link>
@@ -240,7 +240,7 @@ export default function AccountDropdown() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-9 pr-9 py-2 text-xs text-[#0b1f3a] outline-none transition focus:border-[#f5a623] focus:bg-white"
+                      className="w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-9 pr-9 py-2 text-xs text-[#0f2557] outline-none transition focus:border-[#e87722] focus:bg-white"
                     />
                     <button
                       type="button"
@@ -257,7 +257,7 @@ export default function AccountDropdown() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#f5a623] to-[#f7b733] py-2.5 text-xs font-bold text-[#0b1f3a] shadow-md shadow-[#f5a623]/25 hover:shadow-lg transition hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] to-[#f09050] py-2.5 text-xs font-bold text-[#0f2557] shadow-md shadow-[#e87722]/25 hover:shadow-lg transition hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>
@@ -280,7 +280,7 @@ export default function AccountDropdown() {
                   <Link
                     to="/inscription"
                     onClick={() => setIsOpen(false)}
-                    className="font-bold text-[#0b1f3a] hover:text-[#f5a623] transition underline"
+                    className="font-bold text-[#0f2557] hover:text-[#e87722] transition underline"
                   >
                     S'inscrire
                   </Link>

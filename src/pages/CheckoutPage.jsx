@@ -229,7 +229,7 @@ export default function CheckoutPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5">
         <Link
           to="/catalogue"
-          className="inline-flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-[#0B1F3A] transition"
+          className="inline-flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-[#0f2557] transition"
         >
           <ArrowLeft size={16} />
           Continuer mes achats
@@ -242,7 +242,7 @@ export default function CheckoutPage() {
       </div>
 
       <div className="text-left">
-        <h1 className="text-3xl font-black tracking-tight text-[#0B1F3A] sm:text-4xl">
+        <h1 className="text-3xl font-black tracking-tight text-[#0f2557] sm:text-4xl">
           Finaliser votre commande
         </h1>
         <p className="mt-1 text-sm text-slate-500">
@@ -285,11 +285,11 @@ export default function CheckoutPage() {
             <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-6">
               <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#0B1F3A] text-sm font-bold text-white">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#0f2557] text-sm font-bold text-white">
                     1
                   </div>
                   <div>
-                    <h2 className="text-lg font-black text-[#0B1F3A]">
+                    <h2 className="text-lg font-black text-[#0f2557]">
                       Informations de livraison
                     </h2>
                     <p className="text-xs text-slate-500">
@@ -301,7 +301,7 @@ export default function CheckoutPage() {
                 {!isAuthenticated() && (
                   <Link
                     to="/connexion"
-                    className="text-xs font-bold text-[#f5a623] hover:underline"
+                    className="text-xs font-bold text-[#e87722] hover:underline"
                   >
                     Déjà un compte ? Se connecter
                   </Link>
@@ -329,10 +329,10 @@ export default function CheckoutPage() {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       placeholder="Ex : Moussa Diop"
-                      className={`w-full rounded-xl border pl-11 pr-4 py-3 text-sm text-[#0B1F3A] outline-none transition ${
+                      className={`w-full rounded-xl border pl-11 pr-4 py-3 text-sm text-[#0f2557] outline-none transition ${
                         errors.fullName
                           ? 'border-red-400 bg-red-50/30 focus:border-red-500'
-                          : 'border-slate-200 bg-slate-50/50 focus:border-[#f5a623] focus:bg-white'
+                          : 'border-slate-200 bg-slate-50/50 focus:border-[#e87722] focus:bg-white'
                       }`}
                     />
                   </div>
@@ -363,10 +363,10 @@ export default function CheckoutPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="Ex : 77 123 45 67"
-                      className={`w-full rounded-xl border pl-11 pr-4 py-3 text-sm text-[#0B1F3A] outline-none transition ${
+                      className={`w-full rounded-xl border pl-11 pr-4 py-3 text-sm text-[#0f2557] outline-none transition ${
                         errors.phone
                           ? 'border-red-400 bg-red-50/30 focus:border-red-500'
-                          : 'border-slate-200 bg-slate-50/50 focus:border-[#f5a623] focus:bg-white'
+                          : 'border-slate-200 bg-slate-50/50 focus:border-[#e87722] focus:bg-white'
                       }`}
                     />
                   </div>
@@ -397,7 +397,7 @@ export default function CheckoutPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="votre-email@exemple.com"
-                      className="w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 py-3 text-sm text-[#0B1F3A] outline-none transition focus:border-[#f5a623] focus:bg-white"
+                      className="w-full rounded-xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 py-3 text-sm text-[#0f2557] outline-none transition focus:border-[#e87722] focus:bg-white"
                     />
                   </div>
                 </div>
@@ -415,7 +415,7 @@ export default function CheckoutPage() {
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-[#0B1F3A] outline-none transition focus:border-[#f5a623] focus:bg-white"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-[#0f2557] outline-none transition focus:border-[#e87722] focus:bg-white"
                   >
                     {CITIES.map((c) => (
                       <option key={c} value={c}>
@@ -445,10 +445,10 @@ export default function CheckoutPage() {
                       value={formData.address}
                       onChange={handleInputChange}
                       placeholder="Ex : Mermoz pyrotechnie, villa n°12, près de la pharmacie"
-                      className={`w-full rounded-xl border pl-11 pr-4 py-3 text-sm text-[#0B1F3A] outline-none transition resize-none ${
+                      className={`w-full rounded-xl border pl-11 pr-4 py-3 text-sm text-[#0f2557] outline-none transition resize-none ${
                         errors.address
                           ? 'border-red-400 bg-red-50/30 focus:border-red-500'
-                          : 'border-slate-200 bg-slate-50/50 focus:border-[#f5a623] focus:bg-white'
+                          : 'border-slate-200 bg-slate-50/50 focus:border-[#e87722] focus:bg-white'
                       }`}
                     />
                   </div>
@@ -474,7 +474,7 @@ export default function CheckoutPage() {
                     value={formData.notes}
                     onChange={handleInputChange}
                     placeholder="Ex : Appeler 15 min avant d'arriver"
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-[#0B1F3A] outline-none transition focus:border-[#f5a623] focus:bg-white"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm text-[#0f2557] outline-none transition focus:border-[#e87722] focus:bg-white"
                   />
                 </div>
               </div>
@@ -483,11 +483,11 @@ export default function CheckoutPage() {
             {/* Section C : Mode de paiement */}
             <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-5">
               <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#0B1F3A] text-sm font-bold text-white">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#0f2557] text-sm font-bold text-white">
                   2
                 </div>
                 <div>
-                  <h2 className="text-lg font-black text-[#0B1F3A]">
+                  <h2 className="text-lg font-black text-[#0f2557]">
                     Mode de paiement
                   </h2>
                   <p className="text-xs text-slate-500">
@@ -497,13 +497,13 @@ export default function CheckoutPage() {
               </div>
 
               {/* Option sélectionnée : Paiement à la livraison */}
-              <div className="rounded-2xl border-2 border-[#f5a623] bg-[#fffbf2] p-4 flex items-start gap-4 shadow-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f5a623] text-[#0B1F3A] flex-shrink-0 mt-0.5 font-bold">
+              <div className="rounded-2xl border-2 border-[#e87722] bg-[#fffbf2] p-4 flex items-start gap-4 shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#e87722] text-[#0f2557] flex-shrink-0 mt-0.5 font-bold">
                   <Banknote size={20} />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-black text-[#0B1F3A]">
+                    <h3 className="text-sm font-black text-[#0f2557]">
                       Paiement à la livraison (Espèces ou Mobile Money)
                     </h3>
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white text-xs">
@@ -520,7 +520,7 @@ export default function CheckoutPage() {
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 flex items-center gap-3">
                 <CreditCard size={18} className="text-slate-400 flex-shrink-0" />
                 <p className="text-xs text-slate-600">
-                  <strong className="text-[#0B1F3A]">Paiement en ligne direct</strong> (Wave, Orange Money) bientôt intégré sur la plateforme.
+                  <strong className="text-[#0f2557]">Paiement en ligne direct</strong> (Wave, Orange Money) bientôt intégré sur la plateforme.
                 </p>
               </div>
             </div>
@@ -529,16 +529,16 @@ export default function CheckoutPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#f5a623] via-[#f7b733] to-[#f5a623] py-4 text-lg font-bold text-[#0B1F3A] shadow-xl shadow-[#f5a623]/25 hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#e87722] py-4 text-lg font-bold text-[#0f2557] shadow-xl shadow-[#e87722]/25 hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 size={22} className="animate-spin text-[#0B1F3A]" />
+                  <Loader2 size={22} className="animate-spin text-[#0f2557]" />
                   <span>Traitement de votre commande en cours...</span>
                 </>
               ) : (
                 <>
-                  <CheckCircle2 size={22} className="text-[#0B1F3A]" />
+                  <CheckCircle2 size={22} className="text-[#0f2557]" />
                   <span>Confirmer la commande ({formatPrice(total)})</span>
                 </>
               )}
@@ -551,8 +551,8 @@ export default function CheckoutPage() {
           <div className="sticky top-24 space-y-5">
             <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-6">
               <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                <h3 className="text-lg font-black text-[#0B1F3A] flex items-center gap-2">
-                  <ShoppingBag size={20} className="text-[#f5a623]" />
+                <h3 className="text-lg font-black text-[#0f2557] flex items-center gap-2">
+                  <ShoppingBag size={20} className="text-[#e87722]" />
                   Récapitulatif ({cart.reduce((s, i) => s + i.quantity, 0)} articles)
                 </h3>
               </div>
@@ -571,14 +571,14 @@ export default function CheckoutPage() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-xs font-bold text-[#0B1F3A] truncate">
+                      <h4 className="text-xs font-bold text-[#0f2557] truncate">
                         {item.name}
                       </h4>
                       <p className="text-[11px] text-slate-500 mt-0.5">
                         Qté : <strong className="text-slate-800">{item.quantity}</strong> × {formatPrice(item.price)}
                       </p>
                     </div>
-                    <span className="text-xs font-black text-[#0B1F3A] flex-shrink-0">
+                    <span className="text-xs font-black text-[#0f2557] flex-shrink-0">
                       {formatPrice(item.price * item.quantity)}
                     </span>
                   </div>
@@ -597,9 +597,9 @@ export default function CheckoutPage() {
                   <span className="font-bold text-emerald-600">Gratuite</span>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-slate-200 pt-3 text-[#0B1F3A]">
+                <div className="flex items-center justify-between border-t border-slate-200 pt-3 text-[#0f2557]">
                   <span className="text-base font-bold">Total à payer</span>
-                  <span className="text-3xl font-black tracking-tight text-[#0B1F3A]">
+                  <span className="text-3xl font-black tracking-tight text-[#0f2557]">
                     {formatPrice(total)}
                   </span>
                 </div>

@@ -45,7 +45,7 @@ export default function AdminResetPassword() {
           </p>
           <Link
             to="/admin/mot-de-passe-oublie"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#f5a623] px-6 py-3 font-bold text-[#0b1f3a] transition hover:bg-[#f9b448]"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#e87722] px-6 py-3 font-bold text-[#0f2557] transition hover:bg-[#e87722]"
           >
             Demander un nouveau lien
           </Link>
@@ -173,7 +173,7 @@ export default function AdminResetPassword() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 bg-[#f5a623] hover:bg-[#f9b448] text-[#0b1f3a] font-bold py-3 rounded-xl transition-all duration-300 disabled:opacity-60"
+                  className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#e87722] text-[#0f2557] font-bold py-3 rounded-xl transition-all duration-300 disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <>
@@ -201,7 +201,7 @@ export default function AdminResetPassword() {
               </p>
               <button
                 onClick={() => navigate('/admin/connexion')}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#f5a623] px-6 py-3 font-bold text-[#0b1f3a] transition hover:bg-[#f9b448]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#e87722] px-6 py-3 font-bold text-[#0f2557] transition hover:bg-[#e87722]"
               >
                 Se connecter
               </button>
@@ -212,7 +212,7 @@ export default function AdminResetPassword() {
         <p className="text-center text-sm text-slate-500 mt-8">
           <Link
             to="/admin/connexion"
-            className="inline-flex items-center gap-1.5 font-semibold text-slate-300 hover:text-[#f5a623] transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 font-semibold text-slate-300 hover:text-[#e87722] transition-colors duration-200"
           >
             <ArrowLeft size={14} />
             Retour à la connexion admin

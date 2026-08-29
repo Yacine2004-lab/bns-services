@@ -100,12 +100,12 @@ export default function ClientDashboard() {
     <div className="space-y-8 pb-12">
       {/* Toast notification */}
       {addedToast && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0b1f3a] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
-          <CheckCircle2 size={20} className="text-[#f5a623]" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0f2557] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
+          <CheckCircle2 size={20} className="text-[#e87722]" />
           <span className="text-sm font-semibold">Produit ajouté au panier !</span>
           <Link
             to="/panier"
-            className="rounded-lg bg-[#f5a623] px-2.5 py-1 text-xs font-bold text-[#0b1f3a] hover:bg-white transition"
+            className="rounded-lg bg-[#e87722] px-2.5 py-1 text-xs font-bold text-[#0f2557] hover:bg-white transition"
           >
             Voir
           </Link>
@@ -113,13 +113,13 @@ export default function ClientDashboard() {
       )}
 
       {/* 1. Header Profil Client */}
-      <div className="relative overflow-hidden rounded-[32px] border border-white/60 bg-gradient-to-r from-[#0b1f3a] via-[#122a4a] to-[#0b1f3a] p-8 text-white shadow-[0_20px_60px_rgba(11,31,58,0.15)]">
-        <div className="absolute -right-16 -top-16 h-72 w-72 rounded-full bg-[#f5a623]/20 blur-[90px]" />
+      <div className="relative overflow-hidden rounded-[32px] border border-white/60 bg-gradient-to-r from-[#0f2557] via-[#142d60] to-[#0f2557] p-8 text-white shadow-[0_20px_60px_rgba(11,31,58,0.15)]">
+        <div className="absolute -right-16 -top-16 h-72 w-72 rounded-full bg-[#e87722]/20 blur-[90px]" />
         <div className="absolute -left-16 -bottom-16 h-60 w-60 rounded-full bg-[#5b9fd4]/20 blur-[80px]" />
 
         <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-5">
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f9b448] via-[#f5a623] to-[#e78b0a] text-3xl font-black text-[#0b1f3a] shadow-lg">
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#e87722] via-[#e87722] to-[#d06a1a] text-3xl font-black text-[#0f2557] shadow-lg">
               {user?.firstName ? user.firstName[0].toUpperCase() : 'C'}
             </div>
             <div>
@@ -127,7 +127,7 @@ export default function ClientDashboard() {
                 <h1 className="text-2xl font-black tracking-tight sm:text-3xl">
                   Bonjour, {user?.firstName || 'Client'} {user?.lastName || ''} !
                 </h1>
-                <span className="rounded-full bg-[#f5a623]/20 px-3 py-0.5 text-xs font-bold text-[#f5a623] border border-[#f5a623]/40">
+                <span className="rounded-full bg-[#e87722]/20 px-3 py-0.5 text-xs font-bold text-[#e87722] border border-[#e87722]/40">
                   Client BNS
                 </span>
               </div>
@@ -142,7 +142,7 @@ export default function ClientDashboard() {
               to="/panier"
               className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-semibold backdrop-blur-md transition hover:bg-white/20"
             >
-              <ShoppingBag size={18} className="text-[#f5a623]" />
+              <ShoppingBag size={18} className="text-[#e87722]" />
               <span>Panier ({itemCount})</span>
             </Link>
             <button
@@ -163,7 +163,7 @@ export default function ClientDashboard() {
           </div>
           <div className="rounded-2xl bg-white/5 p-4 backdrop-blur-sm">
             <p className="text-xs text-slate-400">Articles en favoris</p>
-            <p className="mt-1 text-2xl font-black text-[#f5a623]">{wishlist.length}</p>
+            <p className="mt-1 text-2xl font-black text-[#e87722]">{wishlist.length}</p>
           </div>
           <div className="rounded-2xl bg-white/5 p-4 backdrop-blur-sm">
             <p className="text-xs text-slate-400">Dans le panier</p>
@@ -189,11 +189,11 @@ export default function ClientDashboard() {
           onClick={() => setActiveTab('shop')}
           className={`flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-bold transition-all ${
             activeTab === 'shop'
-              ? 'bg-[#0b1f3a] text-white shadow-md'
+              ? 'bg-[#0f2557] text-white shadow-md'
               : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
-          <Zap size={18} className={activeTab === 'shop' ? 'text-[#f5a623]' : ''} />
+          <Zap size={18} className={activeTab === 'shop' ? 'text-[#e87722]' : ''} />
           Commander des produits
         </button>
 
@@ -201,7 +201,7 @@ export default function ClientDashboard() {
           onClick={() => setActiveTab('orders')}
           className={`flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-bold transition-all ${
             activeTab === 'orders'
-              ? 'bg-[#0b1f3a] text-white shadow-md'
+              ? 'bg-[#0f2557] text-white shadow-md'
               : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
@@ -213,7 +213,7 @@ export default function ClientDashboard() {
           onClick={() => setActiveTab('wishlist')}
           className={`flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-bold transition-all ${
             activeTab === 'wishlist'
-              ? 'bg-[#0b1f3a] text-white shadow-md'
+              ? 'bg-[#0f2557] text-white shadow-md'
               : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
@@ -237,7 +237,7 @@ export default function ClientDashboard() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Rechercher un produit à commander immédiatement..."
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 py-3 text-sm outline-none transition focus:border-[#f5a623] focus:bg-white"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 py-3 text-sm outline-none transition focus:border-[#e87722] focus:bg-white"
                 />
               </div>
 
@@ -248,7 +248,7 @@ export default function ClientDashboard() {
                     onClick={() => setSelectedCategory(cat)}
                     className={`rounded-xl px-4 py-2 text-xs font-bold transition ${
                       selectedCategory === cat
-                        ? 'bg-[#f5a623] text-[#0b1f3a]'
+                        ? 'bg-[#e87722] text-[#0f2557]'
                         : 'border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'
                     }`}
                   >
@@ -266,7 +266,7 @@ export default function ClientDashboard() {
               return (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200/90 bg-white shadow-[0_14px_35px_rgba(11,31,58,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#f5a623]/40 hover:shadow-[0_20px_45px_rgba(11,31,58,0.12)]"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200/90 bg-white shadow-[0_14px_35px_rgba(11,31,58,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#e87722]/40 hover:shadow-[0_20px_45px_rgba(11,31,58,0.12)]"
                 >
                   {/* Image & Badges */}
                   <div className="relative flex h-52 items-center justify-center bg-gradient-to-b from-slate-50 to-[#f8fafc] p-6">
@@ -279,7 +279,7 @@ export default function ClientDashboard() {
                     />
 
                     {product.featured && (
-                      <span className="absolute left-3.5 top-3.5 rounded-full bg-[#f5a623] px-2.5 py-0.5 text-[10px] font-black uppercase text-[#0b1f3a]">
+                      <span className="absolute left-3.5 top-3.5 rounded-full bg-[#e87722] px-2.5 py-0.5 text-[10px] font-black uppercase text-[#0f2557]">
                         Vedette
                       </span>
                     )}
@@ -304,11 +304,11 @@ export default function ClientDashboard() {
                       </p>
                       <Link
                         to={`/produit/${product.slug}`}
-                        className="mt-1 block font-bold text-[#0b1f3a] transition hover:text-[#f5a623] line-clamp-2"
+                        className="mt-1 block font-bold text-[#0f2557] transition hover:text-[#e87722] line-clamp-2"
                       >
                         {product.name}
                       </Link>
-                      <p className="mt-2 text-2xl font-black tracking-tight text-[#0b1f3a]">
+                      <p className="mt-2 text-2xl font-black tracking-tight text-[#0f2557]">
                         {formatPrice(product.price)}
                       </p>
                     </div>
@@ -318,9 +318,9 @@ export default function ClientDashboard() {
                       <button
                         type="button"
                         onClick={() => handleQuickBuy(product)}
-                        className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#f5a623] via-[#f7b733] to-[#FFB84D] py-3 text-sm font-bold text-[#0b1f3a] shadow-lg shadow-[#f5a623]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#f5a623]/40 active:scale-[0.98]"
+                        className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-3 text-sm font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/40 active:scale-[0.98]"
                       >
-                        <Zap size={16} className="fill-[#0b1f3a] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
+                        <Zap size={16} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                         <span>Acheter maintenant</span>
                       </button>
 
@@ -328,7 +328,7 @@ export default function ClientDashboard() {
                         <button
                           type="button"
                           onClick={() => handleQuickAdd(product)}
-                          className="group/add flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-2.5 text-xs font-bold text-[#0b1f3a] transition-all duration-300 hover:border-[#f5a623] hover:bg-[#f5a623]/5 active:scale-[0.97]"
+                          className="group/add flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-2.5 text-xs font-bold text-[#0f2557] transition-all duration-300 hover:border-[#e87722] hover:bg-[#e87722]/5 active:scale-[0.97]"
                         >
                           <Plus size={14} className="transition-transform duration-300 group-hover/add:scale-125" />
                           <span>Panier</span>
@@ -336,7 +336,7 @@ export default function ClientDashboard() {
 
                         <Link
                           to={`/produit/${product.slug}`}
-                          className="flex items-center justify-center gap-1 rounded-xl border-2 border-slate-200/80 bg-white py-2.5 text-xs font-bold text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-[#0b1f3a] hover:bg-slate-50"
+                          className="flex items-center justify-center gap-1 rounded-xl border-2 border-slate-200/80 bg-white py-2.5 text-xs font-bold text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-[#0f2557] hover:bg-slate-50"
                         >
                           <span>Détails</span>
                           <ChevronRight size={14} />
@@ -357,7 +357,7 @@ export default function ClientDashboard() {
                   setSearchQuery('')
                   setSelectedCategory('all')
                 }}
-                className="mt-3 inline-flex items-center gap-2 rounded-xl bg-[#0b1f3a] px-4 py-2 text-xs font-bold text-white"
+                className="mt-3 inline-flex items-center gap-2 rounded-xl bg-[#0f2557] px-4 py-2 text-xs font-bold text-white"
               >
                 Réinitialiser les filtres
               </button>
@@ -374,13 +374,13 @@ export default function ClientDashboard() {
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 mb-4">
                 <Package size={32} />
               </div>
-              <h3 className="text-xl font-bold text-[#0b1f3a]">Vous n'avez pas encore passé de commande</h3>
+              <h3 className="text-xl font-bold text-[#0f2557]">Vous n'avez pas encore passé de commande</h3>
               <p className="mt-2 text-sm text-slate-500 max-w-md mx-auto">
                 Dès que vous passez une commande sur BNS Services, elle apparaîtra ici avec son statut et son récapitulatif détaillé.
               </p>
               <button
                 onClick={() => setActiveTab('shop')}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#f5a623] px-6 py-3 font-bold text-[#0b1f3a] hover:bg-[#f7b733] transition shadow-lg shadow-[#f5a623]/20"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#e87722] px-6 py-3 font-bold text-[#0f2557] hover:bg-[#f09050] transition shadow-lg shadow-[#e87722]/20"
               >
                 <Zap size={18} /> Découvrir les produits
               </button>
@@ -395,7 +395,7 @@ export default function ClientDashboard() {
                   <div className="flex flex-col gap-4 border-b border-slate-100 pb-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <div className="flex items-center gap-3">
-                        <span className="text-lg font-black text-[#0b1f3a]">{order.orderNumber || order.id}</span>
+                        <span className="text-lg font-black text-[#0f2557]">{order.orderNumber || order.id}</span>
                         {(() => {
                           const cfg = STATUS_CONFIG[order.status] || STATUS_CONFIG.PENDING
                           const Icon = cfg.icon
@@ -419,7 +419,7 @@ export default function ClientDashboard() {
 
                     <div className="text-right">
                       <p className="text-xs font-semibold text-slate-500">Montant total</p>
-                      <p className="text-2xl font-black text-[#0b1f3a]">{formatPrice(order.total)}</p>
+                      <p className="text-2xl font-black text-[#0f2557]">{formatPrice(order.total)}</p>
                     </div>
                   </div>
 
@@ -440,7 +440,7 @@ export default function ClientDashboard() {
                             className="h-14 w-14 rounded-xl object-cover bg-white p-1"
                           />
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-[#0b1f3a] truncate">{item.productName}</p>
+                            <p className="text-xs font-bold text-[#0f2557] truncate">{item.productName}</p>
                             <p className="text-[11px] text-slate-500">
                               Quantité : <strong className="text-slate-700">{item.quantity}</strong> • {formatPrice(item.productPrice)}
                             </p>
@@ -453,7 +453,7 @@ export default function ClientDashboard() {
                   {/* Coordonnées & Suivi */}
                   <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="text-xs text-slate-600">
-                      <span className="font-bold text-[#0b1f3a]">Livraison à :</span> {order.customerName} — {order.shippingAddress}, {order.shippingCity} ({order.customerPhone})
+                      <span className="font-bold text-[#0f2557]">Livraison à :</span> {order.customerName} — {order.shippingAddress}, {order.shippingCity} ({order.customerPhone})
                     </div>
                     <a
                       href={`https://wa.me/221784459510?text=${encodeURIComponent(
@@ -482,13 +482,13 @@ export default function ClientDashboard() {
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50 text-red-400 mb-4">
                 <Heart size={32} />
               </div>
-              <h3 className="text-xl font-bold text-[#0b1f3a]">Votre liste d'envies est vide</h3>
+              <h3 className="text-xl font-bold text-[#0f2557]">Votre liste d'envies est vide</h3>
               <p className="mt-2 text-sm text-slate-500 max-w-md mx-auto">
                 Ajoutez des produits à vos favoris en cliquant sur l'icône de cœur pour les retrouver et les commander en un clic.
               </p>
               <button
                 onClick={() => setActiveTab('shop')}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0b1f3a] px-6 py-3 font-bold text-white hover:bg-[#143765] transition"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0f2557] px-6 py-3 font-bold text-white hover:bg-[#1a3a8a] transition"
               >
                 Parcourir les produits
               </button>
@@ -517,15 +517,15 @@ export default function ClientDashboard() {
                   </div>
 
                   <div className="mt-4 space-y-3">
-                    <h4 className="font-bold text-[#0b1f3a] truncate">{product.name}</h4>
-                    <p className="text-xl font-black text-[#0b1f3a]">{formatPrice(product.price)}</p>
+                    <h4 className="font-bold text-[#0f2557] truncate">{product.name}</h4>
+                    <p className="text-xl font-black text-[#0f2557]">{formatPrice(product.price)}</p>
 
                     <button
                       type="button"
                       onClick={() => handleQuickBuy(product)}
-                      className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#f5a623] via-[#f7b733] to-[#FFB84D] py-2.5 text-xs font-bold text-[#0b1f3a] shadow-lg shadow-[#f5a623]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#f5a623]/35 active:scale-[0.97]"
+                      className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-2.5 text-xs font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.97]"
                     >
-                      <Zap size={14} className="fill-[#0b1f3a] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
+                      <Zap size={14} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                       Acheter maintenant
                     </button>
                   </div>

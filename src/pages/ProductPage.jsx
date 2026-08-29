@@ -40,14 +40,14 @@ function ProductPage() {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-2 text-[#0b1f3a] hover:text-[#f5a623]"
+          className="inline-flex items-center gap-2 text-[#0f2557] hover:text-[#e87722]"
         >
           <ArrowLeft size={18} />
           Retour
         </button>
 
         <div className="rounded-[28px] border border-slate-200 bg-white p-10 text-center shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-          <p className="text-2xl font-black text-[#0b1f3a]">Produit introuvable</p>
+          <p className="text-2xl font-black text-[#0f2557]">Produit introuvable</p>
           <p className="mt-2 text-slate-600">Le produit que vous cherchez n'existe pas ou a été supprimé.</p>
         </div>
       </div>
@@ -78,7 +78,7 @@ function ProductPage() {
       <button
         type="button"
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0b1f3a] transition hover:bg-white"
+        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0f2557] transition hover:bg-white"
       >
         <ArrowLeft size={16} />
         Retour au catalogue
@@ -101,7 +101,7 @@ function ProductPage() {
                     type="button"
                     onClick={() => setSelectedImage(image)}
                     className={`overflow-hidden rounded-xl border-2 transition ${
-                      selectedImage === image ? 'border-[#f5a623]' : 'border-slate-200'
+                      selectedImage === image ? 'border-[#e87722]' : 'border-slate-200'
                     }`}
                   >
                     <img src={resolveImageUrl(image)} alt={`${product.name} ${index + 1}`} loading="lazy" decoding="async" className="h-20 w-full object-cover" />
@@ -133,7 +133,7 @@ function ProductPage() {
               {product.category}
             </span>
 
-            <h1 className="mt-4 text-4xl font-black tracking-[-0.06em] text-[#0b1f3a]">
+            <h1 className="mt-4 text-4xl font-black tracking-[-0.06em] text-[#0f2557]">
               {product.name}
             </h1>
 
@@ -143,14 +143,14 @@ function ProductPage() {
 
             <div className="mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Prix</p>
-              <p className="mt-2 text-4xl font-black tracking-[-0.06em] text-[#0b1f3a]">
+              <p className="mt-2 text-4xl font-black tracking-[-0.06em] text-[#0f2557]">
                 {formatPrice(product.price)}
               </p>
             </div>
 
             <div className="mt-6 space-y-4">
               <div>
-                <label htmlFor="product-quantity" className="mb-2 block text-sm font-bold text-[#0b1f3a]">
+                <label htmlFor="product-quantity" className="mb-2 block text-sm font-bold text-[#0f2557]">
                   Quantité{product.stock > 0 && <span className="font-normal text-slate-400"> (max {product.stock})</span>}
                 </label>
                 <div className="flex items-center gap-3">
@@ -193,9 +193,9 @@ function ProductPage() {
                 type="button"
                 onClick={handleBuyNow}
                 disabled={product.stock === 0}
-                className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f5a623] to-[#f7b733] px-6 py-4 text-lg font-bold text-[#0b1f3a] shadow-lg shadow-[#f5a623]/30 transition hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#e87722] to-[#f09050] px-6 py-4 text-lg font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/30 transition hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Zap size={20} className="fill-[#0b1f3a]" />
+                <Zap size={20} className="fill-[#0f2557]" />
                 <span>{product.stock === 0 ? 'Indisponible' : 'Acheter maintenant (Commander)'}</span>
               </button>
 
@@ -206,7 +206,7 @@ function ProductPage() {
                 className={`w-full rounded-2xl px-6 py-4 text-lg font-bold transition disabled:opacity-50 disabled:cursor-not-allowed ${
                   isAdded
                     ? 'bg-green-600 text-white'
-                    : 'bg-[#0b1f3a] text-white hover:bg-[#143765]'
+                    : 'bg-[#0f2557] text-white hover:bg-[#1a3a8a]'
                 }`}
               >
                 <span className="flex items-center justify-center gap-2">
@@ -221,7 +221,7 @@ function ProductPage() {
                 className={`flex items-center justify-center gap-2 rounded-2xl px-6 py-4 text-lg font-bold transition ${
                   inWishlist
                     ? 'bg-red-100 text-red-600 hover:bg-red-200'
-                    : 'border border-[#0b1f3a] bg-white text-[#0b1f3a] hover:bg-slate-50'
+                    : 'border border-[#0f2557] bg-white text-[#0f2557] hover:bg-slate-50'
                 }`}
               >
                 <Heart size={20} className={inWishlist ? 'fill-current' : ''} />
@@ -231,13 +231,13 @@ function ProductPage() {
           </div>
 
           <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-            <h3 className="text-xl font-black text-[#0b1f3a]">Caractéristiques</h3>
+            <h3 className="text-xl font-black text-[#0f2557]">Caractéristiques</h3>
 
             <div className="mt-4 space-y-3">
               {specs.map((spec) => (
                 <div key={spec.label} className="flex items-center justify-between border-b border-slate-100 pb-3">
                   <span className="font-medium text-slate-600">{spec.label}</span>
-                  <span className="font-bold text-[#0b1f3a]">{spec.value}</span>
+                  <span className="font-bold text-[#0f2557]">{spec.value}</span>
                 </div>
               ))}
             </div>

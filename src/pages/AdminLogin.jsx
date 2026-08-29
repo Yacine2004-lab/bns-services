@@ -78,7 +78,7 @@ export default function AdminLogin() {
                 </label>
                 <Link
                   to="/admin/mot-de-passe-oublie"
-                  className="text-xs font-semibold text-[#f5a623] hover:text-[#f9b448] transition-colors duration-200"
+                  className="text-xs font-semibold text-[#e87722] hover:text-[#e87722] transition-colors duration-200"
                 >
                   Oublié ?
                 </Link>
@@ -119,7 +119,7 @@ export default function AdminLogin() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 bg-[#f5a623] hover:bg-[#f9b448] text-[#0b1f3a] font-bold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#f5a623]/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#e87722] text-[#0f2557] font-bold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#e87722]/20 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Connexion..." : "Accéder au dashboard"}
               <ArrowRight size={18} />

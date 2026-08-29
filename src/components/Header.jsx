@@ -21,13 +21,13 @@ function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/20 bg-[#0b1f3a]/70 text-white shadow-[0_8px_32px_rgba(11,31,58,0.2)] backdrop-blur-2xl">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0f2557]/95 text-white shadow-[0_8px_32px_rgba(15,37,87,0.25)] backdrop-blur-2xl">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-3" aria-label="Accueil BNS Services">
           <BnsLogo size={44} />
           <div className="leading-none">
             <div className="text-lg font-black tracking-[-0.04em] text-white">BNS</div>
-            <div className="text-[9px] font-semibold uppercase tracking-[0.22em] text-[#f9b448]">Services</div>
+            <div className="text-[9px] font-semibold uppercase tracking-[0.22em] text-[#e87722]">Services</div>
           </div>
         </Link>
 
@@ -48,8 +48,8 @@ function Header() {
               to={item.path}
               className={({ isActive }) =>
                 `relative text-sm font-medium transition-all duration-300 ${
-                  isActive ? 'text-[#f9b448]' : 'text-slate-200 hover:text-white'
-                } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-[#f9b448] after:transition-transform after:duration-300 hover:after:scale-x-100 ${
+                  isActive ? 'text-[#e87722]' : 'text-slate-200 hover:text-white'
+                } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-[#e87722] after:transition-transform after:duration-300 hover:after:scale-x-100 ${
                   isActive ? 'after:scale-x-100' : ''
                 }`
               }
@@ -63,7 +63,7 @@ function Header() {
           {/* Favoris */}
           <Link
             to="/wishlist"
-            className="relative inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 text-slate-200 backdrop-blur-md transition hover:border-[#f9b448]/50 hover:bg-white/15 hover:text-white"
+            className="relative inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 p-2.5 text-slate-200 backdrop-blur-md transition hover:border-[#e87722]/50 hover:bg-white/15 hover:text-white"
             aria-label="Voir mes favoris"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-[1.8]" aria-hidden="true">
@@ -80,7 +80,7 @@ function Header() {
           <button
             type="button"
             onClick={openDrawer}
-            className="relative inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 p-2.5 text-slate-200 backdrop-blur-md transition hover:border-[#f9b448]/50 hover:bg-white/15 hover:text-white cursor-pointer"
+            className="relative inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 p-2.5 text-slate-200 backdrop-blur-md transition hover:border-[#e87722]/50 hover:bg-white/15 hover:text-white cursor-pointer"
             aria-label="Ouvrir le panier"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-[1.8]" aria-hidden="true">
@@ -90,8 +90,8 @@ function Header() {
             </svg>
             {itemCount > 0 && (
               <span
-                className={`absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#f5a623] px-1 text-[10px] font-bold text-[#0b1f3a] transition-transform ${
-                  badgeAnimated ? 'scale-125 bg-amber-400 ring-2 ring-white' : 'scale-100'
+                className={`absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#e87722] px-1 text-[10px] font-bold text-white transition-transform ${
+                  badgeAnimated ? 'scale-125 bg-[#e87722] ring-2 ring-white' : 'scale-100'
                 }`}
               >
                 {itemCount}
@@ -106,7 +106,7 @@ function Header() {
 
       {/* Menu mobile */}
       {mobileMenuOpen && (
-        <nav className="border-t border-white/10 bg-[#0b1f3a]/95 px-4 pb-4 pt-2 backdrop-blur-2xl md:hidden">
+        <nav className="border-t border-white/10 bg-[#0f2557]/95 px-4 pb-4 pt-2 backdrop-blur-2xl md:hidden">
           <ul className="space-y-1">
             {navItems.map((item) => (
               <li key={item.path}>
@@ -116,7 +116,7 @@ function Header() {
                   className={({ isActive }) =>
                     `block rounded-xl px-4 py-3 text-sm font-semibold transition ${
                       isActive
-                        ? 'bg-white/10 text-[#f9b448]'
+                        ? 'bg-white/10 text-[#e87722]'
                         : 'text-slate-200 hover:bg-white/5 hover:text-white'
                     }`
                   }
@@ -138,7 +138,7 @@ function Header() {
               <Link
                 to="/inscription"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block rounded-xl bg-[#f5a623] px-4 py-3 text-center text-sm font-bold text-[#0b1f3a] transition hover:bg-[#f9b448]"
+                className="block rounded-xl bg-[#e87722] px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-[#d06a1a]"
               >
                 Créer un compte
               </Link>
@@ -149,7 +149,7 @@ function Header() {
               <Link
                 to="/mon-compte"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block rounded-xl px-4 py-3 text-center text-sm font-bold text-[#f9b448] transition hover:bg-white/10"
+                className="block rounded-xl px-4 py-3 text-center text-sm font-bold text-[#e87722] transition hover:bg-white/10"
               >
                 Mon tableau de bord — {user?.firstName || 'Client'}
               </Link>

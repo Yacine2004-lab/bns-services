@@ -22,7 +22,7 @@ function CartPage() {
     return (
       <div className="space-y-6 pb-10">
         <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-          <h1 className="text-3xl font-black tracking-[-0.06em] text-[#0b1f3a] sm:text-4xl">
+          <h1 className="text-3xl font-black tracking-[-0.06em] text-[#0f2557] sm:text-4xl">
             Votre panier
           </h1>
           <p className="mt-2 text-slate-600">Gérez vos articles et passez votre commande.</p>
@@ -34,12 +34,12 @@ function CartPage() {
               🛒
             </div>
           </div>
-          <p className="mt-4 text-2xl font-black text-[#0b1f3a]">Votre panier est vide</p>
+          <p className="mt-4 text-2xl font-black text-[#0f2557]">Votre panier est vide</p>
           <p className="mt-2 text-slate-600">Commencez vos achats et découvrez nos produits.</p>
 
           <Link
             to="/catalogue"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#0b1f3a] px-6 py-3 text-lg font-bold text-white transition hover:bg-[#143765]"
+            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#0f2557] px-6 py-3 text-lg font-bold text-white transition hover:bg-[#1a3a8a]"
           >
             Parcourir le catalogue
             <ChevronRight size={18} />
@@ -52,7 +52,7 @@ function CartPage() {
   return (
     <div className="space-y-6 pb-10">
       <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-        <h1 className="text-3xl font-black tracking-[-0.06em] text-[#0b1f3a] sm:text-4xl">
+        <h1 className="text-3xl font-black tracking-[-0.06em] text-[#0f2557] sm:text-4xl">
           Votre panier
         </h1>
         <p className="mt-2 text-slate-600">
@@ -81,7 +81,7 @@ function CartPage() {
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
                       {item.subCategory}
                     </p>
-                    <h3 className="mt-2 text-xl font-black tracking-[-0.04em] text-[#0b1f3a]">
+                    <h3 className="mt-2 text-xl font-black tracking-[-0.04em] text-[#0f2557]">
                       {item.name}
                     </h3>
                     <p className="mt-2 line-clamp-2 text-sm text-slate-600">{item.description}</p>
@@ -90,7 +90,7 @@ function CartPage() {
                   <div className="flex items-end justify-between">
                     <div>
                       <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Prix unitaire</p>
-                      <p className="mt-1 text-2xl font-black text-[#0b1f3a]">
+                      <p className="mt-1 text-2xl font-black text-[#0f2557]">
                         {formatPrice(item.price)}
                       </p>
                     </div>
@@ -139,7 +139,7 @@ function CartPage() {
 
                 <div className="text-right">
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Total</p>
-                  <p className="mt-1 text-2xl font-black text-[#0b1f3a]">
+                  <p className="mt-1 text-2xl font-black text-[#0f2557]">
                     {formatPrice(item.price * item.quantity)}
                   </p>
                 </div>
@@ -151,12 +151,12 @@ function CartPage() {
         <div className="lg:col-span-1">
           <div className="sticky top-24 space-y-4">
             <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-              <h3 className="text-lg font-black text-[#0b1f3a]">Résumé</h3>
+              <h3 className="text-lg font-black text-[#0f2557]">Résumé</h3>
 
               <div className="mt-6 space-y-3 border-t border-slate-200 pt-6">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Sous-total</span>
-                  <span className="font-bold text-[#0b1f3a]">{formatPrice(total)}</span>
+                  <span className="font-bold text-[#0f2557]">{formatPrice(total)}</span>
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -165,22 +165,22 @@ function CartPage() {
                 </div>
 
                 <div className="flex items-center justify-between border-t border-slate-200 pt-3">
-                  <span className="font-bold text-[#0b1f3a]">Total</span>
-                  <span className="text-3xl font-black text-[#0b1f3a]">{formatPrice(total)}</span>
+                  <span className="font-bold text-[#0f2557]">Total</span>
+                  <span className="text-3xl font-black text-[#0f2557]">{formatPrice(total)}</span>
                 </div>
               </div>
 
               <button
                 type="button"
                 onClick={handleCheckout}
-                className="mt-6 w-full rounded-2xl bg-[#0b1f3a] px-6 py-4 text-lg font-bold text-white transition hover:bg-[#143765]"
+                className="mt-6 w-full rounded-2xl bg-[#0f2557] px-6 py-4 text-lg font-bold text-white transition hover:bg-[#1a3a8a]"
               >
                 Procéder au paiement
               </button>
 
               <Link
                 to="/catalogue"
-                className="mt-3 block rounded-2xl border border-[#0b1f3a] bg-white px-6 py-4 text-center text-lg font-bold text-[#0b1f3a] transition hover:bg-slate-50"
+                className="mt-3 block rounded-2xl border border-[#0f2557] bg-white px-6 py-4 text-center text-lg font-bold text-[#0f2557] transition hover:bg-slate-50"
               >
                 Continuer les achats
               </Link>
@@ -195,13 +195,13 @@ function CartPage() {
             </div>
 
             <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-              <h4 className="font-bold text-[#0b1f3a]">✓ Livraison rapide</h4>
+              <h4 className="font-bold text-[#0f2557]">✓ Livraison rapide</h4>
               <p className="mt-2 text-sm text-slate-600">Livraison en 24-48h partout au Sénégal.</p>
 
-              <h4 className="mt-4 font-bold text-[#0b1f3a]">✓ Paiement sécurisé</h4>
+              <h4 className="mt-4 font-bold text-[#0f2557]">✓ Paiement sécurisé</h4>
               <p className="mt-2 text-sm text-slate-600">Vos données sont protégées et chiffrées.</p>
 
-              <h4 className="mt-4 font-bold text-[#0b1f3a]">✓ Support 24/7</h4>
+              <h4 className="mt-4 font-bold text-[#0f2557]">✓ Support 24/7</h4>
               <p className="mt-2 text-sm text-slate-600">Equipe disponible à tout moment pour vous aider.</p>
             </div>
           </div>

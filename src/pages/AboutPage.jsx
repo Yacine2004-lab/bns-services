@@ -29,10 +29,10 @@ export default function AboutPage() {
     <div className="space-y-16 pb-16">
       {/* Hero */}
       <div className="text-center max-w-3xl mx-auto">
-        <span className="inline-flex items-center gap-2 rounded-full bg-[#f5a623]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#f5a623] border border-[#f5a623]/20">
+        <span className="inline-flex items-center gap-2 rounded-full bg-[#e87722]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#e87722] border border-[#e87722]/20">
           <Zap size={12} /> À propos de nous
         </span>
-        <h1 className="mt-4 text-4xl font-black tracking-tight text-[#0B1F3A] sm:text-5xl">
+        <h1 className="mt-4 text-4xl font-black tracking-tight text-[#0f2557] sm:text-5xl">
           BNS Services
         </h1>
         <p className="mt-4 text-lg text-slate-600 leading-relaxed">
@@ -50,17 +50,17 @@ export default function AboutPage() {
             key={title}
             className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm transition hover:shadow-md"
           >
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[#f5a623]/10 text-[#f5a623]">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[#e87722]/10 text-[#e87722]">
               <Icon size={24} />
             </div>
-            <h3 className="mt-4 text-sm font-bold text-[#0B1F3A]">{title}</h3>
+            <h3 className="mt-4 text-sm font-bold text-[#0f2557]">{title}</h3>
             <p className="mt-2 text-xs text-slate-500 leading-relaxed">{description}</p>
           </div>
         ))}
       </div>
 
       {/* CTA */}
-      <div className="rounded-3xl bg-gradient-to-r from-[#0B1F3A] to-[#143765] p-10 text-center text-white">
+      <div className="rounded-3xl bg-gradient-to-r from-[#0f2557] to-[#1a3a8a] p-10 text-center text-white">
         <h2 className="text-2xl font-black sm:text-3xl">
           Prêt à équiper votre bureau ?
         </h2>
@@ -70,7 +70,7 @@ export default function AboutPage() {
         </p>
         <Link
           to="/catalogue"
-          className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#f5a623] px-8 py-3 text-sm font-bold text-[#0B1F3A] transition hover:bg-[#f9b448]"
+          className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#e87722] px-8 py-3 text-sm font-bold text-[#0f2557] transition hover:bg-[#e87722]"
         >
           Voir le catalogue
           <ArrowRight size={16} />

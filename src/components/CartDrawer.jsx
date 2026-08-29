@@ -60,7 +60,7 @@ export default function CartDrawer() {
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Overlay sombre avec flou d'arrière-plan */}
       <div
-        className="fixed inset-0 bg-[#0B1F3A]/60 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in"
+        className="fixed inset-0 bg-[#0f2557]/60 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in"
         onClick={closeDrawer}
         aria-hidden="true"
       />
@@ -75,11 +75,11 @@ export default function CartDrawer() {
           {/* 1. Header du Panier */}
           <div className="flex items-center justify-between border-b border-slate-100 px-6 py-5 bg-gradient-to-r from-slate-50 to-white">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#f9b448] to-[#f5a623] text-[#0B1F3A] shadow-md shadow-[#f5a623]/20">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#e87722] to-[#e87722] text-[#0f2557] shadow-md shadow-[#e87722]/20">
                 <ShoppingBag size={20} />
               </div>
               <div>
-                <h2 className="text-lg font-black tracking-tight text-[#0B1F3A]">
+                <h2 className="text-lg font-black tracking-tight text-[#0f2557]">
                   Mon Panier
                 </h2>
                 <p className="text-xs font-semibold text-slate-500">
@@ -91,7 +91,7 @@ export default function CartDrawer() {
             <button
               type="button"
               onClick={closeDrawer}
-              className="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-[#0B1F3A] transition"
+              className="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-[#0f2557] transition"
               aria-label="Fermer le panier"
             >
               <X size={20} />
@@ -105,7 +105,7 @@ export default function CartDrawer() {
                 <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-slate-50 border border-slate-100 text-slate-300 mb-5 shadow-inner">
                   <ShoppingBag size={44} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-bold text-[#0B1F3A]">
+                <h3 className="text-xl font-bold text-[#0f2557]">
                   Votre panier est vide
                 </h3>
                 <p className="mt-2 text-sm text-slate-500 max-w-xs">
@@ -117,9 +117,9 @@ export default function CartDrawer() {
                     closeDrawer()
                     navigate('/catalogue')
                   }}
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0B1F3A] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#143765] hover:shadow-lg"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0f2557] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1a3a8a] hover:shadow-lg"
                 >
-                  <Sparkles size={16} className="text-[#f5a623]" />
+                  <Sparkles size={16} className="text-[#e87722]" />
                   <span>Découvrir le catalogue</span>
                 </button>
               </div>
@@ -148,7 +148,7 @@ export default function CartDrawer() {
                           <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                             {item.subCategory || item.category || 'Accessoire'}
                           </p>
-                          <h4 className="text-sm font-bold text-[#0B1F3A] line-clamp-1 group-hover:text-[#f5a623] transition-colors">
+                          <h4 className="text-sm font-bold text-[#0f2557] line-clamp-1 group-hover:text-[#e87722] transition-colors">
                             {item.name}
                           </h4>
                           <p className="text-xs font-semibold text-slate-500 mt-0.5">
@@ -174,26 +174,26 @@ export default function CartDrawer() {
                             type="button"
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                             disabled={item.quantity <= 1}
-                            className="flex h-6 w-6 items-center justify-center rounded-lg bg-white text-slate-600 shadow-xs hover:bg-slate-100 hover:text-[#0B1F3A] transition disabled:opacity-40"
+                            className="flex h-6 w-6 items-center justify-center rounded-lg bg-white text-slate-600 shadow-xs hover:bg-slate-100 hover:text-[#0f2557] transition disabled:opacity-40"
                             aria-label="Diminuer la quantité"
                           >
                             <Minus size={12} />
                           </button>
-                          <span className="w-8 text-center text-xs font-bold text-[#0B1F3A]">
+                          <span className="w-8 text-center text-xs font-bold text-[#0f2557]">
                             {item.quantity}
                           </span>
                           <button
                             type="button"
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                             disabled={item.stock != null && item.quantity >= item.stock}
-                            className="flex h-6 w-6 items-center justify-center rounded-lg bg-white text-slate-600 shadow-xs hover:bg-slate-100 hover:text-[#0B1F3A] transition disabled:opacity-40"
+                            className="flex h-6 w-6 items-center justify-center rounded-lg bg-white text-slate-600 shadow-xs hover:bg-slate-100 hover:text-[#0f2557] transition disabled:opacity-40"
                             aria-label="Augmenter la quantité"
                           >
                             <Plus size={12} />
                           </button>
                         </div>
 
-                        <span className="text-sm font-black text-[#0B1F3A]">
+                        <span className="text-sm font-black text-[#0f2557]">
                           {formatPrice(item.price * item.quantity)}
                         </span>
                       </div>
@@ -217,8 +217,8 @@ export default function CartDrawer() {
                   <span className="font-bold text-emerald-600">Gratuite</span>
                 </div>
                 <div className="flex items-center justify-between border-t border-slate-200 pt-2">
-                  <span className="text-base font-bold text-[#0B1F3A]">Total à payer</span>
-                  <span className="text-2xl font-black text-[#0B1F3A]">
+                  <span className="text-base font-bold text-[#0f2557]">Total à payer</span>
+                  <span className="text-2xl font-black text-[#0f2557]">
                     {formatPrice(total)}
                   </span>
                 </div>
@@ -228,7 +228,7 @@ export default function CartDrawer() {
               <button
                 type="button"
                 onClick={handleCheckout}
-                className="w-full flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#f5a623] via-[#f7b733] to-[#f5a623] py-4 text-base font-bold text-[#0B1F3A] shadow-lg shadow-[#f5a623]/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="w-full flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#e87722] py-4 text-base font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/30 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <span>Passer la commande</span>
                 <ArrowRight size={18} />
@@ -237,7 +237,7 @@ export default function CartDrawer() {
               {/* Message rassurant */}
               <div className="flex items-center justify-center gap-4 pt-1 text-[11px] font-semibold text-slate-500">
                 <span className="flex items-center gap-1">
-                  <Truck size={14} className="text-[#f5a623]" />
+                  <Truck size={14} className="text-[#e87722]" />
                   Livraison rapide au Sénégal
                 </span>
                 <span>•</span>

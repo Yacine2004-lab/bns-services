@@ -14,12 +14,12 @@ const formatPrice = (value) =>
   }).format(value)
 
 const promoStyles = [
-  'from-[#f5a623]/14 via-white/80 to-white/90',
-  'from-[#0b1f3a]/6 via-white/80 to-white/90',
-  'from-[#60a5fa]/12 via-white/80 to-white/90',
-  'from-[#f5a623]/10 via-white/75 to-[#eef4fb]/90',
-  'from-[#0b1f3a]/5 via-white/80 to-white/90',
-  'from-[#60a5fa]/10 via-white/75 to-[#f5a623]/8',
+  'from-[#e87722]/12 via-white/80 to-white/90',
+  'from-[#0f2557]/5 via-white/80 to-white/90',
+  'from-[#1a3a8a]/10 via-white/80 to-white/90',
+  'from-[#e87722]/8 via-white/75 to-[#edf1fa]/90',
+  'from-[#0f2557]/4 via-white/80 to-white/90',
+  'from-[#1a3a8a]/8 via-white/75 to-[#e87722]/6',
 ]
 
 const promoLabels = ['GROSSE ÉCONOMIE', 'MEILLEUR PRIX', 'SÉLECTION', 'NOUVEAUTÉ', 'TOP VENTE', 'OFFRE SPÉCIALE']
@@ -104,12 +104,12 @@ function HomePage() {
     <div className="space-y-16 pb-10">
       {/* Toast de confirmation */}
       {addedToast && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0b1f3a] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
-          <CheckCircle2 size={20} className="text-[#f5a623]" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0f2557] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
+          <CheckCircle2 size={20} className="text-[#e87722]" />
           <span className="text-sm font-semibold">Produit ajouté au panier !</span>
           <Link
             to="/panier"
-            className="rounded-lg bg-[#f5a623] px-2.5 py-1 text-xs font-bold text-[#0b1f3a] hover:bg-white transition"
+            className="rounded-lg bg-[#e87722] px-2.5 py-1 text-xs font-bold text-[#0f2557] hover:bg-white transition"
           >
             Voir
           </Link>
@@ -118,7 +118,7 @@ function HomePage() {
 
       {/* 1. Hero carousel */}
       {currentHero && (
-        <section className="relative overflow-hidden rounded-[32px] shadow-[0_20px_60px_rgba(11,31,58,0.2)]">
+        <section className="relative overflow-hidden rounded-[32px] shadow-[0_20px_60px_rgba(15,37,87,0.2)]">
           {/* Magnifique photo de fond */}
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
@@ -134,7 +134,7 @@ function HomePage() {
                 <span className="px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white bg-white/10 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
                   {currentHero.subCategory}
                 </span>
-                <span className="px-4 py-1.5 text-xs sm:text-sm font-black text-[#0b1f3a] bg-[#f5a623] rounded-full border border-[#f5a623]/30 shadow-[0_0_15px_rgba(245,166,35,0.4)]">
+                <span className="px-4 py-1.5 text-xs sm:text-sm font-black text-white bg-[#e87722] rounded-full border border-[#e87722]/30 shadow-[0_0_15px_rgba(232,119,34,0.4)]">
                   {formatPrice(currentHero.price)}
                 </span>
               </div>
@@ -147,9 +147,9 @@ function HomePage() {
                 <button
                   type="button"
                   onClick={() => handleQuickBuy(currentHero)}
-                  className="group/btn inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#f5a623] to-[#FFB84D] px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold text-[#0b1f3a] shadow-[0_8px_25px_rgba(245,166,35,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_35px_rgba(245,166,35,0.5)] active:scale-95"
+                  className="group/btn inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold text-white shadow-[0_8px_25px_rgba(232,119,34,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_35px_rgba(232,119,34,0.5)] active:scale-95"
                 >
-                  <Zap size={18} className="fill-[#0b1f3a] transition-transform duration-300 group-hover/btn:-rotate-12 group-hover/btn:scale-110" />
+                  <Zap size={18} className="fill-white transition-transform duration-300 group-hover/btn:-rotate-12 group-hover/btn:scale-110" />
                   Commander maintenant
                 </button>
                 <button
@@ -172,7 +172,7 @@ function HomePage() {
             {/* Conteneur image avec halo de lumière */}
             <div className="relative flex items-center justify-center py-6">
               {/* Halo lumineux derrière l'image */}
-              <div className="absolute inset-0 bg-[#f5a623]/20 blur-[80px] rounded-full scale-75" />
+              <div className="absolute inset-0 bg-[#e87722]/15 blur-[80px] rounded-full scale-75" />
               <img
                 key={currentHero.id}
                 src={resolveImageUrl(currentHero.image)}
@@ -193,7 +193,7 @@ function HomePage() {
                   aria-label={`Slide ${i + 1}`}
                   className={`rounded-full transition-all duration-300 ${
                     i === heroIndex
-                      ? 'h-2 w-10 bg-[#f5a623] shadow-[0_0_10px_rgba(245,166,35,0.8)]'
+                      ? 'h-2 w-10 bg-[#e87722] shadow-[0_0_10px_rgba(232,119,34,0.8)]'
                       : 'h-2 w-2 bg-white/30 hover:bg-white/50'
                   }`}
                 />
@@ -206,7 +206,7 @@ function HomePage() {
       {/* 2. Catégories populaires avec photos réelles */}
       <section className="space-y-6">
         <div className="text-center space-y-1">
-          <h2 className="text-2xl font-black tracking-[-0.03em] text-[#0b1f3a] sm:text-3xl">
+          <h2 className="text-2xl font-black tracking-[-0.03em] text-[#0f2557] sm:text-3xl">
             Nos catégories populaires
           </h2>
           <p className="text-xs text-slate-500 max-w-md mx-auto">
@@ -221,7 +221,7 @@ function HomePage() {
               <Link
                 key={sub.id}
                 to={`/catalogue?subcategory=${sub.id}`}
-                className="group flex flex-col items-center justify-between rounded-2xl border border-slate-200/70 bg-white/90 p-3 text-center shadow-[0_4px_20px_rgba(11,31,58,0.04)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#f5a623]/60 hover:shadow-[0_14px_35px_rgba(245,166,35,0.18)]"
+                className="group flex flex-col items-center justify-between rounded-2xl border border-slate-200/70 bg-white/90 p-3 text-center shadow-[0_4px_20px_rgba(11,31,58,0.04)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#e87722]/60 hover:shadow-[0_14px_35px_rgba(245,166,35,0.18)]"
               >
                 {/* Conteneur photo réelle du produit */}
                 <div className="relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center overflow-hidden rounded-xl bg-[#f8fafc] p-1.5 transition-all duration-300 group-hover:bg-amber-50/60 border border-slate-100">
@@ -233,12 +233,12 @@ function HomePage() {
                       loading="lazy"
                     />
                   ) : (
-                    <Icon size={26} className="text-[#0b1f3a]" />
+                    <Icon size={26} className="text-[#0f2557]" />
                   )}
                 </div>
 
                 <div className="mt-2.5 w-full">
-                  <p className="line-clamp-2 text-xs font-bold leading-tight text-[#0b1f3a] transition-colors group-hover:text-[#f5a623]">
+                  <p className="line-clamp-2 text-xs font-bold leading-tight text-[#0f2557] transition-colors group-hover:text-[#e87722]">
                     {sub.name}
                   </p>
                   <p className="mt-1 text-[10px] font-semibold text-slate-400">
@@ -261,11 +261,11 @@ function HomePage() {
             <div className="relative z-10 flex flex-1 gap-4">
               {/* Text */}
               <div className="flex-1 flex flex-col justify-start">
-                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#f5a623]">
+                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#e87722]">
                   {promoLabels[index % promoLabels.length]}
                 </span>
                 <Link to={`/produit/${product.slug}`} className="block">
-                  <h3 className="mt-1.5 text-lg font-black leading-snug text-[#0b1f3a] transition hover:text-[#f5a623] sm:text-xl line-clamp-3">
+                  <h3 className="mt-1.5 text-lg font-black leading-snug text-[#0f2557] transition hover:text-[#e87722] sm:text-xl line-clamp-3">
                     {product.name}
                   </h3>
                 </Link>
@@ -291,14 +291,14 @@ function HomePage() {
               <button
                 type="button"
                 onClick={() => handleQuickBuy(product)}
-                className="group/btn inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#f5a623] to-[#FFB84D] px-5 py-2.5 text-[11px] font-black uppercase tracking-wider text-[#0b1f3a] shadow-md shadow-[#f5a623]/30 transition-all duration-300 hover:scale-[1.04] hover:shadow-lg hover:shadow-[#f5a623]/40 active:scale-[0.97] whitespace-nowrap"
+                className="group/btn inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-5 py-2.5 text-[11px] font-black uppercase tracking-wider text-[#0f2557] shadow-md shadow-[#e87722]/30 transition-all duration-300 hover:scale-[1.04] hover:shadow-lg hover:shadow-[#e87722]/40 active:scale-[0.97] whitespace-nowrap"
               >
-                <Zap size={14} className="fill-[#0b1f3a] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
+                <Zap size={14} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                 Acheter
               </button>
               <Link
                 to={`/produit/${product.slug}`}
-                className="text-xs font-bold text-[#0b1f3a] transition-colors hover:text-[#f5a623] whitespace-nowrap"
+                className="text-xs font-bold text-[#0f2557] transition-colors hover:text-[#e87722] whitespace-nowrap"
               >
                 Détails →
               </Link>
@@ -310,7 +310,7 @@ function HomePage() {
       {/* 4. Produits tendance — onglets + slider */}
       <section className="space-y-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <h2 className="text-2xl font-black tracking-[-0.03em] text-[#0b1f3a] sm:text-3xl">
+          <h2 className="text-2xl font-black tracking-[-0.03em] text-[#0f2557] sm:text-3xl">
             Nos produits tendance
           </h2>
 
@@ -323,13 +323,13 @@ function HomePage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`relative pb-2 text-sm font-semibold transition ${
                     activeTab === tab.id
-                      ? 'text-[#0b1f3a]'
-                      : 'text-slate-500 hover:text-[#0b1f3a]'
+                      ? 'text-[#0f2557]'
+                      : 'text-slate-500 hover:text-[#0f2557]'
                   }`}
                 >
                   {tab.label}
                   {activeTab === tab.id && (
-                    <span className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-[#f5a623]" />
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-[#e87722]" />
                   )}
                 </button>
               ))}
@@ -340,7 +340,7 @@ function HomePage() {
                 type="button"
                 onClick={() => scrollTrending('left')}
                 aria-label="Produits précédents"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-[#0b1f3a] backdrop-blur-sm transition hover:border-[#f5a623]/40 hover:bg-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-[#0f2557] backdrop-blur-sm transition hover:border-[#e87722]/40 hover:bg-white"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -348,7 +348,7 @@ function HomePage() {
                 type="button"
                 onClick={() => scrollTrending('right')}
                 aria-label="Produits suivants"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-[#0b1f3a] backdrop-blur-sm transition hover:border-[#f5a623]/40 hover:bg-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-[#0f2557] backdrop-blur-sm transition hover:border-[#e87722]/40 hover:bg-white"
               >
                 <ChevronRight size={20} />
               </button>
@@ -363,12 +363,12 @@ function HomePage() {
           {tabProducts.map((product) => (
             <div
               key={product.id}
-              className="group flex w-[230px] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm transition hover:-translate-y-1 hover:border-[#f5a623]/40 hover:shadow-[0_16px_40px_rgba(11,31,58,0.1)] sm:w-[250px]"
+              className="group flex w-[230px] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm transition hover:-translate-y-1 hover:border-[#e87722]/40 hover:shadow-[0_16px_40px_rgba(11,31,58,0.1)] sm:w-[250px]"
             >
               <Link to={`/produit/${product.slug}`} className="block">
                 <div className="relative flex h-48 items-center justify-center bg-[#f8fafc] p-4">
                   {product.featured && (
-                    <span className="absolute left-3 top-3 rounded-md bg-[#f5a623] px-2 py-0.5 text-[10px] font-black uppercase text-[#0b1f3a]">
+                    <span className="absolute left-3 top-3 rounded-md bg-[#e87722] px-2 py-0.5 text-[10px] font-black uppercase text-[#0f2557]">
                       Vedette
                     </span>
                   )}
@@ -389,26 +389,26 @@ function HomePage() {
                   </p>
                   <Link
                     to={`/produit/${product.slug}`}
-                    className="line-clamp-1 block text-sm font-bold text-[#0b1f3a] transition hover:text-[#f5a623]"
+                    className="line-clamp-1 block text-sm font-bold text-[#0f2557] transition hover:text-[#e87722]"
                   >
                     {product.name}
                   </Link>
-                  <p className="pt-1 text-base font-black text-[#0b1f3a]">{formatPrice(product.price)}</p>
+                  <p className="pt-1 text-base font-black text-[#0f2557]">{formatPrice(product.price)}</p>
                 </div>
 
                 <div className="space-y-1.5 pt-1">
                   <button
                     type="button"
                     onClick={() => handleQuickBuy(product)}
-                    className="group/btn w-full flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#f5a623] via-[#f7b733] to-[#FFB84D] py-2 text-xs font-bold text-[#0b1f3a] shadow-lg shadow-[#f5a623]/25 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-[#f5a623]/35 active:scale-[0.97]"
+                    className="group/btn w-full flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-2 text-xs font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.97]"
                   >
-                    <Zap size={13} className="fill-[#0b1f3a] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
+                    <Zap size={13} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                     Acheter maintenant
                   </button>
                   <button
                     type="button"
                     onClick={() => handleQuickAdd(product)}
-                    className="group/add w-full flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-1.5 text-xs font-bold text-slate-700 transition-all duration-300 hover:border-[#f5a623] hover:bg-[#f5a623]/5 active:scale-[0.97]"
+                    className="group/add w-full flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-1.5 text-xs font-bold text-slate-700 transition-all duration-300 hover:border-[#e87722] hover:bg-[#e87722]/5 active:scale-[0.97]"
                   >
                     <Plus size={13} className="transition-transform duration-300 group-hover/add:scale-125" />
                     Panier

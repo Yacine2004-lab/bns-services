@@ -31,9 +31,9 @@ const socialLinks = [
 function Footer() {
   return (
     <footer className="relative mt-24 overflow-hidden border-t border-white/20">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0b1f3a]/95 via-[#122a4a]/90 to-[#0d2240]/95 backdrop-blur-2xl" />
-      <div className="absolute -right-20 top-0 h-64 w-64 rounded-full bg-[#f5a623]/10 blur-[100px]" />
-      <div className="absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-[#60a5fa]/10 blur-[80px]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f2557]/95 via-[#142d60]/90 to-[#0f2557]/95 backdrop-blur-2xl" />
+      <div className="absolute -right-20 top-0 h-64 w-64 rounded-full bg-[#e87722]/10 blur-[100px]" />
+      <div className="absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-[#1a3a8a]/10 blur-[80px]" />
 
       <div className="relative mx-auto grid max-w-[1400px] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div>
@@ -41,7 +41,7 @@ function Footer() {
             <BnsLogo size={48} />
             <div>
               <p className="font-black uppercase tracking-tight text-white">BNS Services</p>
-              <p className="text-[10px] uppercase tracking-[0.24em] text-[#f9b448]">Sénégal</p>
+              <p className="text-[10px] uppercase tracking-[0.24em] text-[#e87722]">Sénégal</p>
             </div>
           </div>
           <p className="text-sm leading-relaxed text-slate-300">
@@ -52,19 +52,19 @@ function Footer() {
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white">Navigation</h3>
           <ul className="space-y-3 text-sm text-slate-300">
-            <li><Link to="/" className="transition hover:text-[#f5a623]">Accueil</Link></li>
-            <li><Link to="/catalogue" className="transition hover:text-[#f5a623]">Catalogue</Link></li>
-            <li><Link to="/a-propos" className="transition hover:text-[#f5a623]">À propos</Link></li>
-            <li><Link to="/contact" className="transition hover:text-[#f5a623]">Contact</Link></li>
+            <li><Link to="/" className="transition hover:text-[#e87722]">Accueil</Link></li>
+            <li><Link to="/catalogue" className="transition hover:text-[#e87722]">Catalogue</Link></li>
+            <li><Link to="/a-propos" className="transition hover:text-[#e87722]">À propos</Link></li>
+            <li><Link to="/contact" className="transition hover:text-[#e87722]">Contact</Link></li>
           </ul>
         </div>
 
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white">Informations</h3>
           <ul className="space-y-3 text-sm text-slate-300">
-            <li><Link to="/conditions-generales" className="transition hover:text-[#f5a623]">CGV</Link></li>
-            <li><Link to="/politique-de-confidentialite" className="transition hover:text-[#f5a623]">Politique de confidentialité</Link></li>
-            <li><Link to="/mentions-legales" className="transition hover:text-[#f5a623]">Mentions légales</Link></li>
+            <li><Link to="/conditions-generales" className="transition hover:text-[#e87722]">CGV</Link></li>
+            <li><Link to="/politique-de-confidentialite" className="transition hover:text-[#e87722]">Politique de confidentialité</Link></li>
+            <li><Link to="/mentions-legales" className="transition hover:text-[#e87722]">Mentions légales</Link></li>
           </ul>
         </div>
 

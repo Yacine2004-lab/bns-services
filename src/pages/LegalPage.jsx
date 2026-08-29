@@ -89,7 +89,7 @@ export default function LegalPage({ type }) {
 
   return (
     <div className="max-w-3xl mx-auto pb-16">
-      <h1 className="text-3xl font-black tracking-tight text-[#0B1F3A] sm:text-4xl">
+      <h1 className="text-3xl font-black tracking-tight text-[#0f2557] sm:text-4xl">
         {content.title}
       </h1>
       <p className="mt-2 text-xs text-slate-400">
@@ -99,7 +99,7 @@ export default function LegalPage({ type }) {
       <div className="mt-8 space-y-8">
         {content.sections.map((section) => (
           <div key={section.heading}>
-            <h2 className="text-base font-bold text-[#0B1F3A] mb-2">{section.heading}</h2>
+            <h2 className="text-base font-bold text-[#0f2557] mb-2">{section.heading}</h2>
             <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
               {section.text}
             </p>
