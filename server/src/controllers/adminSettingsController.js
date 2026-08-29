@@ -36,14 +36,6 @@ export async function getSettings(req, res, next) {
       success: true,
       data: {
         admin,
-        system: {
-          port: env.port,
-          clientUrl: env.clientUrl,
-          jwtExpiresIn: env.jwtExpiresIn,
-          databaseUrl: env.databaseUrl?.replace(/\/\/.*@/, '//***@') || 'Non configurée',
-          nodeVersion: process.version,
-          uptime: process.uptime(),
-        },
         stats: {
           totalProducts,
           totalCustomers,
