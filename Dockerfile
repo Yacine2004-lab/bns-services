@@ -9,8 +9,9 @@ COPY server/prisma ./server/prisma/
 # Installer les dependances du backend
 RUN cd server && npm ci --omit=dev
 
-# Generer le client Prisma
+# Generer le client Prisma et appliquer le schema
 RUN cd server && npx prisma generate
+RUN cd server && npx prisma db push --accept-data-loss
 
 # Copier le code du backend
 COPY server/ ./server/
