@@ -1,13 +1,32 @@
-# React + Vite
+# BNS Services - E-commerce Materiel Informatique
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site e-commerce pour la vente de materiel informatique au Senegal.
 
-Currently, two official plugins are available:
+## Liens de production
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frontend** : https://bns-nine.vercel.app
+- **Backend API** : https://bns-api-production.up.railway.app
+- **Admin** : https://bns-nine.vercel.app/admin/connexion
 
-## React Compiler
+## Stack technique
+
+- **Frontend** : React + Vite + Tailwind CSS
+- **Backend** : Node.js + Express + Prisma + PostgreSQL
+- **Email** : Brevo (SMTP)
+- **Images** : Cloudinary
+- **Deploiement** : Vercel (frontend) + Railway (backend)
+
+## Development
+
+```bash
+# Frontend
+npm run dev
+
+# Backend
+cd server && npm run dev
+```
+
+## Test push - Deploiements automatiques actifs
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
