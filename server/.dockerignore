@@ -1,0 +1,10 @@
+node_modules
+.env
+.env.example
+*.log
+.git
+.gitignore
+README.md
+DEPLOYMENT.md
+deploy.sh
+tmp_*

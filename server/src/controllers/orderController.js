@@ -1,0 +1,207 @@
+import { prisma } from '../config/prisma.js'
+
+// Générateur de numéro de commande unique (ex: CMD-748291)
+function generateOrderNumber() {
+  const randomDigits = Math.floor(100000 + Math.random() * 900000)
+  return `CMD-${randomDigits}`
+}
+
+// 1. Créer une nouvelle commande (Transaction atomique + Décrémentation du stock)
+export async function createOrder(req, res, next) {
+  try {
+    const {
+      items,
+      customerName,
+      customerPhone,
+      customerEmail,
+      shippingAddress,
+      shippingCity,
+      shippingNotes,
+      paymentMethod = 'CASH_ON_DELIVERY',
+    } = req.body
+
+    // Si le client est connecté via le middleware optionalCustomerAuth
+    const customerId = req.customer?.id || null
+
+    // Transaction atomique : vérifie le stock, crée la commande et décrémente le stock
+    const result = await prisma.$transaction(async (tx) => {
+      let subtotal = 0
+      const orderItemsToCreate = []
+
+      for (const item of items) {
+        // Rechercher le produit en base par ID ou Slug
+        const product = await tx.product.findFirst({
+          where: {
+            OR: [
+              ...(item.productId ? [{ id: item.productId }] : []),
+              ...(item.slug ? [{ slug: item.slug }] : []),
+            ],
+          },
+        })
+
+        if (!product) {
+          throw new Error(`Le produit demandé est introuvable.`)
+        }
+
+        // Vérification stricte du stock disponible
+        if (product.stock < item.quantity) {
+          throw new Error(
+            `Stock insuffisant pour "${product.name}". Stock restant : ${product.stock} unité(s), demandé : ${item.quantity}.`,
+          )
+        }
+
+        // Décrémenter le stock immédiatement
+        await tx.product.update({
+          where: { id: product.id },
+          data: {
+            stock: {
+              decrement: item.quantity,
+            },
+          },
+        })
+
+        const itemTotal = product.price * item.quantity
+        subtotal += itemTotal
+
+        // Ligne de commande avec prix unitaire figé
+        orderItemsToCreate.push({
+          productId: product.id,
+          productName: product.name,
+          productReference: product.reference,
+          productImage: product.image,
+          productPrice: product.price,
+          quantity: item.quantity,
+          total: itemTotal,
+        })
+      }
+
+      // Calcul des frais de livraison (Gratuit pour Dakar, 0 XOF par défaut)
+      const shippingFee = 0
+      const total = subtotal + shippingFee
+
+      // Générer un numéro de commande unique
+      let orderNumber = generateOrderNumber()
+      while (await tx.order.findUnique({ where: { orderNumber } })) {
+        orderNumber = generateOrderNumber()
+      }
+
+      // Créer la commande et ses lignes associées
+      const order = await tx.order.create({
+        data: {
+          orderNumber,
+          customerId,
+          customerName: customerName.trim(),
+          customerPhone: customerPhone.trim(),
+          customerEmail: customerEmail ? customerEmail.trim().toLowerCase() : null,
+          shippingAddress: shippingAddress.trim(),
+          shippingCity: shippingCity.trim(),
+          shippingNotes: shippingNotes ? shippingNotes.trim() : null,
+          status: 'PENDING',
+          paymentMethod,
+          paymentStatus: 'PENDING',
+          subtotal,
+          shippingFee,
+          total,
+          items: {
+            create: orderItemsToCreate,
+          },
+        },
+        include: {
+          items: true,
+        },
+      })
+
+      return order
+    })
+
+    res.status(201).json({
+      success: true,
+      message: 'Commande enregistrée avec succès !',
+      data: result,
+    })
+  } catch (error) {
+    // Si l'erreur provient de la vérification de stock
+    if (error.message.includes('Stock insuffisant') || error.message.includes('introuvable')) {
+      return res.status(400).json({
+        success: false,
+        message: error.message,
+      })
+    }
+    next(error)
+  }
+}
+
+// 2. Récupérer les commandes du client connecté
+export async function getMyOrders(req, res, next) {
+  try {
+    const customerId = req.customer.id
+    const page = Math.max(1, parseInt(req.query.page) || 1)
+    const limit = Math.max(1, Math.min(50, parseInt(req.query.limit) || 20))
+    const skip = (page - 1) * limit
+
+    const [orders, totalCount] = await Promise.all([
+      prisma.order.findMany({
+        where: { customerId },
+        include: {
+          items: true,
+        },
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: limit,
+      }),
+      prisma.order.count({ where: { customerId } }),
+    ])
+
+    res.status(200).json({
+      success: true,
+      count: orders.length,
+      total: totalCount,
+      page,
+      totalPages: Math.ceil(totalCount / limit),
+      data: orders,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+// 3. Récupérer le détail d'une commande par son numéro (ex: CMD-123456) ou ID
+export async function getOrderByNumber(req, res, next) {
+  try {
+    const { orderNumber } = req.params
+
+    const order = await prisma.order.findFirst({
+      where: {
+        OR: [{ orderNumber }, { id: orderNumber }],
+      },
+      include: {
+        items: true,
+        customer: {
+          select: { id: true, firstName: true, lastName: true, email: true },
+        },
+      },
+    })
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: `Commande introuvable avec la référence : ${orderNumber}`,
+      })
+    }
+
+    // Si le client est connecté, vérifier qu'il est propriétaire de la commande
+    if (req.customer && order.customerId && order.customerId !== req.customer.id) {
+      return res.status(403).json({
+        success: false,
+        message: 'Vous n\'avez pas accès à cette commande.',
+      })
+    }
+
+    res.status(200).json({
+      success: true,
+      data: order,
+    })
+  } catch (error) {
+    next(error)
+  }
+}

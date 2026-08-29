@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #111827;
+  background: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(245, 166, 35, 0.12), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 100% 0%, rgba(96, 165, 250, 0.1), transparent 50%),
+    radial-gradient(ellipse 55% 40% at 50% 100%, rgba(11, 31, 58, 0.06), transparent 55%),
+    linear-gradient(165deg, #f8fafc 0%, #eef4fb 40%, #e8f0fa 100%);
+  color: #071d49;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/50 bg-white/55 backdrop-blur-2xl;
+    box-shadow:
+      0 8px 32px rgba(11, 31, 58, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .glass-dark {
+    @apply border border-white/15 bg-white/[0.08] backdrop-blur-2xl;
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-card {
+    @apply glass rounded-[28px] transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply border-[#f5a623]/30;
+    box-shadow:
+      0 20px 50px rgba(245, 166, 35, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .glass-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md;
+  }
+}

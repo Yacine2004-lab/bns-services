@@ -1,0 +1,244 @@
+### BNS Services - API Test Suite
+### REST Client Extension pour VS Code
+### Base URL: http://localhost:5000/api
+
+@baseUrl = http://localhost:5000/api
+@contentType = application/json
+
+### ============================================================
+### 1. HEALTH CHECK
+### ============================================================
+
+### Vérifier que l'API est opérationnelle
+GET {{baseUrl}}/health
+
+
+### ============================================================
+### 2. AUTHENTIFICATION CLIENT
+### ============================================================
+
+### Créer un nouveau compte client
+POST {{baseUrl}}/auth/register
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Jean",
+  "lastName": "Dupont",
+  "email": "jean.dupont@example.com",
+  "phone": "+221781234567",
+  "password": "SecurePassword123!"
+}
+
+### Connexion client
+POST {{baseUrl}}/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "jean.dupont@example.com",
+  "password": "SecurePassword123!"
+}
+
+### Récupérer les informations du client connecté
+### (À utiliser après login, remplace le token par celui reçu)
+GET {{baseUrl}}/auth/me
+Authorization: Bearer your_token_here
+
+
+### ============================================================
+### 3. CATÉGORIES ET SOUS-CATÉGORIES
+### ============================================================
+
+### Récupérer toutes les catégories
+GET {{baseUrl}}/categories
+
+### Récupérer une catégorie spécifique par ID
+GET {{baseUrl}}/categories/informatics
+
+### Récupérer les sous-catégories
+GET {{baseUrl}}/subcategories
+
+### Récupérer les sous-catégories d'une catégorie
+GET {{baseUrl}}/subcategories?categoryId=informatics
+
+
+### ============================================================
+### 4. PRODUITS
+### ============================================================
+
+### Récupérer tous les produits (avec pagination)
+GET {{baseUrl}}/products?limit=20&offset=0
+
+### Récupérer un produit par slug
+GET {{baseUrl}}/products/laptop-lenovo-thinkpad-x1
+
+### Créer un produit (Admin only)
+POST {{baseUrl}}/products
+Content-Type: {{contentType}}
+Authorization: Bearer admin_token_here
+
+{
+  "name": "Souris sans fil Logitech",
+  "slug": "souris-logitech-wireless",
+  "description": "Souris sans fil professionnelle haute performance",
+  "price": 25000,
+  "image": "https://example.com/mouse.jpg",
+  "reference": "MOUSE-LOGI-001",
+  "stock": 50,
+  "categoryId": "informatics",
+  "subCategoryId": "peripherals"
+}
+
+### Mettre à jour un produit (Admin only)
+PUT {{baseUrl}}/products/product-id-here
+Content-Type: {{contentType}}
+Authorization: Bearer admin_token_here
+
+{
+  "name": "Souris sans fil Logitech MX Master",
+  "price": 35000,
+  "stock": 45
+}
+
+### Supprimer un produit (Admin only)
+DELETE {{baseUrl}}/products/product-id-here
+Authorization: Bearer admin_token_here
+
+
+### ============================================================
+### 5. COMMANDES CLIENT
+### ============================================================
+
+### Créer une commande
+POST {{baseUrl}}/orders
+Content-Type: {{contentType}}
+Authorization: Bearer customer_token_here
+
+{
+  "items": [
+    {
+      "productId": "prod-001",
+      "quantity": 2
+    },
+    {
+      "slug": "souris-logitech-wireless",
+      "quantity": 1
+    }
+  ],
+  "customerName": "Jean Dupont",
+  "customerPhone": "+221781234567",
+  "customerEmail": "jean.dupont@example.com",
+  "shippingAddress": "123 Rue de la Paix",
+  "shippingCity": "Dakar (Centre-ville, Plateau, Médina, Fann)",
+  "shippingNotes": "Livrer entre 9h-18h",
+  "paymentMethod": "CASH_ON_DELIVERY"
+}
+
+### Récupérer toutes les commandes du client
+GET {{baseUrl}}/orders
+Authorization: Bearer customer_token_here
+
+### Récupérer une commande spécifique
+GET {{baseUrl}}/orders/CMD-123456
+Authorization: Bearer customer_token_here
+
+### Récupérer l'historique de statut d'une commande
+GET {{baseUrl}}/orders/CMD-123456/history
+Authorization: Bearer customer_token_here
+
+
+### ============================================================
+### 6. AUTHENTIFICATION ADMIN
+### ============================================================
+
+### Connexion administrateur
+POST {{baseUrl}}/admin/login
+Content-Type: {{contentType}}
+
+{
+  "email": "admin@bnsservices.sn",
+  "password": "SecureAdminPassword123!"
+}
+
+### Récupérer les informations du profil admin
+GET {{baseUrl}}/admin/profile
+Authorization: Bearer admin_token_here
+
+
+### ============================================================
+### 7. GESTION DES COMMANDES (Admin)
+### ============================================================
+
+### Récupérer toutes les commandes (Admin)
+GET {{baseUrl}}/admin/orders
+Authorization: Bearer admin_token_here
+
+### Récupérer une commande spécifique (Admin)
+GET {{baseUrl}}/admin/orders/CMD-123456
+Authorization: Bearer admin_token_here
+
+### Mettre à jour le statut d'une commande
+PUT {{baseUrl}}/admin/orders/CMD-123456/status
+Content-Type: {{contentType}}
+Authorization: Bearer admin_token_here
+
+{
+  "status": "CONFIRMED"
+}
+
+### Valeurs de statut acceptées:
+### - PENDING (en attente)
+### - CONFIRMED (confirmée)
+### - PROCESSING (en traitement)
+### - SHIPPED (expédiée)
+### - DELIVERED (livrée)
+### - CANCELLED (annulée)
+
+### Filtrer les commandes par statut
+GET {{baseUrl}}/admin/orders?status=PENDING
+Authorization: Bearer admin_token_here
+
+### Filtrer par date
+GET {{baseUrl}}/admin/orders?startDate=2026-08-01&endDate=2026-08-31
+Authorization: Bearer admin_token_here
+
+### Annuler une commande
+DELETE {{baseUrl}}/admin/orders/CMD-123456
+Authorization: Bearer admin_token_here
+
+
+### ============================================================
+### NOTES D'UTILISATION
+### ============================================================
+
+###
+### 1. VARIABLES IMPORTANTES
+###    - Remplace "your_token_here" par le token JWT reçu après login
+###    - Remplace "admin_token_here" par le token JWT admin
+###    - Remplace "product-id-here" par l'ID du produit réel
+###    - Remplace "CMD-123456" par le numéro de commande réel
+###
+### 2. POUR UTILISER CETTE SUITE DE TEST
+###    - Installe l'extension REST Client dans VS Code
+###    - Ouvre ce fichier (.rest)
+###    - Clique sur "Send Request" pour chaque endpoint
+###    - Les réponses s'affichent dans le volet latéral
+###
+### 3. FLUX DE TEST RECOMMANDÉ
+###    a) Health Check → vérifier que l'API fonctionne
+###    b) Register → créer un compte client
+###    c) Login → obtenir un token JWT
+###    d) Get Products → afficher les produits disponibles
+###    e) Create Order → passer une commande
+###    f) Get Orders → récupérer les commandes
+###
+### 4. STATUTS HTTP ATTENDUS
+###    - 200 OK: Requête réussie
+###    - 201 Created: Ressource créée
+###    - 400 Bad Request: Données invalides
+###    - 401 Unauthorized: Token manquant ou invalide
+###    - 404 Not Found: Ressource non trouvée
+###    - 409 Conflict: Conflit (ex: email déjà existant)
+###    - 422 Unprocessable Entity: Erreur de validation
+###    - 500 Server Error: Erreur serveur
+###
+
