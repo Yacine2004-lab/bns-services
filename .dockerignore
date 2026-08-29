@@ -1,0 +1,15 @@
+node_modules
+.git
+.gitignore
+*.log
+README.md
+DEPLOYMENT.md
+deploy.sh
+tmp_*
+.vercel-tmp
+.gh-tmp
+.env
+.env.production
+.env.local
+dist
+.vite

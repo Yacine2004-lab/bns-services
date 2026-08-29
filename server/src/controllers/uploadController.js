@@ -1,6 +1,7 @@
 import { prisma } from '../config/prisma.js'
 import multer from 'multer'
 import { v2 as cloudinary } from 'cloudinary'
+import path from 'path'
 
 // Configuration Cloudinary
 cloudinary.config({
@@ -17,7 +18,7 @@ const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif']
 
 // Filtrer : accepter uniquement les images (mimetype + extension)
 const fileFilter = (_req, file, cb) => {
-  const ext = require('path').extname(file.originalname).toLowerCase()
+  const ext = path.extname(file.originalname).toLowerCase()
   if (file.mimetype.startsWith('image/') && ALLOWED_EXTENSIONS.includes(ext)) {
     cb(null, true)
   } else {
