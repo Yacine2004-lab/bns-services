@@ -79,7 +79,9 @@ model Customer {
   lastName             String
   email                String    @unique
   phone                String?
-  password             String
+  password             String?   // Null pour les comptes OAuth (Google, Facebook)
+  provider             String?   // 'google', 'facebook', ou null (email/password)
+  providerId           String?   // ID du compte chez le provider OAuth
   resetPasswordToken   String?
   resetPasswordExpires DateTime?
   orders               Order[]

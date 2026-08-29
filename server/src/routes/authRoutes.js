@@ -6,6 +6,7 @@ import {
   forgotPassword,
   resetPassword,
 } from '../controllers/authController.js'
+import { oauthRedirect, oauthCallback } from '../controllers/oauthController.js'
 import { validate } from '../middlewares/validate.js'
 import { requireCustomerAuth } from '../middlewares/authMiddleware.js'
 import { authLimiter } from '../middlewares/rateLimiter.js'
@@ -30,5 +31,11 @@ router.get('/me', requireCustomerAuth, getMe)
 // Réinitialisation mot de passe
 router.post('/forgot-password', authLimiter, validate(forgotPasswordSchema), forgotPassword)
 router.post('/reset-password', authLimiter, validate(resetPasswordSchema), resetPassword)
+
+// OAuth social login (Google, Facebook)
+router.get('/google', oauthRedirect('google'))
+router.get('/google/callback', oauthCallback('google'))
+router.get('/facebook', oauthRedirect('facebook'))
+router.get('/facebook/callback', oauthCallback('facebook'))
 
 export default router
