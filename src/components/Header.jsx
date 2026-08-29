@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import { useAuth } from '../context/useAuth'
 import AccountDropdown from './AccountDropdown'
+import BnsLogo from './BnsLogo'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
@@ -23,9 +24,7 @@ function Header() {
     <header className="sticky top-0 z-40 border-b border-white/20 bg-[#0b1f3a]/70 text-white shadow-[0_8px_32px_rgba(11,31,58,0.2)] backdrop-blur-2xl">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-3" aria-label="Accueil BNS Services">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-[#f9b448] via-[#f5a623] to-[#e78b0a] text-lg font-black text-[#0b1f3a] shadow-[0_10px_30px_rgba(245,166,35,0.35)]">
-            B
-          </div>
+          <BnsLogo size={44} />
           <div className="leading-none">
             <div className="text-lg font-black tracking-[-0.04em] text-white">BNS</div>
             <div className="text-[9px] font-semibold uppercase tracking-[0.22em] text-[#f9b448]">Services</div>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import BnsLogo from './BnsLogo'
 import { WhatsAppIcon, FacebookIcon, InstagramIcon } from './SocialIcons'
 
 const WHATSAPP_NUMBER = '221784459510'
@@ -37,9 +38,7 @@ function Footer() {
       <div className="relative mx-auto grid max-w-[1400px] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div>
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-lg font-black text-[#f5a623] backdrop-blur-md shadow-[0_8px_24px_rgba(245,166,35,0.2)]">
-              B
-            </div>
+            <BnsLogo size={48} />
             <div>
               <p className="font-black uppercase tracking-tight text-white">BNS Services</p>
               <p className="text-[10px] uppercase tracking-[0.24em] text-[#f9b448]">Sénégal</p>

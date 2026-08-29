@@ -35,6 +35,7 @@ import {
 } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import AdminProducts from '../components/admin/AdminProducts'
+import BnsLogo from '../components/BnsLogo'
 import { adminCustomersApi, adminSettingsApi } from '../lib/api'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
 import { logError } from '../lib/logger'
@@ -111,9 +112,7 @@ function AdminSidebar({ isOpen, onClose, onLogout, activeItem, onNavigate, admin
         {/* Logo */}
         <div className="flex items-center justify-between border-b border-slate-800/60 px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#f9b448] to-[#f5a623] text-lg font-black text-[#0b1f3a] shadow-lg shadow-[#f5a623]/20">
-              B
-            </div>
+            <BnsLogo size={40} />
             <div>
               <div className="text-sm font-black tracking-tight text-white">BNS Services</div>
               <div className="text-[10px] font-semibold uppercase tracking-widest text-[#f5a623]/70">Panel Admin</div>
