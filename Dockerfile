@@ -9,9 +9,8 @@ COPY server/prisma ./server/prisma/
 # Installer les dependances du backend
 RUN cd server && npm ci --omit=dev
 
-# Generer le client Prisma et appliquer le schema
+# Generer le client Prisma (le db push se fait au demarrage car la DB n'est pas accessible au build)
 RUN cd server && npx prisma generate
-RUN cd server && npx prisma db push --accept-data-loss
 
 # Copier le code du backend
 COPY server/ ./server/
@@ -19,5 +18,5 @@ COPY server/ ./server/
 # Exposer le port
 EXPOSE 5000
 
-# Commande de demarrage
-CMD ["node", "server/src/server.js"]
+# Commande de demarrage : appliquer le schema puis lancer le serveur
+CMD ["sh", "-c", "cd server && npx prisma db push --accept-data-loss && node src/server.js"]
