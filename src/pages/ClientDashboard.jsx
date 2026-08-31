@@ -34,6 +34,27 @@ const STATUS_CONFIG = {
   CANCELLED: { label: 'Annulée',      color: 'text-red-700',     bg: 'bg-red-50',     border: 'border-red-200',     icon: XCircle },
 }
 
+// Delai d'annulation client (24h) - doit correspondre au backend
+const CANCELLATION_DEADLINE_MS = 24 * 60 * 60 * 1000
+
+// Verifie si une commande peut encore etre annulee par le client
+function canCancelOrder(order) {
+  if (!order || order.status !== 'PENDING') return false
+  const elapsed = Date.now() - new Date(order.createdAt).getTime()
+  return elapsed <= CANCELLATION_DEADLINE_MS
+}
+
+// Temps restant avant expiration du delai (texte court)
+function getRemainingTimeText(order) {
+  if (!order) return ''
+  const remaining = CANCELLATION_DEADLINE_MS - (Date.now() - new Date(order.createdAt).getTime())
+  if (remaining <= 0) return 'Délai dépassé'
+  const hours = Math.floor(remaining / (60 * 60 * 1000))
+  const minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000))
+  if (hours > 0) return `${hours}h${minutes > 0 ? ` ${minutes}min` : ''} restantes`
+  return `${minutes}min restantes`
+}
+
 const formatPrice = (value) =>
   new Intl.NumberFormat('fr-FR', {
     style: 'currency',
@@ -491,31 +512,53 @@ export default function ClientDashboard() {
                     </div>
                   </div>
 
-                  {/* Coordonnées & Suivi */}
-                  <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-slate-50 p-3 sm:p-4 sm:flex-row sm:items-center sm:justify-between">
+                  {/* Coordonnees & Suivi */}
+                  <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-slate-50 p-3 sm:p-4">
                     <div className="text-xs text-slate-600">
                       <span className="font-bold text-[#0f2557]">Livraison à :</span> {order.customerName} — {order.shippingAddress}, {order.shippingCity} ({order.customerPhone})
                     </div>
-                    <a
-                      href={`https://wa.me/221784459510?text=${encodeURIComponent(
-                        `Bonjour BNS Services, je souhaite faire le suivi de ma commande ${order.orderNumber || order.id}.`
-                      )}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-green-700 shadow-sm sm:w-auto"
-                    >
-                      <MessageCircle size={14} />
-                      Suivre sur WhatsApp
-                    </a>{order.status === 'PENDING' && (
-                    <button
-                      type="button"
-                      onClick={() => setCancelModalOrder(order)}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-red-200 bg-white px-4 py-2.5 text-xs font-bold text-red-600 transition hover:border-red-400 hover:bg-red-50 shadow-sm sm:w-auto"
-                    >
-                      <Ban size={14} />
-                      Annuler la commande
-                    </button>
-                  )}
+
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end sm:flex-wrap">
+                      {order.status === 'PENDING' && (
+                        canCancelOrder(order) ? (
+                          <button
+                            type="button"
+                            onClick={() => setCancelModalOrder(order)}
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-red-200 bg-white px-4 py-2.5 text-xs font-bold text-red-600 transition hover:border-red-400 hover:bg-red-50 shadow-sm sm:w-auto"
+                          >
+                            <Ban size={14} />
+                            Annuler la commande
+                          </button>
+                        ) : (
+                          <span
+                            className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-slate-100 px-4 py-2.5 text-xs font-semibold text-slate-500 sm:w-auto"
+                            title="Le delai d'annulation de 24h est depasse. Contactez le service client."
+                          >
+                            <Clock size={12} />
+                            Delai d'annulation (24h) depasse
+                          </span>
+                        )
+                      )}
+
+                      {order.status === 'PENDING' && canCancelOrder(order) && (
+                        <span className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-amber-50 border border-amber-200 px-3 py-1.5 text-[11px] font-semibold text-amber-700 sm:w-auto">
+                          <Clock size={11} />
+                          {getRemainingTimeText(order)}
+                        </span>
+                      )}
+
+                      <a
+                        href={`https://wa.me/221784459510?text=${encodeURIComponent(
+                          `Bonjour BNS Services, je souhaite faire le suivi de ma commande ${order.orderNumber || order.id}.`
+                        )}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-green-700 shadow-sm sm:w-auto"
+                      >
+                        <MessageCircle size={14} />
+                        Suivre sur WhatsApp
+                      </a>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -604,11 +647,11 @@ export default function ClientDashboard() {
                   Annuler cette commande ?
                 </h3>
                 <p className="mt-1 text-sm text-slate-600">
-                  Vous etes sur le point d'annuler la commande{" "}
+                  Vous etes sur le point d'annuler la commande{' '}
                   <strong className="text-[#0f2557]">
                     {cancelModalOrder.orderNumber || cancelModalOrder.id}
                   </strong>
-                  . Le stock des produits sera automatiquement restitue.
+                  . Le stock des produits sera automatiquement restitue. Cette action est possible uniquement dans les 24h suivant la commande.
                 </p>
               </div>
             </div>
