@@ -120,7 +120,7 @@ export default function ClientDashboard() {
   }
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-6 pb-24 sm:space-y-8 sm:pb-12">
       {/* Toast notification */}
       {addedToast && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0f2557] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
@@ -136,7 +136,7 @@ export default function ClientDashboard() {
       )}
 
       {/* 1. Header Profil Client */}
-      <div className="relative overflow-hidden rounded-[32px] border border-white/60 bg-gradient-to-r from-[#0f2557] via-[#142d60] to-[#0f2557] p-8 text-white shadow-[0_20px_60px_rgba(11,31,58,0.15)]">
+      <div className="relative overflow-hidden rounded-[28px] sm:rounded-[32px] border border-white/60 bg-gradient-to-r from-[#0f2557] via-[#142d60] to-[#0f2557] p-5 sm:p-8 text-white shadow-[0_20px_60px_rgba(11,31,58,0.15)]">
         <div className="absolute -right-16 -top-16 h-72 w-72 rounded-full bg-[#e87722]/20 blur-[90px]" />
         <div className="absolute -left-16 -bottom-16 h-60 w-60 rounded-full bg-[#5b9fd4]/20 blur-[80px]" />
 
@@ -179,7 +179,7 @@ export default function ClientDashboard() {
         </div>
 
         {/* Mini stats */}
-        <div className="relative z-10 mt-8 grid grid-cols-2 gap-4 border-t border-white/10 pt-6 sm:grid-cols-4">
+        <div className="relative z-10 mt-6 sm:mt-8 grid grid-cols-2 gap-3 sm:gap-4 border-t border-white/10 pt-5 sm:pt-6 sm:grid-cols-4">
           <div className="rounded-2xl bg-white/5 p-4 backdrop-blur-sm">
             <p className="text-xs text-slate-400">Commandes passées</p>
             <p className="mt-1 text-2xl font-black text-white">{orders.length}</p>
@@ -207,7 +207,7 @@ export default function ClientDashboard() {
       </div>
 
       {/* 2. Onglets du Dashboard */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-2">
+      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-2 -mx-1 px-1">
         <button
           onClick={() => setActiveTab('shop')}
           className={`flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-bold transition-all ${
@@ -251,7 +251,7 @@ export default function ClientDashboard() {
       {activeTab === 'shop' && (
         <div className="space-y-6">
           {/* Barre de recherche & filtres rapides */}
-          <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-[0_10px_30px_rgba(11,31,58,0.04)]">
+          <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-4 sm:p-5 shadow-[0_10px_30px_rgba(11,31,58,0.04)]">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div className="relative flex-1">
                 <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -283,13 +283,13 @@ export default function ClientDashboard() {
           </div>
 
           {/* Grille des produits avec bouton direct Commander */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProducts.map((product) => {
               const inWish = isInWishlist(product.id)
               return (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200/90 bg-white shadow-[0_14px_35px_rgba(11,31,58,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#e87722]/40 hover:shadow-[0_20px_45px_rgba(11,31,58,0.12)]"
+                  className="group relative flex flex-col rounded-[26px] border border-slate-200/90 bg-white shadow-[0_14px_35px_rgba(11,31,58,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#e87722]/40 hover:shadow-[0_20px_45px_rgba(11,31,58,0.12)]"
                 >
                   {/* Image & Badges */}
                   <div className="relative flex h-52 items-center justify-center bg-gradient-to-b from-slate-50 to-[#f8fafc] p-6">
@@ -320,7 +320,7 @@ export default function ClientDashboard() {
                   </div>
 
                   {/* Détails produit */}
-                  <div className="flex flex-1 flex-col justify-between p-5 space-y-4">
+                  <div className="flex flex-1 flex-col justify-between p-4 space-y-3 sm:p-5 sm:space-y-4">
                     <div>
                       <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                         {product.category} • {product.subCategory}
@@ -341,7 +341,7 @@ export default function ClientDashboard() {
                       <button
                         type="button"
                         onClick={() => handleQuickBuy(product)}
-                        className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-3 text-sm font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/40 active:scale-[0.98]"
+                        className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-3.5 text-sm font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/40 active:scale-[0.98] touch-manipulation"
                       >
                         <Zap size={16} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                         <span>Acheter maintenant</span>
@@ -413,9 +413,9 @@ export default function ClientDashboard() {
               {orders.map((order) => (
                 <div
                   key={order.id}
-                  className="overflow-hidden rounded-[26px] border border-slate-200 bg-white p-6 shadow-[0_10px_30px_rgba(11,31,58,0.06)]"
+                  className="rounded-[26px] border border-slate-200 bg-white p-4 shadow-[0_10px_30px_rgba(11,31,58,0.06)] sm:p-6"
                 >
-                  <div className="flex flex-col gap-4 border-b border-slate-100 pb-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex flex-col gap-3 border-b border-slate-100 pb-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                     <div>
                       <div className="flex items-center gap-3">
                         <span className="text-lg font-black text-[#0f2557]">{order.orderNumber || order.id}</span>
@@ -440,7 +440,7 @@ export default function ClientDashboard() {
                       </p>
                     </div>
 
-                    <div className="text-right">
+                    <div className="text-left sm:text-right">
                       <p className="text-xs font-semibold text-slate-500">Montant total</p>
                       <p className="text-2xl font-black text-[#0f2557]">{formatPrice(order.total)}</p>
                     </div>
@@ -449,7 +449,7 @@ export default function ClientDashboard() {
                   {/* Articles de la commande */}
                   <div className="mt-4 space-y-3">
                     <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Articles commandés</p>
-                    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-2.5 sm:gap-3 sm:grid-cols-2 lg:grid-cols-3">
                       {order.items?.map((item) => (
                         <div
                           key={item.id}
@@ -474,7 +474,7 @@ export default function ClientDashboard() {
                   </div>
 
                   {/* Coordonnées & Suivi */}
-                  <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-slate-50 p-3 sm:p-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="text-xs text-slate-600">
                       <span className="font-bold text-[#0f2557]">Livraison à :</span> {order.customerName} — {order.shippingAddress}, {order.shippingCity} ({order.customerPhone})
                     </div>
@@ -484,7 +484,7 @@ export default function ClientDashboard() {
                       )}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-2 text-xs font-bold text-white transition hover:bg-green-700 shadow-sm"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-green-700 shadow-sm sm:w-auto"
                     >
                       <MessageCircle size={14} />
                       Suivre sur WhatsApp
@@ -517,11 +517,11 @@ export default function ClientDashboard() {
               </button>
             </div>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {wishlist.map((product) => (
                 <div
                   key={product.id}
-                  className="flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200 bg-white p-5 shadow-[0_10px_30px_rgba(11,31,58,0.06)]"
+                  className="flex flex-col rounded-[26px] border border-slate-200 bg-white p-4 shadow-[0_10px_30px_rgba(11,31,58,0.06)] sm:p-5"
                 >
                   <div className="relative flex h-44 items-center justify-center bg-slate-50 rounded-2xl p-4">
                     <img
@@ -546,7 +546,7 @@ export default function ClientDashboard() {
                     <button
                       type="button"
                       onClick={() => handleQuickBuy(product)}
-                      className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-2.5 text-xs font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.97]"
+                      className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-3 text-xs font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.97] touch-manipulation"
                     >
                       <Zap size={14} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                       Acheter maintenant

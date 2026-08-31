@@ -84,8 +84,8 @@ function ProductPage() {
         Retour au catalogue
       </button>
 
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="sticky top-24 h-fit">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
+        <div className="h-fit lg:sticky lg:top-24">
           <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
             <img
               src={resolveImageUrl(selectedImage || product.image)}

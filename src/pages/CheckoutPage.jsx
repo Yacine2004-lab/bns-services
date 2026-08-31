@@ -224,7 +224,7 @@ export default function CheckoutPage() {
   if (cart.length === 0) return null
 
   return (
-    <div className="space-y-8 pb-16">
+    <div className="space-y-6 sm:space-y-8 pb-24 sm:pb-16">
       {/* 1. Header de navigation */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-5">
         <Link
@@ -242,7 +242,7 @@ export default function CheckoutPage() {
       </div>
 
       <div className="text-left">
-        <h1 className="text-3xl font-black tracking-tight text-[#0f2557] sm:text-4xl">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0f2557]">
           Finaliser votre commande
         </h1>
         <p className="mt-1 text-sm text-slate-500">
@@ -251,7 +251,7 @@ export default function CheckoutPage() {
       </div>
 
       {/* 2. Tunnel de commande en 2 Colonnes */}
-      <div className="grid gap-8 lg:grid-cols-12">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-12">
         {/* Colonne Gauche : Formulaire (Sections A & C) */}
         <div className="lg:col-span-7 space-y-6">
         <form onSubmit={handlePlaceOrder} className="space-y-6" noValidate>
@@ -308,7 +308,7 @@ export default function CheckoutPage() {
                 )}
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
                 {/* Nom complet */}
                 <div className="sm:col-span-2">
                   <label
@@ -529,7 +529,7 @@ export default function CheckoutPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#e87722] py-4 text-lg font-bold text-[#0f2557] shadow-xl shadow-[#e87722]/25 hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#e87722] py-4 text-base sm:text-lg font-bold text-[#0f2557] shadow-xl shadow-[#e87722]/25 hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed touch-manipulation"
             >
               {isSubmitting ? (
                 <>
@@ -548,8 +548,8 @@ export default function CheckoutPage() {
 
         {/* Colonne Droite : Récapitulatif (Section B) */}
         <div className="lg:col-span-5">
-          <div className="sticky top-24 space-y-5">
-            <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-6">
+          <div className="space-y-5 lg:sticky lg:top-24">
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-4 sm:p-6 lg:p-7 shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-5 sm:space-y-6">
               <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                 <h3 className="text-lg font-black text-[#0f2557] flex items-center gap-2">
                   <ShoppingBag size={20} className="text-[#e87722]" />
@@ -599,7 +599,7 @@ export default function CheckoutPage() {
 
                 <div className="flex items-center justify-between border-t border-slate-200 pt-3 text-[#0f2557]">
                   <span className="text-base font-bold">Total à payer</span>
-                  <span className="text-3xl font-black tracking-tight text-[#0f2557]">
+                  <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#0f2557]">
                     {formatPrice(total)}
                   </span>
                 </div>

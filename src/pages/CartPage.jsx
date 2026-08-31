@@ -60,12 +60,12 @@ function CartPage() {
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-5 sm:gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
           {cart.map((item) => (
             <article
               key={item.id}
-              className="overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(11,31,58,0.08)]"
+              className="rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(11,31,58,0.08)]"
             >
               <div className="flex gap-5 p-5 sm:gap-6 sm:p-6">
                 <img
@@ -149,7 +149,7 @@ function CartPage() {
         </div>
 
         <div className="lg:col-span-1">
-          <div className="sticky top-24 space-y-4">
+          <div className="space-y-4 lg:sticky lg:top-24">
             <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
               <h3 className="text-lg font-black text-[#0f2557]">Résumé</h3>
 
