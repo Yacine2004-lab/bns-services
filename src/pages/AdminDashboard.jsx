@@ -161,7 +161,7 @@ function AdminSidebar({ isOpen, onClose, onLogout, activeItem, onNavigate, admin
             </div>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-bold text-white">{adminUser?.name || 'Administrateur'}</p>
-              <p className="truncate text-[11px] text-slate-500">{adminUser?.email || 'admin@bnsservices.sn'}</p>
+              <p className="truncate text-[11px] text-slate-500">{adminUser?.email || 'contact@bayeniassservices.com'}</p>
             </div>
           </div>
           <button
@@ -1122,7 +1122,7 @@ function AdminSettings() {
                   type="email"
                   value={profileEmail}
                   onChange={(e) => setProfileEmail(e.target.value)}
-                  placeholder="admin@bnsservices.sn"
+                  placeholder="contact@bayeniassservices.com"
                   className={inputClass}
                 />
               </div>

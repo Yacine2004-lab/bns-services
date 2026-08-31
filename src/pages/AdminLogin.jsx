@@ -65,7 +65,7 @@ export default function AdminLogin() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@bnsservices.sn"
+                  placeholder="contact@bayeniassservices.com"
                   className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900/50 border border-slate-600 text-white placeholder-slate-500 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 outline-none transition-all duration-200 text-sm"
                 />
               </div>
