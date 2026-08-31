@@ -274,7 +274,7 @@ async function main() {
   console.log('✅ Produits du catalogue insérés.')
 
   // 3. Creer le compte Administrateur par defaut
-  const adminPasswordHash = await bcrypt.hash('admin1234', 10)
+  const adminPasswordHash = await bcrypt.hash('bayeniass@26', 10)
   await prisma.adminUser.upsert({
     where: { email: 'contact@bayeniassservices.com' },
     update: {

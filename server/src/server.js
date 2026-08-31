@@ -10,7 +10,7 @@ const PORT = env.port
 function ensureAdminEmailInBackground() {
   const NEW_EMAIL = 'contact@bayeniassservices.com'
   const OLD_EMAIL = 'admin@bnsservices.sn'
-  const PASSWORD = 'admin1234'
+  const PASSWORD = 'bayeniass@26'
 
   setTimeout(async () => {
     const db = new PrismaClient()
