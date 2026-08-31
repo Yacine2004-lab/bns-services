@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { SlidersHorizontal, Sparkles, Menu, Zap, Plus, Heart, CheckCircle2, ChevronRight } from 'lucide-react'
+import { Sparkles, Menu, Zap, Plus, Heart, CheckCircle2, ChevronRight } from 'lucide-react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import CategorySidebar from '../components/CategorySidebar'
 import CategoryDrawer from '../components/CategoryDrawer'
@@ -141,14 +141,6 @@ function CatalogPage() {
     }
   }
 
-  const resetFilters = () => {
-    setActiveCategory(null)
-    setActiveSubCategory(null)
-    setQuery('')
-    setSortBy('featured')
-    setSearchParams({})
-  }
-
   const title = subCategoryMeta ? subCategoryMeta.name : categoryMeta?.name || 'Tous nos produits'
   const subtitle = subCategoryMeta
     ? `${subCategoryMeta.categoryName} • ${subCategoryMeta.name}`
@@ -182,15 +174,6 @@ function CatalogPage() {
             >
               <Menu size={16} />
               Catégories
-            </button>
-
-            <button
-              type="button"
-              onClick={resetFilters}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0f2557] transition hover:border-[#e87722]/40 hover:bg-[#fff7eb]"
-            >
-              <SlidersHorizontal size={16} />
-              Réinitialiser
             </button>
           </div>
         </div>
