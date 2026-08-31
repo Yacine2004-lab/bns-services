@@ -8,6 +8,7 @@ import {
   Clock,
   CheckCircle2,
   XCircle,
+  Ban,
   ChevronRight,
   Zap,
   Plus,
@@ -52,6 +53,24 @@ export default function ClientDashboard() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [addedToast, setAddedToast] = useState(null)
   const [orders, setOrders] = useState([])
+  const [cancelModalOrder, setCancelModalOrder] = useState(null)
+  const [cancelling, setCancelling] = useState(false)
+  const [cancelError, setCancelError] = useState('')
+
+  const handleCancelOrder = async () => {
+    if (!cancelModalOrder) return
+    setCancelling(true)
+    setCancelError('')
+    try {
+      await ordersApi.cancel(cancelModalOrder.orderNumber || cancelModalOrder.id)
+      setCancelModalOrder(null)
+      loadOrders()
+    } catch (err) {
+      setCancelError(err.message || "Impossible d'annuler la commande.")
+    } finally {
+      setCancelling(false)
+    }
+  }
 
   // Charger les commandes du client via l'API + auto-refresh temps reel
   const loadOrders = useCallback(() => {
@@ -343,8 +362,7 @@ export default function ClientDashboard() {
                         onClick={() => handleQuickBuy(product)}
                         className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-3.5 text-sm font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/40 active:scale-[0.98] touch-manipulation"
                       >
-                        <Zap size={16} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
-                        <span>Acheter maintenant</span>
+                            <span>Acheter maintenant</span>
                       </button>
 
                       <div className="grid grid-cols-2 gap-2">
@@ -488,7 +506,16 @@ export default function ClientDashboard() {
                     >
                       <MessageCircle size={14} />
                       Suivre sur WhatsApp
-                    </a>
+                    </a>{order.status === 'PENDING' && (
+                    <button
+                      type="button"
+                      onClick={() => setCancelModalOrder(order)}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-red-200 bg-white px-4 py-2.5 text-xs font-bold text-red-600 transition hover:border-red-400 hover:bg-red-50 shadow-sm sm:w-auto"
+                    >
+                      <Ban size={14} />
+                      Annuler la commande
+                    </button>
+                  )}
                   </div>
                 </div>
               ))}
@@ -548,7 +575,6 @@ export default function ClientDashboard() {
                       onClick={() => handleQuickBuy(product)}
                       className="group/btn w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-3 text-xs font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.97] touch-manipulation"
                     >
-                      <Zap size={14} className="fill-[#0f2557] transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                       Acheter maintenant
                     </button>
                   </div>
@@ -556,6 +582,62 @@ export default function ClientDashboard() {
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {/* MODAL DE CONFIRMATION D'ANNULATION */}
+      {cancelModalOrder && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => !cancelling && setCancelModalOrder(null)}
+        >
+          <div
+            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100">
+                <Ban size={24} className="text-red-600" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-black text-[#0f2557]">
+                  Annuler cette commande ?
+                </h3>
+                <p className="mt-1 text-sm text-slate-600">
+                  Vous etes sur le point d'annuler la commande{" "}
+                  <strong className="text-[#0f2557]">
+                    {cancelModalOrder.orderNumber || cancelModalOrder.id}
+                  </strong>
+                  . Le stock des produits sera automatiquement restitue.
+                </p>
+              </div>
+            </div>
+
+            {cancelError && (
+              <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                {cancelError}
+              </div>
+            )}
+
+            <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setCancelModalOrder(null)}
+                disabled={cancelling}
+                className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50"
+              >
+                Garder la commande
+              </button>
+              <button
+                type="button"
+                onClick={handleCancelOrder}
+                disabled={cancelling}
+                className="rounded-xl bg-red-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-red-700 disabled:opacity-50"
+              >
+                {cancelling ? "Annulation..." : "Oui, annuler"}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

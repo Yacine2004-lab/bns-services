@@ -205,3 +205,71 @@ export async function getOrderByNumber(req, res, next) {
     next(error)
   }
 }
+
+// 4. Annuler une commande en attente (client authentifie uniquement)
+export async function cancelMyOrder(req, res, next) {
+  try {
+    const { orderNumber } = req.params
+    const customerId = req.customer?.id
+
+    if (!customerId) {
+      return res.status(401).json({
+        success: false,
+        message: 'Vous devez etre connecte pour annuler une commande.',
+      })
+    }
+
+    const order = await prisma.order.findUnique({
+      where: { orderNumber },
+      select: {
+        id: true,
+        customerId: true,
+        status: true,
+        items: { select: { productId: true, quantity: true } },
+      },
+    })
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: 'Commande introuvable : ' + orderNumber,
+      })
+    }
+
+    if (order.customerId !== customerId) {
+      return res.status(403).json({
+        success: false,
+        message: "Vous n'avez pas le droit d'annuler cette commande.",
+      })
+    }
+
+    if (order.status !== 'PENDING') {
+      return res.status(400).json({
+        success: false,
+        message: 'Impossible d\'annuler une commande avec le statut "' + order.status + '". Seules les commandes en attente peuvent etre annulees.',
+      })
+    }
+
+    // Transaction : annuler la commande + restaurer le stock
+    await prisma.$transaction(async (tx) => {
+      for (const item of order.items) {
+        await tx.product.update({
+          where: { id: item.productId },
+          data: { stock: { increment: item.quantity } },
+        })
+      }
+
+      await tx.order.update({
+        where: { id: order.id },
+        data: { status: 'CANCELLED' },
+      })
+    })
+
+    res.status(200).json({
+      success: true,
+      message: 'Votre commande a ete annulee avec succes. Le stock a ete restaure.',
+    })
+  } catch (error) {
+    next(error)
+  }
+}

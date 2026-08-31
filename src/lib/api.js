@@ -124,6 +124,9 @@ export const ordersApi = {
   getMyOrders: (page = 1) => request(`/orders/my-orders?page=${page}`),
 
   getByNumber: (orderNumber) => request(`/orders/${orderNumber}`),
+
+  cancel: (orderNumber) =>
+    request(`/orders/${orderNumber}/cancel`, { method: 'PATCH' }),
 }
 
 // --------------------------------------------------------

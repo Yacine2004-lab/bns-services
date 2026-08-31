@@ -180,7 +180,6 @@ function ProductPage() {
                 disabled={product.stock === 0}
                 className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#e87722] to-[#f09050] px-6 py-4 text-lg font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/30 transition hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Zap size={20} className="fill-[#0f2557]" />
                 <span>{product.stock === 0 ? 'Indisponible' : 'Acheter maintenant (Commander)'}</span>
               </button>
 
