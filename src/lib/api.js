@@ -1,6 +1,8 @@
 // Utilitaire centralisé d'appels API vers le backend BNS Services
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+import { getApiBaseUrl } from './config.js'
+
+const API_BASE_URL = getApiBaseUrl()
 
 // Clé de stockage du token client JWT
 const TOKEN_KEY = 'bns_client_token'

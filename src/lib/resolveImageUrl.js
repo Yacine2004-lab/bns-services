@@ -1,7 +1,9 @@
 // Utilitaire de résolution d'URLs pour les images produits
 // Les images locales (/uploads/...) sont résolues en URL complète vers le backend
 
-const API_BASE = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'
+import { getApiOrigin } from './config.js'
+
+const API_BASE = getApiOrigin()
 
 /**
  * Résoudre une URL image en URL absolue utilisable dans <img src>.

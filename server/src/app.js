@@ -10,6 +10,11 @@ import { globalApiLimiter } from './middlewares/rateLimiter.js'
 
 const app = express()
 
+// Railway / reverse proxy : req.protocol doit renvoyer https en production (OAuth callback)
+if (env.nodeEnv === 'production') {
+  app.set('trust proxy', 1)
+}
+
 // 0. Headers de securite (helmet gere tout : HSTS, CSP, X-Frame-Options, etc.)
 app.use(helmet({
   // HSTS : forcer HTTPS en production (1 an)
