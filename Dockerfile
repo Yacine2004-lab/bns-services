@@ -2,6 +2,9 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Force cache invalidation
+LABEL rebuild="2026-08-31-v2"
+
 # Copier uniquement le dossier server
 COPY server/package*.json ./server/
 COPY server/prisma ./server/prisma/
