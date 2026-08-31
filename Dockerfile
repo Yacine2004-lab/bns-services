@@ -18,5 +18,5 @@ COPY server/ ./server/
 # Exposer le port
 EXPOSE 5000
 
-# Commande de demarrage : appliquer le schema puis lancer le serveur
-CMD ["sh", "-c", "cd server && npx prisma db push --accept-data-loss && node src/server.js"]
+# Commande de demarrage : appliquer le schema, maj email admin, puis lancer le serveur
+CMD ["sh", "-c", "cd server && npx prisma db push --accept-data-loss && node prisma/update-admin-email.js && node src/server.js"]
