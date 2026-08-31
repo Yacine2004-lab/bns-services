@@ -336,8 +336,7 @@ export async function deleteAccount(req, res, next) {
   try {
     const customerId = req.customer.id
 
-    // Supprimer d'abord les commandes liees
-    await prisma.order.deleteMany({ where: { customerId } })
+    // Le compte est supprime ; les commandes sont conservees (customerId -> null via onDelete SetNull)
     await prisma.customer.delete({ where: { id: customerId } })
 
     res.status(200).json({

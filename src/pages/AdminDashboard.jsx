@@ -408,35 +408,61 @@ function DashboardOverview({ onNavigate }) {
 // ADMIN ORDERS
 // ================================================================
 function AdminOrders() {
+  const ORDERS_PER_PAGE = 20
+
   const [orders, setOrders] = useState([])
   const [loadingOrders, setLoadingOrders] = useState(true)
   const [filterStatus, setFilterStatus] = useState('ALL')
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [totalOrders, setTotalOrders] = useState(0)
+  const [statusCounts, setStatusCounts] = useState({
+    ALL: 0,
+    PENDING: 0,
+    CONFIRMED: 0,
+    SHIPPED: 0,
+    DELIVERED: 0,
+    CANCELLED: 0,
+  })
+  const [fetchError, setFetchError] = useState('')
   const [refreshing, setRefreshing] = useState(false)
   const [refreshKey, setRefreshKey] = useState(0)
 
   const loadOrders = useCallback(() => {
     setRefreshing(true)
+    setFetchError('')
+    const params = {
+      page,
+      limit: ORDERS_PER_PAGE,
+      ...(filterStatus !== 'ALL' && { status: filterStatus }),
+    }
+
     adminOrdersApi
-      .getAll()
-      .then((res) => setOrders(res.data || []))
+      .getAll(params)
+      .then((res) => {
+        setOrders(res.data || [])
+        setTotalPages(res.totalPages || 1)
+        setTotalOrders(res.total || 0)
+        if (res.statusCounts) setStatusCounts(res.statusCounts)
+      })
       .catch((err) => {
         logError('Erreur chargement commandes admin :', err)
-        setOrders([])
+        setFetchError(err.message || 'Impossible de charger les commandes. Reessayez.')
       })
       .finally(() => {
         setRefreshing(false)
         setLoadingOrders(false)
       })
-  }, [])
+  }, [page, filterStatus])
 
-  // Chargement initial
+  // Chargement initial + rechargement quand page/filtre change
   useEffect(() => {
     loadOrders()
   }, [loadOrders])
 
   // Re-fetch à chaque refreshKey (polling + visibility + manuel)
   useEffect(() => {
-    if (refreshKey === 0) return // déjà chargé au mount
+    if (refreshKey === 0) return
     loadOrders()
   }, [loadOrders, refreshKey])
 
@@ -457,24 +483,19 @@ function AdminOrders() {
     return () => document.removeEventListener('visibilitychange', handleVisibility)
   }, [])
 
+  const handleFilterChange = (key) => {
+    setFilterStatus(key)
+    setPage(1)
+  }
+
   const updateOrderStatus = async (orderId, currentStatus, newStatus) => {
     try {
       const res = await adminOrdersApi.updateStatus(orderId, newStatus)
       setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, ...res.data } : o)))
+      setRefreshKey((k) => k + 1)
     } catch {
       setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status: currentStatus } : o)))
     }
-  }
-
-  const filteredOrders = filterStatus === 'ALL' ? orders : orders.filter((o) => o.status === filterStatus)
-
-  const statusCounts = {
-    ALL: orders.length,
-    PENDING: orders.filter((o) => o.status === 'PENDING').length,
-    CONFIRMED: orders.filter((o) => o.status === 'CONFIRMED').length,
-    SHIPPED: orders.filter((o) => o.status === 'SHIPPED').length,
-    DELIVERED: orders.filter((o) => o.status === 'DELIVERED').length,
-    CANCELLED: orders.filter((o) => o.status === 'CANCELLED').length,
   }
 
   return (
@@ -488,9 +509,18 @@ function AdminOrders() {
           <p className="mt-1 text-sm text-slate-400">
             Suivez et mettez à jour les commandes de vos clients
             {refreshing && <span className="ml-2 text-[#e87722]">Mise à jour...</span>}
+            {!refreshing && totalOrders > 0 && (
+              <span className="ml-2 text-slate-500">({totalOrders} commande{totalOrders > 1 ? 's' : ''})</span>
+            )}
           </p>
         </div>
       </div>
+
+      {fetchError && (
+        <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+          {fetchError}
+        </div>
+      )}
 
       {/* Filtres par statut */}
       <div className="flex flex-wrap gap-2">
@@ -501,7 +531,7 @@ function AdminOrders() {
             <button
               key={key}
               type="button"
-              onClick={() => setFilterStatus(key)}
+              onClick={() => handleFilterChange(key)}
               className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition ${
                 isActive
                   ? 'bg-[#e87722] text-[#0f2557] shadow-md shadow-[#e87722]/20'
@@ -523,7 +553,7 @@ function AdminOrders() {
           <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#e87722] border-t-transparent mb-4" />
           <p className="text-sm text-slate-400">Chargement des commandes...</p>
         </div>
-      ) : filteredOrders.length === 0 ? (
+      ) : orders.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/50 py-16">
           <ShoppingCart size={40} className="text-slate-700 mb-3" />
           <p className="text-sm font-semibold text-slate-400">
@@ -532,7 +562,7 @@ function AdminOrders() {
         </div>
       ) : (
         <div className="space-y-4">
-          {filteredOrders.map((order) => (
+          {orders.map((order) => (
             <div
               key={order.id}
               className="overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-900/80 transition hover:border-slate-700/60"
@@ -637,6 +667,32 @@ function AdminOrders() {
               </div>
             </div>
           ))}
+
+          {totalPages > 1 && (
+            <div className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-900/50 px-4 py-3 sm:flex-row">
+              <p className="text-xs text-slate-400">
+                Page {page} sur {totalPages} · {totalOrders} commande{totalOrders > 1 ? 's' : ''}
+              </p>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  disabled={page <= 1}
+                  className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-2 text-xs font-bold text-slate-200 transition hover:border-slate-600 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Precedent
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={page >= totalPages}
+                  className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-2 text-xs font-bold text-slate-200 transition hover:border-slate-600 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Suivant
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

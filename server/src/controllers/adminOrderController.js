@@ -25,7 +25,7 @@ export async function getAdminOrders(req, res, next) {
       ]
     }
 
-    const [orders, totalCount] = await Promise.all([
+    const [orders, totalCount, statusGroups, allTotal] = await Promise.all([
       prisma.order.findMany({
         where,
         include: {
@@ -39,7 +39,24 @@ export async function getAdminOrders(req, res, next) {
         take: limitNumber,
       }),
       prisma.order.count({ where }),
+      prisma.order.groupBy({
+        by: ['status'],
+        _count: { _all: true },
+      }),
+      prisma.order.count(),
     ])
+
+    const statusCounts = {
+      ALL: allTotal,
+      PENDING: 0,
+      CONFIRMED: 0,
+      SHIPPED: 0,
+      DELIVERED: 0,
+      CANCELLED: 0,
+    }
+    for (const group of statusGroups) {
+      statusCounts[group.status] = group._count._all
+    }
 
     res.status(200).json({
       success: true,
@@ -47,6 +64,7 @@ export async function getAdminOrders(req, res, next) {
       total: totalCount,
       page: pageNumber,
       totalPages: Math.ceil(totalCount / limitNumber),
+      statusCounts,
       data: orders,
     })
   } catch (error) {
