@@ -61,7 +61,10 @@ function getTransporter() {
 export async function sendPasswordResetEmail(to, resetToken, role = 'client') {
   const transport = getTransporter()
 
-  const baseUrl = env.clientUrl || 'http://localhost:5173'
+  const rawBaseUrl = env.clientUrl || ''
+  // Si l'URL client est une adresse locale, utiliser l'URL de production
+  const isLocal = rawBaseUrl.includes('192.168.') || rawBaseUrl.includes('localhost') || rawBaseUrl.includes('127.0.0.1')
+  const baseUrl = (isLocal || !rawBaseUrl) ? 'https://bns-nine.vercel.app' : rawBaseUrl
   const resetPath = role === 'admin'
     ? `/admin/reinitialiser-mot-de-passe?token=${resetToken}`
     : `/reinitialiser-mot-de-passe?token=${resetToken}`
