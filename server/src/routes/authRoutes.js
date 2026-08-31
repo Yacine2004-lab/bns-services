@@ -50,4 +50,15 @@ router.get('/google/callback', oauthCallback('google'))
 router.get('/facebook', oauthRedirect('facebook'))
 router.get('/facebook/callback', oauthCallback('facebook'))
 
+// Statut des providers OAuth (utilise par le frontend pour activer/desactiver les boutons)
+router.get('/oauth-status', (req, res) => {
+  res.json({
+    success: true,
+    providers: {
+      google: Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
+      facebook: Boolean(process.env.FACEBOOK_CLIENT_ID && process.env.FACEBOOK_CLIENT_SECRET),
+    },
+  })
+})
+
 export default router

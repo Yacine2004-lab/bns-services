@@ -1,9 +1,10 @@
 import crypto from 'crypto'
 import { prisma } from '../config/prisma.js'
+import { env } from '../config/env.js'
 import { generateCustomerToken } from '../utils/jwt.js'
 
-// URLs de redirection vers le frontend
-const CLIENT_URL = process.env.CLIENT_URL || 'https://bns-nine.vercel.app'
+// URLs de redirection vers le frontend (utilise env.clientUrl comme source de verite)
+const CLIENT_URL = env.clientUrl
 
 // Whitelist des callback URLs autorisees (protection contre les redirections malveillantes)
 const ALLOWED_CALLBACK_HOSTS = new Set([
@@ -22,11 +23,41 @@ function isAllowedHost(host) {
 }
 
 /**
+ * Verifie que les credentials OAuth pour un provider donne sont configures.
+ * Retourne null si OK, sinon un message d'erreur.
+ */
+function getMissingCredentialsError(provider) {
+  if (provider === 'google') {
+    if (!env.googleClientId || !env.googleClientSecret) {
+      return 'La connexion Google n\'est pas encore configuree sur ce serveur. Contacte l\'administrateur.'
+    }
+  }
+  if (provider === 'facebook') {
+    if (!env.facebookClientId || !env.facebookClientSecret) {
+      return 'La connexion Facebook n\'est pas encore configuree sur ce serveur. Contacte l\'administrateur.'
+    }
+  }
+  return null
+}
+
+/**
  * Initie le flux OAuth en redirigeant l'utilisateur vers le provider.
  * Le frontend appelle cette route et est redirige vers Google/Facebook.
  */
 export function oauthRedirect(provider) {
   return (req, res) => {
+    // Verifier d'abord que les credentials OAuth sont configures
+    const missingError = getMissingCredentialsError(provider)
+    if (missingError) {
+      // Si la requete vient du navigateur (accepte HTML), rediriger vers la page d'erreur
+      // Sinon renvoyer du JSON
+      const acceptsHtml = req.headers.accept && req.headers.accept.includes('text/html')
+      if (acceptsHtml) {
+        return res.redirect(`${CLIENT_URL}/connexion?error=oauth_not_configured&provider=${provider}`)
+      }
+      return res.status(503).json({ success: false, message: missingError })
+    }
+
     // Valider le host de la requete
     if (!isAllowedHost(req.get('host'))) {
       return res.status(403).json({ success: false, message: 'Host non autorise.' })

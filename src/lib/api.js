@@ -87,6 +87,9 @@ export const authApi = {
     request('/auth/password', { method: 'PUT', body: JSON.stringify(data) }),
 
   deleteAccount: () => request('/auth/account', { method: 'DELETE' }),
+
+  // Statut des providers OAuth (utilise pour activer/desactiver les boutons social login)
+  getOAuthStatus: () => request('/auth/oauth-status'),
 }
 
 // --------------------------------------------------------
