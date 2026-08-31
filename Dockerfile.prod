@@ -1,5 +1,5 @@
 FROM node:20-alpine
-LABEL rebuild="v4-20260831"
+LABEL rebuild="v5-20260831"
 
 WORKDIR /app
 
@@ -18,5 +18,5 @@ COPY server/ ./server/
 
 EXPOSE 5000
 
-# Au demarrage : schema + serveur (l'email admin est mis a jour dans server.js)
-CMD ["sh", "-c", "cd server && npx prisma db push --accept-data-loss && node src/server.js"]
+# Lancer le serveur directement (prisma db push se fait via railway.json startCommand)
+CMD ["sh", "-c", "cd server && node src/server.js"]
