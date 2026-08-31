@@ -5,6 +5,9 @@ import {
   getMe,
   forgotPassword,
   resetPassword,
+  updateProfile,
+  changePassword,
+  deleteAccount,
 } from '../controllers/authController.js'
 import { oauthRedirect, oauthCallback } from '../controllers/oauthController.js'
 import { validate } from '../middlewares/validate.js'
@@ -27,6 +30,15 @@ router.post('/login', authLimiter, validate(customerLoginSchema), login)
 
 // Profil client connecté (Protégé par JWT)
 router.get('/me', requireCustomerAuth, getMe)
+
+// Mise a jour du profil (nom, prenom, telephone)
+router.put('/profile', requireCustomerAuth, updateProfile)
+
+// Changement de mot de passe
+router.put('/password', requireCustomerAuth, changePassword)
+
+// Suppression du compte
+router.delete('/account', requireCustomerAuth, deleteAccount)
 
 // Réinitialisation mot de passe
 router.post('/forgot-password', authLimiter, validate(forgotPasswordSchema), forgotPassword)

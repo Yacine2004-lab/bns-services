@@ -67,6 +67,23 @@ export function AuthProvider({ children }) {
     removeToken();
   };
 
+  // Met a jour l'objet user local apres edition du profil
+  const updateUser = (updates) => {
+    setUser((prev) => (prev ? { ...prev, ...updates } : prev));
+  };
+
+  // Recharge le profil depuis l'API
+  const refreshUser = async () => {
+    try {
+      const res = await authApi.getMe();
+      setUser(res.data);
+    } catch {
+      // Token invalide, on deconnecte
+      removeToken();
+      setUser(null);
+    }
+  };
+
   const isAuthenticated = () => user !== null;
 
   return (
@@ -77,6 +94,8 @@ export function AuthProvider({ children }) {
         loginClient,
         registerClient,
         logout,
+        updateUser,
+        refreshUser,
         isAuthenticated,
       }}
     >

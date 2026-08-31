@@ -236,3 +236,115 @@ export async function resetPassword(req, res, next) {
     next(error)
   }
 }
+
+// 6. Mise a jour du profil client (nom, prenom, telephone)
+export async function updateProfile(req, res, next) {
+  try {
+    const customerId = req.customer.id
+    const { firstName, lastName, phone } = req.body
+
+    if (!firstName?.trim() || !lastName?.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Le prenom et le nom sont obligatoires.',
+      })
+    }
+
+    const updated = await prisma.customer.update({
+      where: { id: customerId },
+      data: {
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        phone: phone ? phone.trim() : null,
+      },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        phone: true,
+        createdAt: true,
+      },
+    })
+
+    res.status(200).json({
+      success: true,
+      message: 'Profil mis a jour avec succes.',
+      data: updated,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+// 7. Changement de mot de passe (client authentifie)
+export async function changePassword(req, res, next) {
+  try {
+    const customerId = req.customer.id
+    const { currentPassword, newPassword } = req.body
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'L\'ancien et le nouveau mot de passe sont obligatoires.',
+      })
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: 'Le nouveau mot de passe doit contenir au moins 6 caracteres.',
+      })
+    }
+
+    const customer = await prisma.customer.findUnique({
+      where: { id: customerId },
+    })
+
+    if (!customer || !customer.password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Impossible de modifier le mot de passe pour ce compte (compte OAuth).',
+      })
+    }
+
+    const isMatch = await bcrypt.compare(currentPassword, customer.password)
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: 'Le mot de passe actuel est incorrect.',
+      })
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10)
+    await prisma.customer.update({
+      where: { id: customerId },
+      data: { password: hashedPassword },
+    })
+
+    res.status(200).json({
+      success: true,
+      message: 'Mot de passe modifie avec succes.',
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+// 8. Suppression du compte client
+export async function deleteAccount(req, res, next) {
+  try {
+    const customerId = req.customer.id
+
+    // Supprimer d'abord les commandes liees
+    await prisma.order.deleteMany({ where: { customerId } })
+    await prisma.customer.delete({ where: { id: customerId } })
+
+    res.status(200).json({
+      success: true,
+      message: 'Votre compte a ete supprime avec succes.',
+    })
+  } catch (error) {
+    next(error)
+  }
+}
