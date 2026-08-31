@@ -6,8 +6,8 @@ function generateOrderNumber() {
   return `CMD-${randomDigits}`
 }
 
-// Delai d'annulation autorise pour le client : 24h apres la creation
-const CANCELLATION_DEADLINE_MS = 24 * 60 * 60 * 1000
+// Delai d'annulation autorise pour le client : 1h apres la creation
+const CANCELLATION_DEADLINE_MS = 1 * 60 * 60 * 1000
 
 // 1. Créer une nouvelle commande (Transaction atomique + Décrémentation du stock)
 export async function createOrder(req, res, next) {
@@ -254,13 +254,13 @@ export async function cancelMyOrder(req, res, next) {
       })
     }
 
-    // Verifier le delai d'annulation (24h par defaut)
+    // Verifier le delai d'annulation (1h par defaut)
     const elapsedMs = Date.now() - new Date(order.createdAt).getTime()
     if (elapsedMs > CANCELLATION_DEADLINE_MS) {
-      const hoursElapsed = Math.floor(elapsedMs / (60 * 60 * 1000))
+      const minutesElapsed = Math.floor(elapsedMs / (60 * 1000))
       return res.status(400).json({
         success: false,
-        message: 'Le delai d\'annulation de 24h est depasse (commande passee il y a ' + hoursElapsed + 'h). Contactez le service client pour demander une annulation.',
+        message: 'Le delai d\'annulation de 1h est depasse (commande passee il y a ' + minutesElapsed + ' min). Contactez le service client pour demander une annulation.',
       })
     }
 

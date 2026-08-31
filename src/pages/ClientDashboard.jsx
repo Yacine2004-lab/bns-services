@@ -34,8 +34,8 @@ const STATUS_CONFIG = {
   CANCELLED: { label: 'Annulée',      color: 'text-red-700',     bg: 'bg-red-50',     border: 'border-red-200',     icon: XCircle },
 }
 
-// Delai d'annulation client (24h) - doit correspondre au backend
-const CANCELLATION_DEADLINE_MS = 24 * 60 * 60 * 1000
+// Delai d'annulation client (1h) - doit correspondre au backend
+const CANCELLATION_DEADLINE_MS = 1 * 60 * 60 * 1000
 
 // Verifie si une commande peut encore etre annulee par le client
 function canCancelOrder(order) {
@@ -532,10 +532,10 @@ export default function ClientDashboard() {
                         ) : (
                           <span
                             className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-slate-100 px-4 py-2.5 text-xs font-semibold text-slate-500 sm:w-auto"
-                            title="Le delai d'annulation de 24h est depasse. Contactez le service client."
+                            title="Le delai d'annulation de 1h est depasse. Contactez le service client."
                           >
                             <Clock size={12} />
-                            Delai d'annulation (24h) depasse
+                            Delai d'annulation (1h) depasse
                           </span>
                         )
                       )}
@@ -651,7 +651,7 @@ export default function ClientDashboard() {
                   <strong className="text-[#0f2557]">
                     {cancelModalOrder.orderNumber || cancelModalOrder.id}
                   </strong>
-                  . Le stock des produits sera automatiquement restitue. Cette action est possible uniquement dans les 24h suivant la commande.
+                  . Le stock des produits sera automatiquement restitue. Cette action est possible uniquement dans l'heure suivant la commande.
                 </p>
               </div>
             </div>
