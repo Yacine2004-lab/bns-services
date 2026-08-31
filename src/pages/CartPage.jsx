@@ -56,7 +56,7 @@ function CartPage() {
           Votre panier
         </h1>
         <p className="mt-2 text-slate-600">
-          {itemCount} article{itemCount > 1 ? 's' : ''} • {formatPrice(total)}
+          {itemCount} article{itemCount > 1 ? 's' : ''} • {formatPrice(total + 2000)}
         </p>
       </div>
 
@@ -156,17 +156,17 @@ function CartPage() {
               <div className="mt-6 space-y-3 border-t border-slate-200 pt-6">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Sous-total</span>
-                  <span className="font-bold text-[#0f2557]">{formatPrice(total)}</span>
+                  <span className="font-bold text-[#0f2557]">{formatPrice(total + 2000)}</span>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Livraison</span>
-                  <span className="font-bold text-green-600">Gratuite</span>
+                  <span className="font-bold text-[#0f2557]">{formatPrice(2000)}</span>
                 </div>
 
                 <div className="flex items-center justify-between border-t border-slate-200 pt-3">
                   <span className="font-bold text-[#0f2557]">Total</span>
-                  <span className="text-3xl font-black text-[#0f2557]">{formatPrice(total)}</span>
+                  <span className="text-3xl font-black text-[#0f2557]">{formatPrice(total + 2000)}</span>
                 </div>
               </div>
 

@@ -594,13 +594,13 @@ export default function CheckoutPage() {
 
                 <div className="flex items-center justify-between text-sm text-slate-600">
                   <span>Frais de livraison</span>
-                  <span className="font-bold text-emerald-600">Gratuite</span>
+                  <span className="font-bold text-[#0f2557]">{formatPrice(2000)}</span>
                 </div>
 
                 <div className="flex items-center justify-between border-t border-slate-200 pt-3 text-[#0f2557]">
                   <span className="text-base font-bold">Total à payer</span>
                   <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#0f2557]">
-                    {formatPrice(total)}
+                    {formatPrice(total + 2000)}
                   </span>
                 </div>
               </div>

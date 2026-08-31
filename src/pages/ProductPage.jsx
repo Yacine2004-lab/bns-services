@@ -70,7 +70,6 @@ function ProductPage() {
   const specs = [
     { label: 'Référence', value: product.reference },
     { label: 'Catégorie', value: product.category },
-    { label: 'Stock', value: `${product.stock} unité${product.stock > 1 ? 's' : ''}` },
   ]
 
   return (
@@ -110,20 +109,6 @@ function ProductPage() {
               </div>
             )}
 
-            <div className="mt-6">
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Disponibilité</p>
-              {product.stock > 0 ? (
-                <p className="mt-1 inline-flex items-center gap-2 text-lg font-black text-green-600">
-                  <Check size={18} />
-                  En stock — {product.stock} unité{product.stock > 1 ? 's' : ''}
-                </p>
-              ) : (
-                <p className="mt-1 inline-flex items-center gap-2 text-lg font-black text-red-500">
-                  <X size={18} />
-                  Plus disponible
-                </p>
-              )}
-            </div>
           </div>
         </div>
 
@@ -151,7 +136,7 @@ function ProductPage() {
             <div className="mt-6 space-y-4">
               <div>
                 <label htmlFor="product-quantity" className="mb-2 block text-sm font-bold text-[#0f2557]">
-                  Quantité{product.stock > 0 && <span className="font-normal text-slate-400"> (max {product.stock})</span>}
+                  Quantité
                 </label>
                 <div className="flex items-center gap-3">
                   <button
