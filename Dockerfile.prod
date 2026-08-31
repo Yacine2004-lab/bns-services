@@ -1,5 +1,5 @@
 FROM node:20-alpine
-LABEL rebuild="v3-20260831"
+LABEL rebuild="v4-20260831"
 
 WORKDIR /app
 
