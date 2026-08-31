@@ -19,4 +19,4 @@ COPY server/ ./server/
 EXPOSE 5000
 
 # Commande de demarrage : appliquer le schema, maj email admin, puis lancer le serveur
-CMD ["sh", "-c", "cd server && npx prisma db push --accept-data-loss && node prisma/update-admin-email.js && node src/server.js"]
+CMD ["sh", "-c", "cd server && npx prisma db push --accept-data-loss && node prisma/ensure-admin-email.js && node src/server.js"]
