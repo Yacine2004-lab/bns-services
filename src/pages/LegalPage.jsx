@@ -1,3 +1,29 @@
+import { FileText, ShieldCheck, ScrollText, Sparkles } from 'lucide-react'
+
+const TYPE_META = {
+  cgv: {
+    icon: ScrollText,
+    badge: 'CGV',
+    color: 'from-blue-500 to-blue-600',
+    bg: 'bg-blue-50',
+    iconColor: 'text-blue-600',
+  },
+  privacy: {
+    icon: ShieldCheck,
+    badge: 'Confidentialité',
+    color: 'from-emerald-500 to-emerald-600',
+    bg: 'bg-emerald-50',
+    iconColor: 'text-emerald-600',
+  },
+  legal: {
+    icon: FileText,
+    badge: 'Mentions légales',
+    color: 'from-orange-500 to-orange-600',
+    bg: 'bg-orange-50',
+    iconColor: 'text-orange-600',
+  },
+}
+
 const CONTENT = {
   cgv: {
     title: 'Conditions générales de vente',
@@ -86,26 +112,58 @@ const CONTENT = {
 
 export default function LegalPage({ type }) {
   const content = CONTENT[type] || CONTENT.legal
+  const meta = TYPE_META[type] || TYPE_META.legal
+  const Icon = meta.icon
 
   return (
-    <div className="max-w-3xl mx-auto pb-16">
-      <h1 className="text-3xl font-black tracking-tight text-[#0f2557] sm:text-4xl">
-        {content.title}
-      </h1>
-      <p className="mt-2 text-xs text-slate-400">
-        Dernière mise à jour : août 2026
-      </p>
+    <div className="space-y-8 pb-16">
 
-      <div className="mt-8 space-y-8">
-        {content.sections.map((section) => (
-          <div key={section.heading}>
-            <h2 className="text-base font-bold text-[#0f2557] mb-2">{section.heading}</h2>
-            <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
-              {section.text}
+      {/* HERO */}
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-slate-50/40 to-white border border-slate-200 p-6 sm:p-10">
+        <div className={`absolute -right-20 -top-20 h-64 w-64 rounded-full ${meta.bg} opacity-40 blur-3xl`} />
+        <Sparkles className="absolute right-8 top-8 h-6 w-6 text-[#e87722]/30" />
+
+        <div className="relative flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${meta.color} text-white shadow-lg`}>
+            <Icon size={26} />
+          </div>
+          <div className="flex-1">
+            <span className={`inline-flex items-center gap-1.5 rounded-full ${meta.bg} px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${meta.iconColor}`}>
+              {meta.badge}
+            </span>
+            <h1 className="mt-2 text-2xl font-black tracking-tight text-[#0f2557] sm:text-3xl lg:text-4xl">
+              {content.title}
+            </h1>
+            <p className="mt-1 text-xs text-slate-500 sm:text-sm">
+              Dernière mise à jour : août 2026
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* CONTENU */}
+      <section className="grid gap-4 sm:gap-5">
+        {content.sections.map((section, idx) => (
+          <div
+            key={section.heading}
+            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md sm:p-6"
+          >
+            <div className={`absolute -right-12 -top-12 h-32 w-32 rounded-full ${meta.bg} opacity-0 blur-2xl transition group-hover:opacity-60`} />
+            <div className="relative flex items-start gap-3 sm:gap-4">
+              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${meta.bg} ${meta.iconColor} text-xs font-black sm:h-9 sm:w-9`}>
+                {idx + 1}
+              </div>
+              <div className="flex-1">
+                <h2 className="text-sm font-black text-[#0f2557] sm:text-base">{section.heading}</h2>
+                <p className="mt-1.5 text-xs leading-relaxed text-slate-600 whitespace-pre-line sm:mt-2 sm:text-sm">
+                  {section.text}
+                </p>
+              </div>
+            </div>
+          </div>
         ))}
-      </div>
+      </section>
+
     </div>
   )
 }
