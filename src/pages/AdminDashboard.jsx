@@ -275,13 +275,6 @@ function DashboardOverview({ onNavigate }) {
         <div>
           <div className="flex items-center gap-3">
             <h1 className="text-2xl font-black tracking-tight text-white sm:text-3xl">Tableau de bord</h1>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/20 px-2.5 py-0.5 text-[10px] font-bold text-emerald-400">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              En direct
-            </span>
           </div>
           <p className="mt-1 text-sm text-slate-400">
             Vue d'ensemble de votre boutique BNS Services
@@ -289,16 +282,6 @@ function DashboardOverview({ onNavigate }) {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => setRefreshKey((k) => k + 1)}
-            disabled={refreshing}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm font-semibold text-slate-300 transition hover:border-slate-600 hover:text-white disabled:opacity-50"
-            title="Rafraichir les données"
-          >
-            <RefreshCw size={14} className={refreshing ? 'animate-spin' : ''} />
-            Actualiser
-          </button>
           <button
             type="button"
             onClick={() => onNavigate('products')}
@@ -501,29 +484,12 @@ function AdminOrders() {
         <div>
           <div className="flex items-center gap-3">
             <h1 className="text-2xl font-black tracking-tight text-white">Gestion des commandes</h1>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/20 px-2.5 py-0.5 text-[10px] font-bold text-emerald-400">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              En direct
-            </span>
           </div>
           <p className="mt-1 text-sm text-slate-400">
             Suivez et mettez à jour les commandes de vos clients
             {refreshing && <span className="ml-2 text-[#e87722]">Mise à jour...</span>}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => setRefreshKey((k) => k + 1)}
-          disabled={refreshing}
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm font-semibold text-slate-300 transition hover:border-slate-600 hover:text-white disabled:opacity-50"
-          title="Rafraichir les commandes"
-        >
-          <RefreshCw size={14} className={refreshing ? 'animate-spin' : ''} />
-          Actualiser
-        </button>
       </div>
 
       {/* Filtres par statut */}
