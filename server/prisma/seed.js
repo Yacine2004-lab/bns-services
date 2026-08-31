@@ -273,22 +273,22 @@ async function main() {
   }
   console.log('✅ Produits du catalogue insérés.')
 
-  // 3. Créer le compte Administrateur par défaut
+  // 3. Creer le compte Administrateur par defaut
   const adminPasswordHash = await bcrypt.hash('admin1234', 10)
   await prisma.adminUser.upsert({
-    where: { email: 'admin@bnsservices.sn' },
+    where: { email: 'contact@bayeniassservices.com' },
     update: {
       name: 'Super Admin BNS',
       password: adminPasswordHash,
     },
     create: {
-      email: 'admin@bnsservices.sn',
+      email: 'contact@bayeniassservices.com',
       name: 'Super Admin BNS',
       password: adminPasswordHash,
       role: 'admin',
     },
   })
-  console.log('✅ Compte Administrateur configuré (admin@bnsservices.sn).')
+  console.log('✅ Compte Administrateur configure (contact@bayeniassservices.com).')
 
   console.log('🎉 Base de données initialisée avec succès !')
 }
