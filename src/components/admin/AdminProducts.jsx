@@ -212,7 +212,7 @@ export default function AdminProducts() {
         <div>
           <h2 className="text-xl font-bold text-white">Gestion des produits</h2>
           <p className="text-sm text-slate-400 mt-1">
-            {products.length} produit{products.length > 1 ? 's' : ''} — visibles par les clients sur le catalogue
+            {products.length} produit{products.length > 1 ? 's' : ''} · visibles par les clients sur le catalogue
           </p>
         </div>
         <button
@@ -353,7 +353,7 @@ export default function AdminProducts() {
                       <ImagePlus size={16} />
                       {uploading ? 'Envoi...' : 'Ajouter des photos'}
                     </button>
-                    <p className="text-[10px] text-slate-500">JPG, PNG, WebP — max 5 Mo — auto-compressé</p>
+                    <p className="text-[10px] text-slate-500">JPG, PNG, WebP · max 5 Mo · auto-compressé</p>
                     <input
                       ref={fileInputRef}
                       type="file"

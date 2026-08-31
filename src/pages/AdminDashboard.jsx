@@ -387,7 +387,7 @@ function DashboardOverview({ onNavigate }) {
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-white truncate">{order.orderNumber || order.id}</p>
                     <p className="text-[11px] text-slate-500 truncate">
-                      {order.customerName} — {new Date(order.createdAt).toLocaleDateString('fr-FR')}
+                      {order.customerName} · {new Date(order.createdAt).toLocaleDateString('fr-FR')}
                     </p>
                   </div>
                 </div>
@@ -692,7 +692,7 @@ function AdminCustomers() {
         <div>
           <h1 className="text-2xl font-black tracking-tight text-white">Gestion des clients</h1>
           <p className="mt-1 text-sm text-slate-400">
-            {totalCustomers} client{totalCustomers > 1 ? 's' : ''} inscrit{totalCustomers > 1 ? 's' : ''} — {totalOrders} commande{totalOrders > 1 ? 's' : ''} au total
+            {totalCustomers} client{totalCustomers > 1 ? 's' : ''} inscrit{totalCustomers > 1 ? 's' : ''} · {totalOrders} commande{totalOrders > 1 ? 's' : ''} au total
           </p>
         </div>
       </div>
@@ -791,7 +791,7 @@ function AdminCustomers() {
                   </td>
                   <td className="px-5 py-4 text-slate-400 hidden sm:table-cell">
                     <a href={`tel:${customer.phone}`} className="transition hover:text-[#e87722]">
-                      {customer.phone || '—'}
+                      {customer.phone || 'Non renseigné'}
                     </a>
                   </td>
                   <td className="px-5 py-4 text-center">
@@ -843,7 +843,7 @@ function AdminCustomers() {
           <div className="w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-800 px-6 py-4">
               <h3 className="text-lg font-bold text-white">
-                Profil client — {selectedCustomer.firstName} {selectedCustomer.lastName}
+                Profil client · {selectedCustomer.firstName} {selectedCustomer.lastName}
               </h3>
               <button type="button" onClick={closeDetails} className="text-slate-400 hover:text-white">
                 <X size={20} />
@@ -1124,13 +1124,13 @@ function AdminSettings() {
               <div className="rounded-xl bg-slate-950/60 p-4">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Membre depuis</p>
                 <p className="mt-1 text-sm font-semibold text-white">
-                  {settings?.admin?.createdAt ? new Date(settings.admin.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : '—'}
+                  {settings?.admin?.createdAt ? new Date(settings.admin.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Non renseigné'}
                 </p>
               </div>
               <div className="rounded-xl bg-slate-950/60 p-4">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Dernière modification</p>
                 <p className="mt-1 text-sm font-semibold text-white">
-                  {settings?.admin?.updatedAt ? new Date(settings.admin.updatedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : '—'}
+                  {settings?.admin?.updatedAt ? new Date(settings.admin.updatedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Non renseigné'}
                 </p>
               </div>
               <div className="rounded-xl bg-slate-950/60 p-4">
@@ -1289,7 +1289,7 @@ function AdminSettings() {
               </div>
               <div className="flex items-center justify-between rounded-xl bg-slate-950/60 p-4">
                 <span className="text-xs text-slate-500">Uptime</span>
-                <span className="text-sm font-bold text-emerald-400">{settings?.system?.uptime ? formatUptime(settings.system.uptime) : '—'}</span>
+                <span className="text-sm font-bold text-emerald-400">{settings?.system?.uptime ? formatUptime(settings.system.uptime) : 'Indisponible'}</span>
               </div>
               <div className="flex items-center justify-between rounded-xl bg-slate-950/60 p-4">
                 <span className="text-xs text-slate-500">Expiration JWT</span>

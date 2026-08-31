@@ -515,57 +515,57 @@ export default function ClientDashboard() {
                   </div>
 
                   {/* Coordonnees & Suivi */}
-                  <div className="mt-5 space-y-3 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/40 to-white p-4 sm:p-5">
+                  <div className="mt-4 space-y-2.5 rounded-xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/40 to-white p-3 sm:p-3.5">
 
                     {/* Adresse de livraison */}
-                    <div className="flex items-start gap-2.5">
-                      <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#0f2557]/8 text-[#0f2557]">
-                        <MapPin size={13} />
+                    <div className="flex items-start gap-2">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#0f2557]/8 text-[#0f2557]">
+                        <MapPin size={11} />
                       </div>
-                      <div className="flex-1 text-xs leading-relaxed text-slate-600">
+                      <div className="flex-1 text-[11px] leading-snug text-slate-600">
                         <p className="font-bold text-[#0f2557]">Livraison à</p>
                         <p className="mt-0.5">
                           <span className="font-semibold text-slate-800">{order.customerName}</span> · {order.shippingAddress}, {order.shippingCity}
                         </p>
-                        <p className="mt-0.5 font-mono text-[11px] text-slate-500">{order.customerPhone}</p>
+                        <p className="mt-0.5 font-mono text-[10px] text-slate-500">{order.customerPhone}</p>
                       </div>
                     </div>
 
                     {/* Bandeau countdown (PENDING dans le delai) */}
                     {order.status === 'PENDING' && canCancelOrder(order) && (
-                      <div className="flex items-center gap-3 rounded-xl border border-amber-200/70 bg-gradient-to-r from-amber-50 via-amber-50 to-orange-50/60 px-3.5 py-2.5">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700 shadow-sm">
-                          <Timer size={16} />
+                      <div className="flex items-center gap-2.5 rounded-lg border border-amber-200/70 bg-gradient-to-r from-amber-50 via-amber-50 to-orange-50/60 px-3 py-1.5">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700 shadow-sm">
+                          <Timer size={13} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[10px] font-bold uppercase tracking-wider text-amber-700/80">Annulation possible</p>
-                          <p className="truncate text-sm font-black text-amber-900">{getRemainingTimeText(order)}</p>
+                          <p className="text-[9px] font-bold uppercase tracking-wider text-amber-700/80">Annulation possible</p>
+                          <p className="truncate text-xs font-black text-amber-900">{getRemainingTimeText(order)}</p>
                         </div>
                       </div>
                     )}
 
                     {/* Bandeau delai depasse */}
                     {order.status === 'PENDING' && !canCancelOrder(order) && (
-                      <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-100/80 px-3.5 py-2.5">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-200 text-slate-500">
-                          <Clock size={16} />
+                      <div className="flex items-center gap-2.5 rounded-lg border border-slate-200 bg-slate-100/80 px-3 py-1.5">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-200 text-slate-500">
+                          <Clock size={13} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Annulation</p>
-                          <p className="truncate text-sm font-bold text-slate-600">Délai de 1h dépassé</p>
+                          <p className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Annulation</p>
+                          <p className="truncate text-xs font-bold text-slate-600">Délai de 1h dépassé</p>
                         </div>
                       </div>
                     )}
 
                     {/* Boutons d'action */}
-                    <div className={`grid gap-2.5 ${order.status === 'PENDING' && canCancelOrder(order) ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
+                    <div className={`grid gap-2 ${order.status === 'PENDING' && canCancelOrder(order) ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
                       {order.status === 'PENDING' && canCancelOrder(order) && (
                         <button
                           type="button"
                           onClick={() => setCancelModalOrder(order)}
-                          className="group inline-flex items-center justify-center gap-2 rounded-xl border-2 border-red-200 bg-white px-4 py-3 text-xs font-bold text-red-600 transition-all duration-200 hover:scale-[1.02] hover:border-red-400 hover:bg-red-50 hover:shadow-md hover:shadow-red-500/10 active:scale-[0.98] sm:py-2.5"
+                          className="group inline-flex items-center justify-center gap-1.5 rounded-lg border-2 border-red-200 bg-white px-3 py-2 text-[11px] font-bold text-red-600 transition-all duration-200 hover:scale-[1.02] hover:border-red-400 hover:bg-red-50 hover:shadow-md hover:shadow-red-500/10 active:scale-[0.98]"
                         >
-                          <Ban size={14} className="transition-transform duration-200 group-hover:rotate-12" />
+                          <Ban size={12} className="transition-transform duration-200 group-hover:rotate-12" />
                           Annuler la commande
                         </button>
                       )}
@@ -576,9 +576,9 @@ export default function ClientDashboard() {
                         )}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 px-4 py-3 text-xs font-bold text-white shadow-md shadow-green-600/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg hover:shadow-green-600/30 active:scale-[0.98] sm:py-2.5"
+                        className="group inline-flex items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 px-3 py-2 text-[11px] font-bold text-white shadow-md shadow-green-600/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg hover:shadow-green-600/30 active:scale-[0.98]"
                       >
-                        <MessageCircle size={14} className="transition-transform duration-200 group-hover:scale-110" />
+                        <MessageCircle size={12} className="transition-transform duration-200 group-hover:scale-110" />
                         Suivre sur WhatsApp
                       </a>
                     </div>
