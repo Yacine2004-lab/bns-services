@@ -7,30 +7,40 @@ const ProductContext = createContext(null)
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState([])
   const [ready, setReady] = useState(false)
-
-  // Charger les produits depuis l'API backend
+  // Charger les produits depuis l'API backend + auto-refresh temps reel
   useEffect(() => {
     async function loadProducts() {
       try {
         const res = await productsApi.getAll({ limit: 200 })
         setProducts(res.data || [])
       } catch (err) {
-        logError('Impossible de charger les produits depuis l\'API :', err)
-        // Fallback vers les données locales si l'API est inaccessible
+        logError('Erreur chargement produits :', err)
         try {
           const stored = localStorage.getItem('bns_products')
-          if (stored) {
-            setProducts(JSON.parse(stored))
-          }
-        } catch {
-          setProducts([])
-        }
+          if (stored) setProducts(JSON.parse(stored))
+        } catch { setProducts([]) }
       } finally {
         setReady(true)
       }
     }
 
     loadProducts()
+
+    // Polling temps reel : refresh produits toutes les 30s
+    const interval = setInterval(() => {
+      if (!document.hidden) loadProducts()
+    }, 30000)
+
+    // Refresh quand l'onglet redevient visible
+    const handleVisibility = () => {
+      if (!document.hidden) loadProducts()
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
+
+    return () => {
+      clearInterval(interval)
+      document.removeEventListener('visibilitychange', handleVisibility)
+    }
   }, [])
 
   // Rafraîchir les produits depuis l'API

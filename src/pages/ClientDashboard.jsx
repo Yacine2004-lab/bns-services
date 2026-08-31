@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   ShoppingBag,
@@ -53,8 +53,8 @@ export default function ClientDashboard() {
   const [addedToast, setAddedToast] = useState(null)
   const [orders, setOrders] = useState([])
 
-  // Charger les commandes du client via l'API
-  useEffect(() => {
+  // Charger les commandes du client via l'API + auto-refresh temps reel
+  const loadOrders = useCallback(() => {
     if (!user) return
     ordersApi
       .getMyOrders(1)
@@ -65,6 +65,29 @@ export default function ClientDashboard() {
         setOrders([])
       })
   }, [user])
+
+  useEffect(() => {
+    loadOrders()
+  }, [loadOrders])
+
+  // Polling temps reel : refresh commandes toutes les 20s
+  useEffect(() => {
+    if (!user) return
+    const interval = setInterval(() => {
+      if (!document.hidden) loadOrders()
+    }, 20000)
+    return () => clearInterval(interval)
+  }, [user, loadOrders])
+
+  // Refresh quand l'onglet redevient visible
+  useEffect(() => {
+    if (!user) return
+    const handleVisibility = () => {
+      if (!document.hidden) loadOrders()
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
+    return () => document.removeEventListener('visibilitychange', handleVisibility)
+  }, [user, loadOrders])
 
   // Filtrer les produits pour l'achat express
   const filteredProducts = useMemo(() => {

@@ -200,8 +200,26 @@ function HomePage() {
               ))}
             </div>
           )}
+
         </section>
       )}
+
+      {/* Mockup presentation */}
+      <section className="flex justify-center">
+        <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f2557] to-[#142d60] p-8 shadow-[0_20px_60px_rgba(15,37,87,0.3)]">
+          <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#e87722]/10 blur-[60px]" />
+          <div className="absolute -left-10 -bottom-10 h-32 w-32 rounded-full bg-[#1a3a8a]/15 blur-[50px]" />
+          <div className="relative text-center">
+            <img
+              src="/bns-mockup.png"
+              alt="BNS Services sur ordinateur"
+              className="mx-auto max-h-[320px] w-auto rounded-2xl shadow-2xl"
+            />
+            <p className="mt-6 text-lg font-bold text-white">Votre boutique informatique en ligne</p>
+            <p className="mt-1 text-sm text-slate-300">Ordinateurs, accessoires et solutions - Livraison partout au Senegal</p>
+          </div>
+        </div>
+      </section>
 
       {/* 2. Catégories populaires avec photos réelles */}
       <section className="space-y-6">
