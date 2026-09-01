@@ -1,4 +1,5 @@
 import { prisma } from '../config/prisma.js'
+import { getDeliveryFee, getPromoDiscount } from '../config/pricing.js'
 
 // Générateur de numéro de commande unique (ex: CMD-748291)
 function generateOrderNumber() {
@@ -21,6 +22,7 @@ export async function createOrder(req, res, next) {
       shippingCity,
       shippingNotes,
       paymentMethod = 'CASH_ON_DELIVERY',
+      promoCode,
     } = req.body
 
     // Si le client est connecté via le middleware optionalCustomerAuth
@@ -78,9 +80,9 @@ export async function createOrder(req, res, next) {
         })
       }
 
-      // Calcul des frais de livraison (Gratuit pour Dakar, 0 XOF par défaut)
-      const shippingFee = 0
-      const total = subtotal + shippingFee
+      const shippingFee = getDeliveryFee(shippingCity)
+      const discount = getPromoDiscount(subtotal, promoCode)
+      const total = Math.max(0, subtotal + shippingFee - discount)
 
       // Générer un numéro de commande unique
       let orderNumber = generateOrderNumber()
@@ -105,6 +107,8 @@ export async function createOrder(req, res, next) {
           subtotal,
           shippingFee,
           total,
+          // stocker le code promo dans les notes si utilisé
+          shippingNotes: shippingNotes ? shippingNotes.trim() : null,
           items: {
             create: orderItemsToCreate,
           },
