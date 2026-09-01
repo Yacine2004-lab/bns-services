@@ -45,10 +45,14 @@ app.use(
 )
 
 // 1. Securite et CORS (autoriser le frontend React)
-const corsOrigins =
-  env.nodeEnv === 'production'
-    ? [env.clientUrl]
-    : [env.clientUrl, 'http://localhost:5173', 'http://localhost:5174', 'http://127.0.0.1:5173', 'http://127.0.0.1:5174']
+const corsOrigins = [
+  env.clientUrl,
+  'https://bns-nine.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:5174'
+]
 
 app.use(
   cors({
