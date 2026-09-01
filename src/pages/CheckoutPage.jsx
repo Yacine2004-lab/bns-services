@@ -18,9 +18,10 @@ import {
 } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/useAuth'
-import { ordersApi, productsApi } from '../lib/api'
+import { ordersApi, productsApi, promoApi } from '../lib/api'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
 import { logError } from '../lib/logger'
+import { getDeliveryFee, getPromoDiscount } from '../data/pricing'
 
 const formatPrice = (value) =>
   new Intl.NumberFormat('fr-FR', {
@@ -56,6 +57,14 @@ export default function CheckoutPage() {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [stockWarnings, setStockWarnings] = useState([])
+  const [promoCode, setPromoCode] = useState('')
+  const [appliedPromo, setAppliedPromo] = useState(null)
+  const [promoError, setPromoError] = useState('')
+
+  const deliveryFee = getDeliveryFee(formData.city)
+  const subtotal = total
+  const promoDiscount = appliedPromo?.discount || 0
+  const grandTotal = Math.max(0, subtotal + deliveryFee - promoDiscount)
 
   // Rafraichit le stock au chargement de la page
   useEffect(() => {
@@ -142,7 +151,7 @@ export default function CheckoutPage() {
       `-------------------------------------\n` +
       `📋 *Numéro de commande :* #${orderId}\n\n` +
       `📦 *Articles commandés :*\n${itemsList}\n\n` +
-      `💰 *TOTAL :* ${formatPrice(total)}\n\n` +
+      `💰 *TOTAL :* ${formatPrice(grandTotal)}\n\n` +
       `👤 *Informations Client :*\n` +
       `• Nom : ${formData.fullName}\n` +
       `• Téléphone : ${formData.phone}\n` +
@@ -193,6 +202,7 @@ export default function CheckoutPage() {
         shippingCity: formData.city,
         shippingNotes: formData.notes || undefined,
         paymentMethod: 'CASH_ON_DELIVERY',
+        promoCode: appliedPromo?.code || '',
         items: cart.map((item) => ({
           productId: item.id,
           quantity: item.quantity,
@@ -525,7 +535,6 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* Bouton de confirmation principal */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -539,7 +548,7 @@ export default function CheckoutPage() {
               ) : (
                 <>
                   <CheckCircle2 size={22} className="text-[#0f2557]" />
-                  <span>Confirmer la commande ({formatPrice(total)})</span>
+                  <span>Confirmer la commande ({formatPrice(grandTotal)})</span>
                 </>
               )}
             </button>
@@ -594,13 +603,84 @@ export default function CheckoutPage() {
 
                 <div className="flex items-center justify-between text-sm text-slate-600">
                   <span>Frais de livraison</span>
-                  <span className="font-bold text-[#0f2557]">{formatPrice(2000)}</span>
+                  <span className="font-bold text-[#0f2557]">{formatPrice(deliveryFee)}</span>
                 </div>
+
+                {/* Section Code Promo - Intégrée au récapitulatif */}
+                <div className="pt-3 pb-1">
+                  {!appliedPromo ? (
+                    <div className="flex flex-col gap-2">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={promoCode}
+                          onChange={(e) => {
+                            setPromoCode(e.target.value.toUpperCase())
+                            if (promoError) setPromoError('')
+                          }}
+                          placeholder="Code promo"
+                          className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-[#0f2557] outline-none focus:border-[#e87722] focus:bg-white transition-colors"
+                        />
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            const code = (promoCode || '').trim().toUpperCase()
+                            if (!code) return
+                            try {
+                              const result = await promoApi.validate({ code, subtotal })
+                              setAppliedPromo({ code: result.code, discount: result.discount })
+                              setPromoError('')
+                            } catch (err) {
+                              setAppliedPromo(null)
+                              setPromoError(err.message || 'Code promo invalide.')
+                            }
+                          }}
+                          disabled={!promoCode.trim()}
+                          className="rounded-lg bg-slate-800 hover:bg-[#0f2557] px-4 py-2 text-xs font-bold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          Appliquer
+                        </button>
+                      </div>
+                      {promoError && (
+                        <p className="text-[11px] font-medium text-red-500 flex items-center gap-1">
+                          <AlertCircle size={12} /> {promoError}
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                          <CheckCircle2 size={12} />
+                        </span>
+                        <span className="text-sm font-bold text-emerald-700">{appliedPromo.code}</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setAppliedPromo(null)
+                          setPromoCode('')
+                          setPromoError('')
+                        }}
+                        className="text-xs font-medium text-slate-400 hover:text-red-500 transition-colors"
+                      >
+                        Retirer
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {appliedPromo?.discount > 0 && (
+                  <div className="flex items-center justify-between text-sm text-emerald-700">
+                    <span>Réduction promo</span>
+                    <span className="font-bold">-{formatPrice(appliedPromo.discount)}</span>
+                  </div>
+                )}
 
                 <div className="flex items-center justify-between border-t border-slate-200 pt-3 text-[#0f2557]">
                   <span className="text-base font-bold">Total à payer</span>
                   <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#0f2557]">
-                    {formatPrice(total + 2000)}
+                    {formatPrice(grandTotal)}
                   </span>
                 </div>
               </div>
