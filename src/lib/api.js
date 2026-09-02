@@ -242,58 +242,26 @@ export const adminSettingsApi = {
     adminRequest('/admin/settings/password', { method: 'PUT', body: JSON.stringify(data) }),
 }
 
-export const promoApi = {
-  validate: (payload) =>
-    request('/promo/validate', { method: 'POST', body: JSON.stringify(payload) }),
-}
-
-export const adminPromoApi = {
-  getAll: () => adminRequest('/admin/promotions'),
-  create: (payload) =>
-    adminRequest('/admin/promotions', { method: 'POST', body: JSON.stringify(payload) }),
-  update: (id, payload) =>
-    adminRequest(`/admin/promotions/${id}`, { method: 'PUT', body: JSON.stringify(payload) }),
-  delete: (id) =>
-    adminRequest(`/admin/promotions/${id}`, { method: 'DELETE' }),
-}
-
 // Upload d'images produit (FormData, pas JSON)
 export const uploadApi = {
-  /**
-   * Upload des images vers le serveur.
-   * @param {FileList|File[]} files - Fichiers images à uploader
-   * @param {function} onProgress - Callback optionnel (pourcentage de progression)
-   * @returns {Promise} Résout avec les URLs optimisées des images
-   */
-  images: async (files, onProgress) => {
+  images: async (files) => {
     const formData = new FormData()
-    Array.from(files).forEach((file) => {
-      formData.append('images', file)
-    })
+    Array.from(files).forEach((file) => formData.append('images', file))
 
     const token = getAdminToken()
     const response = await fetch(`${API_BASE_URL}/admin/upload`, {
       method: 'POST',
       headers: {
         ...(token && { Authorization: `Bearer ${token}` }),
-        // Ne PAS mettre Content-Type : le navigateur le fait automatiquement avec le boundary multipart
       },
       body: formData,
     })
 
     const data = await response.json()
-
-    if (!response.ok) {
-      throw new Error(data.message || "Erreur lors de l'upload des images.")
-    }
-
+    if (!response.ok) throw new Error(data.message || "Erreur lors de l'upload des images.")
     return data
   },
 
-  /**
-   * Supprimer une image du serveur.
-   * @param {string} filename - Nom du fichier à supprimer
-   */
   delete: (filename) =>
     adminRequest('/admin/upload', { method: 'DELETE', body: JSON.stringify({ filename }) }),
 }

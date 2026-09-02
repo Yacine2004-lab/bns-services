@@ -7,8 +7,6 @@ import orderRoutes from './orderRoutes.js'
 import adminOrderRoutes from './adminOrderRoutes.js'
 import adminCustomerRoutes from './adminCustomerRoutes.js'
 import adminSettingsRoutes from './adminSettingsRoutes.js'
-import adminPromoRoutes from './adminPromoRoutes.js'
-import promoRoutes from './promoRoutes.js'
 import uploadRoutes from './uploadRoutes.js'
 
 const apiRouter = Router()
@@ -28,9 +26,7 @@ apiRouter.use('/admin', adminAuthRoutes)
 apiRouter.use('/admin', adminOrderRoutes)
 apiRouter.use('/admin', adminCustomerRoutes)
 apiRouter.use('/admin', adminSettingsRoutes)
-apiRouter.use('/admin', adminPromoRoutes)
 apiRouter.use('/admin', uploadRoutes)
-apiRouter.use('/promo', promoRoutes)
 apiRouter.use('/', categoryRoutes)
 apiRouter.use('/', productRoutes)
 apiRouter.use('/', orderRoutes)

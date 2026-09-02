@@ -152,6 +152,7 @@ export default function CartDrawer() {
                             {item.name}
                           </h4>
                           <p className="text-xs font-semibold text-slate-500 mt-0.5">
+                            {item.originalPrice && item.originalPrice > item.price && <span className="mr-1 line-through">{formatPrice(item.originalPrice)}</span>}
                             {formatPrice(item.price)} / unité
                           </p>
                         </div>

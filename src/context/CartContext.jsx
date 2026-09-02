@@ -1,5 +1,6 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo, useState, useEffect } from 'react'
 import { logError } from '../lib/logger'
+import { getActivePricing } from '../lib/pricing'
 
 const CartContext = createContext()
 
@@ -42,6 +43,35 @@ export function CartProvider({ children }) {
     setToast((prev) => ({ ...prev, visible: false }))
   }
 
+  useEffect(() => {
+    const refreshCartPricing = () => {
+      setCart((currentCart) => {
+        let changed = false
+        const nextCart = currentCart.map((item) => {
+          const pricing = getActivePricing(item)
+          if (pricing.price !== item.price) {
+            changed = true
+            return { ...item, ...pricing }
+          }
+          return item
+        })
+
+        if (changed) {
+          try {
+            localStorage.setItem('bns_cart', JSON.stringify(nextCart))
+          } catch (e) {
+            logError('Erreur mise à jour des prix du panier:', e)
+          }
+          showToast('Le prix d’un article a été actualisé après la fin de sa réduction.')
+        }
+        return changed ? nextCart : currentCart
+      })
+    }
+
+    const interval = setInterval(refreshCartPricing, 60000)
+    return () => clearInterval(interval)
+  }, [])
+
   const openDrawer = () => setIsDrawerOpen(true)
   const closeDrawer = () => setIsDrawerOpen(false)
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev)
@@ -67,7 +97,8 @@ export function CartProvider({ children }) {
             : item
         )
       } else {
-        nextCart = [...prevCart, { ...product, quantity: allowedQty }]
+        const pricing = getActivePricing(product)
+        nextCart = [...prevCart, { ...product, ...pricing, quantity: allowedQty }]
       }
       try {
         localStorage.setItem('bns_cart', JSON.stringify(nextCart))

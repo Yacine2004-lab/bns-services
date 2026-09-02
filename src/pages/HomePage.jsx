@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight, Zap, Plus, CheckCircle2 } from 'lucide-react'
 import { useProducts } from '../hooks/useProducts'
 import { useCart } from '../context/CartContext'
+import { getActivePricing } from '../lib/pricing'
 import { allSubCategories } from '../data/categories'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
 
@@ -62,7 +63,7 @@ function HomePage() {
 
   const featuredProducts = useMemo(() => products.filter((p) => p.featured), [products])
   const heroSlides = featuredProducts.length > 0 ? featuredProducts : products.slice(0, 3)
-  const promoProducts = products.slice(0, 6)
+  const promoProducts = products.filter((product) => getActivePricing(product).isPromoActive).slice(0, 6)
 
   const tabProducts = useMemo(() => {
     if (activeTab === 'new') {
@@ -281,6 +282,9 @@ function HomePage() {
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {promoProducts.map((product, index) => (
+          (() => {
+            const pricing = getActivePricing(product)
+            return (
           <div
             key={product.id}
             className={`group relative flex flex-col justify-between min-h-[280px] overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br ${promoStyles[index % promoStyles.length]} p-6 shadow-[0_8px_30px_rgba(11,31,58,0.05)] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(11,31,58,0.12)]`}
@@ -300,9 +304,13 @@ function HomePage() {
                     {product.name}
                   </h3>
                 </Link>
+                <span className="mt-2 inline-flex w-fit rounded-full bg-[#e87722] px-2 py-0.5 text-[10px] font-black text-[#0f2557]">
+                  -{pricing.promoPercentage}%
+                </span>
                 <div className="mt-2 flex items-baseline gap-1.5">
                   <span className="text-lg font-black text-[#0f2557] sm:text-xl">
-                    {formatPrice(product.price)}
+                    <span className="mr-1 text-xs text-slate-500 line-through">{formatPrice(pricing.originalPrice)}</span>
+                    {formatPrice(pricing.price)}
                   </span>
                 </div>
               </div>
@@ -339,6 +347,8 @@ function HomePage() {
               </Link>
             </div>
           </div>
+            )
+          })()
         ))}
         </div>
       </section>

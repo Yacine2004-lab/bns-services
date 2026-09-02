@@ -8,6 +8,7 @@ import { useProducts } from '../hooks/useProducts'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
+import { getActivePricing } from '../lib/pricing'
 
 const sortOptions = [
   { value: 'featured', label: 'Meilleures ventes' },
@@ -255,6 +256,7 @@ function CatalogPage() {
             <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {visibleProducts.map((product) => {
                 const inWish = isInWishlist(product.id)
+                const pricing = getActivePricing(product)
                 return (
                   <div
                     key={product.id}
@@ -273,6 +275,11 @@ function CatalogPage() {
                       {product.featured && (
                         <span className="absolute left-3 top-3 rounded-full bg-[#e87722] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#0f2557]">
                           Top Vente
+                        </span>
+                      )}
+                      {pricing.isPromoActive && (
+                        <span className="absolute left-3 top-12 rounded-full bg-[#e87722] px-2.5 py-1 text-[10px] font-black text-[#0f2557]">
+                          -{pricing.promoPercentage}%
                         </span>
                       )}
 
@@ -310,9 +317,10 @@ function CatalogPage() {
                       <div className="pt-2 border-t border-slate-100">
                         <div className="mb-3 flex items-baseline justify-between">
                           <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Prix</p>
-                          <p className="text-2xl font-black tracking-tight text-[#0f2557]">
-                            {formatPrice(product.price)}
-                          </p>
+                          <div className="text-right">
+                            {pricing.isPromoActive && <p className="text-xs text-slate-400 line-through">{formatPrice(pricing.originalPrice)}</p>}
+                            <p className="text-2xl font-black tracking-tight text-[#0f2557]">{formatPrice(pricing.price)}</p>
+                          </div>
                         </div>
 
                         {/* ACTIONS DIRECTES : ACHETER & AJOUTER PANIER */}

@@ -19,7 +19,6 @@ export const createOrderSchema = z.object({
     shippingCity: z.string({ required_error: 'La zone ou ville de livraison est requise.' }).min(2, 'La ville est requise.'),
     shippingNotes: z.string().optional().or(z.literal('')),
     paymentMethod: z.enum(['CASH_ON_DELIVERY', 'WAVE', 'ORANGE_MONEY']).optional().default('CASH_ON_DELIVERY'),
-    promoCode: z.string().trim().max(20).optional().or(z.literal('')),
   }),
 })
 

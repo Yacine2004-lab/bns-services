@@ -1,6 +1,46 @@
 import { prisma } from '../config/prisma.js'
 import { slugify } from '../utils/slugify.js'
 
+function getActivePricing(product, now = new Date()) {
+  const hasPromoPrice = Number.isFinite(product.promoPrice) && product.promoPrice > 0 && product.promoPrice < product.price
+  const startsAt = product.promoStartDate ? new Date(product.promoStartDate) : null
+  const endsAt = product.promoEndDate ? new Date(product.promoEndDate) : null
+  const isInPeriod = (!startsAt || startsAt <= now) && (!endsAt || endsAt >= now)
+  const isPromoActive = hasPromoPrice && isInPeriod
+  const currentPrice = isPromoActive ? product.promoPrice : product.price
+
+  return {
+    promoPrice: product.promoPrice,
+    promoStartDate: product.promoStartDate,
+    promoEndDate: product.promoEndDate,
+    isPromoActive,
+    currentPrice,
+    promoPercentage: isPromoActive ? Math.round((1 - currentPrice / product.price) * 100) : 0,
+  }
+}
+
+function formatProduct(p, category, subCategory) {
+  return {
+    id: p.id,
+    slug: p.slug,
+    name: p.name,
+    description: p.description,
+    price: p.price,
+    ...getActivePricing(p),
+    image: p.image || (Array.isArray(p.images) ? p.images[0] : ''),
+    images: Array.isArray(p.images) && p.images.length ? p.images : [p.image].filter(Boolean),
+    reference: p.reference,
+    stock: p.stock,
+    rating: p.rating,
+    featured: p.featured,
+    category: category?.name || '',
+    categoryId: p.categoryId,
+    subCategory: subCategory?.name || '',
+    subCategoryId: p.subCategoryId,
+    createdAt: p.createdAt,
+  }
+}
+
 // Générateur de référence unique auto-incrémenté (BNS-0001, BNS-0002, ...)
 async function generateReference() {
   const lastProduct = await prisma.product.findFirst({
@@ -107,27 +147,7 @@ export async function getProducts(req, res, next) {
       prisma.product.count({ where }),
     ])
 
-    // Formatage pour correspondre au frontend
-    const formatProduct = (p) => ({
-      id: p.id,
-      slug: p.slug,
-      name: p.name,
-      description: p.description,
-      price: p.price,
-      image: p.image || (Array.isArray(p.images) ? p.images[0] : ''),
-      images: Array.isArray(p.images) && p.images.length ? p.images : [p.image].filter(Boolean),
-      reference: p.reference,
-      stock: p.stock,
-      rating: p.rating,
-      featured: p.featured,
-      category: p.category?.name || '',
-      categoryId: p.categoryId,
-      subCategory: p.subCategory?.name || '',
-      subCategoryId: p.subCategoryId,
-      createdAt: p.createdAt,
-    })
-
-    const formattedProducts = products.map(formatProduct)
+    const formattedProducts = products.map((p) => formatProduct(p, p.category, p.subCategory))
 
     res.status(200).json({
       success: true,
@@ -172,6 +192,7 @@ export async function getProductBySlug(req, res, next) {
         name: product.name,
         description: product.description,
         price: product.price,
+        ...getActivePricing(product),
         image: product.image || (Array.isArray(product.images) ? product.images[0] : ''),
         images: Array.isArray(product.images) && product.images.length ? product.images : [product.image].filter(Boolean),
         reference: product.reference,
@@ -197,6 +218,9 @@ export async function createProduct(req, res, next) {
       name,
       description,
       price,
+      promoPrice,
+      promoStartDate,
+      promoEndDate,
       image,
       images,
       stock,
@@ -240,6 +264,9 @@ export async function createProduct(req, res, next) {
         name: name.trim(),
         description: description.trim(),
         price: parseFloat(price),
+        promoPrice: promoPrice == null || promoPrice === '' ? null : parseFloat(promoPrice),
+        promoStartDate: promoStartDate || null,
+        promoEndDate: promoEndDate || null,
         image: primaryImage,
         images: normalizedImages,
         reference: reference.trim(),
@@ -263,6 +290,7 @@ export async function createProduct(req, res, next) {
         name: product.name,
         description: product.description,
         price: product.price,
+        ...getActivePricing(product),
         image: product.image || (Array.isArray(product.images) ? product.images[0] : ''),
         images: Array.isArray(product.images) && product.images.length ? product.images : [product.image].filter(Boolean),
         reference: product.reference,
@@ -324,6 +352,9 @@ export async function updateProduct(req, res, next) {
     }
 
     if (updateData.price !== undefined) updateData.price = parseFloat(updateData.price)
+    if (updateData.promoPrice !== undefined) updateData.promoPrice = updateData.promoPrice === null || updateData.promoPrice === '' ? null : parseFloat(updateData.promoPrice)
+    if (updateData.promoStartDate !== undefined) updateData.promoStartDate = updateData.promoStartDate ? new Date(updateData.promoStartDate) : null
+    if (updateData.promoEndDate !== undefined) updateData.promoEndDate = updateData.promoEndDate ? new Date(updateData.promoEndDate) : null
     if (updateData.stock !== undefined) updateData.stock = parseInt(updateData.stock)
     if (updateData.featured !== undefined) updateData.featured = Boolean(updateData.featured)
 
@@ -345,6 +376,7 @@ export async function updateProduct(req, res, next) {
         name: updated.name,
         description: updated.description,
         price: updated.price,
+        ...getActivePricing(updated),
         image: updated.image || (Array.isArray(updated.images) ? updated.images[0] : ''),
         images: Array.isArray(updated.images) && updated.images.length ? updated.images : [updated.image].filter(Boolean),
         reference: updated.reference,

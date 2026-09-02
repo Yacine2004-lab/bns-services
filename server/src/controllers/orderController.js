@@ -1,6 +1,14 @@
 import { prisma } from '../config/prisma.js'
 import { getDeliveryFee } from '../config/pricing.js'
 
+function getCurrentProductPrice(product, now = new Date()) {
+  const hasPromoPrice = Number.isFinite(product.promoPrice) && product.promoPrice > 0 && product.promoPrice < product.price
+  const startsAt = product.promoStartDate ? new Date(product.promoStartDate) : null
+  const endsAt = product.promoEndDate ? new Date(product.promoEndDate) : null
+  const isPromoActive = hasPromoPrice && (!startsAt || startsAt <= now) && (!endsAt || endsAt >= now)
+  return isPromoActive ? product.promoPrice : product.price
+}
+
 // Générateur de numéro de commande unique (ex: CMD-748291)
 function generateOrderNumber() {
   const randomDigits = Math.floor(100000 + Math.random() * 900000)
@@ -22,7 +30,6 @@ export async function createOrder(req, res, next) {
       shippingCity,
       shippingNotes,
       paymentMethod = 'CASH_ON_DELIVERY',
-      promoCode,
     } = req.body
 
     // Si le client est connecté via le middleware optionalCustomerAuth
@@ -65,7 +72,8 @@ export async function createOrder(req, res, next) {
           },
         })
 
-        const itemTotal = product.price * item.quantity
+        const currentPrice = getCurrentProductPrice(product)
+        const itemTotal = currentPrice * item.quantity
         subtotal += itemTotal
 
         // Ligne de commande avec prix unitaire figé
@@ -74,50 +82,14 @@ export async function createOrder(req, res, next) {
           productName: product.name,
           productReference: product.reference,
           productImage: product.image,
-          productPrice: product.price,
+          productPrice: currentPrice,
           quantity: item.quantity,
           total: itemTotal,
         })
       }
 
       const shippingFee = getDeliveryFee(shippingCity)
-      
-      let discount = 0
-      let appliedPromoCode = null
-
-      if (promoCode) {
-        const normalizedCode = String(promoCode).trim().toUpperCase()
-        const promo = await tx.promo.findUnique({ where: { code: normalizedCode } })
-        
-        if (promo && promo.active) {
-          const now = new Date()
-          const endOfDay = promo.endDate ? new Date(promo.endDate) : null
-          if (endOfDay) endOfDay.setUTCHours(23, 59, 59, 999)
-          const isValidDate = promo.startDate <= now && (!endOfDay || endOfDay >= now)
-          const isMinOrderMet = subtotal >= promo.minOrder
-          const isLimitNotReached = !promo.usageLimit || promo.usedCount < promo.usageLimit
-          
-          if (isValidDate && isMinOrderMet && isLimitNotReached) {
-            const promoType = String(promo.type).trim().toLowerCase()
-
-            if (promoType === 'percentage' || promoType === 'percent' || promoType === 'pourcentage' || promoType === '%') {
-              discount = (subtotal * Number(promo.value)) / 100
-            } else if (promoType === 'fixed' || promoType === 'montant') {
-              discount = Number(promo.value)
-            }
-            discount = Number.isFinite(discount) ? Math.min(Math.max(0, discount), subtotal) : 0
-            appliedPromoCode = promo.code
-            
-            // Incrémenter l'utilisation de la promo
-            await tx.promo.update({
-              where: { id: promo.id },
-              data: { usedCount: { increment: 1 } },
-            })
-          }
-        }
-      }
-
-      const total = Math.max(0, subtotal + shippingFee - discount)
+      const total = subtotal + shippingFee
 
       // Générer un numéro de commande unique
       let orderNumber = generateOrderNumber()
@@ -141,8 +113,8 @@ export async function createOrder(req, res, next) {
           paymentStatus: 'PENDING',
           subtotal,
           shippingFee,
-          discount,
-          promoCode: appliedPromoCode,
+          discount: 0,
+          promoCode: null,
           total,
           shippingNotes: shippingNotes ? shippingNotes.trim() : null,
           items: {

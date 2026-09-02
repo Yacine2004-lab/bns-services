@@ -5,6 +5,7 @@ import { useProducts } from '../hooks/useProducts'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
+import { getActivePricing } from '../lib/pricing'
 
 const formatPrice = (value) =>
   new Intl.NumberFormat('fr-FR', {
@@ -24,6 +25,7 @@ function ProductPage() {
 
   const product = getProductBySlug(slug)
   const inWishlist = product ? isInWishlist(product.id) : false
+  const pricing = product ? getActivePricing(product) : null
   const gallery = product?.images && product.images.length ? product.images : [product?.image].filter(Boolean)
   const [selectedImage, setSelectedImage] = useState('')
 
@@ -85,12 +87,17 @@ function ProductPage() {
 
       <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
         <div className="h-fit lg:sticky lg:top-24">
-          <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
+          <div className="relative rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
             <img
               src={resolveImageUrl(selectedImage || product.image)}
               alt={product.name}
               className="h-96 w-full rounded-[20px] object-cover"
             />
+            {pricing?.isPromoActive && (
+              <span className="absolute left-10 top-10 rounded-full bg-[#e87722] px-3 py-1 text-sm font-black text-[#0f2557]">
+                -{pricing.promoPercentage}%
+              </span>
+            )}
 
             {gallery.length > 1 && (
               <div className="mt-4 grid grid-cols-4 gap-3">
@@ -129,7 +136,8 @@ function ProductPage() {
             <div className="mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Prix</p>
               <p className="mt-2 text-4xl font-black tracking-[-0.06em] text-[#0f2557]">
-                {formatPrice(product.price)}
+                {pricing.isPromoActive && <span className="mr-3 text-lg font-semibold text-slate-400 line-through">{formatPrice(pricing.originalPrice)}</span>}
+                {formatPrice(pricing.price)}
               </p>
             </div>
 

@@ -35,6 +35,9 @@ const emptyForm = {
   category: categories[0]?.name || '',
   subCategory: categories[0]?.subCategories[0]?.name || '',
   price: '',
+  promoPrice: '',
+  promoStartDate: '',
+  promoEndDate: '',
   image: '',
   images: [],
   stock: '',
@@ -77,6 +80,9 @@ export default function AdminProducts() {
       category: product.category,
       subCategory: product.subCategory,
       price: String(product.price),
+      promoPrice: product.promoPrice ?? '',
+      promoStartDate: product.promoStartDate ? product.promoStartDate.slice(0, 10) : '',
+      promoEndDate: product.promoEndDate ? product.promoEndDate.slice(0, 10) : '',
       image: productImages[0] || '',
       images: productImages,
       stock: String(product.stock),
@@ -169,6 +175,9 @@ export default function AdminProducts() {
     if (!form.name.trim()) return setError('Le nom du produit est requis.')
     if (!form.description.trim()) return setError('La description est requise.')
     if (!form.price || Number(form.price) <= 0) return setError('Indiquez un prix valide.')
+    if (form.promoPrice !== '' && (Number(form.promoPrice) <= 0 || Number(form.promoPrice) >= Number(form.price))) {
+      return setError('Le prix promotionnel doit être inférieur au prix original.')
+    }
     if (form.stock === '' || Number(form.stock) < 0) return setError('Indiquez un stock valide.')
     if ((!form.images || form.images.length === 0) && !form.image.trim()) {
       return setError('Ajoutez au moins une photo du produit.')
@@ -300,6 +309,31 @@ export default function AdminProducts() {
                     className={inputClass}
                   />
                 </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-slate-300">Prix promotionnel (FCFA)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.promoPrice}
+                    onChange={(e) => setForm((f) => ({ ...f, promoPrice: e.target.value }))}
+                    placeholder="Optionnel"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-slate-300">Début de la réduction</label>
+                  <input type="date" value={form.promoStartDate} onChange={(e) => setForm((f) => ({ ...f, promoStartDate: e.target.value }))} className={inputClass} />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-slate-300">Fin de la réduction</label>
+                  <input type="date" value={form.promoEndDate} onChange={(e) => setForm((f) => ({ ...f, promoEndDate: e.target.value }))} className={inputClass} />
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="mb-1.5 block text-sm font-medium text-slate-300">Stock *</label>
                   <input

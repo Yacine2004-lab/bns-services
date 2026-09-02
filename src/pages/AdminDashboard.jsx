@@ -32,11 +32,9 @@ import {
   Server,
   Database,
   Activity,
-  Sparkles,
 } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import AdminProducts from '../components/admin/AdminProducts'
-import AdminPromotions from '../components/admin/AdminPromotions'
 import BnsLogo from '../components/BnsLogo'
 import { adminCustomersApi, adminSettingsApi } from '../lib/api'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
@@ -97,7 +95,6 @@ function AdminSidebar({ isOpen, onClose, onLogout, activeItem, onNavigate, admin
     { icon: Package, label: 'Produits', id: 'products' },
     { icon: ShoppingCart, label: 'Commandes', id: 'orders' },
     { icon: Users, label: 'Clients', id: 'customers' },
-    { icon: Sparkles, label: 'Promotions', id: 'promotions' },
     { icon: Settings, label: 'Paramètres', id: 'settings' },
   ]
 
@@ -593,16 +590,6 @@ function AdminOrders() {
                     ))}
                   </select>
                   <div className="text-right space-y-0.5">
-                    {order.promoCode && (
-                      <>
-                        <p className="text-[10px] text-slate-500">
-                          Sous-total : {formatPrice(order.subtotal)}
-                        </p>
-                        <p className="text-[10px] font-bold text-emerald-400">
-                          Code {order.promoCode} : -{formatPrice(order.discount || 0)}
-                        </p>
-                      </>
-                    )}
                     <p className="text-[10px] font-semibold uppercase text-slate-500">Total</p>
                     <p className="text-lg font-black text-[#e87722]">{formatPrice(order.total)}</p>
                   </div>
@@ -1433,7 +1420,6 @@ export default function AdminDashboard() {
     products: 'Produits',
     orders: 'Commandes',
     customers: 'Clients',
-    promotions: 'Promotions',
     settings: 'Paramètres',
   }
 
@@ -1474,7 +1460,6 @@ export default function AdminDashboard() {
               {activeItem === 'products' && <AdminProducts />}
               {activeItem === 'orders' && <AdminOrders />}
               {activeItem === 'customers' && <AdminCustomers />}
-              {activeItem === 'promotions' && <AdminPromotions />}
               {activeItem === 'settings' && <AdminSettings />}
             </div>
           </main>

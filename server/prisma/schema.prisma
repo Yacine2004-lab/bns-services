@@ -12,16 +12,16 @@ generator client {
 // --------------------------------------------------------
 
 model Category {
-  id            String         @id
-  name          String         @unique
-  slug          String         @unique
+  id            String        @id
+  name          String        @unique
+  slug          String        @unique
   icon          String?
   image         String?
   description   String?
   subCategories SubCategory[]
   products      Product[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 
   @@map("categories")
 }
@@ -47,24 +47,27 @@ model SubCategory {
 // --------------------------------------------------------
 
 model Product {
-  id            String       @id @default(cuid())
-  slug          String       @unique
-  name          String
-  description   String       @db.Text
-  price         Float
-  image         String
-  images        String[]     @default([])
-  reference     String       @unique
-  stock         Int          @default(0)
-  rating        Float        @default(0)
-  featured      Boolean      @default(false)
-  categoryId    String
-  category      Category     @relation(fields: [categoryId], references: [id])
-  subCategoryId String
-  subCategory   SubCategory  @relation(fields: [subCategoryId], references: [id])
-  orderItems    OrderItem[]
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  id             String      @id @default(cuid())
+  slug           String      @unique
+  name           String
+  description    String      @db.Text
+  price          Float
+  promoPrice     Float?
+  promoStartDate DateTime?
+  promoEndDate   DateTime?
+  image          String
+  images         String[]    @default([])
+  reference      String      @unique
+  stock          Int         @default(0)
+  rating         Float       @default(0)
+  featured       Boolean     @default(false)
+  categoryId     String
+  category       Category    @relation(fields: [categoryId], references: [id])
+  subCategoryId  String
+  subCategory    SubCategory @relation(fields: [subCategoryId], references: [id])
+  orderItems     OrderItem[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 
   @@map("products")
 }
@@ -79,9 +82,9 @@ model Customer {
   lastName             String
   email                String    @unique
   phone                String?
-  password             String?   // Null pour les comptes OAuth (Google, Facebook)
-  provider             String?   // 'google', 'facebook', ou null (email/password)
-  providerId           String?   // ID du compte chez le provider OAuth
+  password             String? // Null pour les comptes OAuth (Google, Facebook)
+  provider             String? // 'google', 'facebook', ou null (email/password)
+  providerId           String? // ID du compte chez le provider OAuth
   resetPasswordToken   String?
   resetPasswordExpires DateTime?
   orders               Order[]
@@ -114,53 +117,53 @@ model AdminUser {
 // --------------------------------------------------------
 
 enum OrderStatus {
-  PENDING    // En attente
-  CONFIRMED  // Confirmée
-  SHIPPED    // En cours de livraison
-  DELIVERED  // Livrée
-  CANCELLED  // Annulée
+  PENDING // En attente
+  CONFIRMED // Confirmée
+  SHIPPED // En cours de livraison
+  DELIVERED // Livrée
+  CANCELLED // Annulée
 }
 
 enum PaymentMethod {
   CASH_ON_DELIVERY // Paiement à la livraison
-  WAVE             // Wave Mobile Money
-  ORANGE_MONEY     // Orange Money
+  WAVE // Wave Mobile Money
+  ORANGE_MONEY // Orange Money
 }
 
 enum PaymentStatus {
   PENDING // En attente
-  PAID    // Payé
-  FAILED  // Échoué
+  PAID // Payé
+  FAILED // Échoué
 }
 
 model Order {
-  id              String        @id @default(cuid())
-  orderNumber     String        @unique // Ex: CMD-123456
-  customerId      String?
-  customer        Customer?     @relation(fields: [customerId], references: [id], onDelete: SetNull)
-  
+  id          String    @id @default(cuid())
+  orderNumber String    @unique // Ex: CMD-123456
+  customerId  String?
+  customer    Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+
   // Coordonnées de livraison (remplies pour client ou invité)
   customerName    String
   customerPhone   String
   customerEmail   String?
-  shippingAddress String        @db.Text
+  shippingAddress String  @db.Text
   shippingCity    String
-  shippingNotes   String?       @db.Text
-  
+  shippingNotes   String? @db.Text
+
   // États et montants
-  status          OrderStatus   @default(PENDING)
-  paymentMethod   PaymentMethod @default(CASH_ON_DELIVERY)
-  paymentStatus   PaymentStatus @default(PENDING)
-  
-  subtotal        Float
-  shippingFee     Float         @default(0)
-  discount        Float         @default(0)
-  promoCode       String?
-  total           Float
-  
-  items           OrderItem[]
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  status        OrderStatus   @default(PENDING)
+  paymentMethod PaymentMethod @default(CASH_ON_DELIVERY)
+  paymentStatus PaymentStatus @default(PENDING)
+
+  subtotal    Float
+  shippingFee Float   @default(0)
+  discount    Float   @default(0)
+  promoCode   String?
+  total       Float
+
+  items     OrderItem[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 
   @@map("orders")
 }
@@ -174,32 +177,10 @@ model OrderItem {
   productName      String
   productReference String?
   productImage     String?
-  productPrice     Float    // Prix unitaire figé au moment de la commande
+  productPrice     Float // Prix unitaire figé au moment de la commande
   quantity         Int
   total            Float
   createdAt        DateTime @default(now())
 
   @@map("order_items")
-}
-
-// --------------------------------------------------------
-// 6. PROMOTIONS
-// --------------------------------------------------------
-
-model Promo {
-  id          String    @id @default(cuid())
-  code        String    @unique
-  description String?
-  type        String    // percentage | fixed
-  value       Float
-  minOrder    Float     @default(0)
-  active      Boolean   @default(true)
-  startDate   DateTime  @default(now())
-  endDate     DateTime?
-  usageLimit  Int?
-  usedCount   Int       @default(0)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  @@map("promos")
 }
