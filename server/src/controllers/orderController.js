@@ -98,9 +98,11 @@ export async function createOrder(req, res, next) {
           const isLimitNotReached = !promo.usageLimit || promo.usedCount < promo.usageLimit
           
           if (isValidDate && isMinOrderMet && isLimitNotReached) {
-            if (promo.type === 'percentage') {
+            const promoType = String(promo.type).trim().toLowerCase()
+
+            if (promoType === 'percentage' || promoType === 'percent' || promoType === 'pourcentage' || promoType === '%') {
               discount = (subtotal * Number(promo.value)) / 100
-            } else if (promo.type === 'fixed') {
+            } else if (promoType === 'fixed' || promoType === 'montant') {
               discount = Number(promo.value)
             }
             discount = Math.max(0, discount)

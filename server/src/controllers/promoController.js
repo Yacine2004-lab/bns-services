@@ -77,9 +77,11 @@ export async function validatePromo(req, res, next) {
 
     let discount = 0
 
-    if (promo.type === 'percentage') {
+    const promoType = String(promo.type).trim().toLowerCase()
+
+    if (promoType === 'percentage' || promoType === 'percent' || promoType === 'pourcentage' || promoType === '%') {
       discount = (amount * Number(promo.value)) / 100
-    } else if (promo.type === 'fixed') {
+    } else if (promoType === 'fixed' || promoType === 'montant') {
       discount = Number(promo.value)
     }
 

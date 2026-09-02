@@ -593,13 +593,13 @@ function AdminOrders() {
                     ))}
                   </select>
                   <div className="text-right space-y-0.5">
-                    {order.promoCode && order.discount > 0 && (
+                    {order.promoCode && (
                       <>
                         <p className="text-[10px] text-slate-500">
                           Sous-total : {formatPrice(order.subtotal)}
                         </p>
                         <p className="text-[10px] font-bold text-emerald-400">
-                          Code {order.promoCode} : -{formatPrice(order.discount)}
+                          Code {order.promoCode} : -{formatPrice(order.discount || 0)}
                         </p>
                       </>
                     )}

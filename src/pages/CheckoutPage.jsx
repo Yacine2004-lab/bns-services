@@ -631,7 +631,7 @@ export default function CheckoutPage() {
                             try {
                               setIsPromoLoading(true)
                               const result = await promoApi.validate({ code, subtotal })
-                              setAppliedPromo({ code: result.code, discount: result.discount })
+                              setAppliedPromo({ code: result.code || code, discount: result.discount })
                               setPromoError('')
                             } catch (err) {
                               setAppliedPromo(null)
