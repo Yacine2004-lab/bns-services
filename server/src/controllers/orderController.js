@@ -91,7 +91,9 @@ export async function createOrder(req, res, next) {
         
         if (promo && promo.active) {
           const now = new Date()
-          const isValidDate = promo.startDate <= now && (!promo.endDate || promo.endDate >= now)
+          const endOfDay = promo.endDate ? new Date(promo.endDate) : null
+          if (endOfDay) endOfDay.setUTCHours(23, 59, 59, 999)
+          const isValidDate = promo.startDate <= now && (!endOfDay || endOfDay >= now)
           const isMinOrderMet = subtotal >= promo.minOrder
           const isLimitNotReached = !promo.usageLimit || promo.usedCount < promo.usageLimit
           

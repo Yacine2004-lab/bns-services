@@ -36,6 +36,8 @@ export async function validatePromo(req, res, next) {
     }
 
     const now = new Date()
+
+    // startDate : stockeré en UTC minuit — la promo commence dès le début du jour local
     if (promo.startDate > now) {
       return res.status(400).json({
         success: false,
@@ -44,12 +46,17 @@ export async function validatePromo(req, res, next) {
       })
     }
 
-    if (promo.endDate && promo.endDate < now) {
-      return res.status(400).json({
-        success: false,
-        valid: false,
-        message: 'Cette promo a expiré.',
-      })
+    // endDate : la promo est valide jusqu'à la fin du jour indiqué (23:59:59 UTC)
+    if (promo.endDate) {
+      const endOfDay = new Date(promo.endDate)
+      endOfDay.setUTCHours(23, 59, 59, 999)
+      if (endOfDay < now) {
+        return res.status(400).json({
+          success: false,
+          valid: false,
+          message: 'Cette promo a expiré.',
+        })
+      }
     }
 
     if (amount < promo.minOrder) {
