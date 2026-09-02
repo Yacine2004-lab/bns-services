@@ -21,7 +21,7 @@ import { useAuth } from '../context/useAuth'
 import { ordersApi, productsApi, promoApi } from '../lib/api'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
 import { logError } from '../lib/logger'
-import { getDeliveryFee, getPromoDiscount } from '../data/pricing'
+import { getDeliveryFee } from '../data/pricing'
 
 const formatPrice = (value) =>
   new Intl.NumberFormat('fr-FR', {
@@ -60,6 +60,7 @@ export default function CheckoutPage() {
   const [promoCode, setPromoCode] = useState('')
   const [appliedPromo, setAppliedPromo] = useState(null)
   const [promoError, setPromoError] = useState('')
+  const [isPromoLoading, setIsPromoLoading] = useState(false)
 
   const deliveryFee = getDeliveryFee(formData.city)
   const subtotal = total
@@ -607,7 +608,7 @@ export default function CheckoutPage() {
                 </div>
 
                 {/* Section Code Promo - Intégrée au récapitulatif */}
-                <div className="pt-3 pb-1">
+                <div className="pt-3 pb-1 transition-all duration-300">
                   {!appliedPromo ? (
                     <div className="flex flex-col gap-2">
                       <div className="flex gap-2">
@@ -618,8 +619,9 @@ export default function CheckoutPage() {
                             setPromoCode(e.target.value.toUpperCase())
                             if (promoError) setPromoError('')
                           }}
-                          placeholder="Code promo"
-                          className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-[#0f2557] outline-none focus:border-[#e87722] focus:bg-white transition-colors"
+                          placeholder="Entrer un code promo"
+                          disabled={isPromoLoading}
+                          className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-[#0f2557] outline-none focus:border-[#e87722] focus:bg-white transition-colors disabled:opacity-50"
                         />
                         <button
                           type="button"
@@ -627,52 +629,57 @@ export default function CheckoutPage() {
                             const code = (promoCode || '').trim().toUpperCase()
                             if (!code) return
                             try {
+                              setIsPromoLoading(true)
                               const result = await promoApi.validate({ code, subtotal })
                               setAppliedPromo({ code: result.code, discount: result.discount })
                               setPromoError('')
                             } catch (err) {
                               setAppliedPromo(null)
                               setPromoError(err.message || 'Code promo invalide.')
+                            } finally {
+                              setIsPromoLoading(false)
                             }
                           }}
-                          disabled={!promoCode.trim()}
-                          className="rounded-lg bg-slate-800 hover:bg-[#0f2557] px-4 py-2 text-xs font-bold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                          disabled={!promoCode.trim() || isPromoLoading}
+                          className="rounded-lg bg-slate-800 hover:bg-[#0f2557] px-4 py-2 text-xs font-bold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[90px]"
                         >
-                          Appliquer
+                          {isPromoLoading ? <Loader2 size={16} className="animate-spin" /> : 'Appliquer'}
                         </button>
                       </div>
                       {promoError && (
-                        <p className="text-[11px] font-medium text-red-500 flex items-center gap-1">
+                        <p className="text-[11px] font-medium text-red-500 flex items-center gap-1 animate-in fade-in duration-300">
                           <AlertCircle size={12} /> {promoError}
                         </p>
                       )}
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2">
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
-                          <CheckCircle2 size={12} />
-                        </span>
-                        <span className="text-sm font-bold text-emerald-700">{appliedPromo.code}</span>
+                    <div className="flex flex-col gap-2 animate-in fade-in duration-300">
+                      <div className="flex items-center justify-between rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2">
+                        <div className="flex items-center gap-2">
+                          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                            <CheckCircle2 size={12} />
+                          </span>
+                          <span className="text-sm font-bold text-emerald-700">✓ Code {appliedPromo.code} appliqué</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setAppliedPromo(null)
+                            setPromoCode('')
+                            setPromoError('')
+                          }}
+                          className="text-xs font-bold text-red-500 hover:text-red-700 transition-colors"
+                        >
+                          Retirer
+                        </button>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setAppliedPromo(null)
-                          setPromoCode('')
-                          setPromoError('')
-                        }}
-                        className="text-xs font-medium text-slate-400 hover:text-red-500 transition-colors"
-                      >
-                        Retirer
-                      </button>
                     </div>
                   )}
                 </div>
 
                 {appliedPromo?.discount > 0 && (
-                  <div className="flex items-center justify-between text-sm text-emerald-700">
-                    <span>Réduction promo</span>
+                  <div className="flex items-center justify-between text-sm text-[#e87722] animate-in fade-in slide-in-from-top-2 duration-300">
+                    <span>Réduction</span>
                     <span className="font-bold">-{formatPrice(appliedPromo.discount)}</span>
                   </div>
                 )}

@@ -1,5 +1,5 @@
 import { prisma } from '../config/prisma.js'
-import { getDeliveryFee, getPromoDiscount } from '../config/pricing.js'
+import { getDeliveryFee } from '../config/pricing.js'
 
 // Générateur de numéro de commande unique (ex: CMD-748291)
 function generateOrderNumber() {
@@ -81,7 +81,38 @@ export async function createOrder(req, res, next) {
       }
 
       const shippingFee = getDeliveryFee(shippingCity)
-      const discount = getPromoDiscount(subtotal, promoCode)
+      
+      let discount = 0
+      let appliedPromoCode = null
+
+      if (promoCode) {
+        const normalizedCode = String(promoCode).trim().toUpperCase()
+        const promo = await tx.promo.findUnique({ where: { code: normalizedCode } })
+        
+        if (promo && promo.active) {
+          const now = new Date()
+          const isValidDate = promo.startDate <= now && (!promo.endDate || promo.endDate >= now)
+          const isMinOrderMet = subtotal >= promo.minOrder
+          const isLimitNotReached = !promo.usageLimit || promo.usedCount < promo.usageLimit
+          
+          if (isValidDate && isMinOrderMet && isLimitNotReached) {
+            if (promo.type === 'percentage') {
+              discount = (subtotal * Number(promo.value)) / 100
+            } else if (promo.type === 'fixed') {
+              discount = Number(promo.value)
+            }
+            discount = Math.max(0, discount)
+            appliedPromoCode = promo.code
+            
+            // Incrémenter l'utilisation de la promo
+            await tx.promo.update({
+              where: { id: promo.id },
+              data: { usedCount: { increment: 1 } },
+            })
+          }
+        }
+      }
+
       const total = Math.max(0, subtotal + shippingFee - discount)
 
       // Générer un numéro de commande unique
@@ -106,8 +137,9 @@ export async function createOrder(req, res, next) {
           paymentStatus: 'PENDING',
           subtotal,
           shippingFee,
+          discount,
+          promoCode: appliedPromoCode,
           total,
-          // stocker le code promo dans les notes si utilisé
           shippingNotes: shippingNotes ? shippingNotes.trim() : null,
           items: {
             create: orderItemsToCreate,
