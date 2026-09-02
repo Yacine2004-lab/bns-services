@@ -85,11 +85,13 @@ export async function validatePromo(req, res, next) {
       discount = Number(promo.value)
     }
 
+    discount = Number.isFinite(discount) ? Math.min(Math.max(0, discount), amount) : 0
+
     return res.status(200).json({
       success: true,
       valid: true,
       code: promo.code,
-      discount: Math.max(0, discount),
+      discount,
       message: 'Code promo appliqué avec succès.',
     })
   } catch (error) {

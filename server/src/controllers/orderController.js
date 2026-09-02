@@ -105,7 +105,7 @@ export async function createOrder(req, res, next) {
             } else if (promoType === 'fixed' || promoType === 'montant') {
               discount = Number(promo.value)
             }
-            discount = Math.max(0, discount)
+            discount = Number.isFinite(discount) ? Math.min(Math.max(0, discount), subtotal) : 0
             appliedPromoCode = promo.code
             
             // Incrémenter l'utilisation de la promo
