@@ -592,7 +592,17 @@ function AdminOrders() {
                       <option key={value} value={value}>{label}</option>
                     ))}
                   </select>
-                  <div className="text-right">
+                  <div className="text-right space-y-0.5">
+                    {order.promoCode && order.discount > 0 && (
+                      <>
+                        <p className="text-[10px] text-slate-500">
+                          Sous-total : {formatPrice(order.subtotal)}
+                        </p>
+                        <p className="text-[10px] font-bold text-emerald-400">
+                          Code {order.promoCode} : -{formatPrice(order.discount)}
+                        </p>
+                      </>
+                    )}
                     <p className="text-[10px] font-semibold uppercase text-slate-500">Total</p>
                     <p className="text-lg font-black text-[#e87722]">{formatPrice(order.total)}</p>
                   </div>
