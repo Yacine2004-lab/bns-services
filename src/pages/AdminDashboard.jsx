@@ -32,9 +32,11 @@ import {
   Server,
   Database,
   Activity,
+  Sparkles,
 } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import AdminProducts from '../components/admin/AdminProducts'
+import AdminPromotions from '../components/admin/AdminPromotions'
 import BnsLogo from '../components/BnsLogo'
 import { adminCustomersApi, adminSettingsApi } from '../lib/api'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
@@ -95,6 +97,7 @@ function AdminSidebar({ isOpen, onClose, onLogout, activeItem, onNavigate, admin
     { icon: Package, label: 'Produits', id: 'products' },
     { icon: ShoppingCart, label: 'Commandes', id: 'orders' },
     { icon: Users, label: 'Clients', id: 'customers' },
+    { icon: Sparkles, label: 'Promotions', id: 'promotions' },
     { icon: Settings, label: 'Paramètres', id: 'settings' },
   ]
 
@@ -1420,6 +1423,7 @@ export default function AdminDashboard() {
     products: 'Produits',
     orders: 'Commandes',
     customers: 'Clients',
+    promotions: 'Promotions',
     settings: 'Paramètres',
   }
 
@@ -1460,6 +1464,7 @@ export default function AdminDashboard() {
               {activeItem === 'products' && <AdminProducts />}
               {activeItem === 'orders' && <AdminOrders />}
               {activeItem === 'customers' && <AdminCustomers />}
+              {activeItem === 'promotions' && <AdminPromotions />}
               {activeItem === 'settings' && <AdminSettings />}
             </div>
           </main>

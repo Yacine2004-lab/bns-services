@@ -45,8 +45,10 @@ app.use(
 )
 
 // 1. Securite et CORS (autoriser le frontend React)
+const clientOrigin = env.clientUrl.endsWith('/') ? env.clientUrl.slice(0, -1) : env.clientUrl;
+
 const corsOrigins = [
-  env.clientUrl,
+  clientOrigin,
   'https://bns-nine.vercel.app',
   'http://localhost:5173',
   'http://localhost:5174',

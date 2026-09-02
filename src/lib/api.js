@@ -47,12 +47,41 @@ async function request(endpoint, options = {}) {
     ...fetchOptions.headers,
   }
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...fetchOptions,
-    headers,
-  })
+  let response
+  try {
+    response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      ...fetchOptions,
+      headers,
+    })
+  } catch (error) {
+    throw new Error('Impossible de joindre l’API. Vérifiez que le backend Railway est bien démarré.')
+  }
 
-  const data = await response.json()
+  const contentType = response.headers.get('content-type') || ''
+
+  let data
+  try {
+    if (contentType.includes('application/json')) {
+      data = await response.json()
+    } else {
+      const text = await response.text()
+      if (text.includes('<!doctype html') || text.includes('<html')) {
+        throw new Error('Le backend répond avec une page HTML. Vérifiez la configuration Railway : Root Directory = server.')
+      }
+      data = { message: text || 'Réponse invalide du serveur.' }
+    }
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('Root Directory')) {
+      throw error
+    }
+
+    const fallbackText = await response.text().catch(() => '')
+    if (fallbackText.includes('<!doctype html') || fallbackText.includes('<html')) {
+      throw new Error('Le backend répond avec une page HTML. Vérifiez la configuration Railway : Root Directory = server.')
+    }
+
+    throw new Error(error.message || 'Réponse invalide du serveur.')
+  }
 
   if (!response.ok) {
     throw new Error(data.message || `Erreur serveur : ${response.status}`)
@@ -211,6 +240,21 @@ export const adminSettingsApi = {
     adminRequest('/admin/settings/profile', { method: 'PUT', body: JSON.stringify(data) }),
   changePassword: (data) =>
     adminRequest('/admin/settings/password', { method: 'PUT', body: JSON.stringify(data) }),
+}
+
+export const promoApi = {
+  validate: (payload) =>
+    request('/promo/validate', { method: 'POST', body: JSON.stringify(payload) }),
+}
+
+export const adminPromoApi = {
+  getAll: () => adminRequest('/admin/promotions'),
+  create: (payload) =>
+    adminRequest('/admin/promotions', { method: 'POST', body: JSON.stringify(payload) }),
+  update: (id, payload) =>
+    adminRequest(`/admin/promotions/${id}`, { method: 'PUT', body: JSON.stringify(payload) }),
+  delete: (id) =>
+    adminRequest(`/admin/promotions/${id}`, { method: 'DELETE' }),
 }
 
 // Upload d'images produit (FormData, pas JSON)
