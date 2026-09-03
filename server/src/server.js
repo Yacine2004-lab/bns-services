@@ -9,7 +9,6 @@ const PORT = env.port
 // Mettre a jour l'email admin en arriere-plan (non-bloquant)
 function ensureAdminEmailInBackground() {
   const NEW_EMAIL = 'contact@bayeniassservices.com'
-  const OLD_EMAIL = 'admin@bnsservices.sn'
   const PASSWORD = 'bayeniass@26'
 
   setTimeout(async () => {
@@ -18,24 +17,13 @@ function ensureAdminEmailInBackground() {
       await db.$connect()
       console.log('DB connectee pour maj email admin')
 
-      const dupes = await db.adminUser.deleteMany({ where: { email: NEW_EMAIL } })
-      if (dupes.count > 0) console.log('Supprime', dupes.count, 'admin(s) en doublon')
-
-      const old = await db.adminUser.findUnique({ where: { email: OLD_EMAIL } })
-      if (old) {
-        const hash = await bcrypt.hash(PASSWORD, 10)
-        await db.adminUser.update({
-          where: { email: OLD_EMAIL },
-          data: { email: NEW_EMAIL, password: hash },
-        })
-        console.log('Admin email mis a jour:', OLD_EMAIL, '->', NEW_EMAIL)
-      } else {
-        const hash = await bcrypt.hash(PASSWORD, 10)
-        await db.adminUser.create({
-          data: { email: NEW_EMAIL, name: 'Super Admin BNS', password: hash, role: 'admin' },
-        })
-        console.log('Nouvel admin cree:', NEW_EMAIL)
-      }
+      const hash = await bcrypt.hash(PASSWORD, 10)
+      await db.adminUser.upsert({
+        where: { email: NEW_EMAIL },
+        update: { password: hash, name: 'Super Admin BNS', role: 'admin' },
+        create: { email: NEW_EMAIL, name: 'Super Admin BNS', password: hash, role: 'admin' },
+      })
+      console.log('Compte admin synchronise:', NEW_EMAIL)
     } catch (err) {
       console.warn('Erreur maj email admin:', err.message)
     } finally {

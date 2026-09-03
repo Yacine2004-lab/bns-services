@@ -22,4 +22,4 @@ COPY . .
 EXPOSE 5000
 
 # Commande de démarrage : push DB puis démarrer le serveur
-CMD npx prisma db push --accept-data-loss && node src/server.js
+CMD ["sh", "-c", "npx prisma db push --accept-data-loss && node src/server.js"]
