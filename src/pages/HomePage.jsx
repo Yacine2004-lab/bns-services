@@ -63,7 +63,7 @@ function HomePage() {
 
   const featuredProducts = useMemo(() => products.filter((p) => p.featured), [products])
   const heroSlides = featuredProducts.length > 0 ? featuredProducts : products.slice(0, 3)
-  const promoProducts = products.filter((product) => getActivePricing(product).isPromoActive).slice(0, 6)
+  const promoProducts = products.slice(0, 6)
 
   const tabProducts = useMemo(() => {
     if (activeTab === 'new') {
