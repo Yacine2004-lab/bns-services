@@ -304,12 +304,14 @@ function HomePage() {
                     {product.name}
                   </h3>
                 </Link>
-                <span className="mt-2 inline-flex w-fit rounded-full bg-[#e87722] px-2 py-0.5 text-[10px] font-black text-[#0f2557]">
-                  -{pricing.promoPercentage}%
-                </span>
+                {pricing.isPromoActive && (
+                  <span className="mt-2 inline-flex w-fit rounded-full bg-[#e87722] px-2 py-0.5 text-[10px] font-black text-[#0f2557]">
+                    -{pricing.promoPercentage}%
+                  </span>
+                )}
                 <div className="mt-2 flex items-baseline gap-1.5">
                   <span className="text-lg font-black text-[#0f2557] sm:text-xl">
-                    <span className="mr-1 text-xs text-slate-500 line-through">{formatPrice(pricing.originalPrice)}</span>
+                    {pricing.isPromoActive && <span className="mr-1 text-xs text-slate-500 line-through">{formatPrice(pricing.originalPrice)}</span>}
                     {formatPrice(pricing.price)}
                   </span>
                 </div>
