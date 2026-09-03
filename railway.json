@@ -1,9 +1,10 @@
 {
   "build": {
-    "builder": "NIXPACKS"
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "server/Dockerfile",
+    "watchPatterns": ["server/**"]
   },
   "deploy": {
-    "startCommand": "cd server && npm install && npx prisma generate && npx prisma db push && node src/server.js",
     "healthcheckPath": "/api/health",
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
