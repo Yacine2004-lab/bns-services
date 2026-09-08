@@ -348,7 +348,7 @@ function HomePage() {
                   <img
                     src={resolveImageUrl(product.image)}
                     alt={product.name}
-                    className="max-h-[200px] sm:max-h-[240px] lg:max-h-[280px] w-full object-contain drop-shadow-lg transition duration-500 group-hover:scale-110 group-hover:-rotate-3"
+                    className="h-auto w-full object-contain drop-shadow-lg transition duration-500 group-hover:scale-110 group-hover:-rotate-3"
                   />
                 </Link>
               </div>
