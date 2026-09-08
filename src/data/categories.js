@@ -129,7 +129,7 @@ export const categories = [
         id: 'cables-connectique',
         name: 'Câbles & connectique',
         icon: Cable,
-        image: 'https://images.unsplash.com/photo-1555618564-9cd3f8d579a6?auto=format&fit=crop&w=500&q=80',
+        image: 'https://images.unsplash.com/photo-1761241878760-7c38c026d8f1?auto=format&fit=crop&w=500&q=80',
       },
       {
         id: 'accessoires-bureautique',
