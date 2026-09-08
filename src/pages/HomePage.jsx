@@ -119,7 +119,7 @@ function HomePage() {
 
       {/* 1. Hero carousel */}
       {currentHero && (
-        <section className="relative isolate overflow-hidden rounded-[28px] border border-white/15 bg-[#091a3d] shadow-[0_24px_70px_rgba(15,37,87,0.28)] sm:rounded-[36px]">
+        <section className="relative isolate overflow-hidden rounded-[20px] border border-white/15 bg-[#091a3d] shadow-[0_24px_70px_rgba(15,37,87,0.28)] sm:rounded-[28px] lg:rounded-[36px]">
           {/* Magnifique photo de fond */}
           <div
             className="absolute inset-0 z-0 scale-105 bg-cover bg-center bg-no-repeat"
@@ -128,35 +128,35 @@ function HomePage() {
           <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_78%_42%,rgba(232,119,34,0.34),transparent_24%),linear-gradient(110deg,rgba(4,16,42,0.98)_0%,rgba(11,29,68,0.9)_48%,rgba(27,16,72,0.58)_100%)]" />
           <div className="pointer-events-none absolute -right-24 top-1/2 z-0 h-80 w-80 -translate-y-1/2 rounded-full border border-white/10 bg-[#e87722]/10 blur-2xl" />
 
-          <div className="relative z-10 grid items-center gap-4 p-5 sm:min-h-[470px] sm:gap-8 sm:p-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 lg:p-14">
-            <div className="space-y-4 sm:space-y-6">
+          <div className="relative z-10 grid items-center gap-4 p-4 sm:min-h-[470px] sm:gap-8 sm:p-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 lg:p-14">
+            <div className="space-y-3 sm:space-y-6">
               <div className="flex items-center gap-2 text-[8px] font-black uppercase tracking-[0.16em] text-slate-300 sm:gap-3 sm:text-[10px] sm:tracking-[0.2em]">
                 <span className="h-px w-8 bg-slate-400/60" />
                 <span>La technologie qui avance avec vous</span>
               </div>
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md sm:text-xs">
+                <span className="rounded-full border border-white/20 bg-white/10 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white backdrop-blur-md sm:px-3 sm:py-1.5 sm:text-xs">
                   {currentHero.subCategory}
                 </span>
-                <span className="rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-xs font-black text-white backdrop-blur-md sm:text-sm">
+                <span className="rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[10px] font-black text-white backdrop-blur-md sm:px-4 sm:py-1.5 sm:text-xs sm:font-black">
                   {formatPrice(currentHero.price)}
                 </span>
               </div>
 
-              <h1 className="max-w-xl text-[2.15rem] font-black leading-[1.02] tracking-[-0.04em] text-white drop-shadow-lg sm:text-5xl lg:text-[4.1rem]">
+              <h1 className="max-w-xl text-[1.8rem] font-black leading-[1.02] tracking-[-0.04em] text-white drop-shadow-lg sm:text-[2.5rem] md:text-5xl lg:text-[4.1rem]">
                 {currentHero.name}
               </h1>
-              <p className="max-w-md text-xs leading-5 text-slate-200/80 sm:text-base sm:leading-6">
+              <p className="max-w-md text-[11px] leading-5 text-slate-200/80 sm:text-sm sm:leading-6">
                 Des équipements fiables, sélectionnés pour rendre chaque journée de travail plus simple et plus performante.
               </p>
-              
+
               <div className="flex flex-wrap items-center gap-2 pt-2 sm:gap-4 sm:pt-4">
                 <button
                   type="button"
                   onClick={() => handleQuickBuy(currentHero)}
-                  className="group/btn inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#e87722] px-4 py-3 text-[10px] font-black text-white shadow-[0_8px_25px_rgba(232,119,34,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f09050] hover:shadow-[0_12px_35px_rgba(232,119,34,0.5)] active:scale-95 sm:gap-2 sm:px-8 sm:py-4 sm:text-sm"
+                  className="group/btn inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#e87722] px-3 py-2.5 text-[9px] font-black text-white shadow-[0_8px_25px_rgba(232,119,34,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f09050] hover:shadow-[0_12px_35px_rgba(232,119,34,0.5)] active:scale-95 sm:gap-2 sm:px-6 sm:py-3 sm:text-[10px] md:px-8 md:py-4 md:text-sm"
                 >
-                  <Zap size={18} className="fill-white transition-transform duration-300 group-hover/btn:-rotate-12 group-hover/btn:scale-110" />
+                  <Zap size={16} className="fill-white transition-transform duration-300 group-hover/btn:-rotate-12 group-hover/btn:scale-110 sm:size-18" />
                   Commander maintenant
                 </button>
                 <button
@@ -184,7 +184,7 @@ function HomePage() {
                 key={currentHero.id}
                 src={resolveImageUrl(currentHero.image)}
                 alt={currentHero.name}
-                className="relative z-10 max-h-[190px] w-full object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.5)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 sm:max-h-[360px] lg:max-h-[410px]"
+                className="relative z-10 max-h-[150px] w-full object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.5)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 sm:max-h-[280px] md:max-h-[360px] lg:max-h-[410px]"
               />
             </div>
           </div>
@@ -241,32 +241,32 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-9">
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
           {topCategories.map((sub) => {
             const Icon = sub.icon
             return (
               <Link
                 key={sub.id}
                 to={`/catalogue?subcategory=${sub.id}`}
-                className="group relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-slate-50 to-white p-4 text-center shadow-lg shadow-slate-200/50 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#0f2557]/10"
+                className="group relative flex flex-col items-center gap-2 overflow-hidden rounded-xl border border-white/60 bg-gradient-to-br from-slate-50 to-white p-3 text-center shadow-lg shadow-slate-200/50 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#0f2557]/10 sm:p-4 sm:gap-3"
             >
               {/* Conteneur photo réelle du produit */}
               <div className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[#0f2557]/8 blur-2xl transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
-              <div className="relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center overflow-hidden rounded-2xl border-2 border-slate-200 bg-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#0f2557]/30">
+              <div className="relative flex h-14 w-14 sm:h-16 sm:w-20 items-center justify-center overflow-hidden rounded-xl border-2 border-slate-200 bg-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#0f2557]/30">
                   {sub.image ? (
                     <img
                       src={resolveImageUrl(sub.image)}
                       alt={sub.name}
-                      className="h-full w-full object-cover rounded-2xl"
+                      className="h-full w-full object-cover rounded-xl"
                       loading="lazy"
                     />
                   ) : (
-                    <Icon size={26} className="text-[#0f2557]" />
+                    <Icon size={22} className="text-[#0f2557] sm:size-26" />
                   )}
                 </div>
 
                 <div className="relative w-full space-y-1">
-                  <p className="line-clamp-2 text-xs font-bold leading-tight text-[#0f2557] transition-colors group-hover:text-[#1a3a8a]">
+                  <p className="line-clamp-2 text-[10px] font-bold leading-tight text-[#0f2557] transition-colors group-hover:text-[#1a3a8a] sm:text-xs">
                     {sub.name}
                   </p>
                   <div className="flex items-center justify-center gap-1 text-[10px] font-semibold text-slate-400">
@@ -304,7 +304,7 @@ function HomePage() {
             <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         {promoProducts.map((product, index) => (
           (() => {
             const pricing = getActivePricing(product)
@@ -342,13 +342,13 @@ function HomePage() {
               </div>
 
               {/* Image */}
-              <div className="relative w-[120px] sm:w-[150px] flex-shrink-0 flex items-center justify-center">
+              <div className="relative w-[140px] sm:w-[180px] lg:w-[200px] flex-shrink-0 flex items-center justify-center">
                 <div className="absolute inset-0 bg-white/40 blur-xl rounded-full scale-75 transition-all duration-500 group-hover:scale-100 group-hover:bg-white/60" />
                 <Link to={`/produit/${product.slug}`} className="relative block w-full">
                   <img
                     src={resolveImageUrl(product.image)}
                     alt={product.name}
-                    className="max-h-[160px] w-full object-contain drop-shadow-lg transition duration-500 group-hover:scale-110 group-hover:-rotate-3"
+                    className="max-h-[180px] sm:max-h-[220px] lg:max-h-[250px] w-full object-contain drop-shadow-lg transition duration-500 group-hover:scale-110 group-hover:-rotate-3"
                   />
                 </Link>
               </div>

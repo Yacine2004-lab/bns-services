@@ -253,7 +253,7 @@ function CatalogPage() {
               <p className="mt-2 text-sm text-slate-600">Essayez une autre catégorie ou réinitialisez les filtres.</p>
             </div>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
               {visibleProducts.map((product) => {
                 const inWish = isInWishlist(product.id)
                 const pricing = getActivePricing(product)
@@ -269,7 +269,7 @@ function CatalogPage() {
                           alt={product.name}
                           loading="lazy"
                           decoding="async"
-                          className="h-52 w-full object-cover transition group-hover:scale-105"
+                          className="h-64 sm:h-72 lg:h-80 w-full object-cover transition group-hover:scale-105"
                         />
                       </Link>
                       {product.featured && (

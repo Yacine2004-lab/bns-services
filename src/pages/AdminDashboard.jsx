@@ -294,24 +294,24 @@ function DashboardOverview({ onNavigate }) {
       </div>
 
       {/* Stats */}
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {stats.map((stat) => {
           const Icon = stat.icon
           return (
             <div
               key={stat.label}
-              className="group relative overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-900/80 p-5 transition-all duration-300 hover:border-slate-700/60 hover:shadow-lg"
+              className="group relative overflow-hidden rounded-xl border border-slate-800/60 bg-slate-900/80 p-4 transition-all duration-300 hover:border-slate-700/60 hover:shadow-lg"
             >
               <div className="flex items-start justify-between">
-                <div className="space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{stat.label}</p>
-                  <p className="text-2xl font-black text-white">{stat.value}</p>
+                <div className="space-y-1.5">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">{stat.label}</p>
+                  <p className="text-xl font-black text-white">{stat.value}</p>
                   {stat.subtitle && (
-                    <p className="text-[11px] font-semibold text-amber-400">{stat.subtitle}</p>
+                    <p className="text-[10px] font-semibold text-amber-400">{stat.subtitle}</p>
                   )}
                 </div>
-                <div className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${stat.color} shadow-lg ${stat.glow}`}>
-                  <Icon size={20} className="text-white" />
+                <div className={`flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br ${stat.color} shadow-lg ${stat.glow}`}>
+                  <Icon size={16} className="text-white" />
                 </div>
               </div>
             </div>
@@ -568,40 +568,40 @@ function AdminOrders() {
               className="overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-900/80 transition hover:border-slate-700/60"
             >
               {/* Ligne du haut : numéro + statut + actions */}
-              <div className="flex flex-col gap-3 border-b border-slate-800/40 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="text-base font-black text-white">{order.orderNumber || order.id}</span>
+              <div className="flex flex-col gap-3 border-b border-slate-800/40 px-4 py-3 sm:px-6 sm:py-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-black text-white">{order.orderNumber || order.id}</span>
                   <StatusBadge status={order.status} />
-                  <span className="hidden text-[11px] text-slate-500 sm:inline">
+                  <span className="text-[10px] text-slate-500">
                     {new Date(order.createdAt).toLocaleDateString('fr-FR', {
                       day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit',
                     })}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <select
                     value={order.status}
                     onChange={(e) => updateOrderStatus(order.id, order.status, e.target.value)}
-                    className="rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs font-semibold text-white outline-none transition focus:border-[#e87722]"
+                    className="rounded-lg border border-slate-700 bg-slate-800 px-2 py-1.5 text-[10px] font-semibold text-white outline-none transition focus:border-[#e87722]"
                   >
                     {Object.entries(STATUS_CONFIG).map(([value, { label }]) => (
                       <option key={value} value={value}>{label}</option>
                     ))}
                   </select>
                   <div className="text-right space-y-0.5">
-                    <p className="text-[10px] font-semibold uppercase text-slate-500">Total</p>
-                    <p className="text-lg font-black text-[#e87722]">{formatPrice(order.total)}</p>
+                    <p className="text-[9px] font-semibold uppercase text-slate-500">Total</p>
+                    <p className="text-sm font-black text-[#e87722]">{formatPrice(order.total)}</p>
                   </div>
                 </div>
               </div>
 
               {/* Détails : client + articles */}
-              <div className="grid gap-4 px-6 py-4 md:grid-cols-2">
+              <div className="grid gap-4 px-4 py-3 sm:px-6 sm:py-4 md:grid-cols-2">
                 {/* Client */}
-                <div className="space-y-2 rounded-xl bg-slate-950/60 p-4">
+                <div className="space-y-2 rounded-xl bg-slate-950/60 p-3 sm:p-4">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Coordonnées client</p>
-                  <div className="space-y-1.5 text-xs text-slate-300">
+                  <div className="space-y-1.5 text-[11px] text-slate-300">
                     <p className="flex items-center gap-2">
                       <Users size={12} className="text-slate-500" />
                       <span className="font-semibold text-white">{order.customerName}</span>
@@ -627,32 +627,32 @@ function AdminOrders() {
                     )}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/10 px-3 py-1.5 text-[11px] font-bold text-emerald-400 transition hover:bg-emerald-500/20"
+                    className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/10 px-2 py-1.5 text-[10px] font-bold text-emerald-400 transition hover:bg-emerald-500/20"
                   >
-                    <ExternalLink size={11} />
+                    <ExternalLink size={10} />
                     Contacter sur WhatsApp
                   </a>
                 </div>
 
                 {/* Articles */}
-                <div className="space-y-2 rounded-xl bg-slate-950/60 p-4">
+                <div className="space-y-2 rounded-xl bg-slate-950/60 p-3 sm:p-4">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
                     Articles ({order.items?.length})
                   </p>
-                  <div className="space-y-2 max-h-44 overflow-y-auto pr-1">
+                  <div className="space-y-2 max-h-40 overflow-y-auto pr-1">
                     {order.items?.map((item) => (
-                      <div key={item.id} className="flex items-center gap-3">
+                      <div key={item.id} className="flex items-center gap-2">
                         {item.productImage && (
                           <img
                             src={resolveImageUrl(item.productImage)}
                             alt={item.productName}
                             loading="lazy"
                             decoding="async"
-                            className="h-9 w-9 flex-shrink-0 rounded-lg border border-slate-800 object-cover bg-slate-900"
+                            className="h-8 w-8 flex-shrink-0 rounded-lg border border-slate-800 object-cover bg-slate-900"
                           />
                         )}
                         <div className="flex-1 min-w-0">
-                          <p className="truncate text-xs font-semibold text-slate-200">{item.productName}</p>
+                          <p className="truncate text-[11px] font-semibold text-slate-200">{item.productName}</p>
                           <p className="text-[10px] text-slate-500">
                             x{item.quantity} × {formatPrice(item.productPrice)}
                           </p>
@@ -820,12 +820,10 @@ function AdminCustomers() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-slate-800 bg-slate-900/80 text-left text-slate-400">
-                <th className="px-5 py-3.5 font-medium">Client</th>
-                <th className="px-5 py-3.5 font-medium hidden sm:table-cell">Téléphone</th>
-                <th className="px-5 py-3.5 font-medium text-center">Commandes</th>
-                <th className="px-5 py-3.5 font-medium text-right">Total dépensé</th>
-                <th className="px-5 py-3.5 font-medium hidden md:table-cell">Inscrit le</th>
-                <th className="px-5 py-3.5 font-medium text-right">Actions</th>
+                <th className="px-4 py-3.5 font-medium">Client</th>
+                <th className="px-4 py-3.5 font-medium text-center hidden sm:table-cell">Commandes</th>
+                <th className="px-4 py-3.5 font-medium text-right hidden sm:table-cell">Total dépensé</th>
+                <th className="px-4 py-3.5 font-medium text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -834,55 +832,45 @@ function AdminCustomers() {
                   key={customer.id}
                   className="border-b border-slate-800/40 bg-slate-900/30 transition hover:bg-slate-800/30"
                 >
-                  <td className="px-5 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#e87722]/20 to-[#e87722]/5 text-xs font-black text-[#e87722] border border-[#e87722]/20">
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#e87722]/20 to-[#e87722]/5 text-xs font-black text-[#e87722] border border-[#e87722]/20 flex-shrink-0">
                         {(customer.firstName?.[0] || '?')}{(customer.lastName?.[0] || '')}
                       </div>
-                      <div>
-                        <p className="font-semibold text-white">{customer.firstName} {customer.lastName}</p>
-                        <p className="text-xs text-slate-500">{customer.email}</p>
+                      <div className="min-w-0">
+                        <p className="font-semibold text-white text-sm truncate">{customer.firstName} {customer.lastName}</p>
+                        <p className="text-[10px] text-slate-500 truncate">{customer.email}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-5 py-4 text-slate-400 hidden sm:table-cell">
-                    <a href={`tel:${customer.phone}`} className="transition hover:text-[#e87722]">
-                      {customer.phone || 'Non renseigné'}
-                    </a>
-                  </td>
-                  <td className="px-5 py-4 text-center">
-                    <span className="inline-flex items-center justify-center rounded-full bg-slate-800 px-2.5 py-0.5 text-xs font-bold text-slate-300">
+                  <td className="px-4 py-3 text-center hidden sm:table-cell">
+                    <span className="inline-flex items-center justify-center rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-bold text-slate-300">
                       {customer.orderCount}
                     </span>
                   </td>
-                  <td className="px-5 py-4 text-right font-bold text-[#e87722]">
+                  <td className="px-4 py-3 text-right font-bold text-[#e87722] text-sm hidden sm:table-cell">
                     {formatPrice(customer.totalSpent)}
                   </td>
-                  <td className="px-5 py-4 text-slate-500 hidden md:table-cell">
-                    {new Date(customer.createdAt).toLocaleDateString('fr-FR', {
-                      day: 'numeric', month: 'short', year: 'numeric',
-                    })}
-                  </td>
-                  <td className="px-5 py-4">
-                    <div className="flex items-center justify-end gap-2">
+                  <td className="px-4 py-3">
+                    <div className="flex items-center justify-end gap-1">
                       {customer.phone && (
                         <a
                           href={`https://wa.me/${customer.phone.replace(/\D/g, '')}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-lg p-2 text-slate-400 transition hover:bg-emerald-500/10 hover:text-emerald-400"
+                          className="rounded-lg p-1.5 text-slate-400 transition hover:bg-emerald-500/10 hover:text-emerald-400"
                           title="WhatsApp"
                         >
-                          <Phone size={15} />
+                          <Phone size={14} />
                         </a>
                       )}
                       <button
                         type="button"
                         onClick={() => openDetails(customer)}
-                        className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+                        className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-800 hover:text-white"
                         title="Voir le profil"
                       >
-                        <ExternalLink size={15} />
+                        <ExternalLink size={14} />
                       </button>
                     </div>
                   </td>
