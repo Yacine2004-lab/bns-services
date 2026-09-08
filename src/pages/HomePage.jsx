@@ -241,7 +241,7 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-9">
           {topCategories.map((sub) => {
             const Icon = sub.icon
             return (
@@ -252,7 +252,7 @@ function HomePage() {
             >
               {/* Conteneur photo réelle du produit */}
               <div className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[#0f2557]/8 blur-2xl transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
-              <div className="relative flex h-14 w-14 sm:h-16 sm:w-20 items-center justify-center overflow-hidden rounded-xl border-2 border-slate-200 bg-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#0f2557]/30">
+              <div className="relative flex h-16 w-16 sm:h-16 sm:w-20 items-center justify-center overflow-hidden rounded-xl border-2 border-slate-200 bg-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#0f2557]/30">
                   {sub.image ? (
                     <img
                       src={resolveImageUrl(sub.image)}
@@ -266,7 +266,7 @@ function HomePage() {
                 </div>
 
                 <div className="relative w-full space-y-1">
-                  <p className="line-clamp-2 text-[10px] font-bold leading-tight text-[#0f2557] transition-colors group-hover:text-[#1a3a8a] sm:text-xs">
+                  <p className="line-clamp-2 text-[11px] font-bold leading-tight text-[#0f2557] transition-colors group-hover:text-[#1a3a8a] sm:text-xs">
                     {sub.name}
                   </p>
                   <div className="flex items-center justify-center gap-1 text-[10px] font-semibold text-slate-400">
@@ -304,20 +304,20 @@ function HomePage() {
             <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 w-full">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 w-full">
         {promoProducts.map((product, index) => (
           (() => {
             const pricing = getActivePricing(product)
             return (
           <div
             key={product.id}
-            className={`group relative flex flex-row justify-between min-h-[200px] overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br ${promoStyles[index % promoStyles.length]} p-6 shadow-[0_8px_30px_rgba(11,31,58,0.05)] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(11,31,58,0.12)]`}
+            className={`group relative flex flex-col sm:flex-row justify-between min-h-[200px] overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br ${promoStyles[index % promoStyles.length]} p-6 shadow-[0_8px_30px_rgba(11,31,58,0.05)] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(11,31,58,0.12)]`}
           >
             <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-white/40 blur-2xl transition-opacity duration-500 group-hover:opacity-80" />
             <div className="pointer-events-none absolute -left-8 -bottom-8 h-24 w-24 rounded-full bg-[#e87722]/10 blur-xl" />
-            <div className="relative z-10 flex flex-1 gap-6 items-center">
+            <div className="relative z-10 flex flex-1 flex-col sm:flex-row gap-4 sm:gap-6 items-center">
               {/* Text */}
-              <div className="flex-1 flex flex-col justify-center">
+              <div className="flex-1 flex flex-col justify-center w-full">
                 <div className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#0f2557] px-2.5 py-0.5 shadow-sm">
                   <span className="text-[9px] font-black uppercase tracking-[0.15em] text-white">
                     {promoLabels[index % promoLabels.length]}
@@ -342,7 +342,7 @@ function HomePage() {
               </div>
 
               {/* Image */}
-              <div className="relative w-[200px] sm:w-[250px] lg:w-[300px] flex-shrink-0 flex items-center justify-center h-[160px] sm:h-[180px] lg:h-[200px]">
+              <div className="relative w-full sm:w-[200px] lg:w-[300px] flex-shrink-0 flex items-center justify-center h-[160px] sm:h-[180px] lg:h-[200px]">
                 <div className="absolute inset-0 bg-white/40 blur-xl rounded-full scale-75 transition-all duration-500 group-hover:scale-100 group-hover:bg-white/60" />
                 <Link to={`/produit/${product.slug}`} className="relative block w-full h-full flex items-center justify-center">
                   <img
