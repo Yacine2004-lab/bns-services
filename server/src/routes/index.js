@@ -8,6 +8,8 @@ import adminOrderRoutes from './adminOrderRoutes.js'
 import adminCustomerRoutes from './adminCustomerRoutes.js'
 import adminSettingsRoutes from './adminSettingsRoutes.js'
 import uploadRoutes from './uploadRoutes.js'
+import paymentRoutes from './paymentRoutes.js'
+import { env } from '../config/env.js'
 
 const apiRouter = Router()
 
@@ -20,6 +22,20 @@ apiRouter.get('/health', (req, res) => {
   })
 })
 
+// Route de vérification de la configuration des paiements
+apiRouter.get('/payment-config', (req, res) => {
+  const nabooConfigured = !!env.nabooApiKey && !!env.nabooWebhookSecret
+
+  res.status(200).json({
+    success: true,
+    nabooConfigured,
+    nabooApiKeyPresent: !!env.nabooApiKey,
+    nabooWebhookSecretPresent: !!env.nabooWebhookSecret,
+    nabooApiUrl: env.nabooApiUrl,
+    paymentMethodsAvailable: nabooConfigured ? ['WAVE', 'ORANGE_MONEY'] : [],
+  })
+})
+
 // Montage des routes métiers
 apiRouter.use('/auth', authRoutes)
 apiRouter.use('/admin', adminAuthRoutes)
@@ -27,6 +43,7 @@ apiRouter.use('/admin', adminOrderRoutes)
 apiRouter.use('/admin', adminCustomerRoutes)
 apiRouter.use('/admin', adminSettingsRoutes)
 apiRouter.use('/admin', uploadRoutes)
+apiRouter.use('/payments', paymentRoutes)
 apiRouter.use('/', categoryRoutes)
 apiRouter.use('/', productRoutes)
 apiRouter.use('/', orderRoutes)

@@ -11,6 +11,9 @@ export const env = {
   jwtAdminSecret: process.env.JWT_ADMIN_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
   databaseUrl: process.env.DATABASE_URL,
+  nabooApiKey: process.env.NABOOPAY_API_KEY || '',
+  nabooWebhookSecret: process.env.NABOOPAY_WEBHOOK_SECRET || '',
+  nabooApiUrl: process.env.NABOOPAY_API_URL || 'https://api.naboopay.com',
   // Configuration SMTP (optionnel — Ethereal utilisé en dev si absent)
   smtpHost: process.env.SMTP_HOST || '',
   smtpPort: parseInt(process.env.SMTP_PORT || '587', 10),
@@ -44,4 +47,12 @@ if (!env.googleClientId || !env.googleClientSecret) {
 if (!env.facebookClientId || !env.facebookClientSecret) {
   console.warn('⚠️  OAuth Facebook non configuré (FACEBOOK_CLIENT_ID / FACEBOOK_CLIENT_SECRET).')
   console.warn('   Le bouton "Continuer avec Facebook" sera désactivé sur la page de connexion.\n')
+}
+
+// Avertir (sans crasher) si NabooPay n'est pas configuré
+if (!env.nabooApiKey || !env.nabooWebhookSecret) {
+  console.warn('⚠️  NabooPay non configuré (NABOOPAY_API_KEY / NABOOPAY_WEBHOOK_SECRET).')
+  console.warn('   Les paiements Wave et Orange Money ne seront pas disponibles.\n')
+} else {
+  console.log('✅ NabooPay configuré - Paiements Wave et Orange Money activés.\n')
 }
