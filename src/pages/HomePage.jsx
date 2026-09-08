@@ -304,27 +304,27 @@ function HomePage() {
             <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-full">
+        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 w-full">
         {promoProducts.map((product, index) => (
           (() => {
             const pricing = getActivePricing(product)
             return (
           <div
             key={product.id}
-            className={`group relative flex flex-col justify-between min-h-[280px] overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br ${promoStyles[index % promoStyles.length]} p-6 shadow-[0_8px_30px_rgba(11,31,58,0.05)] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(11,31,58,0.12)]`}
+            className={`group relative flex flex-row justify-between min-h-[200px] overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br ${promoStyles[index % promoStyles.length]} p-6 shadow-[0_8px_30px_rgba(11,31,58,0.05)] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(11,31,58,0.12)]`}
           >
             <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-white/40 blur-2xl transition-opacity duration-500 group-hover:opacity-80" />
             <div className="pointer-events-none absolute -left-8 -bottom-8 h-24 w-24 rounded-full bg-[#e87722]/10 blur-xl" />
-            <div className="relative z-10 flex flex-1 gap-4">
+            <div className="relative z-10 flex flex-1 gap-6 items-center">
               {/* Text */}
-              <div className="flex-1 flex flex-col justify-start">
+              <div className="flex-1 flex flex-col justify-center">
                 <div className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#0f2557] px-2.5 py-0.5 shadow-sm">
                   <span className="text-[9px] font-black uppercase tracking-[0.15em] text-white">
                     {promoLabels[index % promoLabels.length]}
                   </span>
                 </div>
                 <Link to={`/produit/${product.slug}`} className="block">
-                  <h3 className="mt-1.5 text-lg font-black leading-snug text-[#0f2557] transition hover:text-[#e87722] sm:text-xl line-clamp-3">
+                  <h3 className="mt-1.5 text-lg font-black leading-snug text-[#0f2557] transition hover:text-[#e87722] sm:text-xl line-clamp-2">
                     {product.name}
                   </h3>
                 </Link>
@@ -342,7 +342,7 @@ function HomePage() {
               </div>
 
               {/* Image */}
-              <div className="relative w-[160px] sm:w-[200px] lg:w-[220px] flex-shrink-0 flex items-center justify-center h-[180px] sm:h-[220px] lg:h-[260px]">
+              <div className="relative w-[200px] sm:w-[250px] lg:w-[300px] flex-shrink-0 flex items-center justify-center h-[160px] sm:h-[180px] lg:h-[200px]">
                 <div className="absolute inset-0 bg-white/40 blur-xl rounded-full scale-75 transition-all duration-500 group-hover:scale-100 group-hover:bg-white/60" />
                 <Link to={`/produit/${product.slug}`} className="relative block w-full h-full flex items-center justify-center">
                   <img
@@ -355,7 +355,7 @@ function HomePage() {
             </div>
 
             {/* Boutons en bas */}
-            <div className="relative z-10 mt-5 flex items-center justify-between gap-3 border-t border-[#0f2557]/10 pt-4">
+            <div className="relative z-10 flex items-center justify-between gap-3 border-t border-[#0f2557]/10 pt-4 mt-4">
               <button
                 type="button"
                 onClick={() => handleQuickBuy(product)}
