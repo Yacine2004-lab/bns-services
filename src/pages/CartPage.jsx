@@ -73,7 +73,7 @@ function CartPage() {
                   alt={item.name}
                   loading="lazy"
                   decoding="async"
-                  className="h-32 w-32 rounded-2xl object-cover sm:h-40 sm:w-40"
+                  className="h-32 w-32 rounded-2xl object-contain bg-slate-50 sm:h-40 sm:w-40"
                 />
 
                 <div className="flex flex-1 flex-col justify-between gap-4">

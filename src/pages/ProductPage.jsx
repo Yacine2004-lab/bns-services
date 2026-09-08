@@ -91,7 +91,7 @@ function ProductPage() {
             <img
               src={resolveImageUrl(selectedImage || product.image)}
               alt={product.name}
-              className="h-96 w-full rounded-[20px] object-cover"
+              className="h-96 w-full rounded-[20px] object-contain bg-slate-50"
             />
             {pricing?.isPromoActive && (
               <span className="absolute left-10 top-10 rounded-full bg-[#1a3a8a] px-3 py-1 text-sm font-black text-white">

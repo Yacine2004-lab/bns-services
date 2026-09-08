@@ -262,14 +262,14 @@ function CatalogPage() {
                     key={product.id}
                     className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(11,31,58,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#0f2557]/30 hover:shadow-[0_22px_44px_rgba(11,31,58,0.12)]"
                   >
-                    <div className="relative">
+                    <div className="relative bg-white/50">
                       <Link to={`/produit/${product.slug}`} className="block">
                         <img
                           src={resolveImageUrl(product.image)}
                           alt={product.name}
                           loading="lazy"
                           decoding="async"
-                          className="h-64 sm:h-72 lg:h-80 w-full object-cover transition group-hover:scale-105"
+                          className="h-64 sm:h-72 lg:h-80 w-full object-contain p-4 transition group-hover:scale-105"
                         />
                       </Link>
                       {product.featured && (

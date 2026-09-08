@@ -119,7 +119,7 @@ function WishlistPage() {
                 alt={product.name}
                 loading="lazy"
                 decoding="async"
-                className="h-48 w-full object-cover transition duration-500 group-hover:scale-110"
+                className="h-48 w-full object-contain bg-slate-50 transition duration-500 group-hover:scale-110"
               />
             </Link>
 

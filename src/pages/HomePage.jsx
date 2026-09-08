@@ -342,13 +342,13 @@ function HomePage() {
               </div>
 
               {/* Image */}
-              <div className="relative w-[140px] sm:w-[180px] lg:w-[200px] flex-shrink-0 flex items-center justify-center">
+              <div className="relative w-[160px] sm:w-[200px] lg:w-[220px] flex-shrink-0 flex items-center justify-center">
                 <div className="absolute inset-0 bg-white/40 blur-xl rounded-full scale-75 transition-all duration-500 group-hover:scale-100 group-hover:bg-white/60" />
                 <Link to={`/produit/${product.slug}`} className="relative block w-full">
                   <img
                     src={resolveImageUrl(product.image)}
                     alt={product.name}
-                    className="max-h-[180px] sm:max-h-[220px] lg:max-h-[250px] w-full object-contain drop-shadow-lg transition duration-500 group-hover:scale-110 group-hover:-rotate-3"
+                    className="max-h-[200px] sm:max-h-[240px] lg:max-h-[280px] w-full object-contain drop-shadow-lg transition duration-500 group-hover:scale-110 group-hover:-rotate-3"
                   />
                 </Link>
               </div>
