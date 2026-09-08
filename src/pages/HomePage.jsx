@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight, ChevronLeft, ChevronRight, Zap, Plus, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Zap, Plus, CheckCircle2, ShieldCheck, Truck, Headphones } from 'lucide-react'
 import { useProducts } from '../hooks/useProducts'
 import { useCart } from '../context/CartContext'
 import { getActivePricing } from '../lib/pricing'
@@ -102,15 +102,15 @@ function HomePage() {
   const currentHero = heroSlides[heroIndex]
 
   return (
-    <div className="space-y-16 pb-10">
+    <div className="space-y-20 pb-10">
       {/* Toast de confirmation */}
       {addedToast && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0f2557] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
-          <CheckCircle2 size={20} className="text-[#e87722]" />
+          <CheckCircle2 size={20} className="text-emerald-400" />
           <span className="text-sm font-semibold">Produit ajouté au panier !</span>
           <Link
             to="/panier"
-            className="rounded-lg bg-[#e87722] px-2.5 py-1 text-xs font-bold text-[#0f2557] hover:bg-white transition"
+            className="rounded-lg bg-white px-2.5 py-1 text-xs font-bold text-[#0f2557] hover:bg-slate-100 transition"
           >
             Voir
           </Link>
@@ -119,36 +119,42 @@ function HomePage() {
 
       {/* 1. Hero carousel */}
       {currentHero && (
-        <section className="relative overflow-hidden rounded-[32px] shadow-[0_20px_60px_rgba(15,37,87,0.2)]">
+        <section className="relative isolate overflow-hidden rounded-[28px] border border-white/15 bg-[#091a3d] shadow-[0_24px_70px_rgba(15,37,87,0.28)] sm:rounded-[36px]">
           {/* Magnifique photo de fond */}
-          <div 
-            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
+          <div
+            className="absolute inset-0 z-0 scale-105 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=2000&q=80)' }}
           />
-          {/* Overlay sombre/dégradé pour rendre le texte super lisible */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-950/95 via-slate-900/80 to-slate-900/40 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_78%_42%,rgba(232,119,34,0.34),transparent_24%),linear-gradient(110deg,rgba(4,16,42,0.98)_0%,rgba(11,29,68,0.9)_48%,rgba(27,16,72,0.58)_100%)]" />
+          <div className="pointer-events-none absolute -right-24 top-1/2 z-0 h-80 w-80 -translate-y-1/2 rounded-full border border-white/10 bg-[#e87722]/10 blur-2xl" />
 
-          <div className="relative z-10 grid items-center gap-8 p-8 sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-14">
-            <div className="space-y-6">
-              {/* Catégorie et Prix avec un joli style au lieu des tirets */}
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white bg-white/10 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
+          <div className="relative z-10 grid items-center gap-4 p-5 sm:min-h-[470px] sm:gap-8 sm:p-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 lg:p-14">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-center gap-2 text-[8px] font-black uppercase tracking-[0.16em] text-slate-300 sm:gap-3 sm:text-[10px] sm:tracking-[0.2em]">
+                <span className="h-px w-8 bg-slate-400/60" />
+                <span>La technologie qui avance avec vous</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md sm:text-xs">
                   {currentHero.subCategory}
                 </span>
-                <span className="px-4 py-1.5 text-xs sm:text-sm font-black text-white bg-[#e87722] rounded-full border border-[#e87722]/30 shadow-[0_0_15px_rgba(232,119,34,0.4)]">
+                <span className="rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-xs font-black text-white backdrop-blur-md sm:text-sm">
                   {formatPrice(currentHero.price)}
                 </span>
               </div>
 
-              <h1 className="text-4xl font-black leading-[1.1] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.6rem] drop-shadow-lg">
+              <h1 className="max-w-xl text-[2.15rem] font-black leading-[1.02] tracking-[-0.04em] text-white drop-shadow-lg sm:text-5xl lg:text-[4.1rem]">
                 {currentHero.name}
               </h1>
+              <p className="max-w-md text-xs leading-5 text-slate-200/80 sm:text-base sm:leading-6">
+                Des équipements fiables, sélectionnés pour rendre chaque journée de travail plus simple et plus performante.
+              </p>
               
-              <div className="flex flex-wrap items-center gap-4 pt-4">
+              <div className="flex flex-wrap items-center gap-2 pt-2 sm:gap-4 sm:pt-4">
                 <button
                   type="button"
                   onClick={() => handleQuickBuy(currentHero)}
-                  className="group/btn inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold text-white shadow-[0_8px_25px_rgba(232,119,34,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_35px_rgba(232,119,34,0.5)] active:scale-95"
+                  className="group/btn inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#e87722] px-4 py-3 text-[10px] font-black text-white shadow-[0_8px_25px_rgba(232,119,34,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f09050] hover:shadow-[0_12px_35px_rgba(232,119,34,0.5)] active:scale-95 sm:gap-2 sm:px-8 sm:py-4 sm:text-sm"
                 >
                   <Zap size={18} className="fill-white transition-transform duration-300 group-hover/btn:-rotate-12 group-hover/btn:scale-110" />
                   Commander maintenant
@@ -156,14 +162,14 @@ function HomePage() {
                 <button
                   type="button"
                   onClick={() => handleQuickAdd(currentHero)}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:border-white/40 active:scale-95"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-[10px] font-bold text-white backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/20 active:scale-95 sm:gap-2 sm:px-8 sm:py-4 sm:text-sm"
                 >
                   <Plus size={18} />
                   Panier
                 </button>
                 <Link
                   to={`/produit/${currentHero.slug}`}
-                  className="pl-2 text-sm font-bold text-slate-300 transition-colors hover:text-white underline-offset-4 hover:underline"
+                  className="pl-1 text-[11px] font-bold text-slate-300 transition-colors hover:text-white hover:underline sm:pl-2 sm:text-sm"
                 >
                   En savoir plus →
                 </Link>
@@ -171,21 +177,21 @@ function HomePage() {
             </div>
 
             {/* Conteneur image avec halo de lumière */}
-            <div className="relative flex items-center justify-center py-6">
+            <div className="relative flex items-center justify-center py-1 sm:py-4 lg:py-6">
               {/* Halo lumineux derrière l'image */}
               <div className="absolute inset-0 bg-[#e87722]/15 blur-[80px] rounded-full scale-75" />
               <img
                 key={currentHero.id}
                 src={resolveImageUrl(currentHero.image)}
                 alt={currentHero.name}
-                className="relative z-10 max-h-[360px] sm:max-h-[420px] w-full object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-105 hover:-translate-y-2"
+                className="relative z-10 max-h-[190px] w-full object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.5)] transition-all duration-700 hover:-translate-y-2 hover:scale-105 sm:max-h-[360px] lg:max-h-[410px]"
               />
             </div>
           </div>
 
           {/* Pagination */}
           {heroSlides.length > 1 && (
-            <div className="relative z-10 flex justify-center gap-3 pb-8">
+            <div className="relative z-10 flex justify-center gap-3 pb-7">
               {heroSlides.map((_, i) => (
                 <button
                   key={i}
@@ -204,6 +210,24 @@ function HomePage() {
 
         </section>
       )}
+
+      <section className="grid gap-px overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-200/80 shadow-sm sm:grid-cols-3">
+        {[
+          { icon: Truck, title: 'Livraison suivie', text: 'Recevez vos achats en toute sérénité.' },
+          { icon: ShieldCheck, title: 'Paiement sécurisé', text: 'Des transactions protégées à chaque étape.' },
+          { icon: Headphones, title: 'Conseil personnalisé', text: 'Une équipe disponible avant et après votre achat.' },
+        ].map(({ icon: Icon, title, text }) => (
+          <div key={title} className="flex items-center gap-4 bg-white/80 px-5 py-4 backdrop-blur-sm sm:px-6">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0f2557] text-[#f09050]">
+              <Icon size={19} />
+            </div>
+            <div>
+              <p className="text-sm font-black text-[#0f2557]">{title}</p>
+              <p className="mt-0.5 text-xs leading-5 text-slate-500">{text}</p>
+            </div>
+          </div>
+        ))}
+      </section>
 
 
       {/* 2. Categories populaires avec photos reelles */}
@@ -224,11 +248,11 @@ function HomePage() {
               <Link
                 key={sub.id}
                 to={`/catalogue?subcategory=${sub.id}`}
-                className="group relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-slate-50 to-white p-4 text-center shadow-lg shadow-slate-200/50 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#e87722]/15"
-              >
-                {/* Conteneur photo réelle du produit */}
-                <div className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[#e87722]/10 blur-2xl transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
-                <div className="relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center overflow-hidden rounded-2xl border-2 border-slate-200 bg-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#e87722]/40">
+                className="group relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-slate-50 to-white p-4 text-center shadow-lg shadow-slate-200/50 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#0f2557]/10"
+            >
+              {/* Conteneur photo réelle du produit */}
+              <div className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[#0f2557]/8 blur-2xl transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
+              <div className="relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center overflow-hidden rounded-2xl border-2 border-slate-200 bg-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:border-[#0f2557]/30">
                   {sub.image ? (
                     <img
                       src={resolveImageUrl(sub.image)}
@@ -242,7 +266,7 @@ function HomePage() {
                 </div>
 
                 <div className="relative w-full space-y-1">
-                  <p className="line-clamp-2 text-xs font-bold leading-tight text-[#0f2557] transition-colors group-hover:text-[#e87722]">
+                  <p className="line-clamp-2 text-xs font-bold leading-tight text-[#0f2557] transition-colors group-hover:text-[#1a3a8a]">
                     {sub.name}
                   </p>
                   <div className="flex items-center justify-center gap-1 text-[10px] font-semibold text-slate-400">
@@ -251,7 +275,7 @@ function HomePage() {
                   </div>
                 </div>
 
-                <div className="absolute bottom-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#e87722] text-white opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-1">
+                <div className="absolute bottom-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#0f2557] text-white opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-1">
                   <ArrowRight size={10} />
                 </div>
               </Link>
@@ -264,8 +288,8 @@ function HomePage() {
       <section className="space-y-8">
         <div className="flex flex-col items-center text-center space-y-3 sm:flex-row sm:justify-between sm:text-left sm:items-end">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#e87722]/20 bg-gradient-to-r from-[#e87722]/10 via-white to-[#0f2557]/5 px-4 py-1.5 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#e87722] shadow-[0_0_8px_rgba(232,119,34,0.6)]" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#0f2557]/15 bg-gradient-to-r from-[#0f2557]/8 via-white to-[#1a3a8a]/5 px-4 py-1.5 shadow-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#0f2557]" />
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0f2557]">Selection du moment</span>
             </div>
             <h2 className="text-3xl font-black tracking-[-0.03em] text-[#0f2557] sm:text-4xl">
@@ -274,7 +298,7 @@ function HomePage() {
           </div>
           <Link
             to="/catalogue"
-            className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-xs font-bold text-[#0f2557] shadow-sm transition-all hover:border-[#e87722] hover:bg-[#e87722]/5 hover:shadow-md"
+            className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-xs font-bold text-[#0f2557] shadow-sm transition-all hover:border-[#0f2557] hover:bg-[#0f2557]/5 hover:shadow-md"
           >
             Voir tout le catalogue
             <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -294,7 +318,7 @@ function HomePage() {
             <div className="relative z-10 flex flex-1 gap-4">
               {/* Text */}
               <div className="flex-1 flex flex-col justify-start">
-                <div className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-2.5 py-0.5 shadow-md shadow-[#e87722]/20">
+                <div className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#0f2557] px-2.5 py-0.5 shadow-sm">
                   <span className="text-[9px] font-black uppercase tracking-[0.15em] text-white">
                     {promoLabels[index % promoLabels.length]}
                   </span>
@@ -305,15 +329,15 @@ function HomePage() {
                   </h3>
                 </Link>
                 {pricing.isPromoActive && (
-                  <span className="mt-2 inline-flex w-fit rounded-full bg-[#e87722] px-2 py-0.5 text-[10px] font-black text-[#0f2557]">
+                  <span className="mt-2 inline-flex w-fit rounded-full bg-[#1a3a8a] px-2 py-0.5 text-[10px] font-black text-white">
                     -{pricing.promoPercentage}%
                   </span>
                 )}
-                <div className="mt-2 flex items-baseline gap-1.5">
-                  <span className="text-lg font-black text-[#0f2557] sm:text-xl">
-                    {pricing.isPromoActive && <span className="mr-1 text-xs text-slate-500 line-through">{formatPrice(pricing.originalPrice)}</span>}
+                <div className="mt-2 flex items-baseline gap-3">
+                  <span className="text-2xl font-black text-[#0f2557] sm:text-3xl">
                     {formatPrice(pricing.price)}
                   </span>
+                  {pricing.isPromoActive && <span className="text-sm text-slate-400 line-through whitespace-nowrap">{formatPrice(pricing.originalPrice)}</span>}
                 </div>
               </div>
 
@@ -342,7 +366,7 @@ function HomePage() {
               </button>
               <Link
                 to={`/produit/${product.slug}`}
-                className="group inline-flex items-center gap-1 text-xs font-bold text-[#0f2557] transition-colors hover:text-[#e87722] whitespace-nowrap"
+                className="group inline-flex items-center gap-1 text-xs font-bold text-[#0f2557] transition-colors hover:text-[#1a3a8a] whitespace-nowrap"
               >
                 Détails
                 <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
@@ -359,8 +383,8 @@ function HomePage() {
       <section className="space-y-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#e87722]/20 bg-gradient-to-r from-[#e87722]/10 via-white to-[#0f2557]/5 px-4 py-1.5 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#e87722] shadow-[0_0_8px_rgba(232,119,34,0.6)]" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#0f2557]/15 bg-gradient-to-r from-[#0f2557]/8 via-white to-[#1a3a8a]/5 px-4 py-1.5 shadow-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#0f2557]" />
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0f2557]">Le meilleur de BNS</span>
             </div>
             <h2 className="text-3xl font-black tracking-[-0.03em] text-[#0f2557] sm:text-4xl">
@@ -383,7 +407,7 @@ function HomePage() {
                 >
                   {tab.label}
                   {activeTab === tab.id && (
-                    <span className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-[#e87722]" />
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-[#0f2557]" />
                   )}
                 </button>
               ))}
@@ -394,7 +418,7 @@ function HomePage() {
                 type="button"
                 onClick={() => scrollTrending('left')}
                 aria-label="Produits précédents"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-[#0f2557] backdrop-blur-sm transition hover:border-[#e87722]/40 hover:bg-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-[#0f2557] backdrop-blur-sm transition hover:border-[#0f2557]/40 hover:bg-white"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -402,7 +426,7 @@ function HomePage() {
                 type="button"
                 onClick={() => scrollTrending('right')}
                 aria-label="Produits suivants"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-[#0f2557] backdrop-blur-sm transition hover:border-[#e87722]/40 hover:bg-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-[#0f2557] backdrop-blur-sm transition hover:border-[#0f2557]/40 hover:bg-white"
               >
                 <ChevronRight size={20} />
               </button>
@@ -417,13 +441,13 @@ function HomePage() {
           {tabProducts.map((product) => (
             <div
               key={product.id}
-              className="group relative flex w-[230px] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl border border-white/60 bg-white/95 shadow-md shadow-slate-200/50 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-[#e87722]/40 hover:shadow-[0_20px_45px_rgba(232,119,34,0.18)] sm:w-[250px]"
+              className="group relative flex w-[230px] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl border border-white/60 bg-white/95 shadow-md shadow-slate-200/50 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-[#0f2557]/30 hover:shadow-[0_20px_45px_rgba(15,37,87,0.12)] sm:w-[250px]"
             >
-              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#e87722]/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#0f2557]/8 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <Link to={`/produit/${product.slug}`} className="block">
                 <div className="relative flex h-48 items-center justify-center bg-[#f8fafc] p-4">
                   {product.featured && (
-                    <span className="absolute left-3 top-3 rounded-md bg-[#e87722] px-2 py-0.5 text-[10px] font-black uppercase text-[#0f2557]">
+                    <span className="absolute left-3 top-3 rounded-md bg-[#0f2557] px-2 py-0.5 text-[10px] font-black uppercase text-white">
                       Vedette
                     </span>
                   )}
@@ -444,7 +468,7 @@ function HomePage() {
                   </p>
                   <Link
                     to={`/produit/${product.slug}`}
-                    className="line-clamp-1 block text-sm font-bold text-[#0f2557] transition hover:text-[#e87722]"
+                    className="line-clamp-1 block text-sm font-bold text-[#0f2557] transition hover:text-[#1a3a8a]"
                   >
                     {product.name}
                   </Link>
@@ -462,7 +486,7 @@ function HomePage() {
                   <button
                     type="button"
                     onClick={() => handleQuickAdd(product)}
-                    className="group/add w-full flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-1.5 text-xs font-bold text-slate-700 transition-all duration-300 hover:border-[#e87722] hover:bg-[#e87722]/5 active:scale-[0.97]"
+                    className="group/add w-full flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-1.5 text-xs font-bold text-slate-700 transition-all duration-300 hover:border-[#0f2557] hover:bg-[#0f2557]/5 active:scale-[0.97]"
                   >
                     <Plus size={13} className="transition-transform duration-300 group-hover/add:scale-125" />
                     Panier

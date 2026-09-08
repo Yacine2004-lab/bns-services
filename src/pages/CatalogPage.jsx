@@ -171,7 +171,7 @@ function CatalogPage() {
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}
-              className="lg:hidden inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0f2557] transition hover:border-[#e87722]/40 hover:bg-[#fff7eb]"
+              className="lg:hidden inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0f2557] transition hover:border-[#0f2557]/40 hover:bg-[#eef2ff]"
             >
               <Menu size={16} />
               Catégories
@@ -203,7 +203,7 @@ function CatalogPage() {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Rechercher un produit..."
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#e87722] focus:bg-white"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#0f2557] focus:bg-white"
                 />
               </div>
 
@@ -215,7 +215,7 @@ function CatalogPage() {
                   id="catalog-sort"
                   value={sortBy}
                   onChange={(event) => setSortBy(event.target.value)}
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#e87722] focus:bg-white"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#0f2557] focus:bg-white"
                 >
                   {sortOptions.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -236,11 +236,11 @@ function CatalogPage() {
           {/* Toast de confirmation d'ajout */}
           {addedToast && (
             <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0f2557] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
-              <CheckCircle2 size={20} className="text-[#e87722]" />
+              <CheckCircle2 size={20} className="text-emerald-400" />
               <span className="text-sm font-semibold">Produit ajouté au panier !</span>
               <Link
                 to="/panier"
-                className="rounded-lg bg-[#e87722] px-2.5 py-1 text-xs font-bold text-[#0f2557] hover:bg-white transition"
+                className="rounded-lg bg-white px-2.5 py-1 text-xs font-bold text-[#0f2557] hover:bg-slate-100 transition"
               >
                 Voir
               </Link>
@@ -260,7 +260,7 @@ function CatalogPage() {
                 return (
                   <div
                     key={product.id}
-                    className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(11,31,58,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#e87722]/40 hover:shadow-[0_22px_44px_rgba(11,31,58,0.12)]"
+                    className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_40px_rgba(11,31,58,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#0f2557]/30 hover:shadow-[0_22px_44px_rgba(11,31,58,0.12)]"
                   >
                     <div className="relative">
                       <Link to={`/produit/${product.slug}`} className="block">
@@ -273,12 +273,12 @@ function CatalogPage() {
                         />
                       </Link>
                       {product.featured && (
-                        <span className="absolute left-3 top-3 rounded-full bg-[#e87722] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#0f2557]">
+                        <span className="absolute left-3 top-3 rounded-full bg-[#0f2557] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white">
                           Top Vente
                         </span>
                       )}
                       {pricing.isPromoActive && (
-                        <span className="absolute left-3 top-12 rounded-full bg-[#e87722] px-2.5 py-1 text-[10px] font-black text-[#0f2557]">
+                        <span className="absolute left-3 top-12 rounded-full bg-[#1a3a8a] px-2.5 py-1 text-[10px] font-black text-white">
                           -{pricing.promoPercentage}%
                         </span>
                       )}
@@ -305,7 +305,7 @@ function CatalogPage() {
                         </p>
                         <Link
                           to={`/produit/${product.slug}`}
-                          className="mt-1 block text-lg font-black tracking-tight text-[#0f2557] transition hover:text-[#e87722]"
+                          className="mt-1 block text-lg font-black tracking-tight text-[#0f2557] transition hover:text-[#1a3a8a]"
                         >
                           {product.name}
                         </Link>
@@ -315,12 +315,12 @@ function CatalogPage() {
                       </div>
 
                       <div className="pt-2 border-t border-slate-100">
-                        <div className="mb-3 flex items-baseline justify-between">
-                          <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Prix</p>
-                          <div className="text-right">
-                            {pricing.isPromoActive && <p className="text-xs text-slate-400 line-through">{formatPrice(pricing.originalPrice)}</p>}
-                            <p className="text-2xl font-black tracking-tight text-[#0f2557]">{formatPrice(pricing.price)}</p>
+                        <div className="mb-3 flex items-baseline gap-3">
+                          <div>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-1">Prix</p>
+                            <p className="text-3xl font-black tracking-tight text-[#0f2557]">{formatPrice(pricing.price)}</p>
                           </div>
+                          {pricing.isPromoActive && <p className="text-sm text-slate-400 line-through whitespace-nowrap self-end mt-2">{formatPrice(pricing.originalPrice)}</p>}
                         </div>
 
                         {/* ACTIONS DIRECTES : ACHETER & AJOUTER PANIER */}
@@ -337,7 +337,7 @@ function CatalogPage() {
                             <button
                               type="button"
                               onClick={(e) => handleQuickAdd(product, e)}
-                              className="group/add flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-2 text-xs font-bold text-[#0f2557] transition-all duration-300 hover:border-[#e87722] hover:bg-[#e87722]/5 active:scale-[0.97]"
+                              className="group/add flex items-center justify-center gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-2 text-xs font-bold text-[#0f2557] transition-all duration-300 hover:border-[#0f2557] hover:bg-[#0f2557]/5 active:scale-[0.97]"
                             >
                               <Plus size={14} className="transition-transform duration-300 group-hover/add:scale-125" />
                               <span>Panier</span>

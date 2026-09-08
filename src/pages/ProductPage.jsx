@@ -42,7 +42,7 @@ function ProductPage() {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-2 text-[#0f2557] hover:text-[#e87722]"
+          className="inline-flex items-center gap-2 text-[#0f2557] hover:text-[#1a3a8a]"
         >
           <ArrowLeft size={18} />
           Retour
@@ -94,7 +94,7 @@ function ProductPage() {
               className="h-96 w-full rounded-[20px] object-cover"
             />
             {pricing?.isPromoActive && (
-              <span className="absolute left-10 top-10 rounded-full bg-[#e87722] px-3 py-1 text-sm font-black text-[#0f2557]">
+              <span className="absolute left-10 top-10 rounded-full bg-[#1a3a8a] px-3 py-1 text-sm font-black text-white">
                 -{pricing.promoPercentage}%
               </span>
             )}
@@ -107,7 +107,7 @@ function ProductPage() {
                     type="button"
                     onClick={() => setSelectedImage(image)}
                     className={`overflow-hidden rounded-xl border-2 transition ${
-                      selectedImage === image ? 'border-[#e87722]' : 'border-slate-200'
+                      selectedImage === image ? 'border-[#0f2557]' : 'border-slate-200'
                     }`}
                   >
                     <img src={resolveImageUrl(image)} alt={`${product.name} ${index + 1}`} loading="lazy" decoding="async" className="h-20 w-full object-cover" />
@@ -135,10 +135,12 @@ function ProductPage() {
 
             <div className="mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Prix</p>
-              <p className="mt-2 text-4xl font-black tracking-[-0.06em] text-[#0f2557]">
-                {pricing.isPromoActive && <span className="mr-3 text-lg font-semibold text-slate-400 line-through">{formatPrice(pricing.originalPrice)}</span>}
-                {formatPrice(pricing.price)}
-              </p>
+              <div className="mt-2 flex items-baseline gap-3 flex-wrap">
+                <p className="text-5xl font-black tracking-[-0.06em] text-[#0f2557]">
+                  {formatPrice(pricing.price)}
+                </p>
+                {pricing.isPromoActive && <p className="text-lg font-semibold text-slate-400 line-through whitespace-nowrap">{formatPrice(pricing.originalPrice)}</p>}
+              </div>
             </div>
 
             <div className="mt-6 space-y-4">

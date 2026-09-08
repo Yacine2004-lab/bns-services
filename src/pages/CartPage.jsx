@@ -90,9 +90,9 @@ function CartPage() {
                   <div className="flex items-end justify-between">
                     <div>
                       <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Prix unitaire</p>
-                      <p className="mt-1 text-2xl font-black text-[#0f2557]">
-                        {item.originalPrice && item.originalPrice > item.price && <span className="mr-2 text-sm font-semibold text-slate-400 line-through">{formatPrice(item.originalPrice)}</span>}
+                      <p className="mt-1 text-3xl font-black text-[#0f2557]">
                         {formatPrice(item.price)}
+                        {item.originalPrice && item.originalPrice > item.price && <span className="ml-2 text-sm font-semibold text-slate-400 line-through">{formatPrice(item.originalPrice)}</span>}
                       </p>
                     </div>
 

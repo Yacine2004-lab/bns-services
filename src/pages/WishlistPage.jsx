@@ -31,7 +31,7 @@ function WishlistPage() {
               <Heart size={11} className="fill-current" /> Mes favoris
             </span>
             <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
-              Vos coups de <span className="text-[#e87722]">cœur</span>
+              Vos coups de <span className="text-[#f09050]">cœur</span>
             </h1>
             <p className="mt-2 max-w-lg text-sm text-white/80 sm:text-base">
               Retrouvez ici tous les produits que vous avez ajoutés à vos favoris.
@@ -87,7 +87,7 @@ function WishlistPage() {
               <Heart size={11} className="fill-current text-red-300" /> Mes favoris
             </span>
             <h1 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">
-              Vos coups de <span className="text-[#e87722]">cœur</span>
+              Vos coups de <span className="text-[#f09050]">cœur</span>
             </h1>
             <p className="mt-1 text-sm text-white/80 sm:text-base">
               {wishlist.length} produit{wishlist.length > 1 ? 's' : ''} sauvegardé{wishlist.length > 1 ? 's' : ''}
@@ -128,13 +128,13 @@ function WishlistPage() {
                 <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
                   {product.subCategory}
                 </p>
-                <h3 className="mt-1.5 line-clamp-2 text-sm font-black text-[#0f2557] transition hover:text-[#e87722]">
+                <h3 className="mt-1.5 line-clamp-2 text-sm font-black text-[#0f2557] transition hover:text-[#1a3a8a]">
                   {product.name}
                 </h3>
               </Link>
 
               <div className="flex items-center justify-between border-t border-slate-100 pt-3">
-                <p className="text-lg font-black text-[#0f2557]">{formatPrice(product.price)}</p>
+                <p className="text-2xl font-black text-[#0f2557]">{formatPrice(product.price)}</p>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">FCFA</span>
               </div>
 

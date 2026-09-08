@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   X,
   Plus,
@@ -75,7 +75,7 @@ export default function CartDrawer() {
           {/* 1. Header du Panier */}
           <div className="flex items-center justify-between border-b border-slate-100 px-6 py-5 bg-gradient-to-r from-slate-50 to-white">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#e87722] to-[#e87722] text-[#0f2557] shadow-md shadow-[#e87722]/20">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0f2557] text-white shadow-md shadow-[#0f2557]/20">
                 <ShoppingBag size={20} />
               </div>
               <div>
@@ -119,7 +119,7 @@ export default function CartDrawer() {
                   }}
                   className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0f2557] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1a3a8a] hover:shadow-lg"
                 >
-                  <Sparkles size={16} className="text-[#e87722]" />
+                  <Sparkles size={16} className="text-slate-300" />
                   <span>Découvrir le catalogue</span>
                 </button>
               </div>
@@ -148,12 +148,12 @@ export default function CartDrawer() {
                           <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                             {item.subCategory || item.category || 'Accessoire'}
                           </p>
-                          <h4 className="text-sm font-bold text-[#0f2557] line-clamp-1 group-hover:text-[#e87722] transition-colors">
+                          <h4 className="text-sm font-bold text-[#0f2557] line-clamp-1 group-hover:text-[#1a3a8a] transition-colors">
                             {item.name}
                           </h4>
                           <p className="text-xs font-semibold text-slate-500 mt-0.5">
-                            {item.originalPrice && item.originalPrice > item.price && <span className="mr-1 line-through">{formatPrice(item.originalPrice)}</span>}
-                            {formatPrice(item.price)} / unité
+                            <span className="text-base font-bold text-[#0f2557]">{formatPrice(item.price)}</span> / unité
+                            {item.originalPrice && item.originalPrice > item.price && <span className="ml-1.5 text-xs line-through text-slate-400">{formatPrice(item.originalPrice)}</span>}
                           </p>
                         </div>
 
@@ -238,7 +238,7 @@ export default function CartDrawer() {
               {/* Message rassurant */}
               <div className="flex items-center justify-center gap-4 pt-1 text-[11px] font-semibold text-slate-500">
                 <span className="flex items-center gap-1">
-                  <Truck size={14} className="text-[#e87722]" />
+                  <Truck size={14} className="text-[#0f2557]" />
                   Livraison rapide au Sénégal
                 </span>
                 <span>•</span>
