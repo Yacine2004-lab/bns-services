@@ -25,15 +25,15 @@ function WhatsAppButton() {
 
 function Layout() {
   return (
-    <div className="min-h-screen text-slate-900 flex flex-col justify-between">
-      <div>
+    <div className="min-h-screen text-slate-900 flex flex-col justify-between w-full overflow-x-hidden">
+      <div className="w-full">
         <Header />
-        <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 w-full">
           <Outlet />
         </main>
       </div>
       <Footer />
-      
+
       {/* Bouton WhatsApp flottant */}
       <WhatsAppButton />
 

@@ -102,7 +102,7 @@ function HomePage() {
   const currentHero = heroSlides[heroIndex]
 
   return (
-    <div className="space-y-20 pb-10">
+    <div className="space-y-20 pb-10 w-full overflow-x-hidden">
       {/* Toast de confirmation */}
       {addedToast && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-[#0f2557] px-5 py-3.5 text-white shadow-2xl transition-all animate-bounce">
@@ -285,7 +285,7 @@ function HomePage() {
       </section>
 
       {/* 3. Grille promotions (bento 3×2) - version premium */}
-      <section className="space-y-8">
+      <section className="space-y-8 w-full overflow-hidden">
         <div className="flex flex-col items-center text-center space-y-3 sm:flex-row sm:justify-between sm:text-left sm:items-end">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#0f2557]/15 bg-gradient-to-r from-[#0f2557]/8 via-white to-[#1a3a8a]/5 px-4 py-1.5 shadow-sm">
@@ -304,7 +304,7 @@ function HomePage() {
             <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-full">
         {promoProducts.map((product, index) => (
           (() => {
             const pricing = getActivePricing(product)
@@ -380,7 +380,7 @@ function HomePage() {
       </section>
 
       {/* 4. Produits tendance — onglets + slider */}
-      <section className="space-y-8">
+      <section className="space-y-8 w-full overflow-hidden">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#0f2557]/15 bg-gradient-to-r from-[#0f2557]/8 via-white to-[#1a3a8a]/5 px-4 py-1.5 shadow-sm">
