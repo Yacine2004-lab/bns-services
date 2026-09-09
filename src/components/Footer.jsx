@@ -14,15 +14,15 @@ const socialLinks = [
   },
   {
     name: 'Facebook',
-    href: '#',
-    title: 'Bientôt disponible',
+    href: 'https://www.facebook.com/bayeniass.services',
+    title: 'Suivez-nous sur Facebook',
     Icon: FacebookIcon,
     hoverClass: 'hover:border-[#1877F2]/60 hover:bg-[#1877F2]/15 hover:text-[#1877F2]',
   },
   {
     name: 'Instagram',
-    href: '#',
-    title: 'Bientôt disponible',
+    href: 'https://www.instagram.com/bayeniass.services',
+    title: 'Suivez-nous sur Instagram',
     Icon: InstagramIcon,
     hoverClass: 'hover:border-[#E4405F]/60 hover:bg-[#E4405F]/15 hover:text-[#E4405F]',
   },
@@ -32,7 +32,7 @@ function Footer() {
   return (
     <footer className="relative mt-24 overflow-hidden border-t border-white/20">
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f2557]/95 via-[#142d60]/90 to-[#0f2557]/95 backdrop-blur-2xl" />
-      <div className="absolute -right-20 top-0 h-64 w-64 rounded-full bg-[#e87722]/10 blur-[100px]" />
+      <div className="absolute -right-20 top-0 h-64 w-64 rounded-full bg-[#1a3a8a]/15 blur-[100px]" />
       <div className="absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-[#1a3a8a]/10 blur-[80px]" />
 
       <div className="relative mx-auto grid max-w-[1400px] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-5 lg:px-8">
@@ -41,7 +41,7 @@ function Footer() {
             <BnsLogo size={48} />
             <div>
               <p className="font-black uppercase tracking-tight text-white">BNS Services</p>
-              <p className="text-[10px] uppercase tracking-[0.24em] text-[#e87722]">Sénégal</p>
+              <p className="text-[10px] uppercase tracking-[0.24em] text-[#f09050]">Sénégal</p>
             </div>
           </div>
           <p className="text-sm leading-relaxed text-slate-300">
@@ -52,19 +52,20 @@ function Footer() {
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white">Navigation</h3>
           <ul className="space-y-3 text-sm text-slate-300">
-            <li><Link to="/" className="transition hover:text-[#e87722]">Accueil</Link></li>
-            <li><Link to="/catalogue" className="transition hover:text-[#e87722]">Catalogue</Link></li>
-            <li><Link to="/a-propos" className="transition hover:text-[#e87722]">À propos</Link></li>
-            <li><Link to="/contact" className="transition hover:text-[#e87722]">Contact</Link></li>
+            <li><Link to="/" className="transition hover:text-white">Accueil</Link></li>
+            <li><Link to="/catalogue" className="transition hover:text-white">Catalogue</Link></li>
+            <li><Link to="/a-propos" className="transition hover:text-white">À propos</Link></li>
+            <li><Link to="/contact" className="transition hover:text-white">Contact</Link></li>
+            <li><Link to="/suivre-commande" className="transition hover:text-white">Suivre ma commande</Link></li>
           </ul>
         </div>
 
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-white">Informations</h3>
           <ul className="space-y-3 text-sm text-slate-300">
-            <li><Link to="/conditions-generales" className="transition hover:text-[#e87722]">CGV</Link></li>
-            <li><Link to="/politique-de-confidentialite" className="transition hover:text-[#e87722]">Politique de confidentialité</Link></li>
-            <li><Link to="/mentions-legales" className="transition hover:text-[#e87722]">Mentions légales</Link></li>
+            <li><Link to="/conditions-generales" className="transition hover:text-white">CGV</Link></li>
+            <li><Link to="/politique-de-confidentialite" className="transition hover:text-white">Politique de confidentialité</Link></li>
+            <li><Link to="/mentions-legales" className="transition hover:text-white">Mentions légales</Link></li>
           </ul>
         </div>
 
