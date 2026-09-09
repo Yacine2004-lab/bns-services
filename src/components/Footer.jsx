@@ -14,7 +14,7 @@ const socialLinks = [
   },
   {
     name: 'Facebook',
-    href: 'https://www.facebook.com/bayeniass.services',
+    href: 'https://www.facebook.com/BayeNiass',
     title: 'Suivez-nous sur Facebook',
     Icon: FacebookIcon,
     hoverClass: 'hover:border-[#1877F2]/60 hover:bg-[#1877F2]/15 hover:text-[#1877F2]',
