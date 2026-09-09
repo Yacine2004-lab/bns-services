@@ -354,7 +354,7 @@ function HomePage() {
               </div>
             </div>
 
-            {/* Boutons en bas - Acheter et Détails */}
+            {/* Boutons en bas - Acheter et Détails - Updated for Vercel deployment */}
             <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#0f2557]/10 pt-4 mt-4 bg-white/50 rounded-xl p-3">
               <button
                 type="button"
