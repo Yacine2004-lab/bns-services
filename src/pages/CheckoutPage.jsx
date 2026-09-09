@@ -18,7 +18,7 @@ import {
 } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/useAuth'
-import { ordersApi, productsApi } from '../lib/api'
+import { ordersApi, paymentsApi, productsApi } from '../lib/api'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
 import { logError } from '../lib/logger'
 import { getDeliveryFee } from '../data/pricing'
@@ -40,6 +40,23 @@ const CITIES = [
   'Autre région du Sénégal',
 ]
 
+const ONLINE_PAYMENT_OPTIONS = [
+  {
+    value: 'WAVE',
+    label: 'Wave',
+    description: 'Paiement sécurisé via Wave',
+    logo: 'https://www.wave.com/img/nav-logo.png',
+    logoFrame: 'bg-white',
+  },
+  {
+    value: 'ORANGE_MONEY',
+    label: 'Orange Money',
+    description: 'Paiement sécurisé via Orange Money',
+    logo: 'https://www.naboopay.com/orange_1%20(1).png',
+    logoFrame: 'bg-white',
+  },
+]
+
 export default function CheckoutPage() {
   const navigate = useNavigate()
   const { cart, total, clearCart } = useCart()
@@ -57,6 +74,7 @@ export default function CheckoutPage() {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [stockWarnings, setStockWarnings] = useState([])
+  const [paymentMethod, setPaymentMethod] = useState('CASH_ON_DELIVERY')
   const deliveryFee = getDeliveryFee(formData.city)
   const subtotal = total
   const grandTotal = subtotal + deliveryFee
@@ -196,7 +214,7 @@ export default function CheckoutPage() {
         shippingAddress: formData.address,
         shippingCity: formData.city,
         shippingNotes: formData.notes || undefined,
-        paymentMethod: 'CASH_ON_DELIVERY',
+        paymentMethod,
         items: cart.map((item) => ({
           productId: item.id,
           quantity: item.quantity,
@@ -207,6 +225,18 @@ export default function CheckoutPage() {
       const res = await ordersApi.create(payload)
       const savedOrder = res.data
 
+      if (paymentMethod !== 'CASH_ON_DELIVERY') {
+        const payment = await paymentsApi.initiate({
+          orderNumber: savedOrder.orderNumber,
+          paymentMethod,
+          phone: formData.phone,
+        })
+        sessionStorage.setItem('bns_last_order', JSON.stringify(savedOrder))
+        sessionStorage.setItem('bns_current_order_id', savedOrder.orderNumber)
+        window.location.assign(payment.data.checkoutUrl)
+        return
+      }
+
       // Prépare le lien WhatsApp avec le numéro de commande officiel
       const whatsappNumber = '221784459510'
       const waText = generateWhatsAppMessage(savedOrder.orderNumber || savedOrder.id)
@@ -215,6 +245,7 @@ export default function CheckoutPage() {
       clearCart()
       sessionStorage.setItem('bns_whatsapp_link', whatsappLink)
       sessionStorage.setItem('bns_current_order_id', savedOrder.orderNumber || savedOrder.id)
+      sessionStorage.setItem('bns_last_order', JSON.stringify(savedOrder))
       navigate('/confirmation', { state: { order: savedOrder, whatsappLink } })
     } catch (err) {
       logError('Erreur lors de la soumission de la commande :', err)
@@ -500,8 +531,7 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Option sélectionnée : Paiement à la livraison */}
-              <div className="rounded-2xl border-2 border-[#e87722] bg-[#fffbf2] p-4 flex items-start gap-4 shadow-sm">
+              <button type="button" onClick={() => setPaymentMethod('CASH_ON_DELIVERY')} className={`w-full rounded-2xl border-2 p-4 flex items-start gap-4 text-left shadow-sm transition ${paymentMethod === 'CASH_ON_DELIVERY' ? 'border-[#e87722] bg-[#fffbf2]' : 'border-slate-200 bg-white hover:border-[#e87722]/40'}`}>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#e87722] text-[#0f2557] flex-shrink-0 mt-0.5 font-bold">
                   <Banknote size={20} />
                 </div>
@@ -510,22 +540,38 @@ export default function CheckoutPage() {
                     <h3 className="text-sm font-black text-[#0f2557]">
                       Paiement à la livraison (Espèces ou Mobile Money)
                     </h3>
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white text-xs">
-                      ✓
-                    </span>
+                    {paymentMethod === 'CASH_ON_DELIVERY' && <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white text-xs">✓</span>}
                   </div>
                   <p className="mt-1 text-xs text-slate-600">
                     Vous inspectez votre colis et réglez en toute sérénité au moment de la remise en main propre.
                   </p>
                 </div>
-              </div>
+              </button>
 
-              {/* Note future Wave / Orange Money */}
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 flex items-center gap-3">
-                <CreditCard size={18} className="text-slate-400 flex-shrink-0" />
-                <p className="text-xs text-slate-600">
-                  <strong className="text-[#0f2557]">Paiement en ligne direct</strong> (Wave, Orange Money) bientôt intégré sur la plateforme.
-                </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {ONLINE_PAYMENT_OPTIONS.map(({ value, label, description, logo, logoFrame }) => (
+                  <button key={value} type="button" onClick={() => setPaymentMethod(value)} className={`min-h-[132px] rounded-2xl border-2 p-5 text-left transition ${paymentMethod === value ? 'border-[#e87722] bg-orange-50' : 'border-slate-200 bg-slate-50 hover:border-[#e87722]/40'}`}>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="flex min-h-16 items-center gap-3 text-base font-black text-[#0f2557]">
+                        <span className={`flex h-16 ${value === 'WAVE' ? 'w-16' : 'w-24'} items-center justify-center overflow-hidden rounded-xl border border-slate-200 p-2 shadow-sm ${logoFrame}`}>
+                          {value === 'WAVE' ? (
+                            <span
+                              role="img"
+                              aria-label="Logo Wave"
+                              className="h-full w-full bg-[length:auto_100%] bg-left bg-no-repeat"
+                              style={{ backgroundImage: `url(${logo})` }}
+                            />
+                          ) : (
+                            <img src={logo} alt={`${label} logo`} className="max-h-full max-w-full object-contain drop-shadow-sm" />
+                          )}
+                        </span>
+                        <span className="leading-tight">{label}</span>
+                      </span>
+                      {paymentMethod === value && <CheckCircle2 size={18} className="text-emerald-500" />}
+                    </div>
+                    <span className="mt-1 block text-xs text-slate-600">{description}</span>
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -542,7 +588,7 @@ export default function CheckoutPage() {
               ) : (
                 <>
                   <CheckCircle2 size={22} className="text-[#0f2557]" />
-                  <span>Confirmer la commande ({formatPrice(grandTotal)})</span>
+                  <span>{paymentMethod === 'CASH_ON_DELIVERY' ? 'Confirmer la commande' : 'Payer maintenant'} ({formatPrice(grandTotal)})</span>
                 </>
               )}
             </button>
