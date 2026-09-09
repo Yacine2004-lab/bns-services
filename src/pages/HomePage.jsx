@@ -355,21 +355,21 @@ function HomePage() {
             </div>
 
             {/* Boutons en bas */}
-            <div className="relative z-10 flex items-center justify-between gap-3 border-t border-[#0f2557]/10 pt-4 mt-4">
+            <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#0f2557]/10 pt-4 mt-4 bg-white/50 rounded-xl p-3">
               <button
                 type="button"
                 onClick={() => handleQuickBuy(product)}
-                className="group/btn inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-5 py-2.5 text-[11px] sm:text-[12px] font-black uppercase tracking-wider text-white shadow-md shadow-[#e87722]/30 transition-all duration-300 hover:scale-[1.04] hover:shadow-lg hover:shadow-[#e87722]/40 active:scale-[0.97] whitespace-nowrap"
+                className="w-full sm:w-auto group/btn inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-6 py-3 text-[12px] sm:text-[12px] font-black uppercase tracking-wider text-white shadow-lg shadow-[#e87722]/30 transition-all duration-300 hover:scale-[1.04] hover:shadow-xl hover:shadow-[#e87722]/40 active:scale-[0.97] whitespace-nowrap"
               >
-                <Zap size={14} className="fill-white transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
+                <Zap size={16} className="fill-white transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                 Acheter
               </button>
               <Link
                 to={`/produit/${product.slug}`}
-                className="group inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0f2557] transition-colors hover:text-[#1a3a8a] whitespace-nowrap"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-1 text-sm sm:text-sm font-bold text-[#0f2557] bg-white px-4 py-3 rounded-full shadow-md transition-colors hover:text-[#1a3a8a] hover:bg-slate-50 whitespace-nowrap"
               >
                 Détails
-                <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
           </div>
