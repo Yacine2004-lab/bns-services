@@ -1,4 +1,4 @@
-// Utilitaire centralisé d'appels API vers le backend BNS Services - Updated
+// Utilitaire centralisé d'appels API vers le backend BNS Services - Updated for Vercel sync
 
 import { getApiBaseUrl } from './config.js'
 
