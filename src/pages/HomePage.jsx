@@ -304,14 +304,14 @@ function HomePage() {
             <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 w-full">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 w-full">
         {promoProducts.map((product, index) => (
           (() => {
             const pricing = getActivePricing(product)
             return (
           <div
             key={product.id}
-            className={`group relative flex flex-col sm:flex-row justify-between min-h-[200px] overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br ${promoStyles[index % promoStyles.length]} p-6 shadow-[0_8px_30px_rgba(11,31,58,0.05)] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(11,31,58,0.12)]`}
+            className={`group relative flex flex-col sm:flex-row justify-between min-h-[280px] sm:min-h-[240px] overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br ${promoStyles[index % promoStyles.length]} p-6 shadow-[0_8px_30px_rgba(11,31,58,0.05)] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(11,31,58,0.12)]`}
           >
             <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-white/40 blur-2xl transition-opacity duration-500 group-hover:opacity-80" />
             <div className="pointer-events-none absolute -left-8 -bottom-8 h-24 w-24 rounded-full bg-[#e87722]/10 blur-xl" />
@@ -355,18 +355,18 @@ function HomePage() {
             </div>
 
             {/* Boutons en bas */}
-            <div className="relative z-10 flex items-center justify-between gap-3 border-t border-[#0f2557]/10 pt-4 mt-4">
+            <div className="relative z-10 flex items-center justify-between gap-3 border-t border-[#0f2557]/10 pt-4 mt-4 sm:mt-2">
               <button
                 type="button"
                 onClick={() => handleQuickBuy(product)}
-                className="group/btn inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-5 py-2.5 text-[11px] font-black uppercase tracking-wider text-white shadow-md shadow-[#e87722]/30 transition-all duration-300 hover:scale-[1.04] hover:shadow-lg hover:shadow-[#e87722]/40 active:scale-[0.97] whitespace-nowrap"
+                className="group/btn inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-5 py-2.5 text-[11px] sm:text-[12px] font-black uppercase tracking-wider text-white shadow-md shadow-[#e87722]/30 transition-all duration-300 hover:scale-[1.04] hover:shadow-lg hover:shadow-[#e87722]/40 active:scale-[0.97] whitespace-nowrap"
               >
                 <Zap size={14} className="fill-white transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                 Acheter
               </button>
               <Link
                 to={`/produit/${product.slug}`}
-                className="group inline-flex items-center gap-1 text-xs font-bold text-[#0f2557] transition-colors hover:text-[#1a3a8a] whitespace-nowrap"
+                className="group inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0f2557] transition-colors hover:text-[#1a3a8a] whitespace-nowrap"
               >
                 Détails
                 <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
