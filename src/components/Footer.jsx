@@ -5,6 +5,8 @@ import { WhatsAppIcon, FacebookIcon, InstagramIcon } from './SocialIcons'
 const WHATSAPP_NUMBER = '221784459510'
 const WHATSAPP_DISPLAY = '+221 78 445 95 10'
 
+// Force Vercel redeploy
+
 const socialLinks = [
   {
     name: 'WhatsApp',
