@@ -1,4 +1,4 @@
-const PRODUCTION_API = 'https://bns-api-production.up.railway.app/api'
+const PRODUCTION_API = 'http://169.58.37.124:3006/api'
 
 /** URL de base de l'API (avec /api) */
 export function getApiBaseUrl() {
