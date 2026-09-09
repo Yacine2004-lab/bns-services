@@ -165,10 +165,15 @@ export const ordersApi = {
 
   getMyOrders: (page = 1) => request(`/orders/my-orders?page=${page}`),
 
-  getByNumber: (orderNumber) => request(`/orders/${orderNumber}`),
+  getByNumber: (orderNumber, phone) => request(`/orders/${encodeURIComponent(orderNumber)}${phone ? `?phone=${encodeURIComponent(phone)}` : ''}`),
 
   cancel: (orderNumber) =>
     request(`/orders/${orderNumber}/cancel`, { method: 'PATCH' }),
+}
+
+export const paymentsApi = {
+  initiate: (data) => request('/payments/initiate', { method: 'POST', body: JSON.stringify(data) }),
+  verify: (data) => request('/payments/verify', { method: 'POST', body: JSON.stringify(data) }),
 }
 
 // --------------------------------------------------------
