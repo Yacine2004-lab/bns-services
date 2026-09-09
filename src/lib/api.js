@@ -1,4 +1,4 @@
-// Utilitaire centralisé d'appels API vers le backend BNS Services
+// Utilitaire centralisé d'appels API vers le backend BNS Services - Updated
 
 import { getApiBaseUrl } from './config.js'
 
