@@ -83,7 +83,7 @@ const CONTENT = {
       },
       {
         heading: '5. Vos droits',
-        text: 'Vous disposez d\'un droit d\'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous via WhatsApp ou par email à contact@bnsservices.sn.',
+        text: 'Vous disposez d\'un droit d\'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous via WhatsApp ou par email à contact@bayeniassservices.com.',
       },
     ],
   },
@@ -92,7 +92,7 @@ const CONTENT = {
     sections: [
       {
         heading: 'Éditeur du site',
-        text: 'BNS Services\nDakar, Sénégal\nEmail : contact@bnsservices.sn\nWhatsApp : +221 78 445 95 10',
+        text: 'BNS Services\nDakar, Sénégal\nEmail : contact@bayeniassservices.com\nWhatsApp : +221 78 445 95 10',
       },
       {
         heading: 'Hébergement',

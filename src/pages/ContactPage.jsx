@@ -30,9 +30,9 @@ const contactChannels = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'contact@bnsservices.sn',
+    value: 'contact@bayeniassservices.com',
     note: 'Réponse sous 24h',
-    href: 'mailto:contact@bnsservices.sn',
+    href: 'mailto:contact@bayeniassservices.com',
     bg: 'bg-blue-50',
     iconColor: 'text-blue-600',
     hoverBorder: 'hover:border-blue-300',

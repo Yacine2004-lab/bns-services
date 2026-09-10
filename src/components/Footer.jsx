@@ -84,8 +84,11 @@ function Footer() {
                 <WhatsAppIcon className="h-4 w-4" />
                 {WHATSAPP_DISPLAY}
               </a>
+            <li>
+              <a href="mailto:contact@bayeniassservices.com" className="transition hover:text-white">
+                contact@bayeniassservices.com
+              </a>
             </li>
-            <li>contact@bnsservices.sn</li>
             <li>Dakar, Sénégal</li>
           </ul>
         </div>
