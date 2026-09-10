@@ -47,19 +47,34 @@ app.use(
 // 1. Securite et CORS (autoriser le frontend React)
 const clientOrigin = env.clientUrl.endsWith('/') ? env.clientUrl.slice(0, -1) : env.clientUrl;
 
-const corsOrigins = [
+// Origines de base (toujours autorisees)
+const baseOrigins = [
   clientOrigin,
+  'http://169.58.37.124:3006',
+  'https://bayeniassservice.com',
+  'https://www.bayeniassservice.com',
+  'http://bayeniassservice.com',
+  'http://www.bayeniassservice.com',
   'https://bns-nine.vercel.app',
   'http://localhost:5173',
   'http://localhost:5174',
   'http://127.0.0.1:5173',
-  'http://127.0.0.1:5174'
+  'http://127.0.0.1:5174',
 ]
+
+// Origines supplementaires depuis la variable d'environnement (separees par des virgules)
+const extraOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()).filter(Boolean)
+  : []
+
+const corsOrigins = [...new Set([...baseOrigins, ...extraOrigins])]
 
 app.use(
   cors({
     origin: corsOrigins,
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   }),
 )
 
@@ -76,7 +91,12 @@ app.use('/uploads', express.static(path.join(process.cwd(), 'uploads'), {
 }))
 
 // 5. Parsers de corps de requete avec limites de taille
-app.use(express.json({ limit: '10mb' }))
+app.use(express.json({
+  limit: '10mb',
+  verify: (req, res, buffer) => {
+    if (req.originalUrl === '/api/payments/webhook') req.rawBody = Buffer.from(buffer)
+  },
+}))
 app.use(express.urlencoded({ extended: true, limit: '10mb' }))
 
 // 6. Montage des routes API sous le prefixe /api
