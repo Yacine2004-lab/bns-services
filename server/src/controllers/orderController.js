@@ -62,15 +62,12 @@ export async function createOrder(req, res, next) {
           )
         }
 
-        // Décrémenter le stock immédiatement
-        await tx.product.update({
-          where: { id: product.id },
-          data: {
-            stock: {
-              decrement: item.quantity,
-            },
-          },
-        })
+        if (paymentMethod === 'CASH_ON_DELIVERY') {
+          await tx.product.update({
+            where: { id: product.id },
+            data: { stock: { decrement: item.quantity } },
+          })
+        }
 
         const currentPrice = getCurrentProductPrice(product)
         const itemTotal = currentPrice * item.quantity
@@ -111,6 +108,7 @@ export async function createOrder(req, res, next) {
           status: 'PENDING',
           paymentMethod,
           paymentStatus: 'PENDING',
+          stockDeducted: paymentMethod === 'CASH_ON_DELIVERY',
           subtotal,
           shippingFee,
           discount: 0,
@@ -184,6 +182,7 @@ export async function getMyOrders(req, res, next) {
 export async function getOrderByNumber(req, res, next) {
   try {
     const { orderNumber } = req.params
+    const requestedPhone = req.query.phone?.replace(/\D/g, '')
 
     const order = await prisma.order.findFirst({
       where: {
@@ -201,6 +200,14 @@ export async function getOrderByNumber(req, res, next) {
       return res.status(404).json({
         success: false,
         message: `Commande introuvable avec la référence : ${orderNumber}`,
+      })
+    }
+
+    // Une commande invitée doit être vérifiée avec le téléphone de livraison.
+    if (!req.customer && order.customerPhone.replace(/\D/g, '') !== requestedPhone) {
+      return res.status(403).json({
+        success: false,
+        message: 'Référence ou téléphone incorrect.',
       })
     }
 

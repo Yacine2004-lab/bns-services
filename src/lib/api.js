@@ -54,7 +54,7 @@ async function request(endpoint, options = {}) {
       headers,
     })
   } catch (error) {
-    throw new Error('Impossible de joindre l’API. Vérifiez que le backend Railway est bien démarré.')
+    throw new Error('Impossible de joindre l’API. Vérifiez que le backend (169.58.37.124:3006) est bien démarré.')
   }
 
   const contentType = response.headers.get('content-type') || ''
@@ -66,18 +66,18 @@ async function request(endpoint, options = {}) {
     } else {
       const text = await response.text()
       if (text.includes('<!doctype html') || text.includes('<html')) {
-        throw new Error('Le backend répond avec une page HTML. Vérifiez la configuration Railway : Root Directory = server.')
+        throw new Error('Le backend répond avec une page HTML au lieu de JSON. Vérifiez le proxy /api vers le VPS.')
       }
       data = { message: text || 'Réponse invalide du serveur.' }
     }
   } catch (error) {
-    if (error instanceof Error && error.message.includes('Root Directory')) {
+    if (error instanceof Error && error.message.includes('proxy /api')) {
       throw error
     }
 
     const fallbackText = await response.text().catch(() => '')
     if (fallbackText.includes('<!doctype html') || fallbackText.includes('<html')) {
-      throw new Error('Le backend répond avec une page HTML. Vérifiez la configuration Railway : Root Directory = server.')
+      throw new Error('Le backend répond avec une page HTML au lieu de JSON. Vérifiez le proxy /api vers le VPS.')
     }
 
     throw new Error(error.message || 'Réponse invalide du serveur.')

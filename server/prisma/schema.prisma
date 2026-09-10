@@ -154,6 +154,8 @@ model Order {
   status        OrderStatus   @default(PENDING)
   paymentMethod PaymentMethod @default(CASH_ON_DELIVERY)
   paymentStatus PaymentStatus @default(PENDING)
+  nabooPaymentId String? @unique
+  stockDeducted  Boolean @default(true)
 
   subtotal    Float
   shippingFee Float   @default(0)

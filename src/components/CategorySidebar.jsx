@@ -26,7 +26,7 @@ function CategorySidebar({ activeCategory, activeSubCategory, onSelectCategory, 
         <button
           type="button"
           onClick={() => onSelectCategory(null)}
-          className="text-xs font-semibold text-[#0f2557] hover:text-[#e87722]"
+          className="text-xs font-semibold text-[#0f2557] hover:text-[#1a3a8a]"
         >
           Tout
         </button>
@@ -51,7 +51,7 @@ function CategorySidebar({ activeCategory, activeSubCategory, onSelectCategory, 
                 }`}
               >
                 <span className="flex items-center gap-3">
-                  <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${isActiveCategory ? 'bg-white/10 text-[#e87722]' : 'bg-white text-[#0f2557]'}`}>
+                  <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${isActiveCategory ? 'bg-white/10 text-white' : 'bg-white text-[#0f2557]'}`}>
                     <Icon size={18} />
                   </span>
                   <span className="text-sm font-bold">{category.name}</span>
@@ -78,7 +78,7 @@ function CategorySidebar({ activeCategory, activeSubCategory, onSelectCategory, 
                         onClick={() => onSelectSubCategory(subCategory.id)}
                         className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm transition ${
                           isActiveSub
-                            ? 'bg-[#f8f1e7] text-[#0f2557] ring-1 ring-[#e87722]/20'
+                            ? 'bg-[#eef2ff] text-[#0f2557] ring-1 ring-[#1a3a8a]/20'
                             : 'text-slate-600 hover:bg-white hover:text-[#0f2557]'
                         }`}
                       >

@@ -51,19 +51,27 @@ const steps = [
   },
 ]
 
+function readStoredOrder() {
+  try {
+    const storedOrder = sessionStorage.getItem('bns_last_order')
+    return storedOrder ? JSON.parse(storedOrder) : null
+  } catch {
+    sessionStorage.removeItem('bns_last_order')
+    return null
+  }
+}
+
 export default function ConfirmationPage() {
   const location = useLocation()
-  const [order, setOrder] = useState(null)
-  const [whatsappLink, setWhatsappLink] = useState('')
+  const initialOrder = location.state?.order || readStoredOrder()
+  const [order, setOrder] = useState(initialOrder)
+  const whatsappLink = location.state?.whatsappLink || sessionStorage.getItem('bns_whatsapp_link') || 'https://wa.me/221784459510'
+  const [isLoading, setIsLoading] = useState(!initialOrder)
+  const [loadError, setLoadError] = useState('')
 
   useEffect(() => {
     if (location.state?.order) {
-      setOrder(location.state.order)
-      const waLink =
-        location.state?.whatsappLink ||
-        sessionStorage.getItem('bns_whatsapp_link') ||
-        'https://wa.me/221784459510'
-      setWhatsappLink(waLink)
+      sessionStorage.setItem('bns_last_order', JSON.stringify(location.state.order))
       return
     }
 
@@ -71,12 +79,13 @@ export default function ConfirmationPage() {
     if (storedOrderId) {
       ordersApi
         .getByNumber(storedOrderId)
-        .then((res) => setOrder(res.data))
-        .catch(() => {})
+        .then((res) => {
+          setOrder(res.data)
+          sessionStorage.setItem('bns_last_order', JSON.stringify(res.data))
+        })
+        .catch(() => setLoadError('Les détails ne peuvent pas être rechargés pour le moment. Conservez votre référence de commande.'))
+        .finally(() => setIsLoading(false))
     }
-
-    const waLink = sessionStorage.getItem('bns_whatsapp_link') || 'https://wa.me/221784459510'
-    setWhatsappLink(waLink)
   }, [location.state])
 
   return (
@@ -109,6 +118,21 @@ export default function ConfirmationPage() {
           </p>
         </div>
       </section>
+
+      {isLoading && (
+        <section className="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+          <p className="text-sm font-semibold text-slate-500">Récupération de votre commande...</p>
+        </section>
+      )}
+
+      {!isLoading && !order && (
+        <section className="rounded-3xl border border-amber-200 bg-amber-50 p-6 text-center shadow-sm sm:p-8">
+          <p className="text-base font-black text-[#0f2557]">Votre commande est enregistrée</p>
+          <p className="mt-2 text-sm text-slate-600">
+            {loadError || 'La référence détaillée n’est plus disponible dans cette session. Contactez-nous sur WhatsApp pour la retrouver.'}
+          </p>
+        </section>
+      )}
 
       {/* CARTE DE DETAILS */}
       {order && (

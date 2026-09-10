@@ -1,14 +1,16 @@
-const PRODUCTION_API = 'http://169.58.37.124:3006/api'
+/** Same-origin in production (Vercel /api function proxies to the VPS). */
+const PRODUCTION_API = '/api'
+
+function normalizeApiUrl(url) {
+  if (url.endsWith('/')) url = url.slice(0, -1)
+  if (url !== '/api' && !url.endsWith('/api')) url += '/api'
+  return url
+}
 
 /** URL de base de l'API (avec /api) */
 export function getApiBaseUrl() {
-  if (import.meta.env.VITE_API_URL) {
-    let url = import.meta.env.VITE_API_URL;
-    if (url.endsWith('/')) url = url.slice(0, -1);
-    if (!url.endsWith('/api')) url += '/api';
-    return url;
-  }
   if (import.meta.env.PROD) return PRODUCTION_API
+  if (import.meta.env.VITE_API_URL) return normalizeApiUrl(import.meta.env.VITE_API_URL)
   return '/api'
 }
 

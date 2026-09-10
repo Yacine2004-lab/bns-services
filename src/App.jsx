@@ -15,6 +15,9 @@ const ProductPage = lazy(() => import('./pages/ProductPage'))
 const CartPage = lazy(() => import('./pages/CartPage'))
 const CheckoutPage = lazy(() => import('./pages/CheckoutPage'))
 const ConfirmationPage = lazy(() => import('./pages/ConfirmationPage'))
+const PaymentSuccessPage = lazy(() => import('./pages/PaymentSuccessPage'))
+const PaymentFailurePage = lazy(() => import('./pages/PaymentFailurePage'))
+const TrackOrderPage = lazy(() => import('./pages/TrackOrderPage'))
 const WishlistPage = lazy(() => import('./pages/WishlistPage'))
 const Login = lazy(() => import('./pages/Login'))
 const Signup = lazy(() => import('./pages/Signup'))
@@ -79,6 +82,9 @@ function App() {
                 />
                 <Route path="checkout" element={<CheckoutPage />} />
                 <Route path="confirmation" element={<ConfirmationPage />} />
+                <Route path="commande/succes" element={<PaymentSuccessPage />} />
+                <Route path="commande/echec" element={<PaymentFailurePage />} />
+                <Route path="suivre-commande" element={<TrackOrderPage />} />
                 <Route path="a-propos" element={<AboutPage />} />
                 <Route path="contact" element={<ContactPage />} />
                 <Route path="conditions-generales" element={<LegalPage type="cgv" />} />

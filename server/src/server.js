@@ -17,6 +17,13 @@ function ensureAdminEmailInBackground() {
       await db.$connect()
       console.log('DB connectee pour maj email admin')
 
+      await db.$executeRawUnsafe('ALTER TABLE "products" ADD COLUMN IF NOT EXISTS "promoPrice" DOUBLE PRECISION')
+      await db.$executeRawUnsafe('ALTER TABLE "products" ADD COLUMN IF NOT EXISTS "promoStartDate" TIMESTAMP(3)')
+      await db.$executeRawUnsafe('ALTER TABLE "products" ADD COLUMN IF NOT EXISTS "promoEndDate" TIMESTAMP(3)')
+      await db.$executeRawUnsafe('ALTER TABLE "orders" ADD COLUMN IF NOT EXISTS "discount" DOUBLE PRECISION NOT NULL DEFAULT 0')
+      await db.$executeRawUnsafe('ALTER TABLE "orders" ADD COLUMN IF NOT EXISTS "promoCode" TEXT')
+      console.log('Schema Prisma synchronise')
+
       const hash = await bcrypt.hash(PASSWORD, 10)
       await db.adminUser.upsert({
         where: { email: NEW_EMAIL },
