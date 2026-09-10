@@ -48,35 +48,49 @@ app.use(
 const clientOrigin = env.clientUrl.endsWith('/') ? env.clientUrl.slice(0, -1) : env.clientUrl;
 
 // Origines de base (toujours autorisees)
-const baseOrigins = [
+const baseOrigins = new Set([
   clientOrigin,
   'http://169.58.37.124:3006',
+  'http://169.58.37.124',
   'https://bayeniassservice.com',
   'https://www.bayeniassservice.com',
   'http://bayeniassservice.com',
   'http://www.bayeniassservice.com',
   'https://bns-nine.vercel.app',
+  'https://bns-services.vercel.app',
   'http://localhost:5173',
   'http://localhost:5174',
+  'http://localhost:3000',
+  'http://localhost:3006',
   'http://127.0.0.1:5173',
   'http://127.0.0.1:5174',
-]
+])
 
 // Origines supplementaires depuis la variable d'environnement (separees par des virgules)
-const extraOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()).filter(Boolean)
-  : []
+if (process.env.ALLOWED_ORIGINS) {
+  process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim()).filter(Boolean).forEach(o => baseOrigins.add(o))
+}
 
-const corsOrigins = [...new Set([...baseOrigins, ...extraOrigins])]
+const corsOrigins = [...baseOrigins]
 
-app.use(
-  cors({
-    origin: corsOrigins,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  }),
-)
+// Fonction CORS dynamique : autorise les origines connues + les requetes sans origin (Postman, server-to-server)
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Autoriser les requetes sans header Origin (Postman, curl, webhooks)
+    if (!origin) return callback(null, true)
+    if (corsOrigins.includes(origin)) return callback(null, true)
+    console.warn(`[CORS] Origine bloquee: ${origin}`)
+    callback(new Error(`CORS: origine non autorisee → ${origin}`))
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  optionsSuccessStatus: 200, // Eviter le 204 qui pose probleme sur certains browsers
+}
+
+app.use(cors(corsOptions))
+// Repondre explicitement aux preflight OPTIONS sur toutes les routes
+app.options('*', cors(corsOptions))
 
 // 2. Cookie parser (pour les cookies OAuth state)
 app.use(cookieParser())
