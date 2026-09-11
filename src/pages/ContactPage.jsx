@@ -93,17 +93,17 @@ export default function ContactPage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f2557] via-[#0f2557] to-[#1a3a8a] px-6 py-12 text-white sm:px-10 sm:py-16">
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#e87722]/20 blur-3xl" />
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#0f2557]/20 blur-3xl" />
         <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-blue-400/20 blur-3xl" />
-        <Sparkles className="absolute right-8 top-8 h-8 w-8 text-[#e87722]/40" />
+        <Sparkles className="absolute right-8 top-8 h-8 w-8 text-[#0f2557]/40" />
         <Headphones className="absolute left-10 bottom-10 h-10 w-10 text-white/10" />
 
         <div className="relative mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white border border-white/20 backdrop-blur-sm">
-            <Headphones size={12} className="text-[#e87722]" /> Service client
+            <Headphones size={12} className="text-white" /> Service client
           </span>
           <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
-            Contactez-<span className="text-[#e87722]">nous</span>
+            Contactez-<span className="text-white/90">nous</span>
           </h1>
           <p className="mt-5 text-base text-white/80 leading-relaxed sm:text-lg">
             Une question, un besoin spécifique ou une commande en attente ?
@@ -119,7 +119,7 @@ export default function ContactPage() {
             key={title}
             className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-5"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#e87722] to-[#f09050] text-white transition group-hover:scale-110 sm:h-10 sm:w-10">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#0f2557] to-[#1a3a8a] text-white transition group-hover:scale-110 sm:h-10 sm:w-10">
               <Icon size={18} />
             </div>
             <h3 className="mt-3 text-sm font-black text-[#0f2557] sm:text-base">{title}</h3>
@@ -133,7 +133,7 @@ export default function ContactPage() {
         {/* Coordonnées */}
         <div className="lg:col-span-2 space-y-4">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#e87722]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#e87722] border border-[#e87722]/20">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#0f2557]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#0f2557] border border-[#0f2557]/20">
               <Zap size={11} /> Nos canaux
             </span>
             <h2 className="mt-2 text-2xl font-black text-[#0f2557] sm:text-3xl">Restons en contact</h2>
@@ -171,13 +171,13 @@ export default function ContactPage() {
         {/* Formulaire */}
         <div className="lg:col-span-3">
           <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-            <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#e87722]/5 blur-3xl" />
+            <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#0f2557]/5 blur-3xl" />
 
             <div className="relative">
               {!sent ? (
                 <>
                   <div className="flex items-center gap-2.5">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#e87722] to-[#f09050] text-white sm:h-10 sm:w-10">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#0f2557] to-[#1a3a8a] text-white sm:h-10 sm:w-10">
                       <Send size={16} />
                     </div>
                     <div>
@@ -186,7 +186,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+                  <form onSubmit={handleSubmit} className="mt-5 space-y-3 sm:space-y-4">
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
                         <label className="mb-1.5 block text-[11px] font-bold uppercase tracking-wider text-[#0f2557]">
@@ -198,7 +198,7 @@ export default function ContactPage() {
                           value={form.name}
                           onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                           placeholder="Ex : Awa Diop"
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50/30 px-4 py-2.5 text-sm outline-none transition focus:border-[#e87722] focus:bg-white focus:ring-4 focus:ring-[#e87722]/10"
+                          className="w-full rounded-xl border border-slate-200 bg-slate-50/30 px-4 py-2 sm:py-2.5 text-sm outline-none transition focus:border-[#0f2557] focus:bg-white focus:ring-4 focus:ring-[#0f2557]/10"
                         />
                       </div>
                       <div>
@@ -211,7 +211,7 @@ export default function ContactPage() {
                           value={form.email}
                           onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                           placeholder="toi@exemple.com"
-                          className="w-full rounded-xl border border-slate-200 bg-slate-50/30 px-4 py-2.5 text-sm outline-none transition focus:border-[#e87722] focus:bg-white focus:ring-4 focus:ring-[#e87722]/10"
+                          className="w-full rounded-xl border border-slate-200 bg-slate-50/30 px-4 py-2 sm:py-2.5 text-sm outline-none transition focus:border-[#0f2557] focus:bg-white focus:ring-4 focus:ring-[#0f2557]/10"
                         />
                       </div>
                     </div>
@@ -226,7 +226,7 @@ export default function ContactPage() {
                         value={form.message}
                         onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                         placeholder="Décrivez votre besoin, votre question ou votre commande..."
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50/30 px-4 py-2.5 text-sm outline-none transition focus:border-[#e87722] focus:bg-white focus:ring-4 focus:ring-[#e87722]/10 resize-y"
+                        className="w-full rounded-xl border border-slate-200 bg-slate-50/30 px-4 py-2 sm:py-2.5 text-sm outline-none transition focus:border-[#0f2557] focus:bg-white focus:ring-4 focus:ring-[#0f2557]/10 resize-y"
                       />
                     </div>
 
@@ -263,7 +263,7 @@ export default function ContactPage() {
                   </div>
                   <button
                     onClick={() => { setSent(false); setForm({ name: '', email: '', message: '' }) }}
-                    className="inline-flex items-center gap-1.5 rounded-xl border-2 border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 transition hover:border-[#e87722] hover:text-[#e87722]"
+                    className="inline-flex items-center gap-1.5 rounded-xl border-2 border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 transition hover:border-[#0f2557] hover:text-[#0f2557]"
                   >
                     Envoyer un autre message
                   </button>
@@ -296,7 +296,7 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="flex items-center justify-center gap-3 sm:justify-start">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100 text-orange-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-[#0f2557]">
               <Clock size={18} />
             </div>
             <div className="text-left">

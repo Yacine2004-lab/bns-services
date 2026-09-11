@@ -44,7 +44,7 @@ export default function ForgotPassword() {
           </div>
         </Link>
 
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-8">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-5 sm:p-8">
           {!sent ? (
             <>
               <h1 className="text-2xl font-black text-[#0f2557] mb-1 text-center">
@@ -54,7 +54,7 @@ export default function ForgotPassword() {
                 Entre ton adresse email et nous t'enverrons un lien de réinitialisation.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4" noValidate>
                 <div>
                   <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
                     Adresse email
@@ -69,13 +69,13 @@ export default function ForgotPassword() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="toi@exemple.com"
-                      className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-[#e87722] focus:ring-2 focus:ring-[#e87722]/20 outline-none transition-all duration-200 text-sm"
+                      className="w-full pl-11 pr-4 py-2 sm:py-2.5 rounded-xl border border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20 outline-none transition-all duration-200 text-sm"
                     />
                   </div>
                 </div>
 
                 {error && (
-                  <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                  <p className="text-sm text-[#0f2557] bg-brand-50 border border-brand-200 rounded-lg px-3 py-2">
                     {error}
                   </p>
                 )}
@@ -83,7 +83,7 @@ export default function ForgotPassword() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-3 rounded-xl transition-all duration-300 disabled:opacity-60"
+                  className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-2.5 sm:py-3 rounded-xl transition-all duration-300 disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <>

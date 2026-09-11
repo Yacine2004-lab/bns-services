@@ -292,7 +292,7 @@ export default function CheckoutPage() {
         <form onSubmit={handlePlaceOrder} className="space-y-4 sm:space-y-6" noValidate>
             {/* Erreur API globale */}
             {errors.submit && (
-              <div className="flex items-start gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-red-200 bg-red-50 px-4 sm:px-5 py-3 sm:py-4 text-xs sm:text-sm text-red-700">
+              <div className="flex items-start gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-[#0f2557]/20 bg-brand-50 px-4 sm:px-5 py-3 sm:py-4 text-xs sm:text-sm text-[#0f2557]">
                 <AlertCircle size={16} className="sm:w-[18px] sm:h-[18px] mt-0.5 shrink-0" />
                 <p>{errors.submit}</p>
               </div>
@@ -350,7 +350,7 @@ export default function CheckoutPage() {
                     htmlFor="fullName"
                     className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
                   >
-                    Nom complet <span className="text-red-500">*</span>
+                    Nom complet <span className="text-[#0f2557]">*</span>
                   </label>
                   <div className="relative">
                     <User
@@ -366,8 +366,8 @@ export default function CheckoutPage() {
                       placeholder="Ex : Moussa Diop"
                       className={`w-full rounded-lg sm:rounded-xl border pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition ${
                         errors.fullName
-                          ? 'border-red-400 bg-red-50/30 focus:border-red-500'
-                          : 'border-slate-200 bg-slate-50/50 focus:border-[#e87722] focus:bg-white'
+                          ? 'border-[#0f2557]/40 bg-brand-50/50 focus:border-[#0f2557]'
+                          : 'border-slate-200 bg-slate-50/50 focus:border-[#0f2557] focus:bg-white'
                       }`}
                     />
                   </div>
@@ -384,7 +384,7 @@ export default function CheckoutPage() {
                     htmlFor="phone"
                     className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
                   >
-                    Téléphone (WhatsApp) <span className="text-red-500">*</span>
+                    Téléphone (WhatsApp) <span className="text-[#0f2557]">*</span>
                   </label>
                   <div className="relative">
                     <Phone
@@ -432,7 +432,7 @@ export default function CheckoutPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="votre-email@exemple.com"
-                      className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#e87722] focus:bg-white"
+                      className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#0f2557] focus:bg-white"
                     />
                   </div>
                 </div>
@@ -443,14 +443,14 @@ export default function CheckoutPage() {
                     htmlFor="city"
                     className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
                   >
-                    Zone de livraison <span className="text-red-500">*</span>
+                    Zone de livraison <span className="text-[#0f2557]">*</span>
                   </label>
                   <select
                     id="city"
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#e87722] focus:bg-white"
+                    className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#0f2557] focus:bg-white"
                   >
                     {CITIES.map((c) => (
                       <option key={c} value={c}>
@@ -466,7 +466,7 @@ export default function CheckoutPage() {
                     htmlFor="address"
                     className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
                   >
-                    Adresse exacte & Repère <span className="text-red-500">*</span>
+                    Adresse exacte & Repère <span className="text-[#0f2557]">*</span>
                   </label>
                   <div className="relative">
                     <MapPin
@@ -482,13 +482,13 @@ export default function CheckoutPage() {
                       placeholder="Ex : Mermoz pyrotechnie, villa n°12, près de la pharmacie"
                       className={`w-full rounded-lg sm:rounded-xl border pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition resize-none ${
                         errors.address
-                          ? 'border-red-400 bg-red-50/30 focus:border-red-500'
-                          : 'border-slate-200 bg-slate-50/50 focus:border-[#e87722] focus:bg-white'
+                          ? 'border-[#0f2557]/40 bg-brand-50/50 focus:border-[#0f2557]'
+                          : 'border-slate-200 bg-slate-50/50 focus:border-[#0f2557] focus:bg-white'
                       }`}
                     />
                   </div>
                   {errors.address && (
-                    <p className="mt-1 text-[11px] text-red-500 flex items-center gap-1">
+                    <p className="mt-1 text-[11px] text-[#0f2557] flex items-center gap-1">
                       <AlertCircle size={11} /> {errors.address}
                     </p>
                   )}
@@ -509,7 +509,7 @@ export default function CheckoutPage() {
                     value={formData.notes}
                     onChange={handleInputChange}
                     placeholder="Ex : Appeler 15 min avant d'arriver"
-                    className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#e87722] focus:bg-white"
+                    className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#0f2557] focus:bg-white"
                   />
                 </div>
               </div>
@@ -531,8 +531,8 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              <button type="button" onClick={() => setPaymentMethod('CASH_ON_DELIVERY')} className={`w-full rounded-xl sm:rounded-2xl border-2 p-3 sm:p-4 flex items-start gap-3 sm:gap-4 text-left shadow-sm transition ${paymentMethod === 'CASH_ON_DELIVERY' ? 'border-[#e87722] bg-[#fffbf2]' : 'border-slate-200 bg-white hover:border-[#e87722]/40'}`}>
-                <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-[#e87722] text-[#0f2557] flex-shrink-0 mt-0.5 font-bold">
+              <button type="button" onClick={() => setPaymentMethod('CASH_ON_DELIVERY')} className={`w-full rounded-xl sm:rounded-2xl border-2 p-3 sm:p-4 flex items-start gap-3 sm:gap-4 text-left shadow-sm transition ${paymentMethod === 'CASH_ON_DELIVERY' ? 'border-[#0f2557] bg-brand-50' : 'border-slate-200 bg-white hover:border-[#0f2557]/40'}`}>
+                <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-[#0f2557] text-white flex-shrink-0 mt-0.5 font-bold">
                   <Banknote size={16} className="sm:w-5 sm:h-5" />
                 </div>
                 <div className="flex-1">
@@ -550,7 +550,7 @@ export default function CheckoutPage() {
 
               <div className="grid gap-2.5 sm:gap-3 sm:grid-cols-2">
                 {ONLINE_PAYMENT_OPTIONS.map(({ value, label, description, logo, logoFrame }) => (
-                  <button key={value} type="button" onClick={() => setPaymentMethod(value)} className={`min-h-[100px] sm:min-h-[132px] rounded-xl sm:rounded-2xl border-2 p-3 sm:p-5 text-left transition ${paymentMethod === value ? 'border-[#e87722] bg-orange-50' : 'border-slate-200 bg-slate-50 hover:border-[#e87722]/40'}`}>
+                  <button key={value} type="button" onClick={() => setPaymentMethod(value)} className={`min-h-[100px] sm:min-h-[132px] rounded-xl sm:rounded-2xl border-2 p-3 sm:p-5 text-left transition ${paymentMethod === value ? 'border-[#0f2557] bg-brand-50' : 'border-slate-200 bg-slate-50 hover:border-[#0f2557]/40'}`}>
                     <div className="flex items-center justify-between gap-2">
                       <span className="flex min-h-12 sm:min-h-16 items-center gap-2 sm:gap-3 text-sm sm:text-base font-black text-[#0f2557]">
                         <span className={`flex h-12 sm:h-16 ${value === 'WAVE' ? 'w-12 sm:w-16' : 'w-18 sm:w-24'} items-center justify-center overflow-hidden rounded-lg sm:rounded-xl border border-slate-200 p-1.5 sm:p-2 shadow-sm ${logoFrame}`}>
@@ -601,7 +601,7 @@ export default function CheckoutPage() {
             <div className="rounded-xl sm:rounded-3xl border border-slate-200 bg-white p-3.5 sm:p-6 lg:p-7 shadow-[0_8px_25px_rgba(11,31,58,0.05)] sm:shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-4 sm:space-y-6">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4">
                 <h3 className="text-sm sm:text-lg font-black text-[#0f2557] flex items-center gap-1.5 sm:gap-2">
-                  <ShoppingBag size={16} className="sm:w-5 sm:h-5 text-[#e87722]" />
+                  <ShoppingBag size={16} className="sm:w-5 sm:h-5 text-[#0f2557]" />
                   Récapitulatif ({cart.reduce((s, i) => s + i.quantity, 0)} articles)
                 </h3>
               </div>

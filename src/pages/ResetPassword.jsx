@@ -35,7 +35,7 @@ export default function ResetPassword() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#fafbfd] via-white to-[#f5f8fc] px-6 py-12">
         <div className="w-full max-w-md text-center space-y-6">
           <div className="flex justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-100 text-red-500">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 text-[#0f2557]">
               <ShieldCheck size={32} />
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function ResetPassword() {
           </p>
           <Link
             to="/mot-de-passe-oublie"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#e87722] px-6 py-3 font-bold text-[#0f2557] transition hover:bg-[#e87722]"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#0f2557] hover:bg-[#1a3a8a] px-6 py-2.5 sm:py-3 font-bold text-white transition"
           >
             Demander un nouveau lien
           </Link>
@@ -93,7 +93,7 @@ export default function ResetPassword() {
           </div>
         </Link>
 
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-8">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-5 sm:p-8">
           {!success ? (
             <>
               <h1 className="text-2xl font-black text-[#0f2557] mb-1 text-center">
@@ -103,7 +103,7 @@ export default function ResetPassword() {
                 Choisis un nouveau mot de passe sécurisé pour ton compte.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4" noValidate>
                 <div>
                   <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
                     Nouveau mot de passe
@@ -119,7 +119,7 @@ export default function ResetPassword() {
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
                       autoComplete="new-password"
-                      className="w-full pl-11 pr-11 py-2.5 rounded-xl border border-gray-200 focus:border-[#e87722] focus:ring-2 focus:ring-[#e87722]/20 outline-none transition-all duration-200 text-sm"
+                      className="w-full pl-11 pr-11 py-2 sm:py-2.5 rounded-xl border border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20 outline-none transition-all duration-200 text-sm"
                     />
                     <button
                       type="button"
@@ -162,16 +162,16 @@ export default function ResetPassword() {
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="••••••••"
                       autoComplete="new-password"
-                      className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-[#e87722] focus:ring-2 focus:ring-[#e87722]/20 outline-none transition-all duration-200 text-sm"
+                      className="w-full pl-11 pr-4 py-2 sm:py-2.5 rounded-xl border border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20 outline-none transition-all duration-200 text-sm"
                     />
                   </div>
                   {confirmPassword && password !== confirmPassword && (
-                    <p className="text-xs text-red-500 mt-1">Les mots de passe ne correspondent pas.</p>
+                    <p className="text-xs text-[#0f2557] mt-1">Les mots de passe ne correspondent pas.</p>
                   )}
                 </div>
 
                 {error && (
-                  <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                  <p className="text-sm text-[#0f2557] bg-brand-50 border border-brand-200 rounded-lg px-3 py-2">
                     {error}
                   </p>
                 )}
@@ -179,7 +179,7 @@ export default function ResetPassword() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-3 rounded-xl transition-all duration-300 disabled:opacity-60"
+                  className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-2.5 sm:py-3 rounded-xl transition-all duration-300 disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <>
@@ -207,7 +207,7 @@ export default function ResetPassword() {
               </p>
               <button
                 onClick={() => navigate('/connexion')}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#e87722] px-6 py-3 font-bold text-[#0f2557] transition hover:bg-[#e87722]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#0f2557] hover:bg-[#1a3a8a] px-6 py-2.5 sm:py-3 font-bold text-white transition"
               >
                 Se connecter
               </button>

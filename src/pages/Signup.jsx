@@ -112,9 +112,9 @@ export default function Signup() {
   };
 
   const inputClass = (field) =>
-    `w-full pl-11 pr-4 py-2.5 rounded-xl border outline-none transition-all duration-200 text-sm ${errors[field]
-      ? "border-red-300 focus:ring-2 focus:ring-red-100"
-      : "border-gray-200 focus:border-[#e87722] focus:ring-2 focus:ring-[#e87722]/20"
+    `w-full pl-11 pr-4 py-2 sm:py-2.5 rounded-xl border outline-none transition-all duration-200 text-sm ${errors[field]
+      ? "border-[#0f2557]/40 bg-brand-50/50 focus:ring-2 focus:ring-brand-100"
+      : "border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20"
     }`;
 
   return (
@@ -132,7 +132,7 @@ export default function Signup() {
           </div>
         </Link>
 
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-8">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-5 sm:p-8">
           <h1 className="text-2xl font-black text-[#0f2557] mb-1 text-center">
             Créer un compte
           </h1>
@@ -147,13 +147,13 @@ export default function Signup() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4" noValidate>
             {/* Bouton d'inscription Google */}
             <div>
               <button
                 type="button"
                 onClick={() => { window.location.href = `${API_BASE}/auth/google`; }}
-                className="w-full flex items-center justify-center gap-3 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-xl py-3 transition-all duration-200 text-sm font-semibold text-gray-700 cursor-pointer"
+                className="w-full flex items-center justify-center gap-3 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-xl py-2.5 sm:py-3 transition-all duration-200 text-sm font-semibold text-gray-700 cursor-pointer"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -235,7 +235,7 @@ export default function Signup() {
                 />
               </div>
               {errors.email && (
-                <p className="text-xs text-red-500 mt-1">{errors.email}</p>
+                <p className="text-xs text-[#0f2557] mt-1">{errors.email}</p>
               )}
             </div>
 
@@ -257,7 +257,7 @@ export default function Signup() {
                 />
               </div>
               {errors.phone && (
-                <p className="text-xs text-red-500 mt-1">{errors.phone}</p>
+                <p className="text-xs text-[#0f2557] mt-1">{errors.phone}</p>
               )}
             </div>
 
@@ -301,7 +301,7 @@ export default function Signup() {
                 </div>
               )}
               {errors.password && (
-                <p className="text-xs text-red-500 mt-1">{errors.password}</p>
+                <p className="text-xs text-[#0f2557] mt-1">{errors.password}</p>
               )}
             </div>
 
@@ -324,14 +324,14 @@ export default function Signup() {
                 />
               </div>
               {errors.confirmPassword && (
-                <p className="text-xs text-red-500 mt-1">
+                <p className="text-xs text-[#0f2557] mt-1">
                   {errors.confirmPassword}
                 </p>
               )}
             </div>
 
             {errors.global && (
-              <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+              <p className="text-sm text-[#0f2557] bg-brand-50 border border-brand-200 rounded-lg px-3 py-2">
                 {errors.global}
               </p>
             )}
@@ -339,7 +339,7 @@ export default function Signup() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#0f2557]/20 disabled:opacity-60 mt-2"
+              className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-2.5 sm:py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#0f2557]/20 disabled:opacity-60 mt-2"
             >
               {isSubmitting ? "Création..." : "Créer mon compte"}
               <ArrowRight size={18} />
