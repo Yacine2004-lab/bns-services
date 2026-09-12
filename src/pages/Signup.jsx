@@ -112,50 +112,50 @@ export default function Signup() {
   };
 
   const inputClass = (field) =>
-    `w-full pl-11 pr-4 py-2 sm:py-2.5 rounded-xl border outline-none transition-all duration-200 text-sm ${errors[field]
+    `w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-1.5 sm:py-2.5 rounded-xl border outline-none transition-all duration-200 text-xs sm:text-sm ${errors[field]
       ? "border-[#0f2557]/40 bg-brand-50/50 focus:ring-2 focus:ring-brand-100"
       : "border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20"
     }`;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#fafbfd] via-white to-[#f5f8fc] px-6 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#fafbfd] via-white to-[#f5f8fc] px-4 sm:px-6 py-8 sm:py-12">
       <div className="w-full max-w-md">
-        <Link to="/" className="flex items-center gap-3 justify-center mb-8">
-          <div className="w-10 h-10 rounded-xl bg-[#e87722] flex items-center justify-center font-black text-[#0f2557]">
+        <Link to="/" className="flex items-center gap-2 sm:gap-3 justify-center mb-6 sm:mb-8">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#e87722] flex items-center justify-center font-black text-[#0f2557] text-sm sm:text-base">
             B
           </div>
           <div className="leading-tight">
-            <div className="font-extrabold text-[#0f2557]">BNS</div>
-            <div className="text-[10px] font-semibold tracking-widest text-[#e87722]">
+            <div className="font-extrabold text-[#0f2557] text-sm sm:text-base">BNS</div>
+            <div className="text-[9px] sm:text-[10px] font-semibold tracking-widest text-[#e87722]">
               SERVICES
             </div>
           </div>
         </Link>
 
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-5 sm:p-8">
-          <h1 className="text-2xl font-black text-[#0f2557] mb-1 text-center">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-3 sm:p-5 sm:p-8">
+          <h1 className="text-xl sm:text-2xl font-black text-[#0f2557] mb-0.5 sm:mb-1 text-center">
             Créer un compte
           </h1>
-          <p className="text-gray-500 text-sm text-center mb-7">
+          <p className="text-gray-500 text-xs sm:text-sm text-center mb-5 sm:mb-7">
             Rejoins BNS Services en quelques secondes
           </p>
 
           {oauthError && (
-            <div className="mb-4 flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+            <div className="mb-3 sm:mb-4 flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-2.5 sm:p-3 text-xs sm:text-sm text-amber-800">
               <span className="font-semibold">Info :</span>
               <span>{oauthError}</span>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4" noValidate>
+          <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-4" noValidate>
             {/* Bouton d'inscription Google */}
             <div>
               <button
                 type="button"
                 onClick={() => { window.location.href = `${API_BASE}/auth/google`; }}
-                className="w-full flex items-center justify-center gap-3 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-xl py-2.5 sm:py-3 transition-all duration-200 text-sm font-semibold text-gray-700 cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 sm:gap-3 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-xl py-2 sm:py-2.5 sm:py-3 transition-all duration-200 text-xs sm:text-sm font-semibold text-gray-700 cursor-pointer"
               >
-                <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
                   <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
@@ -166,20 +166,20 @@ export default function Signup() {
             </div>
 
             {/* Separateur */}
-            <div className="flex items-center gap-3 my-2">
+            <div className="flex items-center gap-2 sm:gap-3 my-1.5 sm:my-2">
               <div className="flex-1 h-px bg-gray-200" />
-              <span className="text-xs text-gray-400 font-medium">OU</span>
+              <span className="text-[10px] sm:text-xs text-gray-400 font-medium">OU</span>
               <div className="flex-1 h-px bg-gray-200" />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               <div>
-                <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
+                <label className="block text-[10px] sm:text-xs font-semibold text-[#0f2557] mb-1 sm:mb-1.5">
                   Prénom
                 </label>
                 <div className="relative">
                   <User
-                    size={16}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                    size={14}
+                    className="sm:size-16 absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
                   />
                   <input
                     value={form.firstName}
@@ -190,17 +190,17 @@ export default function Signup() {
                   />
                 </div>
                 {errors.firstName && (
-                  <p className="text-xs text-[#0f2557] mt-1">{errors.firstName}</p>
+                  <p className="text-[10px] sm:text-xs text-[#0f2557] mt-0.5 sm:mt-1">{errors.firstName}</p>
                 )}
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
+                <label className="block text-[10px] sm:text-xs font-semibold text-[#0f2557] mb-1 sm:mb-1.5">
                   Nom
                 </label>
                 <div className="relative">
                   <User
-                    size={16}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                    size={14}
+                    className="sm:size-16 absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
                   />
                   <input
                     value={form.lastName}
@@ -211,20 +211,20 @@ export default function Signup() {
                   />
                 </div>
                 {errors.lastName && (
-                  <p className="text-xs text-[#0f2557] mt-1">{errors.lastName}</p>
+                  <p className="text-[10px] sm:text-xs text-[#0f2557] mt-0.5 sm:mt-1">{errors.lastName}</p>
                 )}
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
+              <label className="block text-[10px] sm:text-xs font-semibold text-[#0f2557] mb-1 sm:mb-1.5">
                 Email
               </label>
               <div className="relative">
                 <Mail
-                  size={16}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
-                />
+                  size={14}
+                  className="sm:size-16 absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
                 <input
                   type="email"
                   value={form.email}
@@ -235,19 +235,19 @@ export default function Signup() {
                 />
               </div>
               {errors.email && (
-                <p className="text-xs text-[#0f2557] mt-1">{errors.email}</p>
+                <p className="text-[10px] sm:text-xs text-[#0f2557] mt-0.5 sm:mt-1">{errors.email}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
+              <label className="block text-[10px] sm:text-xs font-semibold text-[#0f2557] mb-1 sm:mb-1.5">
                 Téléphone
               </label>
               <div className="relative">
                 <Phone
-                  size={16}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
-                />
+                  size={14}
+                  className="sm:size-16 absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
                 <input
                   value={form.phone}
                   onChange={update("phone")}
@@ -257,19 +257,19 @@ export default function Signup() {
                 />
               </div>
               {errors.phone && (
-                <p className="text-xs text-[#0f2557] mt-1">{errors.phone}</p>
+                <p className="text-[10px] sm:text-xs text-[#0f2557] mt-0.5 sm:mt-1">{errors.phone}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
+              <label className="block text-[10px] sm:text-xs font-semibold text-[#0f2557] mb-1 sm:mb-1.5">
                 Mot de passe
               </label>
               <div className="relative">
                 <Lock
-                  size={16}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
-                />
+                  size={14}
+                  className="sm:size-16 absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={form.password}
@@ -281,39 +281,39 @@ export default function Signup() {
                 <button
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#0f2557]"
+                  className="absolute right-2.5 sm:right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#0f2557]"
                 >
-                  {showPassword ? <Eye size={16} /> : <EyeOff size={16} />}
+                  {showPassword ? <Eye size={14} className="sm:size-16" /> : <EyeOff size={14} className="sm:size-16" />}
                 </button>
               </div>
               {form.password && (
-                <div className="mt-1.5">
-                  <div className="flex gap-1">
+                <div className="mt-1 sm:mt-1.5">
+                  <div className="flex gap-0.5 sm:gap-1">
                     {[0, 1, 2, 3].map((i) => (
                       <div
                         key={i}
-                        className={`h-1 flex-1 rounded-full transition-colors duration-300 ${i < passwordStrength ? strengthColor : "bg-gray-150"
+                        className={`h-0.5 sm:h-1 flex-1 rounded-full transition-colors duration-300 ${i < passwordStrength ? strengthColor : "bg-gray-150"
                           }`}
                       />
                     ))}
                   </div>
-                  <p className="text-[11px] text-gray-500 mt-1">{strengthLabel}</p>
+                  <p className="text-[10px] sm:text-[11px] text-gray-500 mt-0.5 sm:mt-1">{strengthLabel}</p>
                 </div>
               )}
               {errors.password && (
-                <p className="text-xs text-[#0f2557] mt-1">{errors.password}</p>
+                <p className="text-[10px] sm:text-xs text-[#0f2557] mt-0.5 sm:mt-1">{errors.password}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
+              <label className="block text-[10px] sm:text-xs font-semibold text-[#0f2557] mb-1 sm:mb-1.5">
                 Confirmer le mot de passe
               </label>
               <div className="relative">
                 <Lock
-                  size={16}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
-                />
+                  size={14}
+                  className="sm:size-16 absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={form.confirmPassword}
@@ -324,14 +324,14 @@ export default function Signup() {
                 />
               </div>
               {errors.confirmPassword && (
-                <p className="text-xs text-[#0f2557] mt-1">
+                <p className="text-[10px] sm:text-xs text-[#0f2557] mt-0.5 sm:mt-1">
                   {errors.confirmPassword}
                 </p>
               )}
             </div>
 
             {errors.global && (
-              <p className="text-sm text-[#0f2557] bg-brand-50 border border-brand-200 rounded-lg px-3 py-2">
+              <p className="text-xs sm:text-sm text-[#0f2557] bg-brand-50 border border-brand-200 rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2">
                 {errors.global}
               </p>
             )}
@@ -339,15 +339,15 @@ export default function Signup() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-2.5 sm:py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#0f2557]/20 disabled:opacity-60 mt-2"
+              className="w-full flex items-center justify-center gap-1.5 sm:gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-2 sm:py-2.5 sm:py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#0f2557]/20 disabled:opacity-60 mt-1.5 sm:mt-2"
             >
               {isSubmitting ? "Création..." : "Créer mon compte"}
-              <ArrowRight size={18} />
+              <ArrowRight size={14} className="sm:size-18" />
             </button>
           </form>
         </div>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
+        <p className="text-center text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6">
           Déjà inscrit ?{" "}
           <Link
             to="/connexion"

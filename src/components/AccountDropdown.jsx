@@ -146,11 +146,11 @@ export default function AccountDropdown() {
                   className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 transition"
                 >
                   <div className="flex items-center gap-2.5">
-                    <Heart size={16} className="text-red-400" />
+                    <Heart size={16} className="text-[#0f2557]" />
                     <span>Mes favoris</span>
                   </div>
                   {wishlistCount > 0 && (
-                    <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-bold text-red-600">
+                    <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-bold text-[#0f2557]">
                       {wishlistCount}
                     </span>
                   )}
@@ -164,7 +164,7 @@ export default function AccountDropdown() {
                     logout()
                     setIsOpen(false)
                   }}
-                  className="w-full flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-bold text-red-600 hover:bg-red-50 transition cursor-pointer"
+                  className="w-full flex items-center gap-2 rounded-xl bg-brand-100 px-3.5 py-2.5 text-sm font-bold text-[#0f2557] hover:bg-brand-50 transition cursor-pointer"
                 >
                   <LogOut size={16} />
                   <span>Se déconnecter</span>
@@ -189,7 +189,7 @@ export default function AccountDropdown() {
               </div>
 
               {error && (
-                <div className="flex items-center gap-2 rounded-xl bg-red-50 border border-red-200 p-2.5 text-xs text-red-600">
+                <div className="flex items-center gap-2 rounded-xl bg-brand-50 border border-brand-200 p-2.5 text-xs text-[#0f2557]">
                   <AlertCircle size={14} className="flex-shrink-0" />
                   <span>{error}</span>
                 </div>

@@ -23,7 +23,7 @@ const statusStyles = {
   CONFIRMED: 'bg-blue-50 text-blue-700 border-blue-200',
   SHIPPED: 'bg-indigo-50 text-indigo-700 border-indigo-200',
   DELIVERED: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  CANCELLED: 'bg-red-50 text-red-700 border-red-200',
+  CANCELLED: 'bg-brand-50 text-[#0f2557] border-brand-200',
 }
 
 const WHATSAPP_NUMBER = '221784459510'
@@ -102,7 +102,7 @@ export default function TrackOrderPage() {
         </form>
 
         {error && (
-          <div className="mt-5 flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div className="mt-5 flex items-start gap-3 rounded-2xl border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-[#0f2557]">
             <AlertCircle size={18} className="mt-0.5 shrink-0" />
             <p>{error}</p>
           </div>

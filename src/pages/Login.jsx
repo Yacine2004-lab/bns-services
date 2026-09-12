@@ -119,36 +119,36 @@ export default function Login() {
       </div>
 
       {/* Colonne formulaire */}
-      <div className="flex items-center justify-center px-6 py-12 sm:px-12">
+      <div className="flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
         <div className="w-full max-w-sm">
-          <div className="lg:hidden mb-10 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#e87722] flex items-center justify-center font-black text-[#0f2557]">
+          <div className="lg:hidden mb-6 sm:mb-10 flex items-center gap-2 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#e87722] flex items-center justify-center font-black text-[#0f2557] text-sm sm:text-base">
               B
             </div>
             <div className="leading-tight">
-              <div className="font-extrabold text-[#0f2557]">BNS</div>
-              <div className="text-[10px] font-semibold tracking-widest text-[#e87722]">
+              <div className="font-extrabold text-[#0f2557] text-sm sm:text-base">BNS</div>
+              <div className="text-[9px] sm:text-[10px] font-semibold tracking-widest text-[#e87722]">
                 SERVICES
               </div>
             </div>
           </div>
 
-          <h1 className="text-2xl font-black text-[#0f2557] mb-1">
+          <h1 className="text-xl sm:text-2xl font-black text-[#0f2557] mb-0.5 sm:mb-1">
             Content de te revoir
           </h1>
-          <p className="text-gray-500 mb-8 text-sm">
+          <p className="text-gray-500 text-xs sm:text-sm mb-5 sm:mb-8">
             Connecte-toi à ton compte BNS Services
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4" noValidate>
+          <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-4" noValidate>
             {/* Bouton de connexion Google */}
             <div>
               <button
                 type="button"
                 onClick={() => { window.location.href = `${API_BASE}/auth/google`; }}
-                className="w-full flex items-center justify-center gap-3 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-xl py-2.5 sm:py-3 transition-all duration-200 text-sm font-semibold text-gray-700 cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 sm:gap-3 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-xl py-2 sm:py-2.5 sm:py-3 transition-all duration-200 text-xs sm:text-sm font-semibold text-gray-700 cursor-pointer"
               >
-                <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
                   <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
@@ -159,19 +159,19 @@ export default function Login() {
             </div>
 
             {/* Separateur */}
-            <div className="flex items-center gap-3 my-2">
+            <div className="flex items-center gap-2 sm:gap-3 my-1.5 sm:my-2">
               <div className="flex-1 h-px bg-gray-200" />
-              <span className="text-xs text-gray-400 font-medium">OU</span>
+              <span className="text-[10px] sm:text-xs text-gray-400 font-medium">OU</span>
               <div className="flex-1 h-px bg-gray-200" />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-[#0f2557] mb-1.5">
+              <label className="block text-xs sm:text-sm font-semibold text-[#0f2557] mb-1 sm:mb-1.5">
                 Adresse email
               </label>
               <div className="relative">
                 <Mail
-                  size={18}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                  size={14}
+                  className="sm:size-18 absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
                 />
                 <input
                   type="email"
@@ -179,27 +179,27 @@ export default function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="toi@exemple.com"
                   autoComplete="email"
-                  className="w-full pl-11 pr-4 py-2.5 sm:py-3 rounded-xl border border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20 outline-none transition-all duration-200 text-sm"
+                  className="w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-1.5 sm:py-2.5 sm:py-3 rounded-xl border border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20 outline-none transition-all duration-200 text-xs sm:text-sm"
                 />
               </div>
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-sm font-semibold text-[#0f2557]">
+              <div className="flex items-center justify-between mb-1 sm:mb-1.5">
+                <label className="block text-xs sm:text-sm font-semibold text-[#0f2557]">
                   Mot de passe
                 </label>
                 <Link
                   to="/mot-de-passe-oublie"
-                  className="text-xs font-semibold text-[#e87722] hover:text-[#0f2557] transition-colors duration-200"
+                  className="text-[10px] sm:text-xs font-semibold text-[#e87722] hover:text-[#0f2557] transition-colors duration-200"
                 >
                   Oublié ?
                 </Link>
               </div>
               <div className="relative">
                 <Lock
-                  size={18}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                  size={14}
+                  className="sm:size-18 absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
                 />
                 <input
                   type={showPassword ? "text" : "password"}
@@ -207,25 +207,25 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   autoComplete="current-password"
-                  className="w-full pl-11 pr-11 py-2.5 sm:py-3 rounded-xl border border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20 outline-none transition-all duration-200 text-sm"
+                  className="w-full pl-9 sm:pl-11 pr-9 sm:pr-11 py-1.5 sm:py-2.5 sm:py-3 rounded-xl border border-gray-200 focus:border-[#0f2557] focus:ring-2 focus:ring-[#0f2557]/20 outline-none transition-all duration-200 text-xs sm:text-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#0f2557] transition-colors duration-200"
+                  className="absolute right-2.5 sm:right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#0f2557] transition-colors duration-200"
                   aria-label={
                     showPassword
                       ? "Masquer le mot de passe"
                       : "Afficher le mot de passe"
                   }
                 >
-                  {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
+                  {showPassword ? <Eye size={14} className="sm:size-18" /> : <EyeOff size={14} className="sm:size-18" />}
                 </button>
               </div>
             </div>
 
             {error && (
-              <p className="text-sm text-[#0f2557] bg-brand-50 border border-brand-200 rounded-lg px-3 py-2">
+              <p className="text-xs sm:text-sm text-[#0f2557] bg-brand-50 border border-brand-200 rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-2">
                 {error}
               </p>
             )}
@@ -233,14 +233,14 @@ export default function Login() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-2.5 sm:py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#0f2557]/20 disabled:opacity-60 mt-2"
+              className="w-full flex items-center justify-center gap-1.5 sm:gap-2 bg-[#e87722] hover:bg-[#0f2557] text-[#0f2557] hover:text-white font-bold py-2 sm:py-2.5 sm:py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#0f2557]/20 disabled:opacity-60 mt-1.5 sm:mt-2"
             >
               {isSubmitting ? "Connexion..." : "Se connecter"}
-              <ArrowRight size={18} />
+              <ArrowRight size={14} className="sm:size-18" />
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-8">
+          <p className="text-center text-xs sm:text-sm text-gray-500 mt-5 sm:mt-8">
             Pas encore de compte ?{" "}
             <Link
               to="/inscription"
@@ -250,10 +250,10 @@ export default function Login() {
             </Link>
           </p>
 
-          <p className="text-center mt-4">
+          <p className="text-center mt-3 sm:mt-4">
             <Link
               to="/catalogue"
-              className="text-sm text-gray-400 hover:text-[#e87722] transition-colors duration-200"
+              className="text-xs sm:text-sm text-gray-400 hover:text-[#e87722] transition-colors duration-200"
             >
               Continuer sans compte →
             </Link>

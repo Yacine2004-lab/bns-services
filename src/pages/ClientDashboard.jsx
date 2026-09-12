@@ -48,7 +48,7 @@ const STATUS_CONFIG = {
   CONFIRMED: { label: 'Confirmée',    color: 'text-blue-700',    bg: 'bg-blue-50',    border: 'border-blue-200',    icon: CheckCircle2 },
   SHIPPED:   { label: 'En livraison', color: 'text-indigo-700',  bg: 'bg-indigo-50',  border: 'border-indigo-200',  icon: Package },
   DELIVERED: { label: 'Livrée',       color: 'text-emerald-700', bg: 'bg-emerald-50', border: 'border-emerald-200', icon: CheckCircle2 },
-  CANCELLED: { label: 'Annulée',      color: 'text-red-700',     bg: 'bg-red-50',     border: 'border-red-200',     icon: XCircle },
+  CANCELLED: { label: 'Annulée',      color: 'text-[#0f2557]',     bg: 'bg-brand-50',     border: 'border-brand-200',     icon: XCircle },
 }
 
 // Delai d'annulation client (1h) - doit correspondre au backend
@@ -321,7 +321,7 @@ export default function ClientDashboard() {
             </Link>
             <button
               onClick={logout}
-              className="flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-5 py-2.5 text-sm font-semibold text-red-300 transition hover:bg-red-500/20"
+              className="flex items-center gap-2 rounded-full border border-[#0f2557]/30 bg-[#0f2557]/10 px-5 py-2.5 text-sm font-semibold text-[#0f2557] transition hover:bg-[#0f2557]/20"
             >
               <LogOut size={16} />
               <span>Déconnexion</span>
@@ -391,7 +391,7 @@ export default function ClientDashboard() {
               : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
-          <Heart size={18} className={activeTab === 'wishlist' ? 'text-red-400' : ''} />
+          <Heart size={18} className={activeTab === 'wishlist' ? 'text-[#0f2557]' : ''} />
           Mes Favoris ({wishlist.length})
         </button>
 
@@ -474,7 +474,7 @@ export default function ClientDashboard() {
                       type="button"
                       onClick={() => toggleWishlist(product)}
                       className={`absolute right-3.5 top-3.5 flex h-9 w-9 items-center justify-center rounded-full border bg-white/90 shadow-sm backdrop-blur-sm transition hover:scale-110 ${
-                        inWish ? 'border-red-200 text-red-500' : 'border-slate-200 text-slate-400 hover:text-red-500'
+                        inWish ? 'border-brand-200 text-[#0f2557]' : 'border-slate-200 text-slate-400 hover:text-[#0f2557]'
                       }`}
                       aria-label="Ajouter aux favoris"
                     >
@@ -684,7 +684,7 @@ export default function ClientDashboard() {
                         <button
                           type="button"
                           onClick={() => setCancelModalOrder(order)}
-                          className="group inline-flex items-center justify-center gap-1.5 rounded-lg border-2 border-red-200 bg-white px-3 py-2 text-[11px] font-bold text-red-600 transition-all duration-200 hover:scale-[1.02] hover:border-red-400 hover:bg-red-50 hover:shadow-md hover:shadow-red-500/10 active:scale-[0.98]"
+                          className="group inline-flex items-center justify-center gap-1.5 rounded-lg border-2 border-brand-200 bg-white px-3 py-2 text-[11px] font-bold text-[#0f2557] transition-all duration-200 hover:scale-[1.02] hover:border-brand-400 hover:bg-brand-50 hover:shadow-md hover:shadow-[#0f2557]/10 active:scale-[0.98]"
                         >
                           <Ban size={12} className="transition-transform duration-200 group-hover:rotate-12" />
                           Annuler la commande
@@ -716,7 +716,7 @@ export default function ClientDashboard() {
         <div className="space-y-6">
           {wishlist.length === 0 ? (
             <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50 text-red-400 mb-4">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-[#0f2557] mb-4">
                 <Heart size={32} />
               </div>
               <h3 className="text-xl font-bold text-[#0f2557]">Votre liste d'envies est vide</h3>
@@ -747,7 +747,7 @@ export default function ClientDashboard() {
                     />
                     <button
                       onClick={() => toggleWishlist(product)}
-                      className="absolute top-2 right-2 flex h-8 w-8 items-center justify-center rounded-full bg-white text-red-500 shadow-sm"
+                      className="absolute top-2 right-2 flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#0f2557] shadow-sm"
                     >
                       <Heart size={16} className="fill-current" />
                     </button>
@@ -861,7 +861,7 @@ export default function ClientDashboard() {
                   </div>
                 </div>
                 {profileMsg.text && (
-                  <div className={`mt-4 flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-xs font-semibold ${profileMsg.type === 'success' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-red-200 bg-red-50 text-red-700'}`}>
+                  <div className={`mt-4 flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-xs font-semibold ${profileMsg.type === 'success' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-brand-200 bg-brand-50 text-[#0f2557]'}`}>
                     {profileMsg.type === 'success' ? <CheckCircle2 size={14} /> : <AlertTriangle size={14} />}
                     {profileMsg.text}
                   </div>
@@ -940,7 +940,7 @@ export default function ClientDashboard() {
                   </div>
                 </div>
                 {pwdMsg.text && (
-                  <div className={`mt-4 flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-xs font-semibold ${pwdMsg.type === 'success' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-red-200 bg-red-50 text-red-700'}`}>
+                  <div className={`mt-4 flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-xs font-semibold ${pwdMsg.type === 'success' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-brand-200 bg-brand-50 text-[#0f2557]'}`}>
                     {pwdMsg.type === 'success' ? <CheckCircle2 size={14} /> : <AlertTriangle size={14} />}
                     {pwdMsg.text}
                   </div>
@@ -1093,8 +1093,8 @@ export default function ClientDashboard() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100">
-                <Ban size={24} className="text-red-600" />
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-100">
+                <Ban size={24} className="text-[#0f2557]" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-black text-[#0f2557]">
@@ -1111,7 +1111,7 @@ export default function ClientDashboard() {
             </div>
 
             {cancelError && (
-              <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className="mt-4 rounded-lg border border-brand-200 bg-brand-50 p-3 text-sm text-[#0f2557]">
                 {cancelError}
               </div>
             )}
@@ -1129,7 +1129,7 @@ export default function ClientDashboard() {
                 type="button"
                 onClick={handleCancelOrder}
                 disabled={cancelling}
-                className="rounded-xl bg-red-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-red-700 disabled:opacity-50"
+                className="rounded-xl bg-[#0f2557] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#1a3a8a] disabled:opacity-50"
               >
                 {cancelling ? "Annulation..." : "Oui, annuler"}
               </button>

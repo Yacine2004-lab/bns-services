@@ -21,8 +21,8 @@ function WishlistPage() {
 
         {/* HERO */}
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f2557] via-[#0f2557] to-[#1a3a8a] px-6 py-10 text-white sm:px-10 sm:py-14">
-          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-red-500/20 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-pink-400/20 blur-3xl" />
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#0f2557]/20 blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#1a3a8a]/20 blur-3xl" />
           <Sparkles className="absolute right-8 top-8 h-6 w-6 text-white/20" />
           <Heart className="absolute right-10 bottom-10 h-12 w-12 fill-white/10 text-white/10" />
 
@@ -41,12 +41,12 @@ function WishlistPage() {
 
         {/* EMPTY STATE */}
         <section className="relative overflow-hidden rounded-3xl border-2 border-dashed border-slate-300 bg-gradient-to-br from-white to-slate-50/50 p-10 text-center sm:p-14">
-          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-red-100/30 blur-3xl" />
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#0f2557]/10 blur-3xl" />
 
           <div className="relative">
             <div className="relative mx-auto inline-flex">
-              <div className="absolute inset-0 animate-pulse rounded-full bg-red-200/50 blur-2xl" />
-              <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-red-100 to-pink-100 text-red-500 sm:h-28 sm:w-28">
+              <div className="absolute inset-0 animate-pulse rounded-full bg-[#0f2557]/20 blur-2xl" />
+              <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#0f2557] to-[#1a3a8a] text-white sm:h-28 sm:w-28">
                 <Heart size={48} className="sm:hidden" />
                 <Heart size={56} className="hidden sm:block" />
               </div>
@@ -77,14 +77,14 @@ function WishlistPage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f2557] via-[#0f2557] to-[#1a3a8a] px-6 py-8 text-white sm:px-10 sm:py-10">
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-red-500/20 blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-pink-400/20 blur-3xl" />
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#0f2557]/20 blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#1a3a8a]/20 blur-3xl" />
         <Heart className="absolute right-8 top-8 h-12 w-12 fill-white/10 text-white/10" />
 
         <div className="relative flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-white border border-white/20 backdrop-blur-sm">
-              <Heart size={11} className="fill-current text-red-300" /> Mes favoris
+              <Heart size={11} className="fill-current text-[#f09050]" /> Mes favoris
             </span>
             <h1 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">
               Vos coups de <span className="text-[#f09050]">cœur</span>
@@ -111,7 +111,7 @@ function WishlistPage() {
             className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
           >
             <Link to={`/produit/${product.slug}`} className="relative block overflow-hidden">
-              <div className="absolute left-3 top-3 z-10 inline-flex items-center gap-1 rounded-full bg-red-500/95 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-md backdrop-blur-sm">
+              <div className="absolute left-3 top-3 z-10 inline-flex items-center gap-1 rounded-full bg-[#0f2557]/95 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-md backdrop-blur-sm">
                 <Heart size={10} className="fill-white" /> Favori
               </div>
               <img
@@ -151,7 +151,7 @@ function WishlistPage() {
                 <button
                   type="button"
                   onClick={() => removeFromWishlist(product.id)}
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-red-200 bg-white text-red-600 transition-all duration-200 hover:scale-[1.05] hover:bg-red-50 active:scale-[0.95]"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#0f2557]/20 bg-white text-[#0f2557] transition-all duration-200 hover:scale-[1.05] hover:bg-[#0f2557]/5 active:scale-[0.95]"
                   title="Retirer des favoris"
                 >
                   <Trash2 size={14} />

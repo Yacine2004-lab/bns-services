@@ -161,7 +161,7 @@ export default function CartDrawer() {
                         <button
                           type="button"
                           onClick={() => removeFromCart(item.id)}
-                          className="rounded-lg p-1.5 text-slate-400 hover:bg-red-50 hover:text-red-500 transition"
+                          className="rounded-lg p-1.5 text-slate-400 hover:bg-brand-50 hover:text-[#0f2557] transition"
                           title="Supprimer du panier"
                         >
                           <Trash2 size={16} />
@@ -251,7 +251,7 @@ export default function CartDrawer() {
               <button
                 type="button"
                 onClick={clearCart}
-                className="w-full rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-bold text-red-500 transition hover:bg-red-50"
+                className="w-full rounded-xl border border-brand-200 bg-white px-4 py-2 text-xs font-bold text-[#0f2557] transition hover:bg-brand-50"
               >
                 Vider le panier
               </button>

@@ -27,7 +27,7 @@ export default function ResetPassword() {
   })()
 
   const strengthLabel = ['Trop faible', 'Faible', 'Correct', 'Bon', 'Excellent'][passwordStrength]
-  const strengthColor = ['bg-red-400', 'bg-orange-400', 'bg-amber-400', 'bg-lime-500', 'bg-emerald-500'][passwordStrength]
+  const strengthColor = ['bg-brand-300', 'bg-brand-400', 'bg-amber-400', 'bg-lime-500', 'bg-emerald-500'][passwordStrength]
 
   // Si pas de token dans l'URL, redirection
   if (!token) {

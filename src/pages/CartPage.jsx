@@ -130,7 +130,7 @@ function CartPage() {
                       <button
                         type="button"
                         onClick={() => removeFromCart(item.id)}
-                        className="ml-2 flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 text-red-600 hover:bg-red-50"
+                        className="ml-2 flex h-9 w-9 items-center justify-center rounded-lg border border-brand-200 text-[#0f2557] hover:bg-brand-50"
                       >
                         <Trash2 size={16} />
                       </button>
@@ -189,7 +189,7 @@ function CartPage() {
               <button
                 type="button"
                 onClick={clearCart}
-                className="mt-3 w-full rounded-2xl border border-red-200 bg-white px-6 py-3 text-sm font-bold text-red-500 transition hover:bg-red-50"
+                className="mt-3 w-full rounded-2xl border border-brand-200 bg-white px-6 py-3 text-sm font-bold text-[#0f2557] transition hover:bg-brand-50"
               >
                 Vider le panier
               </button>

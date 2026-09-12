@@ -75,32 +75,32 @@ function ProductPage() {
   ]
 
   return (
-    <div className="space-y-10 pb-10">
+    <div className="space-y-6 sm:space-y-10 pb-8 sm:pb-10">
       <button
         type="button"
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-[#0f2557] transition hover:bg-white"
+        className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#0f2557] transition hover:bg-white"
       >
-        <ArrowLeft size={16} />
+        <ArrowLeft size={14} className="sm:size-16" />
         Retour au catalogue
       </button>
 
-      <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-2">
         <div className="h-fit lg:sticky lg:top-24">
-          <div className="relative rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
+          <div className="relative rounded-[20px] sm:rounded-[28px] border border-slate-200 bg-white p-3 sm:p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
             <img
               src={resolveImageUrl(selectedImage || product.image)}
               alt={product.name}
-              className="h-96 w-full rounded-[20px] object-contain bg-slate-50"
+              className="h-64 sm:h-80 lg:h-96 w-full rounded-[16px] sm:rounded-[20px] object-contain bg-slate-50"
             />
             {pricing?.isPromoActive && (
-              <span className="absolute left-10 top-10 rounded-full bg-[#1a3a8a] px-3 py-1 text-sm font-black text-white">
+              <span className="absolute left-3 sm:left-10 top-3 sm:top-10 rounded-full bg-[#1a3a8a] px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-sm font-black text-white">
                 -{pricing.promoPercentage}%
               </span>
             )}
 
             {gallery.length > 1 && (
-              <div className="mt-4 grid grid-cols-4 gap-3">
+              <div className="mt-3 sm:mt-4 grid grid-cols-4 gap-2 sm:gap-3">
                 {gallery.map((image, index) => (
                   <button
                     key={`${image}-${index}`}
@@ -110,7 +110,7 @@ function ProductPage() {
                       selectedImage === image ? 'border-[#0f2557]' : 'border-slate-200'
                     }`}
                   >
-                    <img src={resolveImageUrl(image)} alt={`${product.name} ${index + 1}`} loading="lazy" decoding="async" className="h-20 w-full object-cover" />
+                    <img src={resolveImageUrl(image)} alt={`${product.name} ${index + 1}`} loading="lazy" decoding="async" className="h-16 sm:h-20 w-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -119,41 +119,41 @@ function ProductPage() {
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-            <span className="inline-block rounded-full bg-[#fef3d6] px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#a66600]">
+        <div className="space-y-4 sm:space-y-6">
+          <div className="rounded-[20px] sm:rounded-[28px] border border-slate-200 bg-white p-3 sm:p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
+            <span className="inline-block rounded-full bg-[#fef3d6] px-2.5 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#a66600]">
               {product.category}
             </span>
 
-            <h1 className="mt-4 text-4xl font-black tracking-[-0.06em] text-[#0f2557]">
+            <h1 className="mt-2 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl font-black tracking-[-0.06em] text-[#0f2557]">
               {product.name}
             </h1>
 
-            <p className="mt-3 text-xl text-slate-600">
+            <p className="mt-2 sm:mt-3 text-base sm:text-xl text-slate-600">
               {product.description}
             </p>
 
-            <div className="mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Prix</p>
-              <div className="mt-2 flex items-baseline gap-3 flex-wrap">
-                <p className="text-5xl font-black tracking-[-0.06em] text-[#0f2557]">
+            <div className="mt-4 sm:mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-3 sm:p-4">
+              <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-slate-500">Prix</p>
+              <div className="mt-1.5 sm:mt-2 flex items-baseline gap-2 sm:gap-3 flex-wrap">
+                <p className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.06em] text-[#0f2557]">
                   {formatPrice(pricing.price)}
                 </p>
-                {pricing.isPromoActive && <p className="text-lg font-semibold text-slate-400 line-through whitespace-nowrap">{formatPrice(pricing.originalPrice)}</p>}
+                {pricing.isPromoActive && <p className="text-sm sm:text-lg font-semibold text-slate-400 line-through whitespace-nowrap">{formatPrice(pricing.originalPrice)}</p>}
               </div>
             </div>
 
-            <div className="mt-6 space-y-4">
+            <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
               <div>
-                <label htmlFor="product-quantity" className="mb-2 block text-sm font-bold text-[#0f2557]">
+                <label htmlFor="product-quantity" className="mb-1.5 sm:mb-2 block text-xs sm:text-sm font-bold text-[#0f2557]">
                   Quantité
                 </label>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     disabled={product.stock === 0}
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 hover:bg-slate-50 disabled:opacity-40"
+                    className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl border border-slate-200 hover:bg-slate-50 disabled:opacity-40"
                   >
                     −
                   </button>
@@ -169,14 +169,14 @@ function ProductPage() {
                       setQuantity(Math.min(val, product.stock || 1))
                     }}
                     disabled={product.stock === 0}
-                    className="h-11 w-16 rounded-xl border border-slate-200 text-center text-lg font-bold outline-none disabled:opacity-40"
+                    className="h-9 w-14 sm:h-11 sm:w-16 rounded-xl border border-slate-200 text-center text-base sm:text-lg font-bold outline-none disabled:opacity-40"
                   />
 
                   <button
                     type="button"
                     onClick={() => setQuantity(Math.min(quantity + 1, product.stock || 1))}
                     disabled={product.stock === 0 || quantity >= product.stock}
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 hover:bg-slate-50 disabled:opacity-40"
+                    className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl border border-slate-200 hover:bg-slate-50 disabled:opacity-40"
                   >
                     +
                   </button>
@@ -188,7 +188,7 @@ function ProductPage() {
                 type="button"
                 onClick={handleBuyNow}
                 disabled={product.stock === 0}
-                className="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#e87722] to-[#f09050] px-6 py-4 text-lg font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/30 transition hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl bg-gradient-to-r from-[#e87722] to-[#f09050] px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/30 transition hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span>{product.stock === 0 ? 'Indisponible' : 'Acheter maintenant (Commander)'}</span>
               </button>
@@ -197,14 +197,14 @@ function ProductPage() {
                 type="button"
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
-                className={`w-full rounded-2xl px-6 py-4 text-lg font-bold transition disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`w-full rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-bold transition disabled:opacity-50 disabled:cursor-not-allowed ${
                   isAdded
                     ? 'bg-green-600 text-white'
                     : 'bg-[#0f2557] text-white hover:bg-[#1a3a8a]'
                 }`}
               >
-                <span className="flex items-center justify-center gap-2">
-                  <ShoppingCart size={20} />
+                <span className="flex items-center justify-center gap-1.5 sm:gap-2">
+                  <ShoppingCart size={16} className="sm:size-20" />
                   {isAdded ? 'Ajouté au panier ✓' : 'Ajouter au panier'}
                 </span>
               </button>
@@ -212,26 +212,26 @@ function ProductPage() {
               <button
                 type="button"
                 onClick={() => product && toggleWishlist(product)}
-                className={`flex items-center justify-center gap-2 rounded-2xl px-6 py-4 text-lg font-bold transition ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-bold transition ${
                   inWishlist
-                    ? 'bg-red-100 text-red-600 hover:bg-red-200'
+                    ? 'bg-brand-100 text-[#0f2557] hover:bg-brand-200'
                     : 'border border-[#0f2557] bg-white text-[#0f2557] hover:bg-slate-50'
                 }`}
               >
-                <Heart size={20} className={inWishlist ? 'fill-current' : ''} />
+                <Heart size={16} className={`sm:size-20 ${inWishlist ? 'fill-current' : ''}`} />
                 {inWishlist ? 'Enlever des favoris' : 'Ajouter à la wishlist'}
               </button>
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
-            <h3 className="text-xl font-black text-[#0f2557]">Caractéristiques</h3>
+          <div className="rounded-[20px] sm:rounded-[28px] border border-slate-200 bg-white p-3 sm:p-6 shadow-[0_18px_40px_rgba(11,31,58,0.08)]">
+            <h3 className="text-base sm:text-xl font-black text-[#0f2557]">Caractéristiques</h3>
 
-            <div className="mt-4 space-y-3">
+            <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
               {specs.map((spec) => (
-                <div key={spec.label} className="flex items-center justify-between border-b border-slate-100 pb-3">
-                  <span className="font-medium text-slate-600">{spec.label}</span>
-                  <span className="font-bold text-[#0f2557]">{spec.value}</span>
+                <div key={spec.label} className="flex items-center justify-between border-b border-slate-100 pb-2 sm:pb-3">
+                  <span className="text-sm sm:font-medium text-slate-600">{spec.label}</span>
+                  <span className="text-sm sm:font-bold text-[#0f2557]">{spec.value}</span>
                 </div>
               ))}
             </div>
