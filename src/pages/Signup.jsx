@@ -72,8 +72,8 @@ export default function Signup() {
     passwordStrength
   ];
   const strengthColor = [
-    "bg-red-400",
-    "bg-orange-400",
+    "bg-brand-300",
+    "bg-brand-400",
     "bg-amber-400",
     "bg-lime-500",
     "bg-emerald-500",
@@ -171,7 +171,7 @@ export default function Signup() {
               <span className="text-xs text-gray-400 font-medium">OU</span>
               <div className="flex-1 h-px bg-gray-200" />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-xs font-semibold text-[#0f2557] mb-1.5">
                   Prénom
@@ -190,7 +190,7 @@ export default function Signup() {
                   />
                 </div>
                 {errors.firstName && (
-                  <p className="text-xs text-red-500 mt-1">{errors.firstName}</p>
+                  <p className="text-xs text-[#0f2557] mt-1">{errors.firstName}</p>
                 )}
               </div>
               <div>
@@ -211,7 +211,7 @@ export default function Signup() {
                   />
                 </div>
                 {errors.lastName && (
-                  <p className="text-xs text-red-500 mt-1">{errors.lastName}</p>
+                  <p className="text-xs text-[#0f2557] mt-1">{errors.lastName}</p>
                 )}
               </div>
             </div>

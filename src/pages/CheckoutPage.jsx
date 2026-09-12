@@ -277,18 +277,18 @@ export default function CheckoutPage() {
       </div>
 
       <div className="text-left">
-        <h1 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0f2557]">
+        <h1 className="text-base sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0f2557]">
           Finaliser votre commande
         </h1>
-        <p className="mt-0.5 sm:mt-1 text-xs sm:text-sm text-slate-500">
+        <p className="mt-0.5 sm:mt-1 text-[10px] sm:text-sm text-slate-500">
           Complétez vos coordonnées pour recevoir votre matériel rapidement.
         </p>
       </div>
 
       {/* 2. Tunnel de commande en 2 Colonnes */}
-      <div className="grid gap-4 sm:gap-8 lg:grid-cols-12">
+      <div className="grid gap-3 sm:gap-8 lg:grid-cols-12">
         {/* Colonne Gauche : Formulaire (Sections A & C) */}
-        <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+        <div className="lg:col-span-7 space-y-3 sm:space-y-6">
         <form onSubmit={handlePlaceOrder} className="space-y-4 sm:space-y-6" noValidate>
             {/* Erreur API globale */}
             {errors.submit && (
@@ -317,17 +317,17 @@ export default function CheckoutPage() {
             )}
             {/* Section A : Coordonnées & Livraison */}
 
-            <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-4 sm:p-6 sm:py-8 shadow-[0_8px_25px_rgba(11,31,58,0.05)] sm:shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-4 sm:space-y-6">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4">
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-2 sm:p-6 sm:py-8 shadow-[0_8px_25px_rgba(11,31,58,0.05)] sm:shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-2 sm:space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-2 sm:pb-4">
                 <div className="flex items-center gap-2.5 sm:gap-3">
-                  <div className="flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl bg-[#0f2557] text-xs sm:text-sm font-bold text-white">
+                  <div className="flex h-6 w-6 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl bg-[#0f2557] text-[10px] sm:text-sm font-bold text-white">
                     1
                   </div>
                   <div>
-                    <h2 className="text-sm sm:text-lg font-black text-[#0f2557]">
+                    <h2 className="text-xs sm:text-lg font-black text-[#0f2557]">
                       Informations de livraison
                     </h2>
-                    <p className="text-[11px] sm:text-xs text-slate-500">
+                    <p className="text-[10px] sm:text-xs text-slate-500">
                       Où devons-nous vous livrer ?
                     </p>
                   </div>
@@ -343,19 +343,19 @@ export default function CheckoutPage() {
                 )}
               </div>
 
-              <div className="grid gap-2.5 sm:gap-4 sm:grid-cols-2">
+              <div className="grid gap-1.5 sm:gap-4 sm:grid-cols-2">
                 {/* Nom complet */}
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="fullName"
-                    className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
+                    className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-0.5"
                   >
                     Nom complet <span className="text-[#0f2557]">*</span>
                   </label>
                   <div className="relative">
                     <User
-                      size={16}
-                      className="sm:w-[18px] sm:h-[18px] absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                      size={14}
+                      className="sm:w-[18px] sm:h-[18px] absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
                     />
                     <input
                       id="fullName"
@@ -364,7 +364,7 @@ export default function CheckoutPage() {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       placeholder="Ex : Moussa Diop"
-                      className={`w-full rounded-lg sm:rounded-xl border pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition ${
+                      className={`w-full rounded-lg sm:rounded-xl border pl-8 sm:pl-11 pr-2.5 sm:pr-4 py-1.5 sm:py-3 text-[11px] sm:text-sm text-[#0f2557] outline-none transition ${
                         errors.fullName
                           ? 'border-[#0f2557]/40 bg-brand-50/50 focus:border-[#0f2557]'
                           : 'border-slate-200 bg-slate-50/50 focus:border-[#0f2557] focus:bg-white'
@@ -372,7 +372,7 @@ export default function CheckoutPage() {
                     />
                   </div>
                   {errors.fullName && (
-                    <p className="mt-1 text-[11px] text-red-500 flex items-center gap-1">
+                    <p className="mt-1 text-[11px] text-[#0f2557] flex items-center gap-1">
                       <AlertCircle size={11} /> {errors.fullName}
                     </p>
                   )}
@@ -382,14 +382,14 @@ export default function CheckoutPage() {
                 <div>
                   <label
                     htmlFor="phone"
-                    className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
+                    className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-0.5"
                   >
                     Téléphone (WhatsApp) <span className="text-[#0f2557]">*</span>
                   </label>
                   <div className="relative">
                     <Phone
-                      size={16}
-                      className="sm:w-[18px] sm:h-[18px] absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                      size={14}
+                      className="sm:w-[18px] sm:h-[18px] absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
                     />
                     <input
                       id="phone"
@@ -398,15 +398,15 @@ export default function CheckoutPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="Ex : 77 123 45 67"
-                      className={`w-full rounded-lg sm:rounded-xl border pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition ${
+                      className={`w-full rounded-lg sm:rounded-xl border pl-8 sm:pl-11 pr-2.5 sm:pr-4 py-1.5 sm:py-3 text-[11px] sm:text-sm text-[#0f2557] outline-none transition ${
                         errors.phone
-                          ? 'border-red-400 bg-red-50/30 focus:border-red-500'
-                          : 'border-slate-200 bg-slate-50/50 focus:border-[#e87722] focus:bg-white'
+                          ? 'border-[#0f2557]/40 bg-brand-50/50 focus:border-[#0f2557]'
+                          : 'border-slate-200 bg-slate-50/50 focus:border-[#0f2557] focus:bg-white'
                       }`}
                     />
                   </div>
                   {errors.phone && (
-                    <p className="mt-1 text-[11px] text-red-500 flex items-center gap-1">
+                    <p className="mt-1 text-[11px] text-[#0f2557] flex items-center gap-1">
                       <AlertCircle size={11} /> {errors.phone}
                     </p>
                   )}
@@ -416,14 +416,14 @@ export default function CheckoutPage() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
+                    className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-0.5"
                   >
                     Email <span className="text-slate-400 font-normal">(Optionnel)</span>
                   </label>
                   <div className="relative">
                     <Mail
-                      size={16}
-                      className="sm:w-[18px] sm:h-[18px] absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+                      size={14}
+                      className="sm:w-[18px] sm:h-[18px] absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
                     />
                     <input
                       id="email"
@@ -431,17 +431,26 @@ export default function CheckoutPage() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="votre-email@exemple.com"
-                      className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#0f2557] focus:bg-white"
+                      placeholder="toi@exemple.com"
+                      className={`w-full rounded-lg sm:rounded-xl border pl-8 sm:pl-11 pr-2.5 sm:pr-4 py-1.5 sm:py-3 text-[11px] sm:text-sm text-[#0f2557] outline-none transition ${
+                        errors.email
+                          ? 'border-[#0f2557]/40 bg-brand-50/50 focus:border-[#0f2557]'
+                          : 'border-slate-200 bg-slate-50/50 focus:border-[#0f2557] focus:bg-white'
+                      }`}
                     />
                   </div>
+                  {errors.email && (
+                    <p className="mt-1 text-[11px] text-[#0f2557] flex items-center gap-1">
+                      <AlertCircle size={11} /> {errors.email}
+                    </p>
+                  )}
                 </div>
 
-                {/* Zone / Ville */}
+                {/* Zone de livraison */}
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="city"
-                    className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
+                    className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-0.5"
                   >
                     Zone de livraison <span className="text-[#0f2557]">*</span>
                   </label>
@@ -450,7 +459,7 @@ export default function CheckoutPage() {
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#0f2557] focus:bg-white"
+                    className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 px-2.5 sm:px-4 py-1.5 sm:py-3 text-[11px] sm:text-sm text-[#0f2557] outline-none transition focus:border-[#0f2557] focus:bg-white"
                   >
                     {CITIES.map((c) => (
                       <option key={c} value={c}>
@@ -464,14 +473,14 @@ export default function CheckoutPage() {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="address"
-                    className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
+                    className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-0.5"
                   >
                     Adresse exacte & Repère <span className="text-[#0f2557]">*</span>
                   </label>
                   <div className="relative">
                     <MapPin
-                      size={16}
-                      className="sm:w-[18px] sm:h-[18px] absolute left-3 sm:left-3.5 top-2.5 sm:top-3.5 text-slate-400"
+                      size={14}
+                      className="sm:w-[18px] sm:h-[18px] absolute left-2.5 sm:left-3.5 top-2 sm:top-3.5 text-slate-400"
                     />
                     <textarea
                       id="address"
@@ -480,7 +489,7 @@ export default function CheckoutPage() {
                       value={formData.address}
                       onChange={handleInputChange}
                       placeholder="Ex : Mermoz pyrotechnie, villa n°12, près de la pharmacie"
-                      className={`w-full rounded-lg sm:rounded-xl border pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-3 text-xs sm:text-sm text-[#0f2557] outline-none transition resize-none ${
+                      className={`w-full rounded-lg sm:rounded-xl border pl-8 sm:pl-11 pr-2.5 sm:pr-4 py-1.5 sm:py-3 text-[11px] sm:text-sm text-[#0f2557] outline-none transition resize-none ${
                         errors.address
                           ? 'border-[#0f2557]/40 bg-brand-50/50 focus:border-[#0f2557]'
                           : 'border-slate-200 bg-slate-50/50 focus:border-[#0f2557] focus:bg-white'
@@ -498,7 +507,7 @@ export default function CheckoutPage() {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="notes"
-                    className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-1"
+                    className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-600 mb-0.5"
                   >
                     Instructions pour le livreur <span className="text-slate-400 font-normal">(Optionnel)</span>
                   </label>
@@ -509,23 +518,23 @@ export default function CheckoutPage() {
                     value={formData.notes}
                     onChange={handleInputChange}
                     placeholder="Ex : Appeler 15 min avant d'arriver"
-                    className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-[#0f2557] outline-none transition focus:border-[#0f2557] focus:bg-white"
+                    className="w-full rounded-lg sm:rounded-xl border border-slate-200 bg-slate-50/50 px-2.5 sm:px-4 py-1.5 sm:py-2.5 text-[11px] sm:text-sm text-[#0f2557] outline-none transition focus:border-[#0f2557] focus:bg-white"
                   />
                 </div>
               </div>
             </div>
 
-            {/* Section C : Mode de paiement */}
-            <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-4 sm:p-6 sm:py-8 shadow-[0_8px_25px_rgba(11,31,58,0.05)] sm:shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-3.5 sm:space-y-5">
-              <div className="flex items-center gap-2.5 sm:gap-3 border-b border-slate-100 pb-3 sm:pb-4">
-                <div className="flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl bg-[#0f2557] text-xs sm:text-sm font-bold text-white">
+            {/* Section C : Paiement */}
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-1.5 sm:p-6 sm:py-8 shadow-[0_8px_25px_rgba(11,31,58,0.05)] sm:shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-2 sm:space-y-6">
+              <div className="flex items-center gap-2 sm:gap-3 border-b border-slate-100 pb-2 sm:pb-4">
+                <div className="flex h-6 w-6 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl bg-[#0f2557] text-[10px] sm:text-sm font-bold text-white">
                   2
                 </div>
                 <div>
-                  <h2 className="text-sm sm:text-lg font-black text-[#0f2557]">
+                  <h2 className="text-xs sm:text-lg font-black text-[#0f2557]">
                     Mode de paiement
                   </h2>
-                  <p className="text-[11px] sm:text-xs text-slate-500">
+                  <p className="text-[10px] sm:text-xs text-slate-500">
                     Payez facilement à la réception
                   </p>
                 </div>
@@ -548,7 +557,7 @@ export default function CheckoutPage() {
                 </div>
               </button>
 
-              <div className="grid gap-2.5 sm:gap-3 sm:grid-cols-2">
+              <div className="grid gap-2 sm:gap-3 sm:grid-cols-2">
                 {ONLINE_PAYMENT_OPTIONS.map(({ value, label, description, logo, logoFrame }) => (
                   <button key={value} type="button" onClick={() => setPaymentMethod(value)} className={`min-h-[100px] sm:min-h-[132px] rounded-xl sm:rounded-2xl border-2 p-3 sm:p-5 text-left transition ${paymentMethod === value ? 'border-[#0f2557] bg-brand-50' : 'border-slate-200 bg-slate-50 hover:border-[#0f2557]/40'}`}>
                     <div className="flex items-center justify-between gap-2">
@@ -596,62 +605,60 @@ export default function CheckoutPage() {
         </div>
 
         {/* Colonne Droite : Récapitulatif (Section B) */}
-        <div className="lg:col-span-5">
-          <div className="space-y-4 sm:space-y-5 lg:sticky lg:top-24">
-            <div className="rounded-xl sm:rounded-3xl border border-slate-200 bg-white p-3.5 sm:p-6 lg:p-7 shadow-[0_8px_25px_rgba(11,31,58,0.05)] sm:shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-4 sm:space-y-6">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3 sm:pb-4">
-                <h3 className="text-sm sm:text-lg font-black text-[#0f2557] flex items-center gap-1.5 sm:gap-2">
-                  <ShoppingBag size={16} className="sm:w-5 sm:h-5 text-[#0f2557]" />
-                  Récapitulatif ({cart.reduce((s, i) => s + i.quantity, 0)} articles)
-                </h3>
-              </div>
+        <div className="lg:col-span-5 space-y-3 sm:space-y-6">
+          <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-2 sm:p-6 sm:py-8 shadow-[0_8px_25px_rgba(11,31,58,0.05)] sm:shadow-[0_12px_35px_rgba(11,31,58,0.06)] space-y-2 sm:space-y-6 sticky top-4">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2 sm:pb-4">
+              <h3 className="text-xs sm:text-lg font-black text-[#0f2557] flex items-center gap-1.5 sm:gap-2">
+                <ShoppingBag size={14} className="sm:w-5 sm:h-5 text-[#0f2557]" />
+                Récapitulatif ({cart.reduce((s, i) => s + i.quantity, 0)} articles)
+              </h3>
+            </div>
 
-              {/* Liste des articles */}
-              <div className="max-h-60 sm:max-h-80 overflow-y-auto divide-y divide-slate-100 pr-1">
-                {cart.map((item) => (
-                  <div key={item.id} className="flex items-center gap-2.5 sm:gap-3.5 py-2.5 sm:py-3">
-                    <div className="h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 overflow-hidden rounded-lg sm:rounded-xl border border-slate-100 bg-[#f8fafc] p-1 sm:p-1.5 flex items-center justify-center">
-                      <img
-                        src={resolveImageUrl(item.image)}
-                        alt={item.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-[11px] sm:text-xs font-bold text-[#0f2557] truncate">
-                        {item.name}
-                      </h4>
-                      <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5">
-                        Qté : <strong className="text-slate-800">{item.quantity}</strong> × {formatPrice(item.price)}
-                      </p>
-                    </div>
-                    <span className="text-[11px] sm:text-xs font-black text-[#0f2557] flex-shrink-0">
-                      {formatPrice(item.price * item.quantity)}
-                    </span>
+            {/* Liste des articles */}
+            <div className="max-h-48 sm:max-h-80 overflow-y-auto divide-y divide-slate-100 pr-1">
+              {cart.map((item) => (
+                <div key={item.id} className="flex items-center gap-2 sm:gap-3.5 py-2 sm:py-3">
+                  <div className="h-10 w-10 sm:h-16 sm:w-16 flex-shrink-0 overflow-hidden rounded-lg sm:rounded-xl border border-slate-100 bg-[#f8fafc] p-1 sm:p-1.5 flex items-center justify-center">
+                    <img
+                      src={resolveImageUrl(item.image)}
+                      alt={item.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="max-h-full max-w-full object-contain"
+                    />
                   </div>
-                ))}
-              </div>
-
-              {/* Totaux */}
-              <div className="border-t border-slate-100 pt-3 sm:pt-4 space-y-2 sm:space-y-2.5">
-                <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600">
-                  <span>Sous-total</span>
-                  <span className="font-semibold text-slate-800">{formatPrice(total)}</span>
-                </div>
-
-                <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600">
-                  <span>Frais de livraison</span>
-                  <span className="font-bold text-[#0f2557]">{formatPrice(deliveryFee)}</span>
-                </div>
-
-                <div className="flex items-center justify-between border-t border-slate-200 pt-2.5 sm:pt-3 text-[#0f2557]">
-                  <span className="text-sm sm:text-base font-bold">Total à payer</span>
-                  <span className="text-lg sm:text-2xl lg:text-3xl font-black tracking-tight text-[#0f2557]">
-                    {formatPrice(grandTotal)}
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-[10px] sm:text-xs font-bold text-[#0f2557] truncate">
+                      {item.name}
+                    </h4>
+                    <p className="text-[9px] sm:text-[11px] text-slate-500 mt-0.5">
+                      Qté : <strong className="text-slate-800">{item.quantity}</strong> × {formatPrice(item.price)}
+                    </p>
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-black text-[#0f2557] flex-shrink-0">
+                    {formatPrice(item.price * item.quantity)}
                   </span>
                 </div>
+              ))}
+            </div>
+
+            {/* Totaux */}
+            <div className="border-t border-slate-100 pt-3 sm:pt-4 space-y-2 sm:space-y-2.5">
+              <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600">
+                <span>Sous-total</span>
+                <span className="font-semibold text-slate-800">{formatPrice(total)}</span>
+              </div>
+
+              <div className="flex items-center justify-between text-xs sm:text-sm text-slate-600">
+                <span>Frais de livraison</span>
+                <span className="font-bold text-[#0f2557]">{formatPrice(deliveryFee)}</span>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-slate-200 pt-2.5 sm:pt-3 text-[#0f2557]">
+                <span className="text-sm sm:text-base font-bold">Total à payer</span>
+                <span className="text-lg sm:text-2xl lg:text-3xl font-black tracking-tight text-[#0f2557]">
+                  {formatPrice(grandTotal)}
+                </span>
               </div>
             </div>
 
