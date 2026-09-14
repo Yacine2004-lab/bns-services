@@ -259,7 +259,7 @@ export default function CheckoutPage() {
   if (cart.length === 0) return null
 
   return (
-    <div className="w-full space-y-4 sm:space-y-8 pb-20 sm:pb-16 px-0 sm:px-0">
+    <div className="mx-auto max-w-7xl space-y-4 sm:space-y-8 pb-20 sm:pb-16 px-4 sm:px-6">
       {/* 1. Header de navigation */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 border-b border-slate-200 pb-4 sm:pb-5">
         <Link
@@ -286,7 +286,7 @@ export default function CheckoutPage() {
       </div>
 
       {/* 2. Tunnel de commande en 2 Colonnes */}
-      <div className="grid gap-3 sm:gap-8 lg:grid-cols-12 max-w-4xl mx-auto">
+      <div className="grid gap-3 sm:gap-8 lg:grid-cols-12">
         {/* Colonne Gauche : Formulaire (Sections A & C) */}
         <div className="lg:col-span-7 space-y-3 sm:space-y-6">
         <form onSubmit={handlePlaceOrder} className="space-y-4 sm:space-y-6" noValidate>
