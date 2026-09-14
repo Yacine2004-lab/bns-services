@@ -79,9 +79,9 @@ function ProductPage() {
       <button
         type="button"
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-[#0f2557] transition hover:bg-white"
+        className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 sm:px-3.5 py-1.5 sm:py-1.5 text-xs sm:text-[11px] font-semibold text-[#0f2557] transition hover:bg-white"
       >
-        <ArrowLeft size={14} className="sm:size-16" />
+        <ArrowLeft size={14} />
         Retour au catalogue
       </button>
 
