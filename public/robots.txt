@@ -1,0 +1,12 @@
+# Robots.txt pour BNS Services
+# Autoriser tous les robots
+User-agent: *
+Allow: /
+
+# Interdire l'accès aux fichiers sensibles
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://bayeniassservice.com/sitemap.xml
