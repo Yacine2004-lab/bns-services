@@ -359,17 +359,17 @@ function HomePage() {
               <button
                 type="button"
                 onClick={() => handleQuickBuy(product)}
-                className="w-full sm:w-auto group/btn inline-flex items-center justify-center gap-1 sm:gap-1.5 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-4 sm:px-6 py-2 sm:py-3 text-[10px] sm:text-[12px] font-black uppercase tracking-wider text-white shadow-lg shadow-[#e87722]/30 transition-all duration-300 hover:scale-[1.04] hover:shadow-xl hover:shadow-[#e87722]/40 active:scale-[0.97] whitespace-nowrap"
+                className="w-full sm:w-auto group/btn inline-flex items-center justify-center gap-1 sm:gap-1.5 rounded-full bg-gradient-to-r from-[#e87722] to-[#f09050] px-4 sm:px-5 py-2 sm:py-2.5 text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-white shadow-lg shadow-[#e87722]/30 transition-all duration-300 hover:scale-[1.04] hover:shadow-xl hover:shadow-[#e87722]/40 active:scale-[0.97] whitespace-nowrap"
               >
-                <Zap size={12} className="sm:size-16 fill-white transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
+                <Zap size={12} className="fill-white transition-transform duration-300 group-hover/btn:scale-110 group-hover/btn:-rotate-6" />
                 Acheter
               </button>
               <Link
                 to={`/produit/${product.slug}`}
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-0.5 sm:gap-1 text-[10px] sm:text-sm font-bold text-[#0f2557] bg-white px-3 sm:px-4 py-2 sm:py-3 rounded-full shadow-md transition-colors hover:text-[#1a3a8a] hover:bg-slate-50 whitespace-nowrap"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-0.5 sm:gap-1 text-[10px] sm:text-[11px] font-bold text-[#0f2557] bg-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-full shadow-md transition-colors hover:text-[#1a3a8a] hover:bg-slate-50 whitespace-nowrap"
               >
                 Détails
-                <ArrowRight size={10} className="sm:size-14 transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight size={10} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
           </div>
@@ -479,16 +479,16 @@ function HomePage() {
                   <button
                     type="button"
                     onClick={() => handleQuickBuy(product)}
-                    className="group/btn w-full flex items-center justify-center gap-1 sm:gap-1.5 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.97]"
+                    className="group/btn w-full flex items-center justify-center gap-1 sm:gap-1.5 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.97]"
                   >
                     Acheter maintenant
                   </button>
                   <button
                     type="button"
                     onClick={() => handleQuickAdd(product)}
-                    className="group/add w-full flex items-center justify-center gap-0.5 sm:gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold text-slate-700 transition-all duration-300 hover:border-[#0f2557] hover:bg-[#0f2557]/5 active:scale-[0.97]"
+                    className="group/add w-full flex items-center justify-center gap-0.5 sm:gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-1 sm:py-1.5 text-[10px] sm:text-[11px] font-bold text-slate-700 transition-all duration-300 hover:border-[#0f2557] hover:bg-[#0f2557]/5 active:scale-[0.97]"
                   >
-                    <Plus size={10} className="sm:size-13 transition-transform duration-300 group-hover/add:scale-125" />
+                    <Plus size={10} className="transition-transform duration-300 group-hover/add:scale-125" />
                     Panier
                   </button>
                 </div>
