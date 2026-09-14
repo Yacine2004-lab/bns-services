@@ -286,7 +286,7 @@ export default function CheckoutPage() {
       </div>
 
       {/* 2. Tunnel de commande en 2 Colonnes */}
-      <div className="grid gap-3 sm:gap-8 lg:grid-cols-12">
+      <div className="grid gap-3 sm:gap-8 lg:grid-cols-12 max-w-4xl mx-auto">
         {/* Colonne Gauche : Formulaire (Sections A & C) */}
         <div className="lg:col-span-7 space-y-3 sm:space-y-6">
         <form onSubmit={handlePlaceOrder} className="space-y-4 sm:space-y-6" noValidate>
