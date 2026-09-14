@@ -154,22 +154,22 @@ function HomePage() {
                 <button
                   type="button"
                   onClick={() => handleQuickBuy(currentHero)}
-                  className="group/btn inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#e87722] px-3 py-2.5 text-[9px] font-black text-white shadow-[0_8px_25px_rgba(232,119,34,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f09050] hover:shadow-[0_12px_35px_rgba(232,119,34,0.5)] active:scale-95 sm:gap-2 sm:px-6 sm:py-3 sm:text-[10px] md:px-8 md:py-4 md:text-sm"
+                  className="group/btn inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#e87722] px-3 py-2.5 text-[9px] font-black text-white shadow-[0_8px_25px_rgba(232,119,34,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f09050] hover:shadow-[0_12px_35px_rgba(232,119,34,0.5)] active:scale-95 sm:gap-2 sm:px-5 sm:py-2.5 sm:text-[10px] md:px-6 md:py-3 md:text-[11px]"
                 >
-                  <Zap size={16} className="fill-white transition-transform duration-300 group-hover/btn:-rotate-12 group-hover/btn:scale-110 sm:size-18" />
+                  <Zap size={14} className="fill-white transition-transform duration-300 group-hover/btn:-rotate-12 group-hover/btn:scale-110" />
                   Commander maintenant
                 </button>
                 <button
                   type="button"
                   onClick={() => handleQuickAdd(currentHero)}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-[10px] font-bold text-white backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/20 active:scale-95 sm:gap-2 sm:px-8 sm:py-4 sm:text-sm"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-[10px] font-bold text-white backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/20 active:scale-95 sm:gap-2 sm:px-6 sm:py-3 sm:text-[11px]"
                 >
-                  <Plus size={18} />
+                  <Plus size={14} />
                   Panier
                 </button>
                 <Link
                   to={`/produit/${currentHero.slug}`}
-                  className="pl-1 text-[11px] font-bold text-slate-300 transition-colors hover:text-white hover:underline sm:pl-2 sm:text-sm"
+                  className="pl-1 text-[11px] font-bold text-slate-300 transition-colors hover:text-white hover:underline sm:pl-2 sm:text-[11px]"
                 >
                   En savoir plus →
                 </Link>
