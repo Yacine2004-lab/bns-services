@@ -47,8 +47,8 @@ function WishlistPage() {
             <div className="relative mx-auto inline-flex">
               <div className="absolute inset-0 animate-pulse rounded-full bg-[#0f2557]/20 blur-2xl" />
               <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#0f2557] to-[#1a3a8a] text-white sm:h-28 sm:w-28">
-                <Heart size={48} className="sm:hidden" />
-                <Heart size={56} className="hidden sm:block" />
+                <Heart size={32} className="sm:hidden" />
+                <Heart size={40} className="hidden sm:block" />
               </div>
             </div>
 

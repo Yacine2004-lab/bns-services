@@ -294,7 +294,7 @@ function CatalogPage() {
                         }`}
                         aria-label="Ajouter aux favoris"
                       >
-                        <Heart size={14} className="sm:size-16" />
+                        <Heart size={12} />
                       </button>
                     </div>
 

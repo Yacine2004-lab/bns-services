@@ -188,7 +188,7 @@ function ProductPage() {
                 type="button"
                 onClick={handleBuyNow}
                 disabled={product.stock === 0}
-                className="w-full flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl bg-gradient-to-r from-[#e87722] to-[#f09050] px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/30 transition hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl bg-gradient-to-r from-[#e87722] to-[#f09050] px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-[15px] lg:text-[17px] font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/30 transition hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span>{product.stock === 0 ? 'Indisponible' : 'Acheter maintenant (Commander)'}</span>
               </button>
@@ -197,14 +197,14 @@ function ProductPage() {
                 type="button"
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
-                className={`w-full rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-bold transition disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`w-full rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-[15px] lg:text-[17px] font-bold transition disabled:opacity-50 disabled:cursor-not-allowed ${
                   isAdded
                     ? 'bg-green-600 text-white'
                     : 'bg-[#0f2557] text-white hover:bg-[#1a3a8a]'
                 }`}
               >
                 <span className="flex items-center justify-center gap-1.5 sm:gap-2">
-                  <ShoppingCart size={16} className="sm:size-20" />
+                  <ShoppingCart size={14} />
                   {isAdded ? 'Ajouté au panier ✓' : 'Ajouter au panier'}
                 </span>
               </button>
@@ -212,13 +212,13 @@ function ProductPage() {
               <button
                 type="button"
                 onClick={() => product && toggleWishlist(product)}
-                className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-bold transition ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-[15px] lg:text-[17px] font-bold transition ${
                   inWishlist
                     ? 'bg-brand-100 text-[#0f2557] hover:bg-brand-200'
                     : 'border border-[#0f2557] bg-white text-[#0f2557] hover:bg-slate-50'
                 }`}
               >
-                <Heart size={16} className={`sm:size-20 ${inWishlist ? 'fill-current' : ''}`} />
+                <Heart size={14} className={inWishlist ? 'fill-current' : ''} />
                 {inWishlist ? 'Enlever des favoris' : 'Ajouter à la wishlist'}
               </button>
             </div>

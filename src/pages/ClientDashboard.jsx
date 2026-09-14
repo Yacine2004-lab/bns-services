@@ -391,7 +391,7 @@ export default function ClientDashboard() {
               : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
-          <Heart size={18} className={activeTab === 'wishlist' ? 'text-[#0f2557]' : ''} />
+          <Heart size={14} className={activeTab === 'wishlist' ? 'text-[#0f2557]' : ''} />
           Mes Favoris ({wishlist.length})
         </button>
 
@@ -478,7 +478,7 @@ export default function ClientDashboard() {
                       }`}
                       aria-label="Ajouter aux favoris"
                     >
-                      <Heart size={16} className={inWish ? 'fill-current' : ''} />
+                      <Heart size={14} className={inWish ? 'fill-current' : ''} />
                     </button>
                   </div>
 
@@ -717,7 +717,7 @@ export default function ClientDashboard() {
           {wishlist.length === 0 ? (
             <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-[#0f2557] mb-4">
-                <Heart size={32} />
+                <Heart size={24} />
               </div>
               <h3 className="text-xl font-bold text-[#0f2557]">Votre liste d'envies est vide</h3>
               <p className="mt-2 text-sm text-slate-500 max-w-md mx-auto">
@@ -749,7 +749,7 @@ export default function ClientDashboard() {
                       onClick={() => toggleWishlist(product)}
                       className="absolute top-2 right-2 flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#0f2557] shadow-sm"
                     >
-                      <Heart size={16} className="fill-current" />
+                      <Heart size={14} className="fill-current" />
                     </button>
                   </div>
 
