@@ -259,7 +259,7 @@ export default function CheckoutPage() {
   if (cart.length === 0) return null
 
   return (
-    <div className="mx-auto max-w-7xl space-y-4 sm:space-y-8 pb-20 sm:pb-16 px-6 sm:px-8">
+    <div className="mx-auto max-w-7xl space-y-4 sm:space-y-8 pb-20 sm:pb-16 px-2 sm:px-6">
       {/* 1. Header de navigation */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 border-b border-slate-200 pb-4 sm:pb-5">
         <Link
