@@ -328,7 +328,7 @@ function CatalogPage() {
                           <button
                             type="button"
                             onClick={(e) => handleQuickBuy(product, e)}
-                            className="group/btn w-full flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.98]"
+                            className="group/btn w-full flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-gradient-to-r from-[#e87722] via-[#f09050] to-[#f09050] py-2 sm:py-2 text-xs sm:text-[11px] font-bold text-[#0f2557] shadow-lg shadow-[#e87722]/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#e87722]/35 active:scale-[0.98]"
                           >
                             <span>Acheter maintenant</span>
                           </button>
@@ -337,18 +337,18 @@ function CatalogPage() {
                             <button
                               type="button"
                               onClick={(e) => handleQuickAdd(product, e)}
-                              className="group/add flex items-center justify-center gap-1 sm:gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-[#0f2557] transition-all duration-300 hover:border-[#0f2557] hover:bg-[#0f2557]/5 active:scale-[0.97]"
+                              className="group/add flex items-center justify-center gap-1 sm:gap-1.5 rounded-xl border-2 border-slate-200/80 bg-white py-1.5 sm:py-1.5 text-[10px] sm:text-[11px] font-bold text-[#0f2557] transition-all duration-300 hover:border-[#0f2557] hover:bg-[#0f2557]/5 active:scale-[0.97]"
                             >
-                              <Plus size={12} className="sm:size-14 transition-transform duration-300 group-hover/add:scale-125" />
+                              <Plus size={12} className="transition-transform duration-300 group-hover/add:scale-125" />
                               <span>Panier</span>
                             </button>
 
                             <Link
                               to={`/produit/${product.slug}`}
-                              className="flex items-center justify-center gap-0.5 sm:gap-1 rounded-xl border-2 border-slate-200/80 bg-white py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-[#0f2557] hover:bg-slate-50"
+                              className="flex items-center justify-center gap-0.5 sm:gap-1 rounded-xl border-2 border-slate-200/80 bg-white py-1.5 sm:py-1.5 text-[10px] sm:text-[11px] font-bold text-slate-600 transition-all duration-300 hover:border-slate-300 hover:text-[#0f2557] hover:bg-slate-50"
                             >
                               <span>Détails</span>
-                              <ChevronRight size={12} className="sm:size-14" />
+                              <ChevronRight size={12} />
                             </Link>
                           </div>
                         </div>
