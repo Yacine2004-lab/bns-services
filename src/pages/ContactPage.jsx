@@ -100,7 +100,7 @@ export default function ContactPage() {
 
         <div className="relative mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/10 px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white border border-white/20 backdrop-blur-sm">
-            <Headphones size={10} className="sm:size-12 text-white" /> Service client
+            <Headphones size={10} /> Service client
           </span>
           <h1 className="mt-3 sm:mt-5 text-2xl sm:text-4xl lg:text-6xl font-black tracking-tight">
             Contactez-<span className="text-white/90">nous</span>
@@ -120,7 +120,7 @@ export default function ContactPage() {
             className="group rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 sm:p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
           >
             <div className="flex h-8 w-8 sm:h-9 sm:h-10 sm:w-9 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0f2557] to-[#1a3a8a] text-white transition group-hover:scale-110">
-              <Icon size={14} className="sm:size-18" />
+              <Icon size={14} />
             </div>
             <h3 className="mt-2 sm:mt-3 text-xs sm:text-sm sm:text-base font-black text-[#0f2557]">{title}</h3>
             <p className="mt-0.5 sm:mt-1 text-[10px] sm:text-xs sm:text-sm leading-relaxed text-slate-600">{description}</p>
@@ -134,7 +134,7 @@ export default function ContactPage() {
         <div className="lg:col-span-2 space-y-3 sm:space-y-4">
           <div>
             <span className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-[#0f2557]/10 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-[#0f2557] border border-[#0f2557]/20">
-              <Zap size={10} className="sm:size-11" /> Nos canaux
+              <Zap size={10} /> Nos canaux
             </span>
             <h2 className="mt-1.5 sm:mt-2 text-xl sm:text-2xl sm:text-3xl font-black text-[#0f2557]">Restons en contact</h2>
             <p className="mt-1 text-xs sm:text-sm sm:text-base text-slate-600">
@@ -155,7 +155,7 @@ export default function ContactPage() {
                   className={`group flex items-start gap-2 sm:gap-3 rounded-xl border border-slate-200 bg-white p-2.5 sm:p-3 sm:p-3.5 transition-all duration-300 ${href ? `${hoverBorder} hover:-translate-y-0.5 hover:shadow-sm` : ''}`}
                 >
                   <div className={`flex h-9 w-9 sm:h-10 sm:h-11 sm:w-10 sm:w-11 shrink-0 items-center justify-center rounded-xl ${bg} ${iconColor} transition group-hover:scale-110`}>
-                    <Icon size={14} className="sm:size-18" />
+                    <Icon size={14} />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500">{label}</p>
@@ -178,7 +178,7 @@ export default function ContactPage() {
                 <>
                   <div className="flex items-center gap-2 sm:gap-2.5">
                     <div className="flex h-8 w-8 sm:h-9 sm:h-10 sm:w-9 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0f2557] to-[#1a3a8a] text-white">
-                      <Send size={14} className="sm:size-16" />
+                      <Send size={14} />
                     </div>
                     <div>
                       <h2 className="text-base sm:text-lg sm:text-xl font-black text-[#0f2557]">Envoyez-nous un message</h2>
@@ -234,9 +234,9 @@ export default function ContactPage() {
                       type="submit"
                       className="group inline-flex w-full items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-gradient-to-r from-[#e87722] to-[#f09050] px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-white shadow-lg shadow-[#e87722]/25 transition-all duration-200 hover:scale-[1.01] hover:shadow-xl hover:shadow-[#e87722]/30 active:scale-[0.99]"
                     >
-                      <MessageCircle size={14} className="sm:size-16" />
+                      <MessageCircle size={14} />
                       Envoyer via WhatsApp
-                      <ArrowRight size={14} className="sm:size-16 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                     </button>
 
                     <p className="text-center text-[10px] sm:text-[11px] text-slate-500">
@@ -250,7 +250,7 @@ export default function ContactPage() {
                     <div className="relative">
                       <div className="absolute inset-0 animate-ping rounded-full bg-emerald-200" />
                       <div className="relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-lg shadow-emerald-500/30">
-                        <CheckCircle2 size={28} className="sm:size-32" />
+                        <CheckCircle2 size={28} />
                       </div>
                     </div>
                   </div>
@@ -262,7 +262,10 @@ export default function ContactPage() {
                     </p>
                   </div>
                   <button
-                    onClick={() => { setSent(false); setForm({ name: '', email: '', message: '' }) })
+                    onClick={() => {
+                      setSent(false)
+                      setForm({ name: '', email: '', message: '' })
+                    }}
                     className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl border-2 border-slate-200 bg-white px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-slate-700 transition hover:border-[#0f2557] hover:text-[#0f2557]"
                   >
                     Envoyer un autre message
@@ -279,7 +282,7 @@ export default function ContactPage() {
         <div className="grid items-center gap-3 sm:gap-4 text-center sm:grid-cols-3 sm:text-left">
           <div className="flex items-center justify-center gap-2 sm:gap-3 sm:justify-start">
             <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-green-100 text-green-600">
-              <MessageCircle size={14} className="sm:size-18" />
+              <MessageCircle size={14} />
             </div>
             <div className="text-left">
               <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500">Le plus rapide</p>
@@ -288,7 +291,7 @@ export default function ContactPage() {
           </div>
           <div className="flex items-center justify-center gap-2 sm:gap-3 sm:justify-start">
             <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
-              <Mail size={14} className="sm:size-18" />
+              <Mail size={14} />
             </div>
             <div className="text-left">
               <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Le plus complet</p>
@@ -297,7 +300,7 @@ export default function ContactPage() {
           </div>
           <div className="flex items-center justify-center gap-2 sm:gap-3 sm:justify-start">
             <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-brand-50 text-[#0f2557]">
-              <Clock size={14} className="sm:size-18" />
+              <Clock size={14} />
             </div>
             <div className="text-left">
               <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500">Disponibilité</p>
