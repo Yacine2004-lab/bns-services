@@ -32,6 +32,7 @@ import {
   Server,
   Database,
   Activity,
+  MoveHorizontal,
 } from 'lucide-react'
 import { useState, useEffect, useCallback } from 'react'
 import AdminProducts from '../components/admin/AdminProducts'
@@ -816,8 +817,17 @@ function AdminCustomers() {
           </p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-slate-800/60">
-          <table className="w-full text-sm">
+        <div className="space-y-2 w-full min-w-0">
+          <div className="flex items-center justify-between gap-2 px-1 text-xs text-slate-400 sm:hidden">
+            <span className="inline-flex items-center gap-1.5 font-medium text-[#e87722]">
+              <MoveHorizontal size={14} className="animate-pulse" />
+              Glissez pour voir toutes les colonnes
+            </span>
+            <span className="text-[10px] text-slate-500">↔ Défilement latéral</span>
+          </div>
+
+          <div className="admin-table-scroll overflow-x-auto rounded-2xl border border-slate-800/60 w-full max-w-full">
+            <table className="w-full text-sm min-w-[550px]">
             <thead>
               <tr className="border-b border-slate-800 bg-slate-900/80 text-left text-slate-400">
                 <th className="px-4 py-3.5 font-medium">Client</th>
@@ -879,6 +889,7 @@ function AdminCustomers() {
             </tbody>
           </table>
         </div>
+      </div>
       )}
 
       {/* Modal détails client */}
@@ -1413,7 +1424,7 @@ export default function AdminDashboard() {
 
   return (
     <AdminRoute>
-      <div className="flex min-h-screen bg-slate-950">
+      <div className="admin-dashboard flex min-h-screen w-full max-w-full min-w-0 overflow-x-hidden bg-slate-950">
         <AdminSidebar
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
@@ -1423,9 +1434,9 @@ export default function AdminDashboard() {
           adminUser={adminUser}
         />
 
-        <div className="flex min-h-screen flex-1 flex-col">
+        <div className="flex min-h-screen w-full max-w-full min-w-0 flex-1 flex-col overflow-x-hidden">
           {/* Top bar mobile */}
-          <header className="flex items-center justify-between border-b border-slate-800/60 bg-slate-950 px-4 py-3 lg:hidden">
+          <header className="flex w-full max-w-full items-center justify-between border-b border-slate-800/60 bg-slate-950 px-4 py-3 lg:hidden">
             <button
               type="button"
               onClick={() => setSidebarOpen(true)}
@@ -1442,8 +1453,8 @@ export default function AdminDashboard() {
             <div className="w-9" />
           </header>
 
-          <main className="flex-1 p-4 sm:p-6 lg:p-8">
-            <div className="mx-auto max-w-7xl">
+          <main className="w-full max-w-full min-w-0 flex-1 overflow-x-hidden p-3 sm:p-6 lg:p-8">
+            <div className="mx-auto w-full min-w-0 max-w-7xl">
               {activeItem === 'dashboard' && <DashboardOverview onNavigate={setActiveItem} />}
               {activeItem === 'products' && <AdminProducts />}
               {activeItem === 'orders' && <AdminOrders />}

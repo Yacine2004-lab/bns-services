@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Plus, Pencil, Trash2, X, Package, ExternalLink, ImagePlus, Camera, Sparkles, Loader2, Upload, ImageIcon } from 'lucide-react'
+import { Plus, Pencil, Trash2, X, Package, ExternalLink, ImagePlus, Camera, Sparkles, Loader2, Upload, ImageIcon, MoveHorizontal } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useProductStore } from '../../context/ProductContext'
 import { uploadApi } from '../../lib/api'
@@ -216,7 +216,7 @@ export default function AdminProducts() {
     'w-full rounded-xl bg-slate-900/50 border border-slate-600 text-white placeholder-slate-500 px-4 py-2.5 text-sm outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-500/20'
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full min-w-0">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-white">Gestion des produits</h2>
@@ -464,8 +464,18 @@ export default function AdminProducts() {
           <p className="text-slate-400">Aucun produit. Ajoutez votre premier matériel.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-slate-800">
-          <table className="w-full text-sm">
+        <div className="space-y-2 w-full min-w-0">
+          {/* Indicateur mobile de défilement horizontal */}
+          <div className="flex items-center justify-between gap-2 px-1 text-xs text-slate-400 sm:hidden">
+            <span className="inline-flex items-center gap-1.5 font-medium text-[#e87722]">
+              <MoveHorizontal size={14} className="animate-pulse" />
+              Glissez pour voir toutes les colonnes
+            </span>
+            <span className="text-[10px] text-slate-500">↔ Défilement latéral</span>
+          </div>
+
+          <div className="admin-table-scroll overflow-x-auto rounded-2xl border border-slate-800 w-full max-w-full">
+            <table className="w-full text-sm min-w-[580px]">
             <thead>
               <tr className="border-b border-slate-800 bg-slate-900/80 text-left text-slate-400">
                 <th className="px-4 py-3 font-medium">Produit</th>
@@ -534,6 +544,7 @@ export default function AdminProducts() {
             </tbody>
           </table>
         </div>
+      </div>
       )}
     </div>
   )

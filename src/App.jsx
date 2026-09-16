@@ -59,7 +59,9 @@ function App() {
               <Route path="/mot-de-passe-oublie" element={<ForgotPassword />} />
               <Route path="/reinitialiser-mot-de-passe" element={<ResetPassword />} />
 
-              {/* Admin — URL connue du personnel uniquement, jamais liée depuis le site public */}
+              {/* Admin — alias pour éviter les 404 et garder l'interface admin identique */}
+              <Route path="/admin" element={<Navigate to="/admin/connexion" replace />} />
+              <Route path="/admin/login" element={<Navigate to="/admin/connexion" replace />} />
               <Route path="/admin/connexion" element={<AdminLogin />} />
               <Route path="/admin/mot-de-passe-oublie" element={<AdminForgotPassword />} />
               <Route path="/admin/reinitialiser-mot-de-passe" element={<AdminResetPassword />} />

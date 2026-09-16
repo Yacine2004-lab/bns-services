@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/api/:path*", "destination": "https://bns-api-production.up.railway.app/api/:path*" },
     { "source": "/uploads/:path*", "destination": "/api/_files/uploads/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
