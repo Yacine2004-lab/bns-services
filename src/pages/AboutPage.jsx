@@ -229,7 +229,7 @@ export default function AboutPage() {
       </section>
 
       {/* CONTACT RAPIDE */}
-      <section className="grid gap-4 sm:grid-cols-3">
+      <section className="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
         <a
           href="https://wa.me/221784459510"
           target="_blank"
@@ -242,6 +242,32 @@ export default function AboutPage() {
           <div className="min-w-0 flex-1">
             <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">WhatsApp</p>
             <p className="truncate text-sm font-bold text-[#0f2557]">+221 78 445 95 10</p>
+          </div>
+        </a>
+
+        <a
+          href="tel:+221781147575"
+          className="group flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md sm:p-5"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-100 text-teal-600 transition group-hover:scale-110">
+            <Phone size={18} />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Téléphone</p>
+            <p className="truncate text-sm font-bold text-[#0f2557]">+221 78 114 75 75</p>
+          </div>
+        </a>
+
+        <a
+          href="tel:+221338421058"
+          className="group flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md sm:p-5"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600 transition group-hover:scale-110">
+            <Phone size={18} />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Fixe</p>
+            <p className="truncate text-sm font-bold text-[#0f2557]">+221 33 842 10 58</p>
           </div>
         </a>
 
