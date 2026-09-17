@@ -92,7 +92,7 @@ const CONTENT = {
     sections: [
       {
         heading: 'Éditeur du site',
-        text: 'BNS Services\nDakar, Sénégal\nEmail : contact@bayeniassservices.com\nWhatsApp : +221 78 445 95 10',
+        text: 'BNS Services\nDakar, Sénégal\nEmail : contact@bayeniassservices.com\nTél : +221 78 445 95 10 / +221 78 114 75 75 / +221 33 842 10 58\nWhatsApp : +221 78 445 95 10',
       },
       {
         heading: 'Hébergement',

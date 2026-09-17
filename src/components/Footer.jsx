@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Phone } from 'lucide-react'
 import BnsLogo from './BnsLogo'
 import { WhatsAppIcon, FacebookIcon, InstagramIcon } from './SocialIcons'
 
@@ -81,8 +82,35 @@ function Footer() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 transition hover:text-[#25D366]"
               >
-                <WhatsAppIcon className="h-4 w-4" />
-                {WHATSAPP_DISPLAY}
+                <WhatsAppIcon className="h-4 w-4 shrink-0 text-[#25D366]" />
+                +221 78 445 95 10 (WhatsApp)
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+221784459510"
+                className="inline-flex items-center gap-2 transition hover:text-white"
+              >
+                <Phone className="h-4 w-4 shrink-0 text-slate-400" />
+                +221 78 445 95 10
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+221781147575"
+                className="inline-flex items-center gap-2 transition hover:text-white"
+              >
+                <Phone className="h-4 w-4 shrink-0 text-slate-400" />
+                +221 78 114 75 75
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+221338421058"
+                className="inline-flex items-center gap-2 transition hover:text-white"
+              >
+                <Phone className="h-4 w-4 shrink-0 text-slate-400" />
+                +221 33 842 10 58
               </a>
             </li>
             <li>
