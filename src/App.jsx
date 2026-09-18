@@ -50,62 +50,62 @@ function App() {
         <ProductProvider>
           <CartProvider>
             <WishlistProvider>
-            <BrowserRouter>
-            <Suspense fallback={<PageLoader />}>
-            <Routes>
-              {/* Auth client — pas de landing admin */}
-              <Route path="/login" element={<Navigate to="/connexion" replace />} />
-              <Route path="/connexion" element={<Login />} />
-              <Route path="/inscription" element={<Signup />} />
-              <Route path="/mot-de-passe-oublie" element={<ForgotPassword />} />
-              <Route path="/reinitialiser-mot-de-passe" element={<ResetPassword />} />
+              <BrowserRouter>
+                <Suspense fallback={<PageLoader />}>
+                  <Routes>
+                    {/* Auth client — pas de landing admin */}
+                    <Route path="/login" element={<Navigate to="/connexion" replace />} />
+                    <Route path="/connexion" element={<Login />} />
+                    <Route path="/inscription" element={<Signup />} />
+                    <Route path="/mot-de-passe-oublie" element={<ForgotPassword />} />
+                    <Route path="/reinitialiser-mot-de-passe" element={<ResetPassword />} />
 
-              {/* Admin — alias pour éviter les 404 et garder l'interface admin identique */}
-              <Route path="/admin" element={<Navigate to="/admin/connexion" replace />} />
-              <Route path="/admin/login" element={<Navigate to="/admin/connexion" replace />} />
-              <Route path="/admin/connexion" element={<AdminLogin />} />
-              <Route path="/admin/mot-de-passe-oublie" element={<AdminForgotPassword />} />
-              <Route path="/admin/reinitialiser-mot-de-passe" element={<AdminResetPassword />} />
-              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                    {/* Admin — alias pour éviter les 404 et garder l'interface admin identique */}
+                    <Route path="/admin" element={<Navigate to="/admin/connexion" replace />} />
+                    <Route path="/admin/login" element={<Navigate to="/admin/connexion" replace />} />
+                    <Route path="/admin/connexion" element={<AdminLogin />} />
+                    <Route path="/admin/mot-de-passe-oublie" element={<AdminForgotPassword />} />
+                    <Route path="/admin/reinitialiser-mot-de-passe" element={<AdminResetPassword />} />
+                    <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-              {/* Boutique publique */}
-              <Route path="/" element={<Layout />}>
-                <Route index element={<HomePage />} />
-                <Route path="catalogue" element={<CatalogPage />} />
-                <Route path="produit/:slug" element={<ProductPage />} />
-                <Route path="panier" element={<CartPage />} />
-                <Route path="wishlist" element={<WishlistPage />} />
-                <Route
-                  path="mon-compte"
-                  element={
-                    <ProtectedRoute>
-                      <ClientDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="checkout" element={<CheckoutPage />} />
-                <Route path="confirmation" element={<ConfirmationPage />} />
-                <Route path="commande/succes" element={<PaymentSuccessPage />} />
-                <Route path="commande/echec" element={<PaymentFailurePage />} />
-                <Route path="suivre-commande" element={<TrackOrderPage />} />
-                <Route path="a-propos" element={<AboutPage />} />
-                <Route path="contact" element={<ContactPage />} />
-                <Route path="conditions-generales" element={<LegalPage type="cgv" />} />
-                <Route path="politique-de-confidentialite" element={<LegalPage type="privacy" />} />
-                <Route path="mentions-legales" element={<LegalPage type="legal" />} />
-              </Route>
+                    {/* Boutique publique */}
+                    <Route path="/" element={<Layout />}>
+                      <Route index element={<HomePage />} />
+                      <Route path="catalogue" element={<CatalogPage />} />
+                      <Route path="produit/:slug" element={<ProductPage />} />
+                      <Route path="panier" element={<CartPage />} />
+                      <Route path="wishlist" element={<WishlistPage />} />
+                      <Route
+                        path="mon-compte"
+                        element={
+                          <ProtectedRoute>
+                            <ClientDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route path="checkout" element={<CheckoutPage />} />
+                      <Route path="confirmation" element={<ConfirmationPage />} />
+                      <Route path="commande/succes" element={<PaymentSuccessPage />} />
+                      <Route path="commande/echec" element={<PaymentFailurePage />} />
+                      <Route path="suivre-commande" element={<TrackOrderPage />} />
+                      <Route path="a-propos" element={<AboutPage />} />
+                      <Route path="contact" element={<ContactPage />} />
+                      <Route path="conditions-generales" element={<LegalPage type="cgv" />} />
+                      <Route path="politique-de-confidentialite" element={<LegalPage type="privacy" />} />
+                      <Route path="mentions-legales" element={<LegalPage type="legal" />} />
+                    </Route>
 
-              {/* 404 — page introuvable */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            </Suspense>
-            </BrowserRouter>
+                    {/* 404 — page introuvable */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+                <CookieBanner />
+              </BrowserRouter>
             </WishlistProvider>
           </CartProvider>
         </ProductProvider>
       </AuthProvider>
     </AdminAuthProvider>
-    <CookieBanner />
   )
 }
 
