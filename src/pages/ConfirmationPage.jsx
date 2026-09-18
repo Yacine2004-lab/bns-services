@@ -16,6 +16,7 @@ import {
   ExternalLink
 } from 'lucide-react'
 import { ordersApi } from '../lib/api'
+import { gaPurchase } from '../lib/analytics'
 
 const formatPrice = (value) =>
   new Intl.NumberFormat('fr-FR', {
@@ -87,6 +88,19 @@ export default function ConfirmationPage() {
         .finally(() => setIsLoading(false))
     }
   }, [location.state])
+
+  // GA4 : purchase — déclenché une seule fois quand la commande est disponible
+  useEffect(() => {
+    if (!order) return
+    const purchaseFiredKey = `bns_ga_purchase_${order.orderNumber || order.id}`
+    if (sessionStorage.getItem(purchaseFiredKey)) return // évite les doublons
+    gaPurchase(
+      order.orderNumber || order.id,
+      order.total,
+      order.items || []
+    )
+    sessionStorage.setItem(purchaseFiredKey, '1')
+  }, [order])
 
   return (
     <div className="space-y-8 pb-16 sm:space-y-10">

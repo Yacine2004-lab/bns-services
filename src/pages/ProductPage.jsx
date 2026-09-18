@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
 import { getActivePricing } from '../lib/pricing'
+import { gaViewItem, gaAddToCart } from '../lib/analytics'
 
 const formatPrice = (value) =>
   new Intl.NumberFormat('fr-FR', {
@@ -36,6 +37,14 @@ function ProductPage() {
     }
   }, [gallery[0], selectedImage])
 
+  // GA4 : view_item au chargement de la fiche produit
+  useEffect(() => {
+    if (product && pricing) {
+      gaViewItem(product, pricing.price)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.id])
+
   if (!product) {
     return (
       <div className="space-y-6">
@@ -58,6 +67,8 @@ function ProductPage() {
 
   const handleAddToCart = () => {
     addToCart(product, quantity, { openDrawerAfter: true, notify: true })
+    // GA4 : add_to_cart
+    gaAddToCart(product, pricing.price, quantity)
     setIsAdded(true)
     setTimeout(() => setIsAdded(false), 2000)
   }

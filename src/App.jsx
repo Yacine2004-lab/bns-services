@@ -7,6 +7,7 @@ import { AdminAuthProvider } from './context/AdminAuthContext.jsx'
 import { ProductProvider } from './context/ProductContext'
 import Layout from './components/Layout'
 import ProtectedRoute from './components/ProtectedRoute'
+import CookieBanner from './components/CookieBanner'
 import HomePage from './pages/HomePage'
 import CatalogPage from './pages/CatalogPage'
 
@@ -104,6 +105,7 @@ function App() {
         </ProductProvider>
       </AuthProvider>
     </AdminAuthProvider>
+    <CookieBanner />
   )
 }
 

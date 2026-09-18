@@ -22,6 +22,7 @@ import { ordersApi, paymentsApi, productsApi } from '../lib/api'
 import { resolveImageUrl } from '../lib/resolveImageUrl'
 import { logError } from '../lib/logger'
 import { getDeliveryFee } from '../data/pricing'
+import { gaBeginCheckout } from '../lib/analytics'
 
 const formatPrice = (value) =>
   new Intl.NumberFormat('fr-FR', {
@@ -127,6 +128,14 @@ export default function CheckoutPage() {
       navigate('/catalogue')
     }
   }, [cart, navigate, isSubmitting])
+
+  // GA4 : begin_checkout au premier chargement de la page
+  useEffect(() => {
+    if (cart.length > 0) {
+      gaBeginCheckout(cart, total)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target

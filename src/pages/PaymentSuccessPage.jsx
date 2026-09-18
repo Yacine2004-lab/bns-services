@@ -3,6 +3,7 @@ import { CheckCircle2, MessageCircle, Package, ArrowRight } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ordersApi } from '../lib/api'
 import { useCart } from '../context/CartContext'
+import { gaPurchase } from '../lib/analytics'
 
 const formatPrice = (value) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'XOF', maximumFractionDigits: 0 }).format(value)
 
@@ -23,6 +24,19 @@ export default function PaymentSuccessPage() {
     if (orderNumber && !order) ordersApi.getByNumber(orderNumber).then((result) => setOrder(result.data)).catch(() => {})
     clearCart()
   }, [orderNumber, order, clearCart])
+
+  // GA4 : purchase — déclenché une seule fois après paiement en ligne
+  useEffect(() => {
+    if (!order) return
+    const purchaseFiredKey = `bns_ga_purchase_${order.orderNumber || order.id}`
+    if (sessionStorage.getItem(purchaseFiredKey)) return
+    gaPurchase(
+      order.orderNumber || order.id,
+      order.total,
+      order.items || []
+    )
+    sessionStorage.setItem(purchaseFiredKey, '1')
+  }, [order])
 
   const message = order ? encodeURIComponent(`Bonjour BNS Services, mon paiement a été effectué pour la commande ${order.orderNumber || order.id}. Total : ${formatPrice(order.total)}.`) : ''
 
